@@ -1,0 +1,532 @@
+# Trying to compile an old .fvwrc to the new fvwm-2.xx Format
+	
+##########################################################################
+# set up the colors
+
+#Set the foreground and background color for selected windows
+HilightColor   Black Burlywood
+Style "white" Sticky
+Style "Black" Sticky
+
+
+############################################################################
+# Now the fonts - one for menus, another for window titles, another for icons
+WindowFont		-adobe-helvetica-bold-r-*-*-12-*-*-*-*-*-*-*
+IconFont		fixed
+
+###########################################################################
+# Set up the major operating modes
+#
+########################      FOCUS STUFF     ##############################
+# Set windows to auto-raise after 750 milliseconds if you like it.
+# Autoraise can sometimes obscure pop-up windows. Performance is now
+# similar to olvwm's auto-raise feature.
+#AutoRaise 750
+
+# Normally, we'll be in focus-follows mouse mode, but uncomment this 
+# for mwm-style click-to-focus
+Style "*" ClickToFocus
+
+########################      ICON STUFF     ##############################
+# Auto Place Icons is a nice feature....
+# This creates two icon boxes, one on the left side, then one on the
+# bottom. Leaves room in the upper left for my clock and xbiff,
+# room on the bottom for the Pager.
+#IconBox -150 90 -5 -140
+## x y mystery mystery, for where miminized icons go
+#IconBox 5 -140 -140 -5
+#IconBox -5 -250 -140 -5
+#IconBox -70 1 -1 -140
+Style "*" IconBox -300-60-50-1
+Style "*" IconBox -500-60-300-1
+Style "*" IconBox -300-130-1-60
+Style "*" IconBox -500-130-300-60
+
+# If you uncomment this, and make sure that the WindowList is bound to
+# something, it works pretty much like an icon manager.
+#SuppressIcons
+
+# StubbornIcons makes icons de-iconify into their original position on the
+# desktop, instead of on the current page.
+#StubbornIcons
+
+# With AutoPlacement, icons will normally place themselves underneath active
+# windows. This option changes that.
+#StubbornIconPlacement
+
+# If you want ALL you icons to follow you around the desktop (Sticky), try
+# this
+## they're in all virtual terminals -- gmd
+#StickyIcons
+
+########################      MWM EMULATION     #######################
+#
+# My feeling is that everyone should use MWMDecorHints and MWMFunctionHints,
+# since some applications depend on having the window manager respect them
+
+# MWMFunction hints parses the function information in the MOTIF_WM_HINTS
+# property, and prohibits use of these functions on the window. Appropriate
+# portions of the window decorations are removed.
+Style "*" MWMFunctions
+
+# MWM is kinda picky about what can be done to transients, and it was keeping
+# me from iconifying some windows that I like to iconify, so here's an
+# over-ride that will allow me to do the operation, even tough the menu
+# item is shaded out.
+Style "*" HintOverride
+
+# MWMDecor hints parses the decoration information in the MOTIF_WM_HINTS
+# property, and removes these decoratons from the window. This does not affect
+# the functions that can be performed via the menus.
+Style "*" MWMDecor
+
+# These are affect minor aspects for the look-and-feel.
+# Sub-menus placement mwm-style?
+# MWMMenus
+# mwm-style border reliefs (less deep than default fvwm) ?
+# MWMBorders
+# Maximize button does mwm-inversion thingy
+# MWMButtons
+########################      MISCELLANEOUS STUFF     #######################
+
+#!Warning: Keyword "CirculateSkipIcons" not handled yet
+#CirculateSkipIcons
+
+# If you don't like the default 150 msec click delay for the complex functions
+# change this and uncomment it.
+#ClickTime 150
+
+# OpaqueMove has a number (N) attached to it (default 5).
+# if the window occupies less than N% of the screen, 
+# then opaque move is used. 0 <= N <= 100
+# OpaqueMove 100
+
+# flip by whole pages on the edge of the screen.
+EdgeScroll 0 0
+
+# A modest delay before flipping pages seems to be nice...
+# I thresh in a 50 pixel Move-resistance too, just so people
+# can try it out.
+EdgeResistance 250 5
+
+# I like to use a large virtual screen and move from page to page with the
+# pager.
+# EdgeResistance 10000 0
+
+
+########################      WINDOW PLACEMENT     #######################
+# RandomPlacement prevents user interaction while placing windows:
+Style "*" RandomPlacement
+
+# SmartPlacement makes new windows pop-up in blank regions of screen 
+# if possible, or falls back to random or interactive placement.
+Style "*" SmartPlacement
+
+# With SmartPlacement, windows will normally place themselves over icons. 
+# Uncomment this to change that.
+#StubbornPlacement
+
+# NoPPosition instructs fvwm to ignore the PPosition field in window 
+# geometry hints. Emacs annoyingly sets PPosition to (0,0)!
+Style "*" NoPPosition
+
+
+########################      DECORATIONS     #######################
+# If you want decorated transient windows, uncomment this:
+#DecorateTransients
+
+###########################################################################
+# Set up the virtual desktop and pager
+## for the little click-box thingy -- gmd
+
+#set the desk top size in units of physical screen size
+## number of boxes in it -- gmd
+#DeskTopSize 3x3
+DeskTopSize 5x4
+
+# and the reduction scale used for the panner/pager
+## for the size of it, bigger the # the littler -- gmd
+#DeskTopScale 36
+#!DeskTopScale 30  (new command=*FvwmPagerDeskTopScale <scale>)
+*FvwmPagerDeskTopScale 80
+
+# Use the Fvwm Pager
+# position it, comment out to not use. -- gmd
+#Pager 730 567
+#Pager 706 560
+
+
+############################################################################
+# Set the decoration styles and window options
+# Order is important!!!!
+# If compatible styles are set for a single window in multiple Style
+# commands, then the styles are ORed together. If conflicting styles
+# are set, the last one specified is used.
+
+# These commands should command before any menus or functions are defined,
+# and before the internal pager is started.
+
+# change the default width.
+
+Style "*" BorderWidth 1, HandleWidth 0, NoHandles, Color Black/Gray70, NoIcon
+Style "Fvwm*"      NoTitle, Sticky, WindowListSkip
+Style "FvwmWinList" Icon, CirculateSkip
+Style "FvwmButtons"  NoTitle, NoHandles, Sticky, WindowListSkip,BorderWidth 0, Icon toolbox.xpm
+Style "*lock"      NoTitle, NoHandles, Sticky, WindowListSkip
+Style "xterm"      HandleWidth 7
+Style "XConsole"   Sticky, NoHandles, NoTitle, CirculateSkip, WindowListSkip, Icon
+Style "XClock"   Sticky, NoHandles, NoTitle, CirculateSkip, WindowListSkip, Icon
+#Style "XBiff"   Sticky, NoHandles, NoTitle, CirculateSkip 4, WindowListSkip, Icon
+Style "asclock" CirculateSkip, Sticky, StaysOnTop
+Style "xclock" CirculateSkip, Sticky, StaysOnTop
+Style "FvwmPager" CirculateSkip
+
+#############################################################################
+
+# Stuff to do at start-up
+AddToFunc "InitFunction" 
+#+	"I" Exec xsetroot -solid white
++	"I" Module FvwmPager 0 0
+
+
+
+AddToFunc "RestartFunction" 
++	"I" Module FvwmPager 0 0
+
+# Redefine WindowListFunc so the mouse cursos isn't moved to the upper-left
+# corner, right over the "close window" button.
+DestroyFunc WindowListFunc
+AddToFunc WindowListFunc
++ I Iconify off
++ I FlipFocus
++ I Raise
++ I WarpToWindow 50p 50p
+
+############################################################################
+# Now define some handy complex functions
+
+# This one moves and then raises the window if you drag the mouse,
+# only raises the window if you click,  or does a RaiseLower if you double 
+# click
+AddToFunc "Move-or-Raise" "M" Move
++              "M" Raise
++              "C" Raise
++              "D" Maximize 0 100
+#	RaiseLower	"DoubleClick" 
+
+AddToFunc "MaxY" 
++ I Function Resize80x24
++ I Maximize 0 100
+
+AddToFunc "MaxXY" 
++ I Function Resize80x24
++ I Maximize 100 100
+
+AddToFunc "MaxX" 
++ I Function Resize80x24
++ I Maximize 100 0
+
+AddToFunc Resize80x24 I Resize 80c 24c
+
+AddToFunc Resize21x16 I Resize 21c 16c
+
+AddToFunc Resize_161X_MaxY
++ I Resize 161c 24c
++ I Maximize 0 100
+
+AddToFunc Resize_241X_MaxY
++ I Resize 241c 24c
++ I Maximize 0 100
+
+# This one moves and then lowers the window if you drag the mouse,
+# only lowers the window if you click,  or does a RaiseLower if you double 
+# click
+AddToFunc "Move-or-Lower" "M" Move
++              "M" Lower
++              "C" Lower
++              "D" RaiseLower
+
+# This one moves or (de)iconifies:
+AddToFunc "Move-or-Iconify" "M" Move
++              "D" Iconify
+
+AddToFunc "Move-and-Raise"
++	"I" Raise
++	"I" Move
++	"D" Maximize 0 100
+
+
+AddToFunc "Focus-and-Raise"
++					"I" Focus
++					"I" Raise
+
+##############################################################################
+#now define the menus - defer bindings until later
+
+AddToMenu "login_to" 
++              "localhost" Exec exec xterm -ls -sb -j -n `uname -n`
++              "dbs (gabrielx1)" Exec exec xterm -title dbs -e screen -D -R dbs
++              "xterm plain" exec xterm
+
+
+# This menu is invoked as a sub-menu - it allows you to quit,
+# restart, or switch to another WM.
+AddToMenu "Quit-Verify" "Restart Fvwm" Restart /abode/gabrielx/local/fvwm-v2.2.2/bin/fvwm2
++              "Refresh Screen" Refresh
++              "Quit" Quit
+#	Restart "Start twm" 	twm
+#	Restart "Start tvtwm" 	tvtwm
+#	Restart "Start mwm" 	mwm
+#	Restart "Start olvwm" 	/usr/openwin/bin/olvwm
+#	Restart "Start olwm" 	/usr/openwin/bin/olwm
+
+# Provides a list of modules to fire off
+AddToMenu "Module-Popup" "FvwmButtons" Module FvwmButtons
++              "Clean-Up" Module FvwmClean
++              "Identify" Module FvwmIdent
++              "SaveDesktop" Module FvwmSave
++              "Debug" Module FvwmDebug
++              "Pager" Module FvwmPager 0 0
++              "FvwmWinList" Module FvwmWinList
+
+
+# This defines the most common window operations
+AddToMenu "Window-Ops" "Max Y" Function MaxY
++              "Max X" Function MaxX
++              "Max XY" Function MaxXY
++              "80x24" Function Resize80x24
++              "21x16" Function Resize21x16
++              "161X Max Y" Function Resize_161X_MaxY
++              "241X Max Y" Function Resize_241X_MaxY
++              "(De)Iconify" Iconify
++              "Move" Function Move-or-Raise
++              "Resize" Resize
++              "Lower" Lower
++              "Raise" Raise
++              "(Un)Stick" Stick
++              "" Nop
++              "Destroy" Destroy
++              "" Nop
++              "Delete" Delete
++              "" Nop
++              "ScrollBar" Module FvwmScroll 2 2
++              "Refresh Screen" Refresh
+#	Raise   	"Raise"
+#	Lower   	"Lower"
+
+# This menu will fire up some very common utilities
+AddToMenu "Utilities"
++              "" Nop
++              "xlock" Exec exec /home/gabrielx/local/bin/xlock
++              "firefox" Exec exec /usr/bin/firefox &
++	       "xwd" Exec exec xwd | xwdtopnm | pnmtopng > /tmp/screenshot.png &
++              "login to" Popup login_to
++              "Module-Popup" Popup Module-Popup
++              "Window-Ops" Popup Window-Ops
++              "fvwm" Popup Quit-Verify
+
+#############################################################################
+# One more complex function - couldn't be defined earlier because it used 
+# pop-up menus
+#
+# This creates a motif-ish sticky menu for the title-bar window-ops
+# pop-up
+# Menu acts like normal twm menu if you just hold the button down,
+# but if you click instead, the menu stays up, motif style
+AddToFunc "window_ops_func" "C" PopUp Window-Ops
++              "M" PopUp Window-Ops
+# Motif would add
++              "D" Delete
+
+
+##############################################################################
+# Context:
+
+# R root window
+# W window app
+# T window title bar
+# S window side, top, or bottom bar
+# F window corner
+# I icon window
+# 0 - 9 title bar buttons
+# A any context (except title bar buttons)
+
+# Modifiers:
+
+# N no modifiers
+# C control
+# S shift
+# M meta
+# A any modifier
+
+#################
+# This defines the mouse bindings
+
+# title bar button arrangement
+# 1 3 5 ------ 6 4 2
+
+#Button	Context Modifi 	Function
+# Mouse 1	R	A  PopUp "Utilities"
+# Mouse 2	R  A  PopUp "Window-Ops"
+# Mouse 3  R  A  WindowList
+# Mouse 1  1  A  Function "window_ops_func"
+# Mouse 1  4  A  Iconify
+# Mouse 1  2  A  Maximize 
+# Mouse 1	I	A	Function "Move-or-Iconify"
+# Mouse 3	I	A	Iconify
+# Mouse 3	T	A	Iconify
+# Mouse 1  FS A  Resize
+# Mouse 1  T  A  Function "Move-or-Raise"
+
+
+
+########
+Mouse 1 1 N Delete
+Mouse 1  T  	A			Function "Move-and-Raise"
+Mouse	1	R		A			PopUp "Utilities"
+
+Mouse 2	RT		A			PopUp "Window-Ops"
+
+#Mouse	1	W		C			Resize
+Mouse	1	W		S			Resize
+Mouse	1	W		M			Resize
+Mouse 3  R		A			WindowList
+Mouse 3	T		A			Iconify
+
+#####
+
+
+
+# # Valid contexts are 
+# 	R for the root window
+# 	W for an application window, 
+# 	T for a  window  title  bar
+# 	S for a window side, top, or bottom bar,
+# 	F for a window frame (the  corners),  
+# 	I for  an  Icon  window, 
+# 	or 0 through 9 for title-bar buttons,
+# 	or any combination of these letters. 
+# 	A  is for  any  context except for title-bar buttons.
+# For instance, a context of  FST  will  apply  when  the mouse  is
+# anywhere in a window's border except the title-bar buttons. 
+# 
+#               Modifiers is any combination of N for no modifiers,
+#               C  for  control,  S for shift, M for Meta, or A for
+#               any modifier.  For example, a modifier of  SM  will
+#               apply  when  both the Meta and shift keys are down.
+#               X11 modifiers mod1 through mod5 are represented  as
+#               the digits 1 through 5.                        
+# 
+# ############################################################################
+
+
+#	Move -1024 +0
+#	Scroll -1024 +0
+#	Move +1024 +0
+#	Scroll +1024 +0
+
+# Now some keyboard shortcuts.
+
+# press arrow + control anywhere, and scroll by 1 page
+Key Left		A	C	Scroll -100 0
+Key Right	A	C	Scroll +100 +0
+Key Up		A	C	Scroll +0 -100
+Key Down		A	C	Scroll +0 +100
+
+# press shift arrow + control anywhere, and move the pointer by 1% of a page
+Key Left		A	S	CursorMove -1 0
+Key Right	A	S	CursorMove +1 +0
+Key Up		A	S	CursorMove +0   -1
+Key Down		A	S	CursorMove +0   +1
+
+# Keyboard accelerators
+#Key Tab     A  M  Next [!iconic CurrentScreen CurrentDesk] Focus-and-Raise
+#Key Tab     A  C  Prev [!iconic CurrentScreen CurrentDesk] Focus-and-Raise
+Key Tab A M WindowList (CurrentPage) Root c c NoGeometry, CurrentAtEnd, IconifiedAtEnd
+Key F1		A	M	Popup "Utilities"
+Key F2		A	M	Popup "Window-Ops"
+Key F3		A	M	Popup "login_to" login_to
+Key F6		A	M	Popup "login_to" login_to
+#Key F3		A	M	Module "WindowList" FvwmWinList 
+Key F5		A	M	Move 
+#Key F7		A	M	WindowList
+#Key F6		A	M	Resize
+#Key F8		A  M	Move -100 0
+#Key F9		A  M  Move +100 0
+Key F10		A	M	Destroy
+
+
+############################################################################
+#Definitions used by the modules
+
+###################### GoodStuff button-bar ################################
+# Colors
+*FvwmButtonsFore black
+*FvwmButtonsBack #908090
+
+# Font
+*FvwmButtonsFont -adobe-helvetica-bold-r-*-*-10-*-*-*-*-*-*-*
+# Geometry - really likes to pick its own size, but giving a position is OK
+*FvwmButtonsGeometry -1-90
+
+# Layout: specify rows or columns, not both
+*FvwmButtonsColumns 1
+
+# Define the buttons to use.....
+*FvwmButtons Kill    rbomb.xpm    Destroy
+
+# xterm or rxvts on remote machines can be done like this
+# Output re-direction is csh style, not sh style
+# You will want to substitute your own hosts here!
+
+#*GoodStuff Dopey   rterm.xpm   Exec "dopey" rsh dopey "exec xterm -T dopey -display $HOSTDISPLAY </dev/null >&/dev/null & "&
+#*GoodStuff Grumpy  rterm.xpm   Exec "grumpy" rsh grumpy "exec xterm -T grumpy -display $HOSTDISPLAY </dev/null >&/dev/null & "&
+#*GoodStuff Snoopy  rterm.xpm   Exec "snoopy" rsh snoopy "exec xterm -T snoopy -display $HOSTDISPLAY </dev/null >&/dev/null & "&
+#*GoodStuff Xcalc   rcalc.xpm   Exec "Calculator" xcalc &
+#*GoodStuff mail    mail2.xpm    Exec "xmh" xmh &
+
+#*GoodStuff Paging  clamp.xpm   TogglePage
+#*GoodStuff xclock  clock.xpm   Swallow "xclock" xclock -bg \#908090 -geometry -1500-1500 -padding 0 &
+
+
+######################### No Clutter ########################################
+# I only wrote NoClutter as a simple test case, but maybe some big sites like
+# universities really have usage problems (too many open windows)....
+# Time delays are in seconds.
+*FvwmNoClutter 3600 Iconify 1
+*FvwmNoClutter 86400 Delete
+*FvwmNoCLutter 172800 Destroy
+
+########################## Window-Identifier ###############################
+# Just choose colors and a fonts
+*FvwmIdentBack MidnightBlue
+*FvwmIdentFore Yellow
+*FvwmIdentFont -adobe-helvetica-medium-r-*-*-12-*-*-*-*-*-*-*
+
+########################### Pager #########################################
+*FvwmPagerHilight Grey
+#*FvwmPagerFont -adobe-helvetica-bold-r-*-*-10-*-*-*-*-*-*-*
+*FvwmPagerFont none
+*FvwmPagerBack "white"
+*FvwmPagerFore "black"
+*FvwmPagerGeometry +0+0
+*FvwmPagerLabel 0 ""
+*FvwmPagerLabel 1 FrameMaker
+*FvwmPagerLabel 2 Mail
+*FvwmPagerLabel 3 Matlab
+*FvwmPagerSmallFont 5x8
+
+
+##########################FvwmWinList##################################
+*FvwmWinListBack #908090
+*FvwmWinListFore black
+*FvwmWinListFont -adobe-helvetica-bold-r-*-*-10-*-*-*-*-*-*-*
+*FvwmWinListAction Click1 Iconify -1,Focus
+*FvwmWinListAction Click2 Iconify
+*FvwmWinListAction Click3 Module "FvwmIdent" FvwmIdent
+*FvwmWinListUseSkipList
+*FvwmWinListGeometry +0+60
+
+#Module FvwmWinList
+                                      
+######################################################################
