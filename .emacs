@@ -190,6 +190,7 @@
 ;;(set-specifier menubar-visible-p nil)
 (if (string-match "XEmacs" emacs-version)
     (set-specifier default-toolbar-visible-p nil))
+(tool-bar-mode -1)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Misc settings
