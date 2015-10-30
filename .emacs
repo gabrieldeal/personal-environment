@@ -147,6 +147,8 @@
 (setq auto-mode-alist (cons '("\\.pm$" . perl-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.cgi$" . perl-mode) auto-mode-alist))
 
+(require 'web-mode) ; https://github.com/fxbois/web-mode
+(setq auto-mode-alist (cons '("\\.erb$" . web-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.rb$" . ruby-mode) auto-mode-alist))
 
 (setq auto-mode-alist (cons '("\\.h$" . c++-mode) auto-mode-alist))
@@ -355,6 +357,13 @@ sub get_options {
 (setq Buffer-menu-time-flag nil)
 (setq Buffer-menu-mode-flag nil)
 
+(add-hook 'web-mode-hook
+	  (function (lambda()
+		      (setq web-mode-markup-indent-offset 2)
+		      (setq web-mode-css-indent-offset 2)
+		      (setq web-mode-code-indent-offset 2)
+		      )))
+
 (add-hook 'buffer-menu-mode-hook
 	  (function (lambda()
 		      (font-lock-mode -1))))
@@ -397,7 +406,6 @@ sub get_options {
 (add-hook 'postscript-mode-hook
 	  (function (lambda()
 		      (font-lock-mode)
-		      (no-window-c-colors)
 		      (setq ps-indent-level 4)
 		      )))
 
@@ -490,7 +498,6 @@ sub get_options {
 			    c-basic-offset 4)
 		      (c-set-offset 'substatement-open '0)
 		      (c-set-offset 'inline-open '0)
-		      (no-window-c-colors)
 		      (define-key c-mode-base-map "" 'backward-kill-word)
 		     ;(define-key c-mode-base-map [(escape backspace)] 'backward-kill-word)
 )))
@@ -510,8 +517,6 @@ sub get_options {
 	 (setq cperl-indent-level 4)
 	 (cperl-define-key "\C-h" 'backward-delete-char)
 	 (cperl-define-key "\C-j" 'set-mark-command)
-	 (no-window-perl-colors)
-	 (no-window-c-colors)
 	 (set-face-foreground 'cperl-array-face "black")
 	 (set-face-foreground 'cperl-hash-face "black")
 	 (set-face-background 'cperl-hash-face "white")
@@ -529,12 +534,10 @@ sub get_options {
 ; called):
 (load-library "compile")
 (setq grep-null-device nil)
-(setq grep-command "sgrep -n ")
 (setq compilation-mode-hook
       '(lambda()
 	 (font-lock-mode 1)
 	 (setq compilation-scroll-output 'first-error)
-	 (no-window-c-colors)
 	 ))
 (setq gdb-mode-hook
       '(lambda()
@@ -544,7 +547,6 @@ sub get_options {
 
 (setq lisp-mode-hook '(lambda()
 			(font-lock-mode)
-			(no-window-c-colors)
 			))
 
 (setq shell-script-mode-hook
@@ -735,8 +737,11 @@ sub get_options {
 
 (define-key esc-map "i" 'gmd-ucase-first-character)
 
-(define-key ctl-x-map "V" 'reload-current-file)
-(define-key esc-map "!" 'shell-command-wrapper)
+(define-key ctl-x-map "V" (lambda()
+			    (interactive)
+			    (revert-buffer t (not (buffer-modified-p)) t)))
+
+;(define-key esc-map "!" 'shell-command-wrapper)
 (global-set-key "\C-xP" 'insert-last-buffer-file-name)
 (global-set-key "\M-p" 'scroll-one-line-behind)
 (global-set-key "\M-n" 'scroll-one-line-ahead)
@@ -953,5 +958,11 @@ This makes it easy to figure out which prefix to pass to yank."
 	  (display-buffer p4-output-buffer-name t))))
   (if (and do-revert (p4-buffer-file-name))
       (revert-buffer t t)))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Make emacs share the copy/paste clipboard that everything else uses.
+
+(setq x-select-enable-clipboard t)
+(setq interprogram-paste-function 'x-cut-buffer-or-selection-value)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
