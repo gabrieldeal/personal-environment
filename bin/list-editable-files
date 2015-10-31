@@ -1,0 +1,13 @@
+#!/bin/sh
+
+find . \
+    -name Makefile \
+    -o -name \*.xml \
+    -o -name \*.pm \
+    -o -name \*.ln \
+    -o -name \*.erb \
+    -o -name \*.rb \
+    -o -name \*.yml \
+    -o -name \*.css \
+    -o -name \*.js \
+    -o -name Gemfile
