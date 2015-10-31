@@ -5,53 +5,26 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (setq load-path
-      (append
-       (list
-	(expand-file-name "~/local/lisp")
-	(expand-file-name "~/local/lisp/tiny")
-;	(expand-file-name "~/local/lisp/rhtml")
-	(expand-file-name "~/local/lisp/nxml-mode")
-	(expand-file-name "~/local/lisp/cc-mode-5.32.2")
-	"/tmp/emacs-code-reviewer/lisp"
-	"/opt/third-party/share/emacs/site-lisp"
-	"/usr/local/share/emacs/site-lisp")
-       load-path))
+      (append load-path (list (expand-file-name "~/local/lisp")
+			      (expand-file-name "~/local/lisp/magit"))))
 
-(setq Amazon-do-savehist nil)
 (savehist-mode 1)
-
-;(load-library "amazon/load-all")
 (load-library "hideshow")
 (load-library "nxml-mode")
-;(load-library "buff-menu+")
-;(eval-after-load "sql"
-;  (load-library "sql-indent"))
-
-;(require 'rhtml-mode)
-;(require 'magit)
-;(defun magit-highlight-section ())
+(load-library "magit")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; WS mode
 ;; This strips trailing whitespace and converts tabs to spaces on
 ;; lines that are modified.
 
-;(require 'ws-trim)
-;(global-ws-trim-mode t)
-;(set-default 'ws-trim-level 0)
-;(setq ws-trim-global-modes '(guess (not message-mode eshell-mode)))
+(require 'ws-trim)
+(global-ws-trim-mode t)
+(set-default 'ws-trim-level 0)
+(setq ws-trim-global-modes '(guess (not message-mode eshell-mode)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;(load-library "star-indent")
-;;(load-file "/opt/amazon/website/etc/US/production-defaults/.emacs")
-
-;(require 'amzmason) ;; This has to happen after i wipe out auto-mode-alist.
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-;(autoload 'mcook-iswitch-to-buffer "mcook" nil t)
-;(define-key global-map "\C-xb" 'mcook-iswitch-to-buffer)
 (setq read-buffer-completion-ignore-case 't)
 (setq read-file-name-completion-ignore-case 't)
 (setq line-move-visual nil)
@@ -59,17 +32,8 @@
 (setq split-height-threshold nil)
 (setq split-width-threshold most-positive-fixnum)
 
-(defun scratch-insert(text)
-  (save-excursion
-    (switch-to-buffer "*scratch*")
-    (insert text)))
-
-;; The default doesn't split exactly in half...
-(defun gmd-split-window-horizontally()
-  ""
-  (interactive)
-  (split-window-horizontally (/ (+ 1 (window-width)) 2))
-)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; SQL
 
 (defun gmd-format-sql ()
   "Format SQL queries"
@@ -103,31 +67,6 @@
       (add-to-list 'comint-preoutput-filter-functions
 		   'eat-sqlplus-junk))
 
-;; What is the meaning of this?!  This is for tags, compile, grep, and
-;; anything that might think /net/x.desktop/y is NOT the same file as
-;; /y.  They see the filename is different and open a new buffer for
-;; /net/x.desktop/y instead of switching to /y.  I'm not sure if this
-;; actually fixes that, but, for what it's worth, it does do what it
-;; looks like it's supposed to do.
-(defun get-full-and-short-hostname (SYSTEM-NAME)
-  (let ((domain-name ".amazon.com")
-	(full-hostname SYSTEM-NAME)
-	(short-hostname SYSTEM-NAME))
-    (if (string-match domain-name full-hostname)
-	(progn
-	  (string-match domain-name short-hostname)
-	  (setq short-hostname (replace-match "" nil 't short-hostname)))
-      (setq full-hostname (concat full-hostname domain-name)))
-    (list full-hostname short-hostname)))
-
-(let ((hostname-list (get-full-and-short-hostname (system-name))))
-  (setq directory-abbrev-alist
-	(cons (cons (concat "^/net/" (car hostname-list)) "")
-	      (cons (cons (concat "^/net/" (car (cdr hostname-list))) "")
-		    directory-abbrev-alist))))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Set up default modes for different file types
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -148,6 +87,7 @@
 (setq auto-mode-alist (cons '("\\.cgi$" . perl-mode) auto-mode-alist))
 
 (require 'web-mode) ; https://github.com/fxbois/web-mode
+(setq auto-mode-alist (cons '("\\.php$" . web-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.erb$" . web-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.rb$" . ruby-mode) auto-mode-alist))
 
@@ -180,8 +120,6 @@
 
 (setq auto-mode-alist (cons '("\\.sql$" . sql-mode) auto-mode-alist))
 
-;(setq auto-mode-alist (cons '("\\.html.erb$" . rhtml-mode) auto-mode-alist))
-
 (setq interpreter-mode-alist '())
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -194,28 +132,23 @@
     (set-specifier default-toolbar-visible-p nil))
 (tool-bar-mode -1)
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Misc settings
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
 ; get rid of the menu bar
 (if menu-bar-mode
     (menu-bar-mode -1))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Misc settings
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ; Fix Esc-/ so it honors case:
 (setq dabbrev-case-replace nil)
 (setq dabbrev-case-fold-search nil)
 
-(setq compile-command "bmake")
 (setq enable-recursive-minibuffers 't)
-
-;; Reload files that have changed on disk.
-;(setq revert-without-query (list ""))
 
 (setq line-number-mode 1)
 (setq explicit-shell-file-name "bash")
 (setq inhibit-startup-message 't)
-;;(setq default-tab-width 3)
 (setq next-line-add-newlines 'nil)
 (setq next-screen-context-lines 1)
 (setq scroll-step 1)
@@ -223,11 +156,6 @@
 
 ;; Wrap lines instead of truncating them with a '$' (when splitting windows vertically)
 (setq truncate-partial-width-windows nil)
-
-;; Avoid regex buffer overflows by limiting the number of regexes.
-;(setq compilation-error-regexp-systems-list '(gnu))
-;(if (string-match "XEmacs" emacs-version)
-;    (compilation-build-compilation-error-regexp-alist))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Misc functions
@@ -262,20 +190,6 @@
       (progn
 	  (byte-compile-file (car files))
 	  (gmd-internal-byte-compile-files (cdr files)))))
-
-(defun gmd-recompile-then-beep-lots()
-  ""
-  (interactive)
-  (recompile)
-  (beep)
-  (sleep-for 1)
-  (beep)
-  (sleep-for 1)
-  (beep)
-  (sleep-for 1)
-  (beep)
-  (sleep-for 1)
-  (beep))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Functions tied to a language
@@ -337,16 +251,6 @@ sub get_options {
   (set-face-foreground 'font-lock-warning-face "black"))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; AMZ CPP mode
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(autoload 'amzcpp-mode "amzcpp"
-  "Amazon production file editing mode"
-  t)
-(setq amzcpp-use-my-colors t)
-(setq auto-mode-alist (cons '("\\.datecat$" . amzcpp-mode) auto-mode-alist))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Mode hooks
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -367,9 +271,6 @@ sub get_options {
 (add-hook 'buffer-menu-mode-hook
 	  (function (lambda()
 		      (font-lock-mode -1))))
-
-;(require 'last-edited)
-;(add-hook 'write-file-hooks 'last-edited-stamp)
 
 (add-hook 'mmm-mason-class-hook
 	  (lambda()
@@ -437,17 +338,6 @@ sub get_options {
 		      (setq c-comment-start-regexp "(@|/(/|[*][*]?))")
 		      (modify-syntax-entry ?@ "< b" java-mode-syntax-table)
 		      )))
-;; (add-hook 'java-mode-hook
-;; 		  (function (lambda ()
-;; 					  (setq c-default-style "user"
-;; 						c-basic-offset 8)
-;; 					  (setq tab-width 8)
-;; 					  (c-set-offset 'substatement-open '0)
-;; 					  (c-set-offset 'inline-open '0)
-;; 					  (c-set-offset 'case-label '+)
-;; 					  (setq indent-tabs-mode 't)
-;; 					  (font-lock-mode)
-;; 					  (no-window-c-colors))))
 
 (defun gmd-indent-buffer()
   (interactive "")
@@ -559,15 +449,6 @@ sub get_options {
 	 (font-lock-mode)
 	 (define-key makefile-mode-map "\M-n" 'scroll-one-line-ahead)
 	 (define-key makefile-mode-map "\M-p" 'scroll-one-line-behind)))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(defun gmd-ucase-first-character()
-  (interactive)
-  (save-excursion
-    (let ((char-to-ucase (buffer-substring (point) (+ 1 (point)))))
-      (delete-char 1)
-      (insert (upcase char-to-ucase)))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; From http://www.emacswiki.org/emacs/CamelCase
@@ -727,7 +608,6 @@ sub get_options {
 ;; Key mappings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;(global-set-key "\M-\"" 'search-buffers)
 (global-set-key "\M-'" 'search-again)
 (global-set-key "\M-g" 'goto-line)
 (global-set-key "\C-s" 'isearch-forward-regexp)
@@ -735,55 +615,43 @@ sub get_options {
 
 (define-key text-mode-map (kbd "TAB") 'self-insert-command)
 
-(define-key esc-map "i" 'gmd-ucase-first-character)
-
 (define-key ctl-x-map "V" (lambda()
 			    (interactive)
 			    (revert-buffer t (not (buffer-modified-p)) t)))
-
-;(define-key esc-map "!" 'shell-command-wrapper)
-(global-set-key "\C-xP" 'insert-last-buffer-file-name)
-(global-set-key "\M-p" 'scroll-one-line-behind)
-(global-set-key "\M-n" 'scroll-one-line-ahead)
+(global-set-key "\M-p" (lambda()
+			 (interactive)
+			 (scroll-down-command 1)))
+(global-set-key "\M-n" (lambda()
+			 (interactive)
+			 (scroll-up-command 1)))
 
 
 (normal-erase-is-backspace-mode 0)
 
-(defvar ctl-x-6-map (make-sparse-keymap) "")
-(define-key ctl-x-map "6" 'ctl-x-6-prefix)
-(fset 'ctl-x-6-prefix ctl-x-6-map)
-(define-key ctl-x-6-map "r" 'gmd-recompile)
-(define-key ctl-x-6-map "6" 'gmd-recompile)
-(define-key ctl-x-6-map "c" 'compile)
-(define-key ctl-x-6-map "i" 'debug-hack-insert-string)
-(define-key ctl-x-6-map "n" 'debug-hack-new)
-(define-key ctl-x-6-map "a" 'debug-hack-assign-count)
+;; (defvar ctl-x-6-map (make-sparse-keymap) "")
+;; (define-key ctl-x-map "6" 'ctl-x-6-prefix)
+;; (fset 'ctl-x-6-prefix ctl-x-6-map)
+;; (define-key ctl-x-6-map "r" 'gmd-recompile)
+;; (define-key ctl-x-6-map "6" 'gmd-recompile)
+;; (define-key ctl-x-6-map "c" 'compile)
+;; (define-key ctl-x-6-map "i" 'debug-hack-insert-string)
+;; (define-key ctl-x-6-map "n" 'debug-hack-new)
+;; (define-key ctl-x-6-map "a" 'debug-hack-assign-count)
 
-(define-key ctl-x-map "3" 'gmd-split-window-horizontally)
-
-;(define-key ctl-x-4-map "s" 'save-emacs-state)
-;(define-key ctl-x-4-map "r" 'setup-emacs-state)
 ;(define-key p4-prefix-map "r" 'gmd-p4-revert)
 ;(define-key p4-prefix-map "e" 'gmd-p4-edit)
 ;(define-key p4-prefix-map "=" 'gmd-p4-diff)
+
 (define-key global-map "\C-t" 'join-with-next-line)
 (define-key global-map "\C-h" 'backward-delete-char)
 (global-set-key "\C-h" 'backward-delete-char)
-;(global-set-key '(f8) 'perl-script-start)
 (define-key global-map "OR" 'gmd-whack-leading-space-then-go-down) ; f3
 (define-key ctl-x-map "w" 'save-buffer)
 (define-key ctl-x-map "c" 'quoted-insert)
 (define-key ctl-x-map "?" 'help-for-help)
 (define-key ctl-x-map ">" 'replace-regexp)
 (define-key esc-map "s" 'isearch-forward-regexp)
-;(define-key esc-map "r" 'isearch-backward-regexp)
 (define-key esc-map "\C-h" 'backward-kill-word)
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Setting up state
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(setq gmd-tinydesk-file-location "~/.emacs-state/")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -793,24 +661,6 @@ sub get_options {
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Keep HTML mode from prompting me for info
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(custom-set-variables
-  ;; custom-set-variables was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
- '(query-user-mail-address nil)
- '(safe-local-variable-values (quote ((sgml-indent-step . 4))))
- '(user-mail-address "gabrielx@amazon.com"))
-(custom-set-faces
-  ;; custom-set-faces was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
- )
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
 
 (defun gmd-recompile()
   "Instead of recompiling with the last command FROM THE CURRENT BUFFER,
