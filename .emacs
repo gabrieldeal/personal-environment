@@ -617,7 +617,7 @@ sub get_options {
 
 (define-key ctl-x-map "V" (lambda()
 			    (interactive)
-			    (revert-buffer t (not (buffer-modified-p)) t)))
+			    (revert-buffer t (not (buffer-modified-p)) nil)))
 (global-set-key "\M-p" (lambda()
 			 (interactive)
 			 (scroll-down-command 1)))
