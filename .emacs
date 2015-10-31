@@ -86,6 +86,9 @@
 (setq auto-mode-alist (cons '("\\.pm$" . perl-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.cgi$" . perl-mode) auto-mode-alist))
 
+(setq auto-mode-alist (cons '("\\.sh$" . sh-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '("\\.bash[^/]*" . sh-mode) auto-mode-alist))
+
 (require 'web-mode) ; https://github.com/fxbois/web-mode
 (setq auto-mode-alist (cons '("\\.php$" . web-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.erb$" . web-mode) auto-mode-alist))
