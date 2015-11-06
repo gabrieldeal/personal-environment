@@ -1,6 +1,13 @@
 #!/bin/sh
+#-*-shell-script-*-
 
-find . \
+dir="$@"
+if [ -s "$dir" ]
+then
+    dir=.
+fi
+
+find $dir \
     -name Makefile \
     -o -name \*.xml \
     -o -name \*.pm \
@@ -10,4 +17,5 @@ find . \
     -o -name \*.yml \
     -o -name \*.css \
     -o -name \*.js \
+    -o -name Rakefile \
     -o -name Gemfile
