@@ -1,0 +1,4 @@
+#!/bin/sh
+#-*-shell-script-*-
+
+list-editable-files . | etags -
