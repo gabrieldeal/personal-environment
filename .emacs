@@ -93,6 +93,8 @@
 (setq auto-mode-alist (cons '("\\.php$" . web-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.erb$" . web-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.rb$" . ruby-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '("Gemfile" . ruby-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '("Rakefile" . ruby-mode) auto-mode-alist))
 
 (setq auto-mode-alist (cons '("\\.h$" . c++-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.c$" . c++-mode) auto-mode-alist))
@@ -142,6 +144,9 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Misc settings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+; Stop emacs from asking if I want to follow the symlink.
+(setq vc-follow-symlinks 't)
 
 ; Fix Esc-/ so it honors case:
 (setq dabbrev-case-replace nil)
@@ -263,6 +268,10 @@ sub get_options {
 (setq Buffer-menu-buffer+size-width 100)
 (setq Buffer-menu-time-flag nil)
 (setq Buffer-menu-mode-flag nil)
+
+(add-hook 'ruby-mode-hook 'robe-mode)
+
+(add-hook 'after-init-hook #'global-flycheck-mode)
 
 (add-hook 'web-mode-hook
 	  (function (lambda()
@@ -426,6 +435,7 @@ sub get_options {
 ; end of my grep commands (needs to happen before the mode hook is
 ; called):
 (load-library "compile")
+(setq grep-command "grep -n ")
 (setq grep-null-device nil)
 (setq compilation-mode-hook
       '(lambda()
@@ -638,15 +648,11 @@ sub get_options {
 
 (normal-erase-is-backspace-mode 0)
 
-;; (defvar ctl-x-6-map (make-sparse-keymap) "")
-;; (define-key ctl-x-map "6" 'ctl-x-6-prefix)
-;; (fset 'ctl-x-6-prefix ctl-x-6-map)
-;; (define-key ctl-x-6-map "r" 'gmd-recompile)
-;; (define-key ctl-x-6-map "6" 'gmd-recompile)
-;; (define-key ctl-x-6-map "c" 'compile)
-;; (define-key ctl-x-6-map "i" 'debug-hack-insert-string)
-;; (define-key ctl-x-6-map "n" 'debug-hack-new)
-;; (define-key ctl-x-6-map "a" 'debug-hack-assign-count)
+(defvar ctl-x-6-map (make-sparse-keymap) "")
+(define-key ctl-x-map "6" 'ctl-x-6-prefix)
+(fset 'ctl-x-6-prefix ctl-x-6-map)
+(define-key ctl-x-6-map "r" 'gmd-recompile)
+(define-key ctl-x-6-map "c" 'compile)
 
 ;(define-key p4-prefix-map "r" 'gmd-p4-revert)
 ;(define-key p4-prefix-map "e" 'gmd-p4-edit)
@@ -826,3 +832,24 @@ This makes it easy to figure out which prefix to pass to yank."
 (setq interprogram-paste-function 'x-cut-buffer-or-selection-value)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; For M-x package-install
+
+; To update the packages: M-x package-refresh-contents
+(require 'package)
+(package-initialize)
+(add-to-list 'package-archives
+	     '("melpa" . "http://melpa.org/packages/"))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(magit-item-highlight ((t nil))))
