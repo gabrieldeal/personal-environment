@@ -14,6 +14,15 @@
 (load-library "magit")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; For M-x package-install
+
+; To update the packages: M-x package-refresh-contents
+(require 'package)
+(package-initialize)
+(add-to-list 'package-archives
+	     '("melpa" . "http://melpa.org/packages/"))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; WS mode
 ;; This strips trailing whitespace and converts tabs to spaces on
 ;; lines that are modified.
@@ -34,6 +43,20 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; SQL
+
+(defun my-sql-save-history-hook ()
+  (let ((lval 'sql-input-ring-file-name)
+	(rval 'sql-product))
+    (if (symbol-value rval)
+	(let ((filename
+	       (concat "~/.emacs.d/sql/"
+		       (symbol-name (symbol-value rval))
+		       "-history.sql")))
+	  (set (make-local-variable lval) filename))
+      (error
+       (format "SQL history will not be saved because %s is nil"
+	       (symbol-name rval))))))
+(add-hook 'sql-interactive-mode-hook 'my-sql-save-history-hook)
 
 (defun gmd-format-sql ()
   "Format SQL queries"
@@ -269,7 +292,11 @@ sub get_options {
 (setq Buffer-menu-time-flag nil)
 (setq Buffer-menu-mode-flag nil)
 
+(require 'robe)
+;; robe overrides M-,
+(define-key robe-mode-map (kbd "M-,") 'tags-loop-continue)
 (add-hook 'ruby-mode-hook 'robe-mode)
+(add-hook 'ruby-mode-hook 'rubocop-mode)
 
 (add-hook 'after-init-hook #'global-flycheck-mode)
 
@@ -435,13 +462,21 @@ sub get_options {
 ; end of my grep commands (needs to happen before the mode hook is
 ; called):
 (load-library "compile")
-(setq grep-command "grep -n ")
+(setq grep-command "grep -nr ")
 (setq grep-null-device nil)
+
 (setq compilation-mode-hook
       '(lambda()
 	 (font-lock-mode 1)
 	 (setq compilation-scroll-output 'first-error)
 	 ))
+(require 'ansi-color)
+(defun colorize-compilation-buffer ()
+  (toggle-read-only)
+  (ansi-color-apply-on-region compilation-filter-start (point))
+  (toggle-read-only))
+(add-hook 'compilation-filter-hook 'colorize-compilation-buffer)
+
 (setq gdb-mode-hook
       '(lambda()
 	 (define-key gdb-mode-map "\M-u" 'gdb-up)
@@ -832,15 +867,6 @@ This makes it easy to figure out which prefix to pass to yank."
 (setq interprogram-paste-function 'x-cut-buffer-or-selection-value)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; For M-x package-install
-
-; To update the packages: M-x package-refresh-contents
-(require 'package)
-(package-initialize)
-(add-to-list 'package-archives
-	     '("melpa" . "http://melpa.org/packages/"))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -853,3 +879,5 @@ This makes it easy to figure out which prefix to pass to yank."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(magit-item-highlight ((t nil))))
+
+
