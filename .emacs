@@ -1,6 +1,16 @@
 ;;-*-Lisp-*-
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Notes to myself
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; Set the title of the XWindows window.
+;(setq-default frame-title-format "java")
+(defun set-title(title)
+  (interactive "sTitle: ")
+  (setq-default frame-title-format title))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Set load path and load libraries
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -12,6 +22,9 @@
 (load-library "hideshow")
 (load-library "nxml-mode")
 (load-library "magit")
+
+(load-library "tinydesk")
+(setq tinydesk--directory-location "~/tmp/emacs-tinydesk/")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; For M-x package-install
@@ -116,6 +129,7 @@
 (setq auto-mode-alist (cons '("\\.php$" . web-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.erb$" . web-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.rb$" . ruby-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '("\\.rake$" . ruby-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("Gemfile" . ruby-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("Rakefile" . ruby-mode) auto-mode-alist))
 
@@ -470,6 +484,9 @@ sub get_options {
 	 (font-lock-mode 1)
 	 (setq compilation-scroll-output 'first-error)
 	 ))
+
+;; Make compilation mode color text based on the ANSI color control
+;; characters.
 (require 'ansi-color)
 (defun colorize-compilation-buffer ()
   (toggle-read-only)

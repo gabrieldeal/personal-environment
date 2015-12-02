@@ -1,1 +1,2 @@
 xterm*metaSendsEscape: true
+emacs*geometry: 190x100
