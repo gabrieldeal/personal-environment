@@ -60,15 +60,6 @@
 (setq ws-trim-global-modes '(guess (not message-mode eshell-mode)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(setq read-buffer-completion-ignore-case 't)
-(setq read-file-name-completion-ignore-case 't)
-(setq line-move-visual nil)
-
-(setq split-height-threshold nil)
-(setq split-width-threshold most-positive-fixnum)
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; SQL
 
 (defun my-sql-save-history-hook ()
@@ -120,8 +111,6 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Set up default modes for different file types
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(show-paren-mode 1)
 
 (setq auto-mode-alist '()) ;; so fundamental-mode will be default
 
@@ -183,6 +172,15 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (setq mouse-yank-at-point t)
+
+; Disable the mouse
+(dolist (k '([mouse-1] [down-mouse-1] [drag-mouse-1] [double-mouse-1] [triple-mouse-1]
+	     [mouse-2] [down-mouse-2] [drag-mouse-2] [double-mouse-2] [triple-mouse-2]
+	     [mouse-3] [down-mouse-3] [drag-mouse-3] [double-mouse-3] [triple-mouse-3]
+	     [mouse-4] [down-mouse-4] [drag-mouse-4] [double-mouse-4] [triple-mouse-4]
+	     [mouse-5] [down-mouse-5] [drag-mouse-5] [double-mouse-5] [triple-mouse-5]))
+  (global-unset-key k))
+
 ;;(set-specifier menubar-visible-p nil)
 (if (string-match "XEmacs" emacs-version)
     (set-specifier default-toolbar-visible-p nil))
@@ -192,9 +190,22 @@
 (if menu-bar-mode
     (menu-bar-mode -1))
 
+;; Make emacs share the copy/paste clipboard that everything else uses.
+(setq x-select-enable-clipboard t)
+(setq interprogram-paste-function 'x-cut-buffer-or-selection-value)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Misc settings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(show-paren-mode 1)
+
+(setq read-buffer-completion-ignore-case 't)
+(setq read-file-name-completion-ignore-case 't)
+(setq line-move-visual nil)
+
+(setq split-height-threshold nil)
+(setq split-width-threshold most-positive-fixnum)
 
 ; Wrap lines that are too long to display in the window:
 (setq global-visual-line-mode 't)
@@ -218,6 +229,9 @@
 
 ;; Wrap lines instead of truncating them with a '$' (when splitting windows vertically)
 (setq truncate-partial-width-windows nil)
+
+;; Keep ESC-q from indenting every line of a paragraph.
+(setq adaptive-fill-mode nil)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Misc functions
@@ -690,13 +704,6 @@ sub get_options {
 ;; Key mappings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(dolist (k '([mouse-1] [down-mouse-1] [drag-mouse-1] [double-mouse-1] [triple-mouse-1]
-	     [mouse-2] [down-mouse-2] [drag-mouse-2] [double-mouse-2] [triple-mouse-2]
-	     [mouse-3] [down-mouse-3] [drag-mouse-3] [double-mouse-3] [triple-mouse-3]
-	     [mouse-4] [down-mouse-4] [drag-mouse-4] [double-mouse-4] [triple-mouse-4]
-	     [mouse-5] [down-mouse-5] [drag-mouse-5] [double-mouse-5] [triple-mouse-5]))
-  (global-unset-key k))
-
 (global-set-key "\M-'" 'search-again)
 (global-set-key "\M-g" 'goto-line)
 (global-set-key "\C-s" 'isearch-forward-regexp)
@@ -713,7 +720,6 @@ sub get_options {
 (global-set-key "\M-n" (lambda()
 			 (interactive)
 			 (scroll-up-command 1)))
-
 
 (normal-erase-is-backspace-mode 0)
 
@@ -737,11 +743,6 @@ sub get_options {
 (define-key ctl-x-map ">" 'replace-regexp)
 (define-key esc-map "s" 'isearch-forward-regexp)
 (define-key esc-map "\C-h" 'backward-kill-word)
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-;; Keep ESC-q from indenting every line of a paragraph.
-(setq adaptive-fill-mode nil)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Keep HTML mode from prompting me for info
@@ -895,12 +896,8 @@ This makes it easy to figure out which prefix to pass to yank."
       (revert-buffer t t)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Make emacs share the copy/paste clipboard that everything else uses.
+;; M-x customize
 
-(setq x-select-enable-clipboard t)
-(setq interprogram-paste-function 'x-cut-buffer-or-selection-value)
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
