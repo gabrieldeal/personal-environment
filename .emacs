@@ -1,11 +1,6 @@
 ;;-*-Lisp-*-
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Notes to myself
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
 ;; Set the title of the XWindows window.
-;(setq-default frame-title-format "java")
 (defun set-title(title)
   (interactive "sTitle: ")
   (setq-default frame-title-format title))
@@ -21,7 +16,26 @@
 (savehist-mode 1)
 (load-library "hideshow")
 (load-library "nxml-mode")
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Git mode
 (load-library "magit")
+
+;; Without the trailing slash, the diff buffer has nothing in it:
+(defun gmd-magit-toplevel()
+  (concat
+   (magit-git-string "rev-parse" "--show-toplevel")
+   "/"))
+
+;; Change the CWD before running the diff so I can press enter in the
+;; diff buffer and go to the diffed file:
+(defadvice magit-diff (around gmd-magit-diff)
+  "Change the default directory to the root git dir, then do a diff."
+  (let ((default-directory (gmd-magit-toplevel)))
+    ad-do-it))
+(ad-activate 'magit-diff)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (load-library "tinydesk")
 (setq tinydesk--directory-location "~/tmp/emacs-tinydesk/")
@@ -181,6 +195,9 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Misc settings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+; Wrap lines that are too long to display in the window:
+(setq global-visual-line-mode 't)
 
 ; Stop emacs from asking if I want to follow the symlink.
 (setq vc-follow-symlinks 't)
