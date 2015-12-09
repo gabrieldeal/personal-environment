@@ -27,9 +27,15 @@
    (magit-git-string "rev-parse" "--show-toplevel")
    "/"))
 
+(defun gmd-magit-diff()
+  (interactive)
+  (let ((default-directory (gmd-magit-toplevel)))
+    (magit-diff (list "HEAD"))))
+
+
 ;; Change the CWD before running the diff so I can press enter in the
 ;; diff buffer and go to the diffed file:
-(defadvice magit-diff (around gmd-magit-diff)
+(defadvice magit-diff (around gmd-wrapped-magit-diff)
   "Change the default directory to the root git dir, then do a diff."
   (let ((default-directory (gmd-magit-toplevel)))
     ad-do-it))
