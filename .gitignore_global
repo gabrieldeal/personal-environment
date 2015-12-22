@@ -4,4 +4,6 @@ TAGS
 \#*#
 .ruby-gemset.*
 .ruby-version.*
+.byebug_history
 *#
+*.ignore-this-git
