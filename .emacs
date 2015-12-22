@@ -18,7 +18,22 @@
 (load-library "nxml-mode")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Ruby helpers
+
+;; Some useful interactive functions:
+; inf-ruby-console-rails
+; ruby-beginning-of-block
+; ruby-end-of-block
+
+(defun gmd-ruby-mode()
+  "Changes a compilation-mode window into a Ruby console (useful for debugging rspecs)."
+  (interactive)
+  (read-only-mode 0)
+  (inf-ruby-mode))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Git mode
+
 (load-library "magit")
 
 ;; Without the trailing slash, the diff buffer has nothing in it:
@@ -31,7 +46,6 @@
   (interactive)
   (let ((default-directory (gmd-magit-toplevel)))
     (magit-diff (list "HEAD"))))
-
 
 ;; Change the CWD before running the diff so I can press enter in the
 ;; diff buffer and go to the diffed file:
@@ -131,6 +145,12 @@
 (setq auto-mode-alist (cons '("\\.pm$" . perl-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.cgi$" . perl-mode) auto-mode-alist))
 
+(require 'markdown-mode)
+(setq auto-mode-alist (cons '("\\.md$" . markdown-mode) auto-mode-alist))
+
+(require 'puppet-mode)
+(setq auto-mode-alist (cons '("\\.pp$" . puppet-mode) auto-mode-alist))
+
 (setq auto-mode-alist (cons '("\\.sh$" . sh-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.bash[^/]*" . sh-mode) auto-mode-alist))
 
@@ -213,9 +233,6 @@
 (setq split-height-threshold nil)
 (setq split-width-threshold most-positive-fixnum)
 
-; Wrap lines that are too long to display in the window:
-(setq global-visual-line-mode 't)
-
 ; Stop emacs from asking if I want to follow the symlink.
 (setq vc-follow-symlinks 't)
 
@@ -235,6 +252,8 @@
 
 ;; Wrap lines instead of truncating them with a '$' (when splitting windows vertically)
 (setq truncate-partial-width-windows nil)
+; Wrap lines that are too long to display in the window:
+(setq global-visual-line-mode 't)
 
 ;; Keep ESC-q from indenting every line of a paragraph.
 (setq adaptive-fill-mode nil)
@@ -348,6 +367,10 @@ sub get_options {
 (define-key robe-mode-map (kbd "M-,") 'tags-loop-continue)
 (add-hook 'ruby-mode-hook 'robe-mode)
 (add-hook 'ruby-mode-hook 'rubocop-mode)
+(add-hook 'ruby-mode-hook
+	  (lambda ()
+	    (unless (string-match " rspec " compile-command)
+		(setq compile-command "cd ~/projects/oss/ && rspec --format documentation "))))
 
 (add-hook 'after-init-hook #'global-flycheck-mode)
 
@@ -695,8 +718,6 @@ sub get_options {
 		  "        this." variable-name " = " variable-name ";\n"
 		  "    }\n"
 )))
-
-
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Define macros
