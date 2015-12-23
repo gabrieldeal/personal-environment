@@ -277,6 +277,13 @@
   ;; the argument makes it join with the next one instead of the previous one.
   (join-lines 't))
 
+(defun gmd-ucase-first-character()
+  (interactive)
+  (save-excursion
+    (let ((char-to-ucase (buffer-substring (point) (+ 1 (point)))))
+      (delete-char 1)
+      (insert (upcase char-to-ucase)))))
+
 ;; I can't get byte-compile-directory to work.
 (defun gmd-byte-compile-directory()
   ""
@@ -371,6 +378,9 @@ sub get_options {
 	  (lambda ()
 	    (unless (string-match " rspec " compile-command)
 		(setq compile-command "cd ~/projects/oss/ && rspec --format documentation "))))
+(add-hook 'ruby-mode-hook
+	  (lambda ()
+	    (setq grep-command "grep -nr --include=\"*.rb\" ")))
 
 (add-hook 'after-init-hook #'global-flycheck-mode)
 
@@ -768,6 +778,7 @@ sub get_options {
 (define-key ctl-x-map "c" 'quoted-insert)
 (define-key ctl-x-map "?" 'help-for-help)
 (define-key ctl-x-map ">" 'replace-regexp)
+(define-key esc-map "i" 'gmd-ucase-first-character)
 (define-key esc-map "s" 'isearch-forward-regexp)
 (define-key esc-map "\C-h" 'backward-kill-word)
 
