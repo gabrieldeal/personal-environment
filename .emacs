@@ -59,6 +59,9 @@
 
 (load-library "tinydesk")
 (setq tinydesk--directory-location "~/tmp/emacs-tinydesk/")
+; Making some aliases to make tab completion easier:
+(defalias 'gmd-tinydesk-save-state 'tinydesk-save-state)
+(defalias 'gmd-tinydesk-recover-state 'tinydesk-recover-state)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; For M-x package-install
@@ -377,10 +380,7 @@ sub get_options {
 (add-hook 'ruby-mode-hook
 	  (lambda ()
 	    (unless (string-match " rspec " compile-command)
-		(setq compile-command "cd ~/projects/oss/ && rspec --format documentation "))))
-(add-hook 'ruby-mode-hook
-	  (lambda ()
-	    (setq grep-command "grep -nr --include=\"*.rb\" ")))
+		(setq compile-command "cd ~/projects/huddle-oss/ && rspec --format documentation "))))
 
 (add-hook 'after-init-hook #'global-flycheck-mode)
 
@@ -546,7 +546,7 @@ sub get_options {
 ; end of my grep commands (needs to happen before the mode hook is
 ; called):
 (load-library "compile")
-(setq grep-command "grep -nr ")
+(setq grep-command "grep -nr --include=\"*.rb\" --include=\"*.erb\" ")
 (setq grep-null-device nil)
 
 (setq compilation-mode-hook
