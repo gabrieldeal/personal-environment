@@ -7,3 +7,5 @@
 	default = simple
 [pager]
 	diff = false
+[diff]
+	wordRegex = "[a-zA-Z0-1_-]+"
