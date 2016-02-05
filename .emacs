@@ -380,7 +380,7 @@ sub get_options {
 (add-hook 'ruby-mode-hook
 	  (lambda ()
 	    (unless (string-match " rspec " compile-command)
-		(setq compile-command "cd ~/projects/huddle-oss/ && rspec --format documentation "))))
+		(setq compile-command "cd ~/projects/oss/huddle/ && rspec  ~/config/.rspec_color.rb --format documentation "))))
 
 (add-hook 'after-init-hook #'global-flycheck-mode)
 
@@ -546,7 +546,7 @@ sub get_options {
 ; end of my grep commands (needs to happen before the mode hook is
 ; called):
 (load-library "compile")
-(setq grep-command "grep -nr --include=\"*.rb\" --include=\"*.erb\" ")
+(setq grep-command "grep -nr --include=\"*.rb\" --include=\"*.erb\" --include=\"*.rake\" ")
 (setq grep-null-device nil)
 
 (setq compilation-mode-hook
