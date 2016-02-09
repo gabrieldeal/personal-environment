@@ -1,0 +1,7 @@
+#!/bin/sh
+#-*-shell-script-*-
+
+# This doesn't handle moved files correctly. I am OK with that.
+# See the "Short Format" section of `man git-status`.
+git status --porcelain | sed 's/^[MADRCU] //'
+
