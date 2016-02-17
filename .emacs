@@ -54,7 +54,7 @@
 (defun gmd-magit-diff()
   (interactive)
   (let ((default-directory (gmd-magit-toplevel)))
-    (magit-diff (list "HEAD"))))
+    (magit-diff "HEAD")))
 
 ;; Change the CWD before running the diff so I can press enter in the
 ;; diff buffer and go to the diffed file:
