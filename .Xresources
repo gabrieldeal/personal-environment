@@ -1,3 +1,4 @@
 xterm*metaSendsEscape: true
 emacs*geometry: 190x100-0-0
-# For gnome-terminal, see ~/.local/share/applications/gnome-terminal.desktop
+emacs24*geometry: 190x100-0-0
+! For gnome-terminal, see ~/.local/share/applications/gnome-terminal.desktop
