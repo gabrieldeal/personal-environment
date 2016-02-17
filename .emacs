@@ -6,6 +6,15 @@
   (setq-default frame-title-format title))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; For M-x package-install
+
+; To update the packages: M-x package-refresh-contents
+(require 'package)
+(package-initialize)
+(add-to-list 'package-archives
+	     '("melpa" . "http://melpa.org/packages/"))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Set load path and load libraries
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -62,15 +71,6 @@
 ; Making some aliases to make tab completion easier:
 (defalias 'gmd-tinydesk-save-state 'tinydesk-save-state)
 (defalias 'gmd-tinydesk-recover-state 'tinydesk-recover-state)
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; For M-x package-install
-
-; To update the packages: M-x package-refresh-contents
-(require 'package)
-(package-initialize)
-(add-to-list 'package-archives
-	     '("melpa" . "http://melpa.org/packages/"))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; WS mode
