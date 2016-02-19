@@ -51,10 +51,15 @@
    (magit-git-string "rev-parse" "--show-toplevel")
    "/"))
 
+;; Set the default directory, so I can press enter on a line of my
+;; diff buffer and it will take me to the changed file -- even if I
+;; run the diff somewhere other than at the root of my repo.
 (defun gmd-magit-diff()
   (interactive)
   (let ((default-directory (gmd-magit-toplevel)))
-    (magit-diff "HEAD")))
+    (magit-diff "HEAD")
+    (visual-line-mode)
+    (setq word-wrap nil)))
 
 ;; Change the CWD before running the diff so I can press enter in the
 ;; diff buffer and go to the diffed file:
@@ -255,8 +260,6 @@
 
 ;; Wrap lines instead of truncating them with a '$' (when splitting windows vertically)
 (setq truncate-partial-width-windows nil)
-; Wrap lines that are too long to display in the window:
-(setq global-visual-line-mode 't)
 
 ;; Keep ESC-q from indenting every line of a paragraph.
 (setq adaptive-fill-mode nil)
@@ -381,6 +384,16 @@ sub get_options {
 	  (lambda ()
 	    (unless (string-match " rspec " compile-command)
 		(setq compile-command "cd ~/projects/oss/huddle/ && rspec  ~/config/.rspec_color.rb --format documentation "))))
+
+(add-hook 'markdown-mode-hook
+	  (lambda()
+	    ;; Override markdown mode's bindings:
+	    (local-set-key "\M-p" (lambda()
+				    (interactive)
+				    (scroll-down-command 1)))
+	    (local-set-key "\M-n" (lambda()
+				    (interactive)
+				    (scroll-up-command 1)))))
 
 (add-hook 'after-init-hook #'global-flycheck-mode)
 
@@ -948,5 +961,3 @@ This makes it easy to figure out which prefix to pass to yank."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(magit-item-highlight ((t nil))))
-
-
