@@ -1,0 +1,26 @@
+#-*-shell-script-*-
+
+# If not running interactively, don't do anything
+case $- in
+    *i*) ;;
+      *) return;;
+esac
+
+HISTCONTROL=ignoredups
+HISTSIZE=10000
+HISTFILESIZE=10000
+shopt -s histappend
+
+# check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
+shopt -s checkwinsize
+
+PS1='\w\$ '
+
+export EDITOR=emacs
+export PATH="$PATH:/cygdrive/c/Program Files (x86)/7-Zip/"
+
+export LESS="-I -R"
+
+# Disable constantly changing the terminal title.
+export PROMPT_COMMAND=
