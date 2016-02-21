@@ -10,9 +10,29 @@
 
 ; To update the packages: M-x package-refresh-contents
 (require 'package)
-(package-initialize)
 (add-to-list 'package-archives
 	     '("melpa" . "http://melpa.org/packages/"))
+(add-to-list 'package-archives
+	     '("marmalade" . "http://marmalade-repo.org/packages/") t)
+(add-to-list 'package-archives
+	     '("tromey" . "http://tromey.com/elpa/") t)
+(package-initialize)
+
+(defvar gmd-packages
+  '(cider
+    clojure-mode
+    flycheck
+    magit
+    markdown-mode
+    nxml-mode
+    puppet-mode
+    robe
+    rubocop
+    web-mode))
+
+(dolist (gmd-package gmd-packages)
+  (when (not (package-installed-p gmd-package))
+    (package-install gmd-package)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Set load path and load libraries
