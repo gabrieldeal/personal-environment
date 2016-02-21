@@ -1,4 +1,4 @@
-;;-*-Lisp-*-
+;;-*-emacs-lisp-*-
 
 ;; Set the title of the XWindows window.
 (defun set-title(title)
@@ -210,9 +210,9 @@
 (autoload 'clojure-mode "clojure-mode")
 (setq auto-mode-alist (cons '("\\.clj$" . clojure-mode) auto-mode-alist))
 
-(setq auto-mode-alist (cons '("^\\.emacs$" . lisp-mode) auto-mode-alist))
-(setq auto-mode-alist (cons '("\\.el$" . lisp-mode) auto-mode-alist))
-(setq auto-mode-alist (cons '("\\.elc$" . lisp-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '("^\\.emacs$" . emacs-lisp-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '("\\.el$" . emacs-lisp-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '("\\.elc$" . emacs-lisp-mode) auto-mode-alist))
 
 (setq auto-mode-alist (cons '("\\.xml$" . nxml-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.tld$" . nxml-mode) auto-mode-alist))
@@ -620,9 +620,7 @@ sub get_options {
 	 (define-key gdb-mode-map "\M-d" 'gdb-down)
 	 ))
 
-(setq lisp-mode-hook '(lambda()
-			(font-lock-mode)
-			))
+(add-hook 'emacs-lisp-mode-hook 'font-lock-mode)
 
 (setq shell-script-mode-hook
       '(lambda()
