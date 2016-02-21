@@ -24,7 +24,7 @@
 
 (savehist-mode 1)
 (load-library "hideshow")
-(load-library "nxml-mode")
+(autoload 'nxml-mode "nxml-mode")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Ruby helpers
@@ -43,7 +43,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Git mode
 
-(load-library "magit")
+(load-library "magit") ; Autoloading this screws up my `defadvice`.
 
 ;; Without the trailing slash, the diff buffer has nothing in it:
 (defun gmd-magit-toplevel()
@@ -70,9 +70,13 @@
 (ad-activate 'magit-diff)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Tinydesk
 
-(load-library "tinydesk")
+(autoload 'tinydesk-save-state "tinydesk")
+(autoload 'tinydesk-recover-state "tinydesk")
+
 (setq tinydesk--directory-location "~/tmp/emacs-tinydesk/")
+
 ; Making some aliases to make tab completion easier:
 (defalias 'gmd-tinydesk-save-state 'tinydesk-save-state)
 (defalias 'gmd-tinydesk-recover-state 'tinydesk-recover-state)
@@ -153,16 +157,16 @@
 (setq auto-mode-alist (cons '("\\.pm$" . perl-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.cgi$" . perl-mode) auto-mode-alist))
 
-(require 'markdown-mode)
+(autoload 'markdown-mode "markdown-mode")
 (setq auto-mode-alist (cons '("\\.md$" . markdown-mode) auto-mode-alist))
 
-(require 'puppet-mode)
+(autoload 'puppet-mode "puppet-mode")
 (setq auto-mode-alist (cons '("\\.pp$" . puppet-mode) auto-mode-alist))
 
 (setq auto-mode-alist (cons '("\\.sh$" . sh-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.bash[^/]*" . sh-mode) auto-mode-alist))
 
-(require 'web-mode) ; https://github.com/fxbois/web-mode
+(autoload 'web-mode "web-mode") ; https://github.com/fxbois/web-mode
 (setq auto-mode-alist (cons '("\\.php$" . web-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.erb$" . web-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.rb$" . ruby-mode) auto-mode-alist))
@@ -224,9 +228,11 @@
 (if menu-bar-mode
     (menu-bar-mode -1))
 
-;; Make emacs share the copy/paste clipboard that everything else uses.
-(setq x-select-enable-clipboard t)
-(setq interprogram-paste-function 'x-cut-buffer-or-selection-value)
+(if (not (equal system-type 'cygwin))
+    (progn
+      ;; Make emacs share the copy/paste clipboard that everything else uses.
+      (setq x-select-enable-clipboard t)
+      (setq interprogram-paste-function 'x-cut-buffer-or-selection-value)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Misc settings
