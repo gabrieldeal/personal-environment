@@ -845,21 +845,22 @@ it ran in last time."
 
 (defun gmd-replace-placeholders(command-template)
   (let ((filename (if (buffer-file-name) (buffer-file-name) ""))
-	(line-number-str (number-to-string (line-number-at-pos))))
-    (command command-template))
+	(line-number-str (number-to-string (line-number-at-pos)))
+	(command command-template))
   ;; Nobody actually wants %s or %l in their command... right?
   (setq command (replace-regexp-in-string "%l" line-number-str command))
   (setq command (replace-regexp-in-string "%s" filename command))
-  command)
+  command))
 
-(require 'compile) ; Must do this before the `defadvice compile` because this redefines `compile`.
-(defadvice compile (around gmd-compile-with-smart-command activate)
+(defun gmd-compile-with-smart-command(orig-fun &rest args)
   "%s in the command is replaced with the current buffer's filename.
    %l is replaced with the current line number."
   (interactive (list (gmd-replace-placeholders (read-string "Command: "
 							    (gmd-default-compile-command)
 							    'compile-history))))
-  ad-do-it)
+  (apply orig-fun args))
+
+(advice-add 'compile :around #'gmd-compile-with-smart-command)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
