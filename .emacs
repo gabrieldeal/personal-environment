@@ -381,9 +381,12 @@ sub get_options {
 (setq Buffer-menu-time-flag nil)
 (setq Buffer-menu-mode-flag nil)
 
-(require 'robe)
-;; robe overrides M-,
-(define-key robe-mode-map (kbd "M-,") 'tags-loop-continue)
+(autoload 'robe-mode "robe")
+(add-hook 'robe-mode
+	  (lambda()
+	    ;; robe overrides M-,
+	    (define-key robe-mode-map (kbd "M-,") 'tags-loop-continue)))
+
 (add-hook 'ruby-mode-hook 'robe-mode)
 (add-hook 'ruby-mode-hook 'rubocop-mode)
 (add-hook 'ruby-mode-hook
