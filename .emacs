@@ -45,18 +45,18 @@
 
 (load-library "magit") ; Autoloading this screws up my `defadvice`.
 
-;; Without the trailing slash, the diff buffer has nothing in it:
-(defun gmd-magit-toplevel()
-  (concat
-   (magit-git-string "rev-parse" "--show-toplevel")
-   "/"))
+(defun gmd-vc-root-dir()
+  (let ((root-dir (gmd-chomp (gmd-shell-command-to-string "git rev-parse --show-toplevel"))))
+    (if root-dir
+	(concat root-dir "/") ; Without the trailing slash, the diff buffer has nothing in it.
+      nil)))
 
 ;; Set the default directory, so I can press enter on a line of my
 ;; diff buffer and it will take me to the changed file -- even if I
 ;; run the diff somewhere other than at the root of my repo.
 (defun gmd-magit-diff()
   (interactive)
-  (let ((default-directory (gmd-magit-toplevel)))
+  (let ((default-directory (gmd-vc-root-dir)))
     (magit-diff "HEAD")
     (visual-line-mode)
     (setq word-wrap nil)))
@@ -65,7 +65,7 @@
 ;; diff buffer and go to the diffed file:
 (defadvice magit-diff (around gmd-wrapped-magit-diff)
   "Change the default directory to the root git dir, then do a diff."
-  (let ((default-directory (gmd-magit-toplevel)))
+  (let ((default-directory (gmd-vc-root-dir)))
     ad-do-it))
 (ad-activate 'magit-diff)
 
@@ -274,6 +274,17 @@
 ;; Misc functions
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(defun gmd-chomp (str)
+  (if (and str (string-match "[\n\t\s]+\\'" str))
+      (replace-match "" t t str)
+    str))
+
+(defun gmd-shell-command-to-string(command)
+  (with-temp-buffer
+    (if	(= 0 (call-process-shell-command command nil (current-buffer)))
+	(buffer-string)
+      nil)))
+
 ;; I thought join-lines was a built in??? Anyway it dissappeared.  I
 ;; wish emacs lisp had a good namespacing system.
 (defun join-lines(not-used)
@@ -389,10 +400,6 @@ sub get_options {
 
 (add-hook 'ruby-mode-hook 'robe-mode)
 (add-hook 'ruby-mode-hook 'rubocop-mode)
-(add-hook 'ruby-mode-hook
-	  (lambda ()
-	    (unless (string-match " rspec " compile-command)
-		(setq compile-command "cd ~/projects/oss/huddle/ && rspec  ~/config/.rspec_color.rb --format documentation "))))
 
 (add-hook 'markdown-mode-hook
 	  (lambda()
@@ -567,7 +574,6 @@ sub get_options {
 ; grep-null-device=nil keep M-x grep from appending "/dev/null" to the
 ; end of my grep commands (needs to happen before the mode hook is
 ; called):
-(load-library "compile")
 (setq grep-command "grep -nr --include=\"*.rb\" --include=\"*.erb\" --include=\"*.rake\" ")
 (setq grep-null-device nil)
 
@@ -805,8 +811,7 @@ sub get_options {
 (define-key esc-map "\C-h" 'backward-kill-word)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Keep HTML mode from prompting me for info
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Compile
 
 (defun gmd-recompile()
   "Instead of recompiling with the last command FROM THE CURRENT BUFFER,
@@ -822,6 +827,37 @@ it ran in last time."
 	  (progn
 	    (recompile)
 	    (goto-char (point-max))))))
+
+;;;;;;;;;;;;
+
+;; Note: This doesn't default to the last compile command. I think I
+;; prefer it this way.
+(defun gmd-default-compile-command()
+  (cond	((equal major-mode 'ruby-mode)
+	 (concat "cd "
+		 (or (gmd-vc-root-dir) ".") ; Default to current directory.
+		 " && rspec  ~/config/.rspec_color.rb --format documentation %s:%l"))
+	('t
+	 (display-message-or-buffer (format "Unrecognized major mode '%s'." major-mode))
+	 compile-command)))
+
+(defun gmd-replace-placeholders(command-template)
+  (let ((filename (if (buffer-file-name) (buffer-file-name) ""))
+	(line-number-str (number-to-string (line-number-at-pos))))
+    (command command-template))
+  ;; Nobody actually wants %s or %l in their command... right?
+  (setq command (replace-regexp-in-string "%l" line-number-str command))
+  (setq command (replace-regexp-in-string "%s" filename command))
+  command)
+
+(require 'compile) ; Must do this before the `defadvice compile` because this redefines `compile`.
+(defadvice compile (around gmd-compile-with-smart-command activate)
+  "%s in the command is replaced with the current buffer's filename.
+   %l is replaced with the current line number."
+  (interactive (list (gmd-replace-placeholders (read-string "Command: "
+							    (gmd-default-compile-command)
+							    'compile-history))))
+  ad-do-it)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
