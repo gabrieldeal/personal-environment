@@ -1,3 +1,5 @@
 [user]
 	name = Gabriel Deal
 	email = formerly.gabriel@gmail.com
+[push]
+	default = simple
