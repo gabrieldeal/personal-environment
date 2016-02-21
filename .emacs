@@ -43,7 +43,9 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Git mode
 
-(load-library "magit") ; Autoloading this screws up my `defadvice`.
+(autoload 'magit-diff "magit" "doc" t)
+(autoload 'magit-status "magit" "doc" t)
+(autoload 'magit-log "magit" "doc" t)
 
 (defun gmd-vc-root-dir()
   (let ((root-dir (gmd-chomp (gmd-shell-command-to-string "git rev-parse --show-toplevel"))))
@@ -54,20 +56,17 @@
 ;; Set the default directory, so I can press enter on a line of my
 ;; diff buffer and it will take me to the changed file -- even if I
 ;; run the diff somewhere other than at the root of my repo.
-(defun gmd-magit-diff()
-  (interactive)
+(defun gmd-around-magit-diff(orig-fun &rest args)
   (let ((default-directory (gmd-vc-root-dir)))
-    (magit-diff "HEAD")
+    (apply orig-fun args)
     (visual-line-mode)
     (setq word-wrap nil)))
 
-;; Change the CWD before running the diff so I can press enter in the
-;; diff buffer and go to the diffed file:
-(defadvice magit-diff (around gmd-wrapped-magit-diff)
-  "Change the default directory to the root git dir, then do a diff."
-  (let ((default-directory (gmd-vc-root-dir)))
-    ad-do-it))
-(ad-activate 'magit-diff)
+(advice-add 'magit-diff :around #'gmd-around-magit-diff)
+
+(defun gmd-magit-diff()
+  (interactive)
+  (gmd-around-magit-diff 'magit-diff "HEAD"))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Tinydesk
