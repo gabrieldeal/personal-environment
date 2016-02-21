@@ -188,6 +188,9 @@
 
 (setq auto-mode-alist (cons '("\\.m$" . html-mode) auto-mode-alist))
 
+(autoload 'clojure-mode "clojure-mode")
+(setq auto-mode-alist (cons '("\\.clj$" . clojure-mode) auto-mode-alist))
+
 (setq auto-mode-alist (cons '("^\\.emacs$" . lisp-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.el$" . lisp-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.elc$" . lisp-mode) auto-mode-alist))
