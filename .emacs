@@ -16,6 +16,7 @@
 	     '("marmalade" . "http://marmalade-repo.org/packages/") t)
 (add-to-list 'package-archives
 	     '("tromey" . "http://tromey.com/elpa/") t)
+;; After updating the above package archives, run M-x package-refresh-contents
 (package-initialize)
 
 (defvar gmd-packages
@@ -29,7 +30,8 @@
     puppet-mode
     robe
     rubocop
-    web-mode))
+    web-mode
+    ws-trim))
 
 (dolist (gmd-package gmd-packages)
   (when (not (package-installed-p gmd-package))
