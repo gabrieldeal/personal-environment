@@ -25,35 +25,16 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     vb.customize ["modifyvm", :id, "--nictype2", "Am79C973"]
   end
 
-  # Use Chef Solo to provision our virtual machine
-  config.vm.provision :chef_solo do |chef|
-    chef.cookbooks_path = ["cookbooks", "site-cookbooks"]
+  # config.vm.provision :shell, inline: "mkdir -p ~vagrant/.ssh && chmod 0700 ~vagrant/.ssh"
+  config.vm.provision "file", source: "~/.ssh", destination: "~/.ssh"
 
-    chef.add_recipe "apt"
-    chef.add_recipe "nodejs"
-    chef.add_recipe "ruby_build"
-    chef.add_recipe "mysql::server"
-    chef.add_recipe "mysql::client"
-    chef.add_recipe "emacs24"
-    chef.add_recipe "rvm::user"
-
-    chef.json = {
-      rvm: {
-        user_installs: [
-          {
-            user: 'vagrant',
-            default_ruby: 'ruby-2.2.2',
-            rubies: [ '2.2.2' ],
-            rvmrc: {
-              # https://github.com/martinisoft/chef-rvm/issues/296
-              rvm_gemset_create_on_use_flag: 1
-            }
-          }
-        ]
-      },
-      mysql: {
-        server_root_password: ''
-      }
-    }
+  config.vm.provision :shell do |shell|
+    shell.inline = "
+      mkdir -p /etc/puppet/modules;
+      for n in maestrodev-rvm puppetlabs-mysql; do
+        (puppet module list | grep $n) || puppet module install $n
+       done
+    "
   end
+  config.vm.provision :puppet
 end
