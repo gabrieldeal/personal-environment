@@ -1,31 +1,23 @@
 # -*- mode: ruby -*-
 
-# From https://gorails.com/guides/using-vagrant-for-rails-development
-
 VAGRANTFILE_API_VERSION = 2
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = "ubuntu/trusty32"
 
-  # Configurate the virtual machine to use 2GB of RAM
   config.vm.provider :virtualbox do |vb|
     vb.customize ["modifyvm", :id, "--memory", "2048"]
   end
 
-  # Forward the Rails server default port to the host
   config.vm.network :forwarded_port, guest: 3000, host: 3000
 
-  # Fix networking issue. From
-  # https://github.com/Varying-Vagrant-Vagrants/VVV/issues/375
+  # Fix networking issue. From https://github.com/Varying-Vagrant-Vagrants/VVV/issues/375
   config.vm.provider "virtualbox" do |vb|
-    ### Change network card to PCnet-FAST III
-    # For NAT adapter
-    vb.customize ["modifyvm", :id, "--nictype1", "Am79C973"]
-    # For host-only adapter
-    vb.customize ["modifyvm", :id, "--nictype2", "Am79C973"]
+    # Change network card to PCnet-FAST III.
+    vb.customize ["modifyvm", :id, "--nictype1", "Am79C973"] # NAT adapter
+    vb.customize ["modifyvm", :id, "--nictype2", "Am79C973"] # Host-only adapter
   end
 
-  # config.vm.provision :shell, inline: "mkdir -p ~vagrant/.ssh && chmod 0700 ~vagrant/.ssh"
   config.vm.provision "file", source: "~/.ssh", destination: "~/.ssh"
 
   config.vm.provision :shell do |shell|
@@ -36,5 +28,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
        done
     "
   end
+
   config.vm.provision :puppet
 end
