@@ -35,15 +35,21 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     chef.add_recipe "mysql::server"
     chef.add_recipe "mysql::client"
     chef.add_recipe "emacs24"
-    chef.add_recipe "rvm::system"
+    chef.add_recipe "rvm::user"
 
     chef.json = {
       rvm: {
-        default_ruby: "ruby-2.2.2",
-        rvmrc: {
-          # https://github.com/martinisoft/chef-rvm/issues/296
-          rvm_gemset_create_on_use_flag: 1
-        }
+        user_installs: [
+          {
+            user: 'vagrant',
+            default_ruby: 'ruby-2.2.2',
+            rubies: [ '2.2.2' ],
+            rvmrc: {
+              # https://github.com/martinisoft/chef-rvm/issues/296
+              rvm_gemset_create_on_use_flag: 1
+            }
+          }
+        ]
       },
       mysql: {
         server_root_password: ''
