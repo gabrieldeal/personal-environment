@@ -97,8 +97,8 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Tinydesk
 
-(autoload 'tinydesk-save-state "tinydesk")
-(autoload 'tinydesk-recover-state "tinydesk")
+(autoload 'tinydesk-save-state "tinydesk" "doc" t)
+(autoload 'tinydesk-recover-state "tinydesk" "doc" t)
 
 (setq tinydesk--directory-location "~/tmp/emacs-tinydesk/")
 
