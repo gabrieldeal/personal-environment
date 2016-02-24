@@ -46,7 +46,6 @@
 			      (expand-file-name "~/local/lisp/magit"))))
 
 (savehist-mode 1)
-(load-library "hideshow")
 (autoload 'nxml-mode "nxml-mode")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
