@@ -433,15 +433,8 @@ sub get_options {
 	    (enable-paredit-mode)
 	    (local-set-key (kbd "C-j") 'cider-repl-return)))
 
-(add-hook 'ruby-mode-hook 'gmd-enable-paredit-mode-nonlisp)
-(defun gmd-enable-paredit-mode-nonlisp()
-  (set (make-local-variable 'paredit-space-for-delimiter-predicates)
-       '((lambda (endp delimiter) nil)))
-    (paredit-mode 1))
-
 (eval-after-load 'paredit
   '(define-key paredit-mode-map (kbd "C-j") nil))
-
 
 (add-hook 'markdown-mode-hook
 	  (lambda()
