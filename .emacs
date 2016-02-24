@@ -90,6 +90,10 @@
   (interactive)
   (gmd-around-magit-diff 'magit-diff "HEAD"))
 
+(defun gmd-magit-diff-no-whitespace()
+  (interactive)
+  (gmd-around-magit-diff 'magit-diff "HEAD" "-w"))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Tinydesk
 
