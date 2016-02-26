@@ -444,7 +444,12 @@ sub get_options {
 	    (local-set-key (kbd "C-j") 'cider-repl-return)))
 
 (eval-after-load 'paredit
-  '(define-key paredit-mode-map (kbd "C-j") nil))
+  (lambda ()
+    (define-key paredit-mode-map (kbd "C-0") 'paredit-forward-slurp-sexp)
+    (define-key paredit-mode-map (kbd "C-9") 'paredit-forward-barf-sexp)
+    (define-key paredit-mode-map (kbd "C-1") 'paredit-backward-slurp-sexp)
+    (define-key paredit-mode-map (kbd "C-2") 'paredit-backward-barf-sexp)
+    (define-key paredit-mode-map (kbd "C-j") nil)))
 
 (add-hook 'markdown-mode-hook
 	  (lambda()
