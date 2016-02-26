@@ -80,9 +80,11 @@
 ;; run the diff somewhere other than at the root of my repo.
 (defun gmd-around-magit-diff(orig-fun &rest args)
   (let ((default-directory (gmd-vc-root-dir)))
-    (apply orig-fun args)
-    (visual-line-mode)
-    (setq word-wrap nil)))
+    (if (not default-directory)
+	(message "Unable to determine version control root directory")
+      (apply orig-fun args)
+      (visual-line-mode)
+      (setq word-wrap nil))))
 
 (advice-add 'magit-diff :around #'gmd-around-magit-diff)
 
