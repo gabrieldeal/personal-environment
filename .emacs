@@ -138,10 +138,12 @@
 (defun gmd-format-sql ()
   "Format SQL queries"
   (interactive)
-  (query-replace-regexp
-   "\\\(\\<left\\>\\\|\\<and\\>\\\|\\<from\\>\\\|\\<where\\>\\\|\\<values\\>\\\|\\<group by\\>\\\|\\<values\\>\\\|\\<order by\\>\\\|\<left outer join\\\)"
-   "\n\\1")
-)
+  (save-excursion
+    (while (re-search-forward "\\\(\\<left\\>\\\|\\<from\\>\\\|\\<where\\>\\\|\\<values\\>\\\|\\<group by\\>\\\|\\<values\\>\\\|\\<order by\\>\\\|\<left outer join\\\)" nil t)
+      (replace-match "\n\\1")))
+  (save-excursion
+    (while (re-search-forward "\\\(\\<and\\>\\\)" nil t)
+      (replace-match "\n\t\\1"))))
 
 (defun eat-sqlplus-junk (str)
   "Eat the line numbers SQL*Plus returns.
