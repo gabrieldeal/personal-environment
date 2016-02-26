@@ -256,6 +256,8 @@
 (if menu-bar-mode
     (menu-bar-mode -1))
 
+(scroll-bar-mode -1)
+
 (if (not (equal system-type 'cygwin))
     (progn
       ;; Make emacs share the copy/paste clipboard that everything else uses.
