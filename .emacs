@@ -444,10 +444,15 @@ sub get_options {
 
 (eval-after-load 'paredit
   (lambda ()
+    ;; C-2 doesn't work on Windows.
     (define-key paredit-mode-map (kbd "C-0") 'paredit-forward-slurp-sexp)
     (define-key paredit-mode-map (kbd "C-9") 'paredit-forward-barf-sexp)
+    (define-key paredit-mode-map (kbd "M-0") 'paredit-forward-slurp-sexp)
+    (define-key paredit-mode-map (kbd "M-9") 'paredit-forward-barf-sexp)
     (define-key paredit-mode-map (kbd "C-1") 'paredit-backward-slurp-sexp)
     (define-key paredit-mode-map (kbd "C-2") 'paredit-backward-barf-sexp)
+    (define-key paredit-mode-map (kbd "M-1") 'paredit-backward-slurp-sexp)
+    (define-key paredit-mode-map (kbd "M-2") 'paredit-backward-barf-sexp)
     (define-key paredit-mode-map (kbd "C-j") nil)))
 
 (add-hook 'markdown-mode-hook
