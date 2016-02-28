@@ -25,5 +25,7 @@ export PATH=$PATH:$HOME/local/bin
 
 export LESS="-I -R"
 
+alias emacs-git='emacs `git-opened-files`'
+
 # Disable constantly changing the terminal title.
 export PROMPT_COMMAND=

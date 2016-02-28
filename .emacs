@@ -16,6 +16,7 @@
 	     '("marmalade" . "http://marmalade-repo.org/packages/") t)
 (add-to-list 'package-archives
 	     '("tromey" . "http://tromey.com/elpa/") t)
+;; After updating the above package archives, run M-x package-refresh-contents
 (package-initialize)
 
 (defvar gmd-packages
@@ -29,7 +30,8 @@
     puppet-mode
     robe
     rubocop
-    web-mode))
+    web-mode
+    ws-trim))
 
 (dolist (gmd-package gmd-packages)
   (when (not (package-installed-p gmd-package))
@@ -44,7 +46,6 @@
 			      (expand-file-name "~/local/lisp/magit"))))
 
 (savehist-mode 1)
-(load-library "hideshow")
 (autoload 'nxml-mode "nxml-mode")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -79,9 +80,11 @@
 ;; run the diff somewhere other than at the root of my repo.
 (defun gmd-around-magit-diff(orig-fun &rest args)
   (let ((default-directory (gmd-vc-root-dir)))
-    (apply orig-fun args)
-    (visual-line-mode)
-    (setq word-wrap nil)))
+    (if (not default-directory)
+	(message "Unable to determine version control root directory")
+      (apply orig-fun args)
+      (visual-line-mode)
+      (setq word-wrap nil))))
 
 (advice-add 'magit-diff :around #'gmd-around-magit-diff)
 
@@ -89,11 +92,15 @@
   (interactive)
   (gmd-around-magit-diff 'magit-diff "HEAD"))
 
+(defun gmd-magit-diff-no-whitespace()
+  (interactive)
+  (gmd-around-magit-diff 'magit-diff "HEAD" "-w"))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Tinydesk
 
-(autoload 'tinydesk-save-state "tinydesk")
-(autoload 'tinydesk-recover-state "tinydesk")
+(autoload 'tinydesk-save-state "tinydesk" "doc" t)
+(autoload 'tinydesk-recover-state "tinydesk" "doc" t)
 
 (setq tinydesk--directory-location "~/tmp/emacs-tinydesk/")
 
@@ -131,10 +138,12 @@
 (defun gmd-format-sql ()
   "Format SQL queries"
   (interactive)
-  (query-replace-regexp
-   "\\\(\\<left\\>\\\|\\<and\\>\\\|\\<from\\>\\\|\\<where\\>\\\|\\<values\\>\\\|\\<group by\\>\\\|\\<values\\>\\\|\\<order by\\>\\\|\<left outer join\\\)"
-   "\n\\1")
-)
+  (save-excursion
+    (while (re-search-forward "\\\(\\<left\\>\\\|\\<from\\>\\\|\\<where\\>\\\|\\<values\\>\\\|\\<group by\\>\\\|\\<values\\>\\\|\\<order by\\>\\\|\<left outer join\\\)" nil t)
+      (replace-match "\n\\1")))
+  (save-excursion
+    (while (re-search-forward "\\\(\\<and\\>\\\)" nil t)
+      (replace-match "\n\t\\1"))))
 
 (defun eat-sqlplus-junk (str)
   "Eat the line numbers SQL*Plus returns.
@@ -250,6 +259,8 @@
 ; get rid of the menu bar
 (if menu-bar-mode
     (menu-bar-mode -1))
+
+(scroll-bar-mode -1)
 
 (if (not (equal system-type 'cygwin))
     (progn
@@ -432,15 +443,13 @@ sub get_options {
 	    (enable-paredit-mode)
 	    (local-set-key (kbd "C-j") 'cider-repl-return)))
 
-(add-hook 'ruby-mode-hook 'gmd-enable-paredit-mode-nonlisp)
-(defun gmd-enable-paredit-mode-nonlisp()
-  (set (make-local-variable 'paredit-space-for-delimiter-predicates)
-       '((lambda (endp delimiter) nil)))
-    (paredit-mode 1))
-
 (eval-after-load 'paredit
-  '(define-key paredit-mode-map (kbd "C-j") nil))
-
+  (lambda ()
+    (define-key paredit-mode-map (kbd "C-0") 'paredit-forward-slurp-sexp)
+    (define-key paredit-mode-map (kbd "C-9") 'paredit-forward-barf-sexp)
+    (define-key paredit-mode-map (kbd "C-1") 'paredit-backward-slurp-sexp)
+    (define-key paredit-mode-map (kbd "C-2") 'paredit-backward-barf-sexp)
+    (define-key paredit-mode-map (kbd "C-j") nil)))
 
 (add-hook 'markdown-mode-hook
 	  (lambda()
