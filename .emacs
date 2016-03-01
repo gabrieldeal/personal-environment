@@ -896,7 +896,7 @@ it ran in last time."
 (defun gmd-default-command(command-type default)
   (let ((command-sym (intern-soft (concat "gmd-" (symbol-name major-mode) "-" command-type "-command"))))
     (cond ((fboundp command-sym)
-	   (apply command-sym nil))
+	   (funcall command-sym))
 	  ((and command-sym (boundp command-sym))
 	   (symbol-value command-sym))
 	  ('t
