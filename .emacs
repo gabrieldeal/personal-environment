@@ -625,12 +625,6 @@ sub get_options {
       '(lambda()
 	 (gmd-perl-mode-hook)))
 
-; grep-null-device=nil keep M-x grep from appending "/dev/null" to the
-; end of my grep commands (needs to happen before the mode hook is
-; called):
-(setq grep-command "grep -nr --include=\"*.rb\" --include=\"*.erb\" --include=\"*.rake\" ")
-(setq grep-null-device nil)
-
 (setq compilation-mode-hook
       '(lambda()
 	 (font-lock-mode 1)
@@ -880,18 +874,36 @@ it ran in last time."
 	    (recompile)
 	    (goto-char (point-max))))))
 
-;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Grep and compile customizations
+
+; grep-null-device=nil keep M-x grep from appending "/dev/null" to the
+; end of my grep commands (needs to happen before the mode hook is
+; called):
+(setq grep-null-device nil)
+
+(setq grep-command "grep -nr ")
+(defvar gmd-ruby-mode-grep-command
+  "grep -nr --include=\"*.rb\" --include=\"*.erb\" --include=\"*.rake\" ")
+
+(defun gmd-ruby-mode-compile-command ()
+  (concat "cd "
+	  (or (gmd-vc-root-dir) ".") ; Default to current directory.
+	  " && rspec  ~/config/.rspec_color.rb --format documentation %s:%l"))
 
 ;; Note: This doesn't default to the last compile command. I think I
 ;; prefer it this way.
-(defun gmd-default-compile-command()
-  (cond	((equal major-mode 'ruby-mode)
-	 (concat "cd "
-		 (or (gmd-vc-root-dir) ".") ; Default to current directory.
-		 " && rspec  ~/config/.rspec_color.rb --format documentation %s:%l"))
-	('t
-	 (display-message-or-buffer (format "Unrecognized major mode '%s'." major-mode))
-	 compile-command)))
+(defun gmd-default-command(command-type default)
+  (let ((command-sym (intern-soft (concat "gmd-" (symbol-name major-mode) "-" command-type "-command"))))
+    (cond ((fboundp command-sym)
+	   (apply command-sym nil))
+	  ((and command-sym (boundp command-sym))
+	   (symbol-value command-sym))
+	  ('t
+	   (display-message-or-buffer (format "No '%s' command for major mode '%s'."
+					      command-type
+					      major-mode))
+	   default))))
 
 (defun gmd-replace-placeholders(command-template)
   (let ((filename (if (buffer-file-name) (buffer-file-name) ""))
@@ -905,12 +917,21 @@ it ran in last time."
 (defun gmd-compile-with-smart-command(orig-fun &rest args)
   "%s in the command is replaced with the current buffer's filename.
    %l is replaced with the current line number."
-  (interactive (list (gmd-replace-placeholders (read-string "Command: "
-							    (gmd-default-compile-command)
+  (interactive (list (gmd-replace-placeholders (read-string "Compile command: "
+							    (gmd-default-command "compile" compile-command)
 							    'compile-history))))
   (apply orig-fun args))
 
 (advice-add 'compile :around #'gmd-compile-with-smart-command)
+
+
+(defun gmd-grep(orig-fun &rest args)
+  (interactive (list (read-string "Grep command: "
+				  (gmd-default-command "grep" grep-command)
+				  'grep-history)))
+  (apply orig-fun args))
+
+(advice-add 'grep :around #'gmd-grep)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
