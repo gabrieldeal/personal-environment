@@ -96,6 +96,15 @@
   (interactive)
   (gmd-around-magit-diff 'magit-diff "HEAD" "-w"))
 
+(add-hook 'magit-diff-mode-hook
+	  (lambda()
+	    (local-set-key "\M-p" (lambda()
+				    (interactive)
+				    (scroll-down-command 1)))
+	    (local-set-key "\M-n" (lambda()
+				    (interactive)
+				    (scroll-up-command 1)))))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Tinydesk
 
