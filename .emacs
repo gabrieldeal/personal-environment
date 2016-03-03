@@ -914,21 +914,28 @@ it ran in last time."
   (setq command (replace-regexp-in-string "%s" filename command))
   command))
 
+(defun gmd-read-shell-command (default-default-command command-history command-type)
+  (let* ((default-command (gmd-default-command command-type default-default-command))
+	 (command-from-user-with-placeholders (read-shell-command "Command: "
+								  default-command
+								  command-history))
+	 (command-from-user (gmd-replace-placeholders command-from-user-with-placeholders)))
+    (if (not (string= command-from-user command-from-user-with-placeholders))
+	;; Save the file and line number in history instead of the placeholder:
+	(set command-history (push command-from-user (rest (symbol-value command-history)))))
+    command-from-user))
+
 (defun gmd-compile-with-smart-command(orig-fun &rest args)
   "%s in the command is replaced with the current buffer's filename.
    %l is replaced with the current line number."
-  (interactive (list (gmd-replace-placeholders (read-string "Compile command: "
-							    (gmd-default-command "compile" compile-command)
-							    'compile-history))))
+  (interactive (list (gmd-read-shell-command compile-command 'compile-history "compile")))
   (apply orig-fun args))
 
 (advice-add 'compile :around #'gmd-compile-with-smart-command)
 
 
 (defun gmd-grep(orig-fun &rest args)
-  (interactive (list (read-string "Grep command: "
-				  (gmd-default-command "grep" grep-command)
-				  'grep-history)))
+  (interactive (list (gmd-read-shell-command grep-command 'grep-history "grep")))
   (apply orig-fun args))
 
 (advice-add 'grep :around #'gmd-grep)
