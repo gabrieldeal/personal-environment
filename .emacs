@@ -931,7 +931,7 @@ it ran in last time."
 	 (command-from-user (gmd-replace-placeholders command-from-user-with-placeholders)))
     (if (not (string= command-from-user command-from-user-with-placeholders))
 	;; Save the file and line number in history instead of the placeholder:
-	(set command-history (push command-from-user (rest (symbol-value command-history)))))
+	(set command-history (push command-from-user (cdr (symbol-value command-history)))))
     command-from-user))
 
 (defun gmd-compile-with-smart-command(orig-fun &rest args)
