@@ -883,6 +883,16 @@ it ran in last time."
 	    (recompile)
 	    (goto-char (point-max))))))
 
+(defun gmd-ruby-byebug-compilation-filter ()
+  (if (not (local-variable-if-set-p 'gmd-ruby-byebug-compilation-filter-is-done))
+      (save-excursion
+	(goto-char compilation-filter-start)
+	(if (re-search-forward "^(byebug) " nil t)
+	    (progn
+	      (gmd-ruby-mode)
+	      (make-local-variable 'gmd-ruby-byebug-compilation-filter-is-done))))))
+(add-hook 'compilation-filter-hook 'gmd-ruby-byebug-compilation-filter)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Grep and compile customizations
 
