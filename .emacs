@@ -873,15 +873,15 @@ sub get_options {
 just recompile with the last compile command (and in the directory that
 it ran in last time."
   (interactive)
-    (if (get-buffer "*compilation*")
-	(if (not (equal "*compilation*" (buffer-name (current-buffer))))
-	    (progn
-	      (switch-to-buffer-other-window (get-buffer "*compilation*"))
-	      (recompile)
-	      (goto-char (point-max)))
+  (if (get-buffer "*compilation*")
+      (if (not (equal "*compilation*" (buffer-name (current-buffer))))
 	  (progn
+	    (switch-to-buffer-other-window (get-buffer "*compilation*"))
 	    (recompile)
-	    (goto-char (point-max))))))
+	    (goto-char (point-max)))
+	(progn
+	  (recompile)
+	  (goto-char (point-max))))))
 
 (defun gmd-ruby-byebug-compilation-filter ()
   (if (not (local-variable-if-set-p 'gmd-ruby-byebug-compilation-filter-is-done))
