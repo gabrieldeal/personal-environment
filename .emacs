@@ -846,7 +846,7 @@ sub get_options {
 (defvar ctl-x-6-map (make-sparse-keymap) "")
 (define-key ctl-x-map "6" 'ctl-x-6-prefix)
 (fset 'ctl-x-6-prefix ctl-x-6-map)
-(define-key ctl-x-6-map "r" 'gmd-recompile)
+(define-key ctl-x-6-map "r" 'recompile)
 (define-key ctl-x-6-map "c" 'compile)
 
 ;(define-key p4-prefix-map "r" 'gmd-p4-revert)
@@ -867,21 +867,6 @@ sub get_options {
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Compile
-
-(defun gmd-recompile()
-  "Instead of recompiling with the last command FROM THE CURRENT BUFFER,
-just recompile with the last compile command (and in the directory that
-it ran in last time."
-  (interactive)
-  (if (get-buffer "*compilation*")
-      (if (not (equal "*compilation*" (buffer-name (current-buffer))))
-	  (progn
-	    (switch-to-buffer-other-window (get-buffer "*compilation*"))
-	    (recompile)
-	    (goto-char (point-max)))
-	(progn
-	  (recompile)
-	  (goto-char (point-max))))))
 
 (defun gmd-ruby-byebug-compilation-filter ()
   (if (not (local-variable-if-set-p 'gmd-ruby-byebug-compilation-filter-is-done))
