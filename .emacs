@@ -280,6 +280,9 @@
 ;; Misc settings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; Used by M-x diff (override them using C-u M-x diff):
+(setq diff-switches "-U5")
+
 (show-paren-mode 1)
 
 (setq read-buffer-completion-ignore-case 't)
