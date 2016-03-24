@@ -27,5 +27,4 @@ export LESS="-I -R"
 
 alias emacs-git='emacs `git-opened-files`'
 
-# Disable constantly changing the terminal title.
-export PROMPT_COMMAND=
+export PROMPT_COMMAND='printf "\033]0;%s\007" "${HOSTNAME%%.*}"'
