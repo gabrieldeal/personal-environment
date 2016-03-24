@@ -18,7 +18,7 @@ shopt -s checkwinsize
 PS1='\w\$ '
 
 export EDITOR=emacs
-export PATH="$PATH:/cygdrive/c/Program Files (x86)/7-Zip/:/cygdrive/c/Users/Gabriel/home/bin/"
+export PATH="$PATH:/cygdrive/c/Program Files (x86)/7-Zip/:/cygdrive/c/Users/Gabriel/home/bin/:/cygdrive/c/Users/Gabriel/home/projects/yellowleaf-trips/bin"
 
 export LESS="-I -R"
 
