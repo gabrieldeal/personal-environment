@@ -130,6 +130,10 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; SQL
 
+;; Rename the SQL buffer to include user and DB name -- even if it is
+;; the only SQL buffer.
+(add-hook 'sql-interactive-mode-hook 'sql-rename-buffer)
+
 (defun my-sql-save-history-hook ()
   (let ((lval 'sql-input-ring-file-name)
 	(rval 'sql-product))
