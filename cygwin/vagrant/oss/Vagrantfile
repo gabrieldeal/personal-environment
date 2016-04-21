@@ -18,7 +18,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     vb.customize ["modifyvm", :id, "--nictype2", "Am79C973"] # Host-only adapter
   end
 
-  config.vm.provision "file", source: "~/.ssh", destination: "~/.ssh"
+  config.vm.provision "file", source: "~/.ssh/id_rsa", destination: "~/.ssh/id_rsa"
+  config.vm.provision "file", source: "~/.ssh/id_rsa.pub", destination: "~/.ssh/id_rsa.pub"
 
   config.vm.provision :shell do |shell|
     shell.inline = "
@@ -30,4 +31,15 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   config.vm.provision :puppet
+
+  config.vm.provision 'shell', privileged: false, inline: <<'EOT'
+    echo '!'
+    echo '!'
+    echo 'If this is a brand new VM, then run this in the VM:'
+    echo '    exec $(ssh-agent -s)'
+    echo '    ssh-add'
+    echo '    (cd ~/ && git clone git@github.com:officespacesoftware/huddle.git config &&  for f in config/.??* ; do rm -f $f; ln -s $f; done)'
+    echo '    (mkdir -p ~/projects/oss/huddle && cd ~/projects/oss && git clone git@github.com:officespacesoftware/huddle.git huddle)'
+    echo '    (cd ~/projects/oss/huddle && gem install bundle && bundle)'
+EOT
 end
