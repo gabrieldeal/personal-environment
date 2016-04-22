@@ -21,14 +21,15 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provision "file", source: "~/.ssh/id_rsa", destination: "~/.ssh/id_rsa"
   config.vm.provision "file", source: "~/.ssh/id_rsa.pub", destination: "~/.ssh/id_rsa.pub"
 
-  config.vm.provision :shell do |shell|
-    shell.inline = "
-      mkdir -p /etc/puppet/modules;
-      for n in arioch-redis maestrodev-rvm puppetlabs-mysql; do
-        (puppet module list | grep $n) || puppet module install $n
-       done
-    "
-  end
+  config.vm.provision :shell, inline: <<'EOT'
+    mkdir -p /etc/puppet/modules
+    for n in arioch-redis \
+             maestrodev-rvm \
+             puppetlabs-mysql
+    do
+      (puppet module list | grep $n) || puppet module install $n
+    done
+EOT
 
   config.vm.provision :puppet
 
