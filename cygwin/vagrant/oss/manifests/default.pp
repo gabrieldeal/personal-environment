@@ -5,7 +5,13 @@ mysql::db { 'officespace_development':
   user => 'vagrant',
   password => '',
   host => 'localhost',
-  grant => ['ALL'],
+  grant => ['ALL', 'SUPER'],
+}
+mysql::db { 'officespace_test':
+  user => 'vagrant',
+  password => '',
+  host => 'localhost',
+  grant => ['ALL', 'SUPER'],
 }
 
 # https://forge.puppetlabs.com/maestrodev/rvm
