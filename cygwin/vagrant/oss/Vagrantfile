@@ -39,11 +39,9 @@ EOT
     echo '!'
     echo '!'
     echo 'If this is a brand new VM, then run this in the VM:'
-    echo '    exec $(ssh-agent -s)'
+    echo '    eval `ssh-agent -s`'
     echo '    ssh-add'
-    echo '    (cd ~/ && git clone git@github.com:officespacesoftware/huddle.git config &&  for f in config/.??* ; do rm -f $f; ln -s $f; done)'
-    echo '    (mkdir -p ~/projects/oss/huddle && cd ~/projects/oss && git clone git@github.com:officespacesoftware/huddle.git huddle)'
-    echo '    (cd ~/projects/oss/huddle && gem install bundle && bundle)'
-    echo '    # mysql officespace_development; source db/structure.sql; then run db:migrate'
+    echo '    /vagrant/bin/setup-huddle'
+    echo '    /vagrant/bin/setup-gabriel-personal-env'
 EOT
 end
