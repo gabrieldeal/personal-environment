@@ -42,7 +42,7 @@ EOT
     echo 'If this is a brand new VM, then run this in the VM:'
     echo '    eval `ssh-agent -s`'
     echo '    ssh-add'
-    echo '    /vagrant/bin/setup-huddle'
-    echo '    /vagrant/bin/setup-gabriel-personal-env'
+    echo '    bash -x /vagrant/bin/setup-huddle'
+    echo '    bash -x /vagrant/bin/setup-gabriel-personal-env'
 EOT
 end
