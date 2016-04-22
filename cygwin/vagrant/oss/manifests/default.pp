@@ -51,6 +51,10 @@ package { 'emacs24':
   ensure => 'installed'
 }
 
+package { 'imagemagick':
+  ensure => 'installed'
+}
+
 package { 'git':
   ensure => 'installed'
 }
