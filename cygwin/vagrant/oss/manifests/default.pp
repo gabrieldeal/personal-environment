@@ -14,6 +14,14 @@ mysql::db { 'officespace_test':
   grant => ['ALL', 'SUPER'],
 }
 
+class { '::phantomjs':
+  package_version => '1.9.7',
+  package_update => true,
+  install_dir => '/usr/local/bin',
+  source_dir => '/opt',
+  timeout => 300
+}
+
 # https://forge.puppetlabs.com/maestrodev/rvm
 class { 'rvm': }
 rvm::system_user {
