@@ -25,6 +25,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     mkdir -p /etc/puppet/modules
     for n in arioch-redis \
              maestrodev-rvm \
+             willdurand-nodejs \
              puppetlabs-mysql
     do
       (puppet module list | grep $n) || puppet module install $n
