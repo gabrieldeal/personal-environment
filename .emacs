@@ -273,10 +273,12 @@
 (if menu-bar-mode
     (menu-bar-mode -1))
 
-(if (not (equal system-type 'cygwin))
+(if (fboundp 'scroll-bar-mode)
+    (scroll-bar-mode -1))
+
+;; Make emacs share the copy/paste clipboard that everything else uses.
+(if (boundp 'x-select-enable-clipboard)
     (progn
-      (scroll-bar-mode -1)
-      ;; Make emacs share the copy/paste clipboard that everything else uses.
       (setq x-select-enable-clipboard t)
       (setq interprogram-paste-function 'x-cut-buffer-or-selection-value)))
 
