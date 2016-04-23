@@ -20,15 +20,19 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.provision "file", source: "~/.ssh/id_rsa", destination: "~/.ssh/id_rsa"
   config.vm.provision "file", source: "~/.ssh/id_rsa.pub", destination: "~/.ssh/id_rsa.pub"
+  config.vm.provision "shell", privileged: false, inline: 'chmod -R go-rwx ~/.ssh'
 
-  config.vm.provision :shell do |shell|
-    shell.inline = "
-      mkdir -p /etc/puppet/modules;
-      for n in arioch-redis maestrodev-rvm puppetlabs-mysql; do
-        (puppet module list | grep $n) || puppet module install $n
-       done
-    "
-  end
+  config.vm.provision :shell, inline: <<'EOT'
+    mkdir -p /etc/puppet/modules
+    for n in arioch-redis \
+             maestrodev-rvm \
+             3fs-phantomjs \
+             willdurand-nodejs \
+             puppetlabs-mysql
+    do
+      (puppet module list | grep $n) || puppet module install $n
+    done
+EOT
 
   config.vm.provision :puppet
 
@@ -36,11 +40,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     echo '!'
     echo '!'
     echo 'If this is a brand new VM, then run this in the VM:'
-    echo '    exec $(ssh-agent -s)'
+    echo '    eval `ssh-agent -s`'
     echo '    ssh-add'
-    echo '    (cd ~/ && git clone git@github.com:officespacesoftware/huddle.git config &&  for f in config/.??* ; do rm -f $f; ln -s $f; done)'
-    echo '    (mkdir -p ~/projects/oss/huddle && cd ~/projects/oss && git clone git@github.com:officespacesoftware/huddle.git huddle)'
-    echo '    (cd ~/projects/oss/huddle && gem install bundle && bundle)'
-    echo '    # mysql officespace_development; source db/structure.sql; then run db:migrate'
+    echo '    bash -x /vagrant/bin/setup-huddle'
+    echo '    bash -x /vagrant/bin/setup-gabriel-personal-env'
 EOT
 end
