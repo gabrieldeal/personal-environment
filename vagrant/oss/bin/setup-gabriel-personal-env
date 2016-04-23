@@ -3,4 +3,10 @@
 
 cd ~/ \
     && (test -d config || git clone git@github.com:gabrielmdeal/personal-environment.git config) \
-    && for f in config/.??* ; do rm -f `basename $f` && ln -s $f; done
+    && for f in config/.??* ; do rm -f `basename $f` && ln -s $f; done \
+    && cd /tmp \
+    && (test -f emacs-24.5.tar.gz || wget http://ftp.gnu.org/gnu/emacs/emacs-24.5.tar.gz) \
+    && (test -d emacs-24.5 || tar zxvf emacs-24.5.tar.gz) \
+    && (which emacs; [ $? == 1 ] || sudo apt-get remove emacs24) \
+    && (cd emacs-24.5 && ./configure && make && sudo make install)
+
