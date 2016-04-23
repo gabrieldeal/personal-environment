@@ -49,20 +49,6 @@
 (autoload 'nxml-mode "nxml-mode")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Ruby helpers
-
-;; Some useful interactive functions:
-; inf-ruby-console-rails
-; ruby-beginning-of-block
-; ruby-end-of-block
-
-(defun gmd-ruby-mode()
-  "Changes a compilation-mode window into a Ruby console (useful for debugging rspecs)."
-  (interactive)
-  (read-only-mode 0)
-  (inf-ruby-mode))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Git mode
 
 (autoload 'magit-diff "magit" "doc" t)
@@ -875,7 +861,13 @@ sub get_options {
 (define-key esc-map "\C-h" 'backward-kill-word)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Compile
+;; Compile & grep customizations
+
+(defun gmd-convert-to-ruby-console()
+  "Changes a compilation-mode window into a Ruby console (useful for debugging rspecs)."
+  (interactive)
+  (read-only-mode 0)
+  (inf-ruby-mode))
 
 (defun gmd-ruby-byebug-compilation-filter ()
   (if (not (local-variable-if-set-p 'gmd-ruby-byebug-compilation-filter-is-done))
@@ -883,12 +875,9 @@ sub get_options {
 	(goto-char compilation-filter-start)
 	(if (re-search-forward "^(byebug) " nil t)
 	    (progn
-	      (gmd-ruby-mode)
+	      (gmd-convert-to-ruby-console)
 	      (make-local-variable 'gmd-ruby-byebug-compilation-filter-is-done))))))
 (add-hook 'compilation-filter-hook 'gmd-ruby-byebug-compilation-filter)
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Grep and compile customizations
 
 ; grep-null-device=nil keep M-x grep from appending "/dev/null" to the
 ; end of my grep commands (needs to happen before the mode hook is
@@ -946,12 +935,11 @@ sub get_options {
 
 (advice-add 'compile :around #'gmd-compile-with-smart-command)
 
-
-(defun gmd-grep(orig-fun &rest args)
+(defun gmd-grep-with-smart-command(orig-fun &rest args)
   (interactive (list (gmd-read-shell-command grep-command 'grep-history "grep")))
   (apply orig-fun args))
 
-(advice-add 'grep :around #'gmd-grep)
+(advice-add 'grep :around #'gmd-grep-with-smart-command)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
