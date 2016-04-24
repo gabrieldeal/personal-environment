@@ -55,7 +55,6 @@
 (defvar gmd-local-packages '(clever-cmd))
 (defvar gmd-remote-packages
   '(cider
-    clever-cmd
     clojure-mode
     flycheck
     magit
