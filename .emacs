@@ -16,6 +16,16 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; For M-x package-install
 
+(defvar gmd-package-archive-directory (expand-file-name "~/.emacs.d/gmd/"))
+
+(autoload 'package-upload-file
+  "package-x"
+  "Use this to update the local package archive with a new version of a package.
+Then run M-x package-refresh-contents."
+  t)
+(with-eval-after-load "package-x"
+  (setq package-archive-upload-base gmd-package-archive-directory))
+
 ; To update the packages: M-x package-refresh-contents
 (require 'package)
 (add-to-list 'package-archives
@@ -24,11 +34,15 @@
 	     '("marmalade" . "http://marmalade-repo.org/packages/") t)
 (add-to-list 'package-archives
 	     '("tromey" . "http://tromey.com/elpa/") t)
+(add-to-list 'package-archives
+	     (cons "gmd" gmd-package-archive-directory) t)
 ;; After updating the above package archives, run M-x package-refresh-contents
+
 (package-initialize)
 
 (defvar gmd-packages
   '(cider
+    clever-cmd
     clojure-mode
     flycheck
     magit
@@ -871,21 +885,9 @@ sub get_options {
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Compile & grep customizations
 
-(defun gmd-convert-to-ruby-console()
-  "Changes a compilation-mode window into a Ruby console (useful for debugging rspecs)."
-  (interactive)
-  (read-only-mode 0)
-  (inf-ruby-mode))
+(require 'clever-cmd)
 
-(defun gmd-ruby-byebug-compilation-filter ()
-  (if (not (local-variable-if-set-p 'gmd-ruby-byebug-compilation-filter-is-done))
-      (save-excursion
-	(goto-char compilation-filter-start)
-	(if (re-search-forward "^(byebug) " nil t)
-	    (progn
-	      (gmd-convert-to-ruby-console)
-	      (make-local-variable 'gmd-ruby-byebug-compilation-filter-is-done))))))
-(add-hook 'compilation-filter-hook 'gmd-ruby-byebug-compilation-filter)
+(add-hook 'compilation-filter-hook 'clever-cmd-ruby-byebug-compilation-filter)
 
 ; grep-null-device=nil keep M-x grep from appending "/dev/null" to the
 ; end of my grep commands (needs to happen before the mode hook is
@@ -893,61 +895,16 @@ sub get_options {
 (setq grep-null-device nil)
 
 (setq grep-command "grep -nr ")
-(defvar gmd-ruby-mode-grep-command
+(defvar clever-cmd-ruby-mode-grep-command
   "grep -nr --include=\"*.rb\" --include=\"*.erb\" --include=\"*.rake\" ")
 
-(defun gmd-ruby-mode-compile-command ()
+(defun clever-cmd-ruby-mode-compile-command ()
   (concat "cd "
 	  (or (gmd-vc-root-dir) ".") ; Default to current directory.
 	  " && rspec  ~/config/.rspec_color.rb --format documentation %s:%l"))
 
-;; Note: This doesn't default to the last compile command. I think I
-;; prefer it this way.
-(defun gmd-default-command(command-type default)
-  (let ((command-sym (intern-soft (concat "gmd-" (symbol-name major-mode) "-" command-type "-command"))))
-    (cond ((fboundp command-sym)
-	   (funcall command-sym))
-	  ((and command-sym (boundp command-sym))
-	   (symbol-value command-sym))
-	  ('t
-	   (display-message-or-buffer (format "No '%s' command for major mode '%s'."
-					      command-type
-					      major-mode))
-	   default))))
-
-(defun gmd-replace-placeholders(command-template)
-  (let ((filename (if (buffer-file-name) (buffer-file-name) ""))
-	(line-number-str (number-to-string (line-number-at-pos)))
-	(command command-template))
-  ;; Nobody actually wants %s or %l in their command... right?
-  (setq command (replace-regexp-in-string "%l" line-number-str command))
-  (setq command (replace-regexp-in-string "%s" filename command))
-  command))
-
-(defun gmd-read-shell-command (default-default-command command-history command-type)
-  (let* ((default-command (gmd-default-command command-type default-default-command))
-	 (command-from-user-with-placeholders (read-shell-command "Command: "
-								  default-command
-								  command-history))
-	 (command-from-user (gmd-replace-placeholders command-from-user-with-placeholders)))
-    (if (not (string= command-from-user command-from-user-with-placeholders))
-	;; Save the file and line number in history instead of the placeholder:
-	(set command-history (push command-from-user (cdr (symbol-value command-history)))))
-    command-from-user))
-
-(defun gmd-compile-with-smart-command(orig-fun &rest args)
-  "%s in the command is replaced with the current buffer's filename.
-   %l is replaced with the current line number."
-  (interactive (list (gmd-read-shell-command compile-command 'compile-history "compile")))
-  (apply orig-fun args))
-
-(advice-add 'compile :around #'gmd-compile-with-smart-command)
-
-(defun gmd-grep-with-smart-command(orig-fun &rest args)
-  (interactive (list (gmd-read-shell-command grep-command 'grep-history "grep")))
-  (apply orig-fun args))
-
-(advice-add 'grep :around #'gmd-grep-with-smart-command)
+(advice-add 'compile :around #'clever-cmd-compile-with-smart-command)
+(advice-add 'grep :around #'clever-cmd-grep-with-smart-command)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
