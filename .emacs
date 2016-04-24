@@ -76,8 +76,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (setq load-path
-      (append load-path (list (expand-file-name "~/local/lisp")
-			      (expand-file-name "~/local/lisp/magit"))))
+      (append load-path (list (expand-file-name "~/.emacs.d/manual"))))
 
 (savehist-mode 1)
 (autoload 'nxml-mode "nxml-mode" "doc" t)
