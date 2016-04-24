@@ -17,7 +17,8 @@
 ;; For M-x package-install
 
 (defun gmd-refresh-local-package-archive-contents (packages package-source-directory)
-  (let ((should-refresh))
+  (let ((should-refresh (or (not (boundp 'package-archive-contents))
+			    (not package-archive-contents))))
     (dolist (package packages)
       (unless (assoc package package-archive-contents)
 	(progn
