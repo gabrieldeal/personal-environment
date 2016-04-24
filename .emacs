@@ -16,18 +16,32 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; For M-x package-install
 
-(defvar gmd-package-archive-directory (expand-file-name "~/.emacs.d/gmd/"))
+(defun gmd-refresh-local-package-archive-contents (packages package-source-directory)
+  (let ((should-refresh))
+    (dolist (package packages)
+      (unless (assoc package package-archive-contents)
+	(progn
+	  (package-upload-file (format "%s/%s.el"
+				       package-source-directory
+				       package))
+	  (setq should-refresh t))))
+    (if should-refresh
+	(package-refresh-contents))))
 
-(autoload 'package-upload-file
-  "package-x"
-  "Use this to update the local package archive with a new version of a package.
-Then run M-x package-refresh-contents."
-  t)
+(defun gmd-install-packages (packages)
+  (dolist (package packages)
+    (when (not (package-installed-p package))
+      (package-install package))))
+
+(defvar gmd-package-archive-directory (expand-file-name "~/.emacs.d/gmd/"))
+(defvar gmd-package-source-directory (expand-file-name "~/config/emacs/package-archives"))
+
+(autoload 'package-upload-file "package-x" "doc" t)
 (with-eval-after-load "package-x"
   (setq package-archive-upload-base gmd-package-archive-directory))
 
-; To update the packages: M-x package-refresh-contents
 (require 'package)
+
 (add-to-list 'package-archives
 	     '("melpa" . "http://melpa.org/packages/"))
 (add-to-list 'package-archives
@@ -36,11 +50,9 @@ Then run M-x package-refresh-contents."
 	     '("tromey" . "http://tromey.com/elpa/") t)
 (add-to-list 'package-archives
 	     (cons "gmd" gmd-package-archive-directory) t)
-;; After updating the above package archives, run M-x package-refresh-contents
 
-(package-initialize)
-
-(defvar gmd-packages
+(defvar gmd-local-packages '(clever-cmd))
+(defvar gmd-remote-packages
   '(cider
     clever-cmd
     clojure-mode
@@ -55,9 +67,9 @@ Then run M-x package-refresh-contents."
     web-mode
     ws-trim))
 
-(dolist (gmd-package gmd-packages)
-  (when (not (package-installed-p gmd-package))
-    (package-install gmd-package)))
+(package-initialize)
+(gmd-refresh-local-package-archive-contents gmd-local-packages gmd-package-source-directory)
+(gmd-install-packages (append gmd-local-packages gmd-remote-packages))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Set load path and load libraries
