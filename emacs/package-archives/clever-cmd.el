@@ -76,6 +76,7 @@
   (read-only-mode 0)
   (inf-ruby-mode))
 
+;;;###autoload
 (defun clever-cmd-ruby-byebug-compilation-filter ()
   "Convert a compilation window to a Ruby console if a byebug breakpoint is hit.
 

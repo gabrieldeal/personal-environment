@@ -896,7 +896,6 @@ sub get_options {
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Compile & grep customizations
 
-(autoload 'clever-cmd-ruby-byebug-compilation-filter "clever-cmd" "doc" t)
 (add-hook 'compilation-filter-hook 'clever-cmd-ruby-byebug-compilation-filter)
 
 ; grep-null-device=nil keep M-x grep from appending "/dev/null" to the
@@ -913,10 +912,7 @@ sub get_options {
 	  (or (gmd-vc-root-dir) ".") ; Default to current directory.
 	  " && rspec  ~/config/.rspec_color.rb --format documentation %s:%l"))
 
-(autoload 'clever-cmd-compile-with-smart-command "clever-cmd" "doc" t)
 (advice-add 'compile :around #'clever-cmd-compile-with-smart-command)
-
-(autoload 'clever-cmd-grep-with-smart-command "clever-cmd" "doc" t)
 (advice-add 'grep :around #'clever-cmd-grep-with-smart-command)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
