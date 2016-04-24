@@ -1,4 +1,12 @@
-;;-*-emacs-lisp-*-
+;;; .emacs --- You know.
+
+;;; Commentary:
+
+;; This is here to make flycheck happy.
+
+;;; Code:
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Set the title of the XWindows window.
 (defun set-title(title)
@@ -219,7 +227,7 @@
 (autoload 'clojure-mode "clojure-mode")
 (setq auto-mode-alist (cons '("\\.clj$" . clojure-mode) auto-mode-alist))
 
-(setq auto-mode-alist (cons '("^\\.emacs$" . emacs-lisp-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '("\\.emacs$" . emacs-lisp-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.el$" . emacs-lisp-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.elc$" . emacs-lisp-mode) auto-mode-alist))
 
