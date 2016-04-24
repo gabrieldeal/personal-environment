@@ -42,7 +42,7 @@
     (setq command (replace-regexp-in-string "%s" filename command))
     command))
 
-(defun clever-cmd-read-shell-command (default-default-command command-history command-type)
+(defun clever-cmd-read-shell-command(default-default-command command-history command-type)
   (let* ((default-command (clever-cmd-default-command command-type default-default-command))
 	 (command-from-user-with-placeholders (read-shell-command "Command: "
 								  default-command
@@ -55,25 +55,35 @@
 
 ;;;###autoload
 (defun clever-cmd-compile-with-smart-command(orig-fun &rest args)
-  "%s in the command is replaced with the current buffer's filename.
-   %l is replaced with the current line number."
+  "Uses `clever-cmd-<MAJOR-MODE>-compile-command` (variable or function) to determine the default command. Then prompts the user for an override command.
+
+%s in the command is replaced with the current buffer's filename.
+%l is replaced with the current line number.
+
+Install it like this:
+\(advice-add 'compile :around #'clever-cmd-compile-with-smart-command)
+"
   (interactive (list (clever-cmd-read-shell-command compile-command 'compile-history "compile")))
   (apply orig-fun args))
 
 ;;;###autoload
 (defun clever-cmd-grep-with-smart-command(orig-fun &rest args)
+  "Uses `clever-cmd-<MAJOR-MODE>-grep-command` (variable or function) to determine the default command. Then prompts the user for an override command.
+
+Install it like this:
+\(advice-add 'grep :around #'clever-cmd-grep-with-smart-command)"
   (interactive (list (clever-cmd-read-shell-command grep-command 'grep-history "grep")))
   (apply orig-fun args))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; compilation-mode filter for Ruby's byebug:
 
-(require 'inf-ruby)
 
 (defun clever-cmd-convert-to-ruby-console()
   "Changes a compilation-mode window into a Ruby console (useful for debugging rspecs)."
   (interactive)
   (read-only-mode 0)
+  (require 'inf-ruby)
   (inf-ruby-mode))
 
 ;;;###autoload
