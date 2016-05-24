@@ -57,6 +57,7 @@
   '(cider
     clojure-mode
     flycheck
+    jsx-mode
     magit
     markdown-mode
     nxml-mode
@@ -244,6 +245,8 @@
 (setq auto-mode-alist (cons '("\\.java$" . java-mode) auto-mode-alist))
 
 (setq auto-mode-alist (cons '("\\.js$" . javascript-mode) auto-mode-alist))
+
+(setq auto-mode-alist (cons '("\\.jsx$" . jsx-mode) auto-mode-alist))
 
 (setq auto-mode-alist (cons '("\\.css$" . css-mode) auto-mode-alist))
 
