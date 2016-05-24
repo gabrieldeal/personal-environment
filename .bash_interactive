@@ -24,6 +24,7 @@ export EDITOR=emacs
 export PATH=$PATH:$HOME/local/bin
 export DISABLE_SPRING=1
 export LESS="-I -R"
+export CI_NAME="OSS-disable-simplecov"
 
 alias emacs-git='emacs `git-opened-files`'
 
