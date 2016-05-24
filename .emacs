@@ -245,6 +245,7 @@
 (setq auto-mode-alist (cons '("\\.java$" . java-mode) auto-mode-alist))
 
 (setq auto-mode-alist (cons '("\\.js$" . javascript-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '("\\.es6$" . javascript-mode) auto-mode-alist))
 
 (setq auto-mode-alist (cons '("\\.jsx$" . jsx-mode) auto-mode-alist))
 
@@ -909,6 +910,8 @@ sub get_options {
 (setq grep-command "grep -nr ")
 (defvar clever-cmd-ruby-mode-grep-command
   "grep -nr --include=\"*.rb\" --include=\"*.erb\" --include=\"*.rake\" ")
+(defvar clever-cmd-jsx-mode-grep-command
+  "grep -nr --exclude-dir generated --include=\"*.js\" --include=\"*.jsx\" --include=\"*.es6\" ")
 
 (defun clever-cmd-ruby-mode-compile-command ()
   (concat "cd "
