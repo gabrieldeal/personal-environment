@@ -565,7 +565,7 @@ sub get_options {
 (add-hook 'js-mode-hook
 	  (function (lambda()
 		      (font-lock-mode)
-		      (setq c-basic-offset 4)
+		      (setq js-indent-level 2)
 		      (setq indent-tabs-mode nil)
 		      )))
 
@@ -912,14 +912,25 @@ sub get_options {
   "grep -nr --include=\"*.rb\" --include=\"*.erb\" --include=\"*.rake\" ")
 (defvar clever-cmd-jsx-mode-grep-command
   "grep -nr --exclude-dir generated --include=\"*.js\" --include=\"*.jsx\" --include=\"*.es6\" ")
+(defvar clever-cmd-js-mode-grep-command clever-cmd-jsx-mode-grep-command)
 
 (defun clever-cmd-ruby-mode-compile-command ()
   (concat "cd "
 	  (or (gmd-vc-root-dir) ".") ; Default to current directory.
 	  " && rspec  ~/config/.rspec_color.rb --format documentation %s:%l"))
 
+(defun clever-cmd-js-mode-compile-command ()
+  (concat "cd "
+	  (or (gmd-vc-root-dir) ".") ; Default to current directory.
+	  " && npm test run -- -- --grep 'MiniCard'"))
+
 (advice-add 'compile :around #'clever-cmd-compile-with-smart-command)
 (advice-add 'grep :around #'clever-cmd-grep-with-smart-command)
+
+;; For eslint:
+(eval-after-load "compile"
+  '(add-to-list 'compilation-error-regexp-alist
+		'("^\\(/[^\":\n]+\\)\n  \\([0-9]+\\):[0-9]+ +error +" 1 2)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
