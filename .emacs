@@ -1078,6 +1078,7 @@ This makes it easy to figure out which prefix to pass to yank."
   (unless (get-buffer buffer-name)
     (let* ((buffer (shell buffer-name))
 	   (process (get-buffer-process buffer)))
+      (ansi-color-for-comint-mode-on)
       (comint-send-string process (concat "echo Starting...;" command "\n")))))
 
 (defun oss-start-ui-environment ()
@@ -1087,6 +1088,60 @@ This makes it easy to figure out which prefix to pass to yank."
 					      "npm run build"))
     (oss-start-interactive-shell-with-command "*shell* rails"
 					      "rails s -b 0.0.0.0 -p 3000"))
+
+;; This requires customization of comint-output-filter-functions to
+;; eliminate some escape sequences that ansi-color-for-comint-mode-on
+;; doesn't handle.
+(defun oss-start-js-repl ()
+  (interactive)
+  (let ((default-directory (gmd-vc-root-dir)))
+    (oss-start-interactive-shell-with-command "*shell* js repl"
+					      "npm run cli")))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; This comint filter strips the escape sequences that the
+;; ansi-color-for-comint-mode-on doesn't know about.  For example
+;; [3G.  This code is from
+;; https://oleksandrmanzyuk.wordpress.com/2011/11/05/better-emacs-shell-part-i/
+
+(defun regexp-alternatives (regexps)
+  "Return the alternation of a list of regexps."
+  (mapconcat (lambda (regexp)
+               (concat "\\(?:" regexp "\\)"))
+             regexps "\\|"))
+
+(defvar non-sgr-control-sequence-regexp nil
+  "Regexp that matches non-SGR control sequences.")
+
+(setq non-sgr-control-sequence-regexp
+      (regexp-alternatives
+       '(;; icon name escape sequences
+         "\033\\][0-2];.*?\007"
+         ;; non-SGR CSI escape sequences
+         "\033\\[\\??[0-9;]*[^0-9;m]"
+         ;; noop
+         "\012\033\\[2K\033\\[1F"
+         )))
+
+(defun filter-non-sgr-control-sequences-in-region (begin end)
+  (save-excursion
+    (goto-char begin)
+    (while (re-search-forward
+            non-sgr-control-sequence-regexp end t)
+      (replace-match ""))))
+
+(defun filter-non-sgr-control-sequences-in-output (ignored)
+  (let ((start-marker
+         (or comint-last-output-start
+             (point-min-marker)))
+        (end-marker
+         (process-mark
+          (get-buffer-process (current-buffer)))))
+    (filter-non-sgr-control-sequences-in-region
+     start-marker
+     end-marker)))
+
+(add-hook 'comint-output-filter-functions 'filter-non-sgr-control-sequences-in-output)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; M-x customize
