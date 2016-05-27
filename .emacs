@@ -569,6 +569,11 @@ sub get_options {
 		      (setq indent-tabs-mode nil)
 		      )))
 
+(add-hook 'jsx-mode-hook
+	  (function (lambda()
+		      (setq jsx-indent-level 2)
+		      (setq indent-tabs-mode nil))))
+
 (add-hook 'java-mode-hook
 	  (function (lambda()
 		      (c-set-style "java")
@@ -922,7 +927,9 @@ sub get_options {
 (defun clever-cmd-js-mode-compile-command ()
   (concat "cd "
 	  (or (gmd-vc-root-dir) ".") ; Default to current directory.
-	  " && npm test run -- -- --grep 'MiniCard'"))
+	  " && npm test run"))
+(defun clever-cmd-jsx-mode-compile-command ()
+  (clever-cmd-js-mode-compile-command))
 
 (advice-add 'compile :around #'clever-cmd-compile-with-smart-command)
 (advice-add 'grep :around #'clever-cmd-grep-with-smart-command)
