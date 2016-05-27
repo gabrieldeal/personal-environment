@@ -1065,6 +1065,23 @@ This makes it easy to figure out which prefix to pass to yank."
       (revert-buffer t t)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; OSS UI helpers
+
+(defun oss-start-interactive-shell-with-command (buffer-name command)
+  (unless (get-buffer buffer-name)
+    (let* ((buffer (shell buffer-name))
+	   (process (get-buffer-process buffer)))
+      (comint-send-string process (concat "echo Starting...;" command "\n")))))
+
+(defun oss-start-ui-environment ()
+  (interactive)
+  (let ((default-directory (gmd-vc-root-dir)))
+    (oss-start-interactive-shell-with-command "*shell* npm run build"
+					      "npm run build"))
+    (oss-start-interactive-shell-with-command "*shell* rails"
+					      "rails s -b 0.0.0.0 -p 3000"))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; M-x customize
 
 (custom-set-variables
