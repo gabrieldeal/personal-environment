@@ -937,7 +937,7 @@ sub get_options {
 ;; For eslint:
 (eval-after-load "compile"
   '(add-to-list 'compilation-error-regexp-alist
-		'("^\\(/[^\":\n]+\\)\n  \\([0-9]+\\):[0-9]+ +error +" 1 2)))
+		'("^\\(/[^\":\n]+\\)\n *\\([0-9]+\\):[0-9]+ +error +" 1 2)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
