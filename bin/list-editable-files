@@ -9,6 +9,7 @@ fi
 
 find $dir \
     -name node_modules -prune -o \
+    -name generated -prune -o \
     \( \
 	-name Makefile \
 	-o -name \*.xml \
@@ -19,6 +20,10 @@ find $dir \
 	-o -name \*.yml \
 	-o -name \*.css \
 	-o -name \*.js \
+	-o -name \*.jsx \
+	-o -name \*.es6 \
+	-o -name Procfile \
+	-o -name package.json \
 	-o -name Rakefile \
 	-o -name Gemfile \
     \) -print
