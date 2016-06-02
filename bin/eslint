@@ -1,7 +1,9 @@
 #!/bin/sh
 #-*- shell-script -*-
 
+PROJECT_ROOT=`vc-root-dir`
+
 . "$HOME/.nvm/nvm.sh"
 nvm  use --silent 5
-~/projects/oss/huddle/node_modules/eslint/bin/eslint.js "$@"
+$PROJECT_ROOT/node_modules/eslint/bin/eslint.js "$@"
 exit $?

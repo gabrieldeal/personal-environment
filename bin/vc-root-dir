@@ -1,0 +1,4 @@
+#!/bin/sh
+#-*- shell-script -*-
+
+git rev-parse --show-toplevel
