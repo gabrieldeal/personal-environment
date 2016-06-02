@@ -76,8 +76,7 @@
 ;; Set load path and load libraries
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(setq load-path
-      (append load-path (list (expand-file-name "~/.emacs.d/manual"))))
+(setq load-path (append load-path (list (expand-file-name "~/.emacs.d/manual"))))
 
 (savehist-mode 1)
 (autoload 'nxml-mode "nxml-mode" "doc" t)
@@ -532,7 +531,6 @@ sub get_options {
 	  (lambda()
 	    (setq indent-tabs-mode nil)))
 
-
 (add-hook 'sql-interactive-mode-hook 'install-eat-sqlplus-junk)
 
 (add-hook 'sql-mode-hook
@@ -551,20 +549,17 @@ sub get_options {
 (add-hook 'html-mode-hook
 	  (function (lambda()
 		      (font-lock-mode)
-		      (setq sgml-indent-step 4)
-		      )))
+		      (setq sgml-indent-step 4))))
 
 (add-hook 'nxml-mode-hook
 	  (function (lambda()
 		      (font-lock-mode)
-		      (setq nxml-child-indent 4)
-		      )))
+		      (setq nxml-child-indent 4))))
 
 (add-hook 'postscript-mode-hook
 	  (function (lambda()
 		      (font-lock-mode)
-		      (setq ps-indent-level 4)
-		      )))
+		      (setq ps-indent-level 4))))
 
 (add-hook 'nxml-mode-hook
 	  (lambda()
@@ -575,8 +570,7 @@ sub get_options {
 	  (function (lambda()
 		      (font-lock-mode)
 		      (setq js-indent-level 2)
-		      (setq indent-tabs-mode nil)
-		      )))
+		      (setq indent-tabs-mode nil))))
 
 (add-hook 'jsx-mode-hook
 	  (function (lambda()
@@ -597,8 +591,7 @@ sub get_options {
 		      ;; The next two lines are a hack to make
 		      ;; annotations indent correctly:
 		      (setq c-comment-start-regexp "(@|/(/|[*][*]?))")
-		      (modify-syntax-entry ?@ "< b" java-mode-syntax-table)
-		      )))
+		      (modify-syntax-entry ?@ "< b" java-mode-syntax-table))))
 
 (defun gmd-indent-buffer()
   (interactive "")
@@ -609,23 +602,20 @@ sub get_options {
 (defun gmd-indent-test-buffer()
   (interactive "")
   (gmd-indent-buffer)
-  (replace-string "    public" "public" nil (point-min) (point-max))
-)
+  (replace-string "    public" "public" nil (point-min) (point-max)))
 
 (defun natalien-java-mode()
   ""
   (interactive)
   (setq indent-tabs-mode 't)
   (setq c-basic-offset 8)
-  (setq tab-width 8)
-)
+  (setq tab-width 8))
 (defun jameyer-java-mode()
   ""
   (interactive)
   (setq indent-tabs-mode 't)
   (setq c-basic-offset 4)
-  (setq tab-width 4)
-)
+  (setq tab-width 4))
 (defun bradheld-c-mode()
   ""
   (interactive)
@@ -649,14 +639,11 @@ sub get_options {
 			    c-basic-offset 4)
 		      (c-set-offset 'substatement-open '0)
 		      (c-set-offset 'inline-open '0)
-		      (define-key c-mode-base-map "" 'backward-kill-word)
-		     ;(define-key c-mode-base-map [(escape backspace)] 'backward-kill-word)
-)))
+		      (define-key c-mode-base-map "" 'backward-kill-word))))
 
 (add-hook 'c-mode-hook
 	  (function (lambda ()
-		      (font-lock-mode)
-)))
+		      (font-lock-mode))))
 
 (defun gmd-perl-mode-hook()
 	 (font-lock-mode 't)
@@ -671,8 +658,7 @@ sub get_options {
 	 (set-face-foreground 'cperl-array-face "black")
 	 (set-face-foreground 'cperl-hash-face "black")
 	 (set-face-background 'cperl-hash-face "white")
-	 (set-face-background 'cperl-array-face "white")
-)
+	 (set-face-background 'cperl-array-face "white"))
 (setq cperl-mode-hook
       '(lambda()
 	 (gmd-perl-mode-hook)))
@@ -683,8 +669,7 @@ sub get_options {
 (setq compilation-mode-hook
       '(lambda()
 	 (font-lock-mode 1)
-	 (setq compilation-scroll-output 'first-error)
-	 ))
+	 (setq compilation-scroll-output 'first-error)))
 
 ;; Make compilation mode color text based on the ANSI color control
 ;; characters.
@@ -698,8 +683,7 @@ sub get_options {
 (setq gdb-mode-hook
       '(lambda()
 	 (define-key gdb-mode-map "\M-u" 'gdb-up)
-	 (define-key gdb-mode-map "\M-d" 'gdb-down)
-	 ))
+	 (define-key gdb-mode-map "\M-d" 'gdb-down)))
 
 (add-hook 'emacs-lisp-mode-hook 'font-lock-mode)
 
@@ -855,16 +839,14 @@ sub get_options {
 		  "    }\n"
 		  "    public void set" (upcase (substring variable-name 0 1)) (substring variable-name 1) "(final " variable-type " " variable-name ") {\n"
 		  "        this." variable-name " = " variable-name ";\n"
-		  "    }\n"
-)))
+		  "    }\n")))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Define macros
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (fset 'gmd-tab "   ")
-(fset 'gmd-whack-leading-space-then-go-down
-      "\C-a\\\C-n")
+(fset 'gmd-whack-leading-space-then-go-down "\C-a\\\C-n")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Key mappings
@@ -929,13 +911,11 @@ sub get_options {
 (defvar clever-cmd-js-mode-grep-command clever-cmd-jsx-mode-grep-command)
 
 (defun clever-cmd-ruby-mode-compile-command ()
-  (concat "cd "
-	  (or (gmd-vc-root-dir) ".") ; Default to current directory.
+  (concat "cd " (or (gmd-vc-root-dir) ".") ; Default to current directory.
 	  " && rspec  ~/config/.rspec_color.rb --format documentation %s:%l"))
 
 (defun clever-cmd-js-mode-compile-command ()
-  (concat "cd "
-	  (or (gmd-vc-root-dir) ".") ; Default to current directory.
+  (concat "cd " (or (gmd-vc-root-dir) ".") ; Default to current directory.
 	  " && npm test run"))
 (defun clever-cmd-jsx-mode-compile-command ()
   (clever-cmd-js-mode-compile-command))
@@ -970,7 +950,6 @@ sub get_options {
 	(sql-password "foo"))
     (sql-oracle)
     (rename-buffer (concat "*SQL* " sql-database " " sql-user))))
-
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; From stevey@
@@ -1130,8 +1109,7 @@ This makes it easy to figure out which prefix to pass to yank."
          ;; non-SGR CSI escape sequences
          "\033\\[\\??[0-9;]*[^0-9;m]"
          ;; noop
-         "\012\033\\[2K\033\\[1F"
-         )))
+	 "\012\033\\[2K\033\\[1F")))
 
 (defun filter-non-sgr-control-sequences-in-region (begin end)
   (save-excursion
