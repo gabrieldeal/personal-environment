@@ -6,6 +6,7 @@ case $- in
       *) return;;
 esac
 
+source "$HOME/.nvm/nvm.sh"
 source "$HOME/.rvm/scripts/rvm"
 source "/usr/share/bash-completion/bash_completion"
 

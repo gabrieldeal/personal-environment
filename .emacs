@@ -506,7 +506,16 @@ sub get_options {
 				    (interactive)
 				    (scroll-up-command 1)))))
 
+;; Hack note: I had to create ~/local/bin/eslint to get flycheck to
+;; use the eslint from package.json.
 (add-hook 'after-init-hook #'global-flycheck-mode)
+(eval-after-load "flycheck"
+  '(progn
+     (setq-default flycheck-disabled-checkers
+		   (append flycheck-disabled-checkers '(javascript-jshint)))
+     (flycheck-add-mode 'javascript-eslint 'web-mode)
+     (flycheck-add-mode 'javascript-eslint 'jsx-mode)
+     (setq flycheck-eslintrc (concat (gmd-vc-root-dir) ".eslintrc"))))
 
 (add-hook 'web-mode-hook
 	  (function (lambda()
