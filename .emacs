@@ -1104,8 +1104,9 @@ This makes it easy to figure out which prefix to pass to yank."
 (defun oss-start-js-repl ()
   (interactive)
   (let ((default-directory (gmd-vc-root-dir)))
-    (oss-start-interactive-shell-with-command "*shell* js repl"
-					      "npm run cli")))
+    (oss-start-interactive-shell-with-command
+     "*shell* js repl"
+     (concat (gmd-vc-root-dir) "node_modules/babel-cli/bin/babel-node.js"))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; This comint filter strips the escape sequences that the
