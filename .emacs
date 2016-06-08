@@ -57,6 +57,7 @@
   '(cider
     clojure-mode
     flycheck
+    json-mode
     jsx-mode
     magit
     markdown-mode
@@ -247,6 +248,8 @@
 (setq auto-mode-alist (cons '("\\.es6$" . javascript-mode) auto-mode-alist))
 
 (setq auto-mode-alist (cons '("\\.jsx$" . jsx-mode) auto-mode-alist))
+
+(setq auto-mode-alist (cons '("\\.json$" . json-mode) auto-mode-alist))
 
 (setq auto-mode-alist (cons '("\\.css$" . css-mode) auto-mode-alist))
 
