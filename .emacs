@@ -1076,7 +1076,7 @@ This makes it easy to figure out which prefix to pass to yank."
   (interactive)
   (let ((default-directory (gmd-vc-root-dir)))
     (oss-start-interactive-shell-with-command "*shell* npm run build"
-					      "npm run build"))
+					      "./node_modules/webpack/bin/webpack.js -w -d --define __DEVELOPMENT__=true --progress"))
     (oss-start-interactive-shell-with-command "*shell* rails"
 					      "rails s -b 0.0.0.0 -p 3000"))
 
