@@ -1,8 +1,8 @@
-#!/bin/sh
+#!/bin/sh -x
 #-*-shell-script-*-
 
 dir="$@"
-if [ -s "$dir" ]
+if [ -z "$dir" ]
 then
     dir=.
 fi
