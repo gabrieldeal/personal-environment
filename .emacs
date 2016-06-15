@@ -1114,25 +1114,30 @@ This makes it easy to figure out which prefix to pass to yank."
          ;; noop
 	 "\012\033\\[2K\033\\[1F")))
 
-(defun filter-non-sgr-control-sequences-in-region (begin end)
+(defun comint-filter-non-sgr-control-sequences-in-region (begin end)
   (save-excursion
     (goto-char begin)
     (while (re-search-forward
             non-sgr-control-sequence-regexp end t)
       (replace-match ""))))
 
-(defun filter-non-sgr-control-sequences-in-output (ignored)
+(defun compilation-filter-non-sgr-control-sequences-in-region ()
+  (comint-filter-non-sgr-control-sequences-in-region compilation-filter-start
+						     (point)))
+
+(defun comint-filter-non-sgr-control-sequences-in-output (ignored)
   (let ((start-marker
          (or comint-last-output-start
              (point-min-marker)))
         (end-marker
          (process-mark
           (get-buffer-process (current-buffer)))))
-    (filter-non-sgr-control-sequences-in-region
+    (comint-filter-non-sgr-control-sequences-in-region
      start-marker
      end-marker)))
 
-(add-hook 'comint-output-filter-functions 'filter-non-sgr-control-sequences-in-output)
+(add-hook 'comint-output-filter-functions 'comint-filter-non-sgr-control-sequences-in-output)
+(add-hook 'compilation-filter-hook 'compilation-filter-non-sgr-control-sequences-in-region)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; M-x customize
