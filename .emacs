@@ -1090,6 +1090,12 @@ This makes it easy to figure out which prefix to pass to yank."
      "*shell* js repl"
      (concat (gmd-vc-root-dir) "node_modules/babel-cli/bin/babel-node.js"))))
 
+(defun gmd-start-rails-console ()
+  (interactive)
+  (let ((default-directory (gmd-vc-root-dir)))
+    (gmd-start-interactive-shell-with-command "*rails console*"
+					      "rails console")))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; This comint filter strips the escape sequences that the
 ;; ansi-color-for-comint-mode-on doesn't know about.  For example
