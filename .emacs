@@ -926,10 +926,19 @@ sub get_options {
 (advice-add 'compile :around #'clever-cmd-compile-with-smart-command)
 (advice-add 'grep :around #'clever-cmd-grep-with-smart-command)
 
-;; For eslint:
+(defun gmd-get-filepath-from-jasmine-compilation-error-regexp-match ()
+  (concat (match-string 1) "/" (match-string 2)))
+
 (eval-after-load "compile"
-  '(add-to-list 'compilation-error-regexp-alist
-		'("^\\(/[^\":\n]+\\)\n *\\([0-9]+\\):[0-9]+ +error +" 1 2)))
+  '(progn
+     ;; For Jasmine:
+     (add-to-list 'compilation-error-regexp-alist
+		  '("\\(/[^\":\n]+\\)/[^/]+ <- webpack:///\\([^\":\n]+\\):\\([0-9]+\\):"
+		    gmd-get-filepath-from-jasmine-compilation-error-regexp-match
+		    3))
+     ;; For eslint:
+     (add-to-list 'compilation-error-regexp-alist
+		  '("^\\(/[^\":\n]+\\)\n *\\([0-9]+\\):[0-9]+ +error +" 1 2))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
