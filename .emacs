@@ -936,6 +936,9 @@ sub get_options {
 		  '("\\(/[^\":\n]+\\)/[^/]+ <- webpack:///\\([^\":\n]+\\):\\([0-9]+\\):"
 		    gmd-get-filepath-from-jasmine-compilation-error-regexp-match
 		    3))
+     ;; For Babel/Babylon JS parser:
+     (add-to-list 'compilation-error-regexp-alist
+		  '("SyntaxError: \\(/[^\":\n]+\\): .* (\\([0-9]+\\):[0-9]+)$" 1 2))
      ;; For eslint:
      (add-to-list 'compilation-error-regexp-alist
 		  '("^\\(/[^\":\n]+\\)\n *\\([0-9]+\\):[0-9]+ +error +" 1 2))))
