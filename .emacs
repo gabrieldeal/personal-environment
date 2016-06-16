@@ -58,7 +58,6 @@
     clojure-mode
     flycheck
     json-mode
-    jsx-mode
     magit
     markdown-mode
     nxml-mode
@@ -247,7 +246,7 @@
 (setq auto-mode-alist (cons '("\\.js$" . javascript-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.es6$" . javascript-mode) auto-mode-alist))
 
-(setq auto-mode-alist (cons '("\\.jsx$" . jsx-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '("\\.jsx$" . web-mode) auto-mode-alist))
 
 (setq auto-mode-alist (cons '("\\.json$" . json-mode) auto-mode-alist))
 
@@ -516,7 +515,6 @@ sub get_options {
      (setq-default flycheck-disabled-checkers
 		   (append flycheck-disabled-checkers '(javascript-jshint)))
      (flycheck-add-mode 'javascript-eslint 'web-mode)
-     (flycheck-add-mode 'javascript-eslint 'jsx-mode)
      (setq flycheck-eslintrc (concat (gmd-vc-root-dir) ".eslintrc"))))
 
 (add-hook 'web-mode-hook
@@ -575,9 +573,8 @@ sub get_options {
 		      (setq js-indent-level 2)
 		      (setq indent-tabs-mode nil))))
 
-(add-hook 'jsx-mode-hook
+(add-hook 'web-mode-hook
 	  (function (lambda()
-		      (setq jsx-indent-level 2)
 		      (setq indent-tabs-mode nil))))
 
 (add-hook 'java-mode-hook
@@ -907,11 +904,13 @@ sub get_options {
 (setq grep-null-device nil)
 
 (setq grep-command "grep -nr ")
-(defvar clever-cmd-ruby-mode-grep-command
-  "grep -nr --include=\"*.rb\" --include=\"*.erb\" --include=\"*.rake\" ")
-(defvar clever-cmd-jsx-mode-grep-command
-  "grep -nr --exclude-dir generated --include=\"*.js\" --include=\"*.jsx\" --include=\"*.es6\" ")
-(defvar clever-cmd-js-mode-grep-command clever-cmd-jsx-mode-grep-command)
+(defun clever-cmd-ruby-mode-grep-command ()
+  (format "grep -nr --include=\"*.rb\" --include=\"*.erb\" --include=\"*.rake\" %s --regexp "
+	  default-directory))
+(defun clever-cmd-web-mode-grep-command ()
+  (format "grep -nr --exclude-dir generated --include=\"*.js\" --include=\"*.jsx\" --include=\"*.es6\" %s --regexp "
+	  default-directory))
+(defalias 'clever-cmd-js-mode-grep-command 'clever-cmd-web-mode-grep-command)
 
 (defun clever-cmd-ruby-mode-compile-command ()
   (concat "cd " (or (gmd-vc-root-dir) ".") ; Default to current directory.
