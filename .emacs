@@ -919,8 +919,8 @@ sub get_options {
 
 (defun clever-cmd-js-mode-compile-command ()
   (concat "cd " (or (gmd-vc-root-dir) ".") ; Default to current directory.
-	  " && npm test run"))
-(defun clever-cmd-jsx-mode-compile-command ()
+	  " && ./node_modules/karma/bin/karma start karma.config.js --no-auto-watch --single-run"))
+(defun clever-cmd-web-mode-compile-command ()
   (clever-cmd-js-mode-compile-command))
 
 (advice-add 'compile :around #'clever-cmd-compile-with-smart-command)
