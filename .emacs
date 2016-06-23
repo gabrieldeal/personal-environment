@@ -1108,6 +1108,12 @@ This makes it easy to figure out which prefix to pass to yank."
     (gmd-start-interactive-shell-with-command "*rails console*"
 					      "rails console")))
 
+(defun gmd-start-karma-webserver ()
+  (interactive)
+  (let ((default-directory (gmd-vc-root-dir)))
+    (gmd-start-interactive-shell-with-command "*karma webserver*"
+					      "./node_modules/karma/bin/karma start karma.config.js --no-single-run")))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; This comint filter strips the escape sequences that the
 ;; ansi-color-for-comint-mode-on doesn't know about.  For example
