@@ -1079,40 +1079,36 @@ This makes it easy to figure out which prefix to pass to yank."
 
 (defun gmd-start-interactive-shell-with-command (buffer-name command)
   (unless (get-buffer buffer-name)
-    (let* ((buffer (shell buffer-name))
+    (let* ((default-directory (gmd-vc-root-dir))
+	   (buffer (shell buffer-name))
 	   (process (get-buffer-process buffer)))
       (ansi-color-for-comint-mode-on)
       (comint-send-string process (concat "echo Starting...;" command "\n")))))
 
 (defun gmd-start-ui-environment ()
   (interactive)
-  (let ((default-directory (gmd-vc-root-dir)))
-    (gmd-start-interactive-shell-with-command "*npm run build*"
-					      "./node_modules/webpack/bin/webpack.js -w -d --define __DEVELOPMENT__=true --progress"))
-    (gmd-start-interactive-shell-with-command "*rails server*"
-					      "test -f tmp/pids/server.pid && kill `cat tmp/pids/server.pid`; rails s -b 0.0.0.0 -p 3000"))
+  (gmd-start-interactive-shell-with-command "*npm run build*"
+					    "./node_modules/webpack/bin/webpack.js -w -d --define __DEVELOPMENT__=true --progress")
+  (gmd-start-interactive-shell-with-command "*rails server*"
+					    "test -f tmp/pids/server.pid && kill `cat tmp/pids/server.pid`; rails s -b 0.0.0.0 -p 3000"))
 
 ;; This requires customization of comint-output-filter-functions to
 ;; eliminate some escape sequences that ansi-color-for-comint-mode-on
 ;; doesn't handle.
 (defun gmd-start-js-repl ()
   (interactive)
-  (let ((default-directory (gmd-vc-root-dir)))
-    (gmd-start-interactive-shell-with-command
-     "*shell* js repl"
-     (concat (gmd-vc-root-dir) "node_modules/babel-cli/bin/babel-node.js"))))
+  (gmd-start-interactive-shell-with-command "*shell* js repl"
+					    "./node_modules/babel-cli/bin/babel-node.js"))
 
 (defun gmd-start-rails-console ()
   (interactive)
-  (let ((default-directory (gmd-vc-root-dir)))
-    (gmd-start-interactive-shell-with-command "*rails console*"
-					      "rails console")))
+  (gmd-start-interactive-shell-with-command "*rails console*"
+					    "rails console"))
 
 (defun gmd-start-karma-webserver ()
   (interactive)
-  (let ((default-directory (gmd-vc-root-dir)))
-    (gmd-start-interactive-shell-with-command "*karma webserver*"
-					      "./node_modules/karma/bin/karma start karma.config.js --no-single-run")))
+  (gmd-start-interactive-shell-with-command "*karma webserver*"
+					    "./node_modules/karma/bin/karma start karma.config.js --no-single-run"))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; This comint filter strips the escape sequences that the
