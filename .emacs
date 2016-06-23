@@ -117,6 +117,7 @@
 
 (add-hook 'magit-diff-mode-hook
 	  (lambda()
+	    (setq git-commit-fill-column 9999)
 	    (local-set-key "\M-p" (lambda()
 				    (interactive)
 				    (scroll-down-command 1)))
