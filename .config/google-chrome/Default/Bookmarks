@@ -1,5 +1,5 @@
 {
-   "checksum": "66672fab3f47abc9c9db3d6d8aa5a08b",
+   "checksum": "4597f6bf6e1fc13edb58af9866fcfe8d",
    "roots": {
       "bookmark_bar": {
          "children": [ {
@@ -135,9 +135,34 @@
             "id": "40",
             "name": "Mobile dev",
             "type": "folder"
+         }, {
+            "children": [ {
+               "date_added": "13111010967313146",
+               "id": "57",
+               "name": "Coffa/factory_girl: A library for setting up objects as relational data used with jasmine, mocha or qunit.",
+               "type": "url",
+               "url": "https://github.com/Coffa/factory_girl"
+            }, {
+               "date_added": "13111010974968196",
+               "id": "58",
+               "name": "rosiejs/rosie: factory for building JavaScript objects, mostly useful for setting up test data. Inspired by factory_girl",
+               "type": "url",
+               "url": "https://github.com/rosiejs/rosie"
+            }, {
+               "date_added": "13111010980875730",
+               "id": "59",
+               "name": "factory-lady on npm - Libraries",
+               "type": "url",
+               "url": "https://libraries.io/npm/factory-lady"
+            } ],
+            "date_added": "13111010964784180",
+            "date_modified": "13111010980875730",
+            "id": "56",
+            "name": "JS Factory",
+            "type": "folder"
          } ],
          "date_added": "13099617023729630",
-         "date_modified": "13110508339375933",
+         "date_modified": "13111010967313146",
          "id": "1",
          "name": "Bookmarks bar",
          "type": "folder"
