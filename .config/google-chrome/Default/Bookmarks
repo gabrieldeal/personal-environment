@@ -1,11 +1,11 @@
 {
-   "checksum": "4597f6bf6e1fc13edb58af9866fcfe8d",
+   "checksum": "67a7c02c3c328c5b6e1896fe9fdb9178",
    "roots": {
       "bookmark_bar": {
          "children": [ {
-            "date_added": "13110393288123147",
-            "id": "44",
-            "name": "lVD",
+            "date_added": "13111194038526800",
+            "id": "61",
+            "name": "",
             "type": "url",
             "url": "http://localhost:3000/visual-directory#/"
          }, {
@@ -41,13 +41,13 @@
          }, {
             "date_added": "13108843578000000",
             "id": "18",
-            "name": "mob",
+            "name": "m",
             "type": "url",
             "url": "https://www.pivotaltracker.com/n/projects/1421752"
          }, {
             "date_added": "13108843606000000",
             "id": "19",
-            "name": "hud",
+            "name": "h",
             "type": "url",
             "url": "https://www.pivotaltracker.com/n/projects/957060"
          }, {
@@ -65,7 +65,7 @@
          }, {
             "date_added": "13109379486566789",
             "id": "31",
-            "name": "7!",
+            "name": "",
             "type": "url",
             "url": "http://well.blogs.nytimes.com/projects/workouts/"
          }, {
@@ -129,9 +129,27 @@
                "name": "run one karma test",
                "type": "url",
                "url": "https://www.npmjs.com/package/karma-kickoff"
+            }, {
+               "date_added": "13111177412355969",
+               "id": "60",
+               "name": "Expect / Should - Chai",
+               "type": "url",
+               "url": "http://chaijs.com/api/bdd/"
+            }, {
+               "date_added": "13111198972002845",
+               "id": "62",
+               "name": "Responsive UI - Layout - Google design guidelines",
+               "type": "url",
+               "url": "https://material.google.com/layout/responsive-ui.html#responsive-ui-breakpoints"
+            }, {
+               "date_added": "13111614954033700",
+               "id": "63",
+               "name": "Material-UI",
+               "type": "url",
+               "url": "http://www.material-ui.com/#/"
             } ],
             "date_added": "13109913180212489",
-            "date_modified": "13110577348486654",
+            "date_modified": "13111614954033700",
             "id": "40",
             "name": "Mobile dev",
             "type": "folder"
@@ -156,13 +174,13 @@
                "url": "https://libraries.io/npm/factory-lady"
             } ],
             "date_added": "13111010964784180",
-            "date_modified": "13111010980875730",
+            "date_modified": "13111177412355969",
             "id": "56",
             "name": "JS Factory",
             "type": "folder"
          } ],
          "date_added": "13099617023729630",
-         "date_modified": "13111010967313146",
+         "date_modified": "13111198972002845",
          "id": "1",
          "name": "Bookmarks bar",
          "type": "folder"
