@@ -520,6 +520,7 @@ sub get_options {
 
 (add-hook 'web-mode-hook
 	  (function (lambda()
+		      (setq web-mode-enable-auto-quoting nil)
 		      (setq web-mode-markup-indent-offset 2)
 		      (setq web-mode-css-indent-offset 2)
 		      (setq web-mode-code-indent-offset 2)
