@@ -1079,7 +1079,8 @@ This makes it easy to figure out which prefix to pass to yank."
 ;; OSS UI helpers
 
 (defun gmd-start-interactive-shell-with-command (buffer-name command)
-  (unless (get-buffer buffer-name)
+  (if (get-buffer buffer-name)
+      (switch-to-buffer buffer-name)
     (let* ((default-directory (gmd-vc-root-dir))
 	   (buffer (shell buffer-name))
 	   (process (get-buffer-process buffer)))
