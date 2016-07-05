@@ -1,5 +1,5 @@
 {
-   "checksum": "67a7c02c3c328c5b6e1896fe9fdb9178",
+   "checksum": "e1f147a38fa5d0e68bc8ab5ddfef23ad",
    "roots": {
       "bookmark_bar": {
          "children": [ {
@@ -147,36 +147,17 @@
                "name": "Material-UI",
                "type": "url",
                "url": "http://www.material-ui.com/#/"
+            }, {
+               "date_added": "13111790441377440",
+               "id": "64",
+               "name": "Component Specs and Lifecycle | React",
+               "type": "url",
+               "url": "https://facebook.github.io/react/docs/component-specs.html"
             } ],
             "date_added": "13109913180212489",
-            "date_modified": "13111614954033700",
+            "date_modified": "13111790441377440",
             "id": "40",
             "name": "Mobile dev",
-            "type": "folder"
-         }, {
-            "children": [ {
-               "date_added": "13111010967313146",
-               "id": "57",
-               "name": "Coffa/factory_girl: A library for setting up objects as relational data used with jasmine, mocha or qunit.",
-               "type": "url",
-               "url": "https://github.com/Coffa/factory_girl"
-            }, {
-               "date_added": "13111010974968196",
-               "id": "58",
-               "name": "rosiejs/rosie: factory for building JavaScript objects, mostly useful for setting up test data. Inspired by factory_girl",
-               "type": "url",
-               "url": "https://github.com/rosiejs/rosie"
-            }, {
-               "date_added": "13111010980875730",
-               "id": "59",
-               "name": "factory-lady on npm - Libraries",
-               "type": "url",
-               "url": "https://libraries.io/npm/factory-lady"
-            } ],
-            "date_added": "13111010964784180",
-            "date_modified": "13111177412355969",
-            "id": "56",
-            "name": "JS Factory",
             "type": "folder"
          } ],
          "date_added": "13099617023729630",
