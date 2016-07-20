@@ -245,8 +245,8 @@
 (setq auto-mode-alist (cons '("\\.java$" . java-mode) auto-mode-alist))
 
 (setq auto-mode-alist (cons '("\\.js$" . javascript-mode) auto-mode-alist))
-(setq auto-mode-alist (cons '("\\.es6$" . javascript-mode) auto-mode-alist))
 
+(setq auto-mode-alist (cons '("\\.es6$" . web-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.jsx$" . web-mode) auto-mode-alist))
 
 (setq auto-mode-alist (cons '("\\.json$" . json-mode) auto-mode-alist))
@@ -518,6 +518,9 @@ sub get_options {
      (flycheck-add-mode 'javascript-eslint 'web-mode)
      (setq flycheck-eslintrc (concat (gmd-vc-root-dir) ".eslintrc"))))
 
+;; This variable must be defined before web-mode is autoloaded in
+;; order for the first file to be recognized correctly.
+(setq web-mode-content-types-alist '(("javascript" . "\\.es6\\'")))
 (add-hook 'web-mode-hook
 	  (function (lambda()
 		      (setq web-mode-enable-auto-quoting nil)
