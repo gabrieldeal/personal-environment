@@ -231,6 +231,10 @@
 (autoload 'web-mode "web-mode") ; https://github.com/fxbois/web-mode
 (setq auto-mode-alist (cons '("\\.php$" . web-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.erb$" . web-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '("\\.es6$" . web-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '("\\.jsx$" . web-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '("\\.js$" . web-mode) auto-mode-alist))
+
 (setq auto-mode-alist (cons '("\\.rb$" . ruby-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.rake$" . ruby-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("Gemfile" . ruby-mode) auto-mode-alist))
@@ -243,11 +247,6 @@
 (setq auto-mode-alist (cons '("typemap" . c++-mode) auto-mode-alist))
 
 (setq auto-mode-alist (cons '("\\.java$" . java-mode) auto-mode-alist))
-
-(setq auto-mode-alist (cons '("\\.js$" . javascript-mode) auto-mode-alist))
-
-(setq auto-mode-alist (cons '("\\.es6$" . web-mode) auto-mode-alist))
-(setq auto-mode-alist (cons '("\\.jsx$" . web-mode) auto-mode-alist))
 
 (setq auto-mode-alist (cons '("\\.json$" . json-mode) auto-mode-alist))
 
@@ -526,6 +525,7 @@ sub get_options {
 		      (setq web-mode-enable-auto-quoting nil)
 		      (setq web-mode-markup-indent-offset 2)
 		      (setq web-mode-css-indent-offset 2)
+		      (setq indent-tabs-mode nil)
 		      (setq web-mode-code-indent-offset 2)
 		      )))
 
@@ -576,10 +576,6 @@ sub get_options {
 	  (function (lambda()
 		      (font-lock-mode)
 		      (setq js-indent-level 2)
-		      (setq indent-tabs-mode nil))))
-
-(add-hook 'web-mode-hook
-	  (function (lambda()
 		      (setq indent-tabs-mode nil))))
 
 (add-hook 'java-mode-hook
