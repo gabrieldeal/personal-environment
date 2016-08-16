@@ -1,5 +1,5 @@
 {
-   "checksum": "62892db05e7fcfe8f0740837b12104b6",
+   "checksum": "a8220de6d711e12a2d4b47f6f7ef0ad6",
    "roots": {
       "bookmark_bar": {
          "children": [ {
@@ -76,6 +76,12 @@
                "type": "url",
                "url": "chrome://inspect/#devices"
             }, {
+               "date_added": "13110516954357148",
+               "id": "51",
+               "name": "Karma DEBUG RUNNER",
+               "type": "url",
+               "url": "http://localhost:9876/debug.html"
+            }, {
                "date_added": "13109904278070648",
                "id": "38",
                "name": "Remote Debugging on Android with Chrome - Google Chrome",
@@ -88,77 +94,23 @@
                "type": "url",
                "url": "https://developer.mozilla.org/en-US/docs/Tools/Remote_Debugging/Debugging_Firefox_for_Android_with_WebIDE"
             }, {
-               "date_added": "13110508339375933",
-               "id": "47",
-               "name": "API: lodash documentation",
-               "type": "url",
-               "url": "https://lodash.com/docs"
-            }, {
-               "date_added": "13110508366618003",
-               "id": "48",
-               "name": "API: Immutable.js List",
-               "type": "url",
-               "url": "https://facebook.github.io/immutable-js/docs/#/List"
-            }, {
-               "date_added": "13110508405974297",
-               "id": "49",
-               "name": "API: Immutable.js Map",
-               "type": "url",
-               "url": "https://facebook.github.io/immutable-js/docs/#/Map"
-            }, {
-               "date_added": "13110512524109171",
-               "id": "50",
-               "name": "API: Javascript Array",
-               "type": "url",
-               "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"
-            }, {
-               "date_added": "13110516954357148",
-               "id": "51",
-               "name": "Karma DEBUG RUNNER",
-               "type": "url",
-               "url": "http://localhost:9876/debug.html"
-            }, {
                "date_added": "13110570394540832",
                "id": "52",
                "name": "Babel REPL",
                "type": "url",
                "url": "https://babeljs.io/repl/"
             }, {
-               "date_added": "13110577348486654",
-               "id": "53",
-               "name": "run one karma test",
+               "date_added": "13111614954033700",
+               "id": "63",
+               "name": "Material-UI",
                "type": "url",
-               "url": "https://www.npmjs.com/package/karma-kickoff"
-            }, {
-               "date_added": "13111177412355969",
-               "id": "60",
-               "name": "Chai: Expect / Should API",
-               "type": "url",
-               "url": "http://chaijs.com/api/bdd/"
-            }, {
-               "date_added": "13113102721063114",
-               "id": "88",
-               "name": "Jasmine: API",
-               "type": "url",
-               "url": "http://jasmine.github.io/2.0/introduction.html"
-            }, {
-               "date_added": "13113103349074291",
-               "id": "89",
-               "name": "Enzyme: mount API",
-               "type": "url",
-               "url": "https://github.com/airbnb/enzyme/blob/master/docs/api/mount.md"
+               "url": "http://www.material-ui.com/#/"
             }, {
                "date_added": "13111198972002845",
                "id": "62",
                "name": "Responsive UI - Layout - Google design guidelines",
                "type": "url",
                "url": "https://material.google.com/layout/responsive-ui.html#responsive-ui-breakpoints"
-            }, {
-               "date_added": "13111614954033700",
-               "id": "63",
-               "name": "Material-UI",
-               "type": "url",
-               "url": "http://www.material-ui.com/#/"
             }, {
                "date_added": "13111790441377440",
                "id": "64",
@@ -177,124 +129,358 @@
                "name": "Sass: Sass Basics",
                "type": "url",
                "url": "http://sass-lang.com/guide"
+            }, {
+               "date_added": "13111177412355969",
+               "id": "60",
+               "name": "API: Chai - Expect / Should",
+               "type": "url",
+               "url": "http://chaijs.com/api/bdd/"
+            }, {
+               "date_added": "13113103349074291",
+               "id": "89",
+               "name": "API: Enzyme - mount",
+               "type": "url",
+               "url": "https://github.com/airbnb/enzyme/blob/master/docs/api/mount.md"
+            }, {
+               "date_added": "13110508366618003",
+               "id": "48",
+               "name": "API: Immutable.js List",
+               "type": "url",
+               "url": "https://facebook.github.io/immutable-js/docs/#/List"
+            }, {
+               "date_added": "13110508405974297",
+               "id": "49",
+               "name": "API: Immutable.js Map",
+               "type": "url",
+               "url": "https://facebook.github.io/immutable-js/docs/#/Map"
+            }, {
+               "date_added": "13113102721063114",
+               "id": "88",
+               "name": "API: Jasmine",
+               "type": "url",
+               "url": "http://jasmine.github.io/2.0/introduction.html"
+            }, {
+               "date_added": "13115779251410681",
+               "id": "139",
+               "name": "API: Jasmine-enzyme",
+               "type": "url",
+               "url": "https://github.com/blainekasten/jasmine-enzyme"
+            }, {
+               "date_added": "13110512524109171",
+               "id": "50",
+               "name": "API: Javascript Array",
+               "type": "url",
+               "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"
+            }, {
+               "date_added": "13110508339375933",
+               "id": "47",
+               "name": "API: lodash documentation",
+               "type": "url",
+               "url": "https://lodash.com/docs"
             } ],
             "date_added": "13109913180212489",
-            "date_modified": "13113103371844541",
+            "date_modified": "13115779269499101",
             "id": "40",
             "name": "Mobile dev",
             "type": "folder"
          }, {
             "children": [ {
-               "date_added": "13112944030286854",
-               "id": "69",
+               "date_added": "13114746893513788",
+               "id": "91",
                "name": "Visual Directory",
                "type": "url",
-               "url": "http://192.168.1.126:3000/visual-directory#/employees/9257"
+               "url": "http://localhost:3000/visual-directory#/"
             }, {
-               "date_added": "13112944058934816",
-               "id": "72",
+               "date_added": "13114746893514102",
+               "id": "92",
                "name": "Visual Directory",
                "type": "url",
-               "url": "https://qa.ossd.co/visual-directory#/employees/9257"
+               "url": "https://qa.ossd.co/visual-directory#/"
             }, {
-               "date_added": "13112944063688246",
-               "id": "73",
+               "date_added": "13114746893514376",
+               "id": "93",
                "name": "Visual Directory",
                "type": "url",
-               "url": "http://192.168.1.126:3000/visual-directory#/floors/751/shares/74281/seats/81593"
+               "url": "http://localhost:3000/visual-directory#/search"
             }, {
-               "date_added": "13112944066802646",
-               "id": "74",
+               "date_added": "13114746893514613",
+               "id": "94",
                "name": "Visual Directory",
                "type": "url",
-               "url": "https://huddle.ossd.co/visual-directory#/floors/118/rooms/12228"
+               "url": "https://qa.ossd.co/visual-directory#/search"
             }, {
-               "date_added": "13112944069708400",
-               "id": "75",
+               "date_added": "13114746893514836",
+               "id": "95",
                "name": "Visual Directory",
                "type": "url",
-               "url": "http://192.168.1.126:3000/visual-directory#/floors/751/shares/74281"
+               "url": "http://localhost:3000/visual-directory#/search/mary"
             }, {
-               "date_added": "13112944072413512",
-               "id": "76",
+               "date_added": "13114746893515062",
+               "id": "96",
                "name": "Visual Directory",
                "type": "url",
-               "url": "https://qa.ossd.co/visual-directory#/floors/751/shares/74281"
+               "url": "https://qa.ossd.co/visual-directory#/search/mary"
             }, {
-               "date_added": "13112944075216999",
-               "id": "77",
+               "date_added": "13114746893515282",
+               "id": "97",
                "name": "Visual Directory",
                "type": "url",
-               "url": "http://192.168.1.126:3000/visual-directory#/floors/10/utilities/532"
+               "url": "http://localhost:3000/visual-directory#/floors"
             }, {
-               "date_added": "13112944077965469",
-               "id": "78",
+               "date_added": "13114746893515501",
+               "id": "98",
                "name": "Visual Directory",
                "type": "url",
-               "url": "https://huddle.ossd.co/visual-directory#/floors/6/utilities/552"
+               "url": "https://qa.ossd.co/visual-directory#/floors"
             }, {
-               "date_added": "13112944080294604",
-               "id": "79",
+               "date_added": "13114746893515715",
+               "id": "99",
                "name": "Visual Directory",
                "type": "url",
-               "url": "http://localhost:3000/visual-directory#/seats/46124"
+               "url": "http://localhost:3000/visual-directory#/floors/3/pins/fK1q2v0OODPGXkZhRjfSeE"
             }, {
-               "date_added": "13112944082873476",
-               "id": "80",
+               "date_added": "13114746893515952",
+               "id": "100",
                "name": "Visual Directory",
                "type": "url",
-               "url": "https://huddle.ossd.co/visual-directory#/seats/519"
+               "url": "https://qa.ossd.co/visual-directory#/floors/3/pins/685/346"
             }, {
-               "date_added": "13112944108390517",
-               "id": "81",
+               "date_added": "13114746893516188",
+               "id": "101",
                "name": "Visual Directory",
                "type": "url",
-               "url": "http://localhost:3000/visual-directory#/seats/34/info"
+               "url": "http://localhost:3000/visual-directory#/floors/3/help/pins"
             }, {
-               "date_added": "13112944116490776",
-               "id": "82",
+               "date_added": "13114746893516422",
+               "id": "102",
                "name": "Visual Directory",
                "type": "url",
-               "url": "https://huddle.ossd.co/visual-directory#/seats/38935/info"
+               "url": "https://qa.ossd.co/visual-directory#/floors/3/help/pins"
             }, {
-               "date_added": "13112944121582341",
-               "id": "83",
+               "date_added": "13114746893516652",
+               "id": "103",
+               "name": "Visual Directory",
+               "type": "url",
+               "url": "http://localhost:3000/visual-directory#/floors/3/pins/685/346"
+            }, {
+               "date_added": "13114746893516889",
+               "id": "104",
+               "name": "Visual Directory",
+               "type": "url",
+               "url": "https://qa.ossd.co/visual-directory#/floors/3/pins/685/346"
+            }, {
+               "date_added": "13114746893517117",
+               "id": "105",
+               "name": "Visual Directory",
+               "type": "url",
+               "url": "http://localhost:3000/visual-directory#/floors/3/pins/685/346"
+            }, {
+               "date_added": "13114746893517349",
+               "id": "106",
+               "name": "Visual Directory",
+               "type": "url",
+               "url": "https://qa.ossd.co/visual-directory#/floors/3/pins/685/346"
+            }, {
+               "date_added": "13114746893517578",
+               "id": "107",
+               "name": "Visual Directory",
+               "type": "url",
+               "url": "http://localhost:3000/visual-directory#/floors/3"
+            }, {
+               "date_added": "13114746893517825",
+               "id": "108",
+               "name": "Visual Directory",
+               "type": "url",
+               "url": "https://qa.ossd.co/visual-directory#/floors/3"
+            }, {
+               "date_added": "13114746893518053",
+               "id": "109",
+               "name": "Visual Directory",
+               "type": "url",
+               "url": "http://localhost:3000/visual-directory#/floors/3/rooms/523"
+            }, {
+               "date_added": "13114746893518290",
+               "id": "110",
+               "name": "Visual Directory",
+               "type": "url",
+               "url": "https://qa.ossd.co/visual-directory#/floors/3/rooms/523"
+            }, {
+               "date_added": "13114746893518521",
+               "id": "111",
                "name": "Visual Directory",
                "type": "url",
                "url": "http://localhost:3000/visual-directory#/floors/3/seats/576"
             }, {
-               "date_added": "13112944126569229",
-               "id": "84",
+               "date_added": "13114746893518756",
+               "id": "112",
                "name": "Visual Directory",
                "type": "url",
-               "url": "https://huddle.ossd.co/visual-directory#/floors/373/seats/38866"
+               "url": "https://qa.ossd.co/visual-directory#/floors/3/seats/576"
             }, {
-               "date_added": "13112944130046580",
-               "id": "85",
+               "date_added": "13114746893519009",
+               "id": "113",
                "name": "Visual Directory",
                "type": "url",
-               "url": "http://localhost:3000/visual-directory#/rooms/74281"
+               "url": "http://localhost:3000/visual-directory#/floors/3/seats/578"
             }, {
-               "date_added": "13112944133736982",
-               "id": "86",
+               "date_added": "13114746893519246",
+               "id": "114",
                "name": "Visual Directory",
                "type": "url",
-               "url": "https://huddle.ossd.co/visual-directory#/rooms/12228"
+               "url": "https://qa.ossd.co/visual-directory#/floors/3/seats/578"
             }, {
-               "date_added": "13113081787721367",
-               "id": "87",
+               "date_added": "13114746893519477",
+               "id": "115",
                "name": "Visual Directory",
                "type": "url",
-               "url": "http://localhost:3000/visual-directory#/floors/3"
+               "url": "http://localhost:3000/visual-directory#/floors/3/shares/407"
+            }, {
+               "date_added": "13114746893519712",
+               "id": "116",
+               "name": "Visual Directory",
+               "type": "url",
+               "url": "https://qa.ossd.co/visual-directory#/floors/3/shares/407"
+            }, {
+               "date_added": "13114746893519942",
+               "id": "117",
+               "name": "Visual Directory",
+               "type": "url",
+               "url": "http://localhost:3000/visual-directory#/floors/3/shares/407/seats/574"
+            }, {
+               "date_added": "13114746893520177",
+               "id": "118",
+               "name": "Visual Directory",
+               "type": "url",
+               "url": "https://qa.ossd.co/visual-directory#/floors/3/shares/407/seats/574"
+            }, {
+               "date_added": "13114746893520414",
+               "id": "119",
+               "name": "Visual Directory",
+               "type": "url",
+               "url": "http://localhost:3000/visual-directory#/floors/3/utilities/65739"
+            }, {
+               "date_added": "13114746893520648",
+               "id": "120",
+               "name": "Visual Directory",
+               "type": "url",
+               "url": "https://qa.ossd.co/visual-directory#/floors/3/utilities/65739"
+            }, {
+               "date_added": "13114746893520889",
+               "id": "121",
+               "name": "Visual Directory",
+               "type": "url",
+               "url": "http://localhost:3000/visual-directory#/rooms/523/info"
+            }, {
+               "date_added": "13114746893521119",
+               "id": "122",
+               "name": "Visual Directory",
+               "type": "url",
+               "url": "https://qa.ossd.co/visual-directory#/rooms/523/info"
+            }, {
+               "date_added": "13114746893521347",
+               "id": "123",
+               "name": "Visual Directory",
+               "type": "url",
+               "url": "http://localhost:3000/visual-directory#/seats/576/info"
+            }, {
+               "date_added": "13114746893521580",
+               "id": "124",
+               "name": "Visual Directory",
+               "type": "url",
+               "url": "https://qa.ossd.co/visual-directory#/seats/576/info"
+            }, {
+               "date_added": "13114746893521829",
+               "id": "125",
+               "name": "Visual Directory",
+               "type": "url",
+               "url": "http://localhost:3000/visual-directory#/seats/578/info"
+            }, {
+               "date_added": "13114746893522066",
+               "id": "126",
+               "name": "Visual Directory",
+               "type": "url",
+               "url": "https://qa.ossd.co/visual-directory#/seats/578/info"
+            }, {
+               "date_added": "13114746893522295",
+               "id": "127",
+               "name": "Visual Directory",
+               "type": "url",
+               "url": "http://localhost:3000/visual-directory#/utilities/65739/info"
+            }, {
+               "date_added": "13114746893522527",
+               "id": "128",
+               "name": "Visual Directory",
+               "type": "url",
+               "url": "https://qa.ossd.co/visual-directory#/utilities/65739/info"
+            }, {
+               "date_added": "13114746893522783",
+               "id": "129",
+               "name": "Visual Directory",
+               "type": "url",
+               "url": "http://localhost:3000/visual-directory#/rooms/407"
+            }, {
+               "date_added": "13114746893523038",
+               "id": "130",
+               "name": "Visual Directory",
+               "type": "url",
+               "url": "https://qa.ossd.co/visual-directory#/rooms/407"
+            }, {
+               "date_added": "13114746893523274",
+               "id": "131",
+               "name": "Visual Directory",
+               "type": "url",
+               "url": "http://localhost:3000/visual-directory#/seats/578"
+            }, {
+               "date_added": "13114746893523509",
+               "id": "132",
+               "name": "Visual Directory",
+               "type": "url",
+               "url": "https://qa.ossd.co/visual-directory#/seats/578"
+            }, {
+               "date_added": "13114746893523741",
+               "id": "133",
+               "name": "Visual Directory",
+               "type": "url",
+               "url": "http://localhost:3000/visual-directory#/seats/91181"
+            }, {
+               "date_added": "13114746893523976",
+               "id": "134",
+               "name": "Visual Directory",
+               "type": "url",
+               "url": "https://qa.ossd.co/visual-directory#/seats/91181"
+            }, {
+               "date_added": "13114746893524211",
+               "id": "135",
+               "name": "Visual Directory",
+               "type": "url",
+               "url": "http://localhost:3000/visual-directory#/employees/OSS-12999"
+            }, {
+               "date_added": "13114746893524479",
+               "id": "136",
+               "name": "Visual Directory",
+               "type": "url",
+               "url": "https://qa.ossd.co/visual-directory#/employees/OSS-12999"
+            }, {
+               "date_added": "13114746893524715",
+               "id": "137",
+               "name": "Visual Directory",
+               "type": "url",
+               "url": "http://localhost:3000/visual-directory#/utilities/65739"
+            }, {
+               "date_added": "13114746893524949",
+               "id": "138",
+               "name": "Visual Directory",
+               "type": "url",
+               "url": "https://qa.ossd.co/visual-directory#/utilities/65739"
             } ],
-            "date_added": "13112944055998933",
-            "date_modified": "13113102721063114",
-            "id": "71",
-            "name": "Test data",
+            "date_added": "13114746893513332",
+            "date_modified": "13114746893524949",
+            "id": "90",
+            "name": "MVD Pages",
             "type": "folder"
          } ],
          "date_added": "13099617023729630",
-         "date_modified": "13111198972002845",
+         "date_modified": "13115779251410681",
          "id": "1",
          "name": "Bookmarks bar",
          "type": "folder"
