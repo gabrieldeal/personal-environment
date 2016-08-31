@@ -1,19 +1,21 @@
 #!/bin/bash
+# -*-shell-script-*-
 
 # From http://askubuntu.com/questions/107726/how-to-create-animated-gif-images-of-a-screencast
 
-# Delay before starting
-DELAY=5
+DELAY=$1
+DURATION=$2
+OUTPUT=$3
 
-OUTPUT=/tmp/recorded.gif
-
-# Duration and output file
-if [ $# -gt 0 ]; then
-    D="--duration=$@"
-else
-    echo Default recording duration 10s to $OUTPUT
-    D="--duration=10 $OUTPUT"
+if [ -z "$OUTPUT" ]
+then
+    echo "Usage: $0 DELAY DURATION OUTPUT" 2>&1
+    exit 1
 fi
+
+ARGS="--duration=$DURATION $OUTPUT"
+
+echo "Click on the window to record"
 XWININFO=$(xwininfo)
 read X <<< $(awk -F: '/Absolute upper-left X/{print $2}' <<< "$XWININFO")
 read Y <<< $(awk -F: '/Absolute upper-left Y/{print $2}' <<< "$XWININFO")
@@ -26,5 +28,6 @@ for (( i=$DELAY; i>0; --i )) ; do
     sleep 1
 done
 
-byzanz-record --verbose --delay=0 --x=$X --y=$Y --width=$W --height=$H $D
+byzanz-record --verbose --delay=0 --x=$X --y=$Y --width=$W --height=$H $ARGS
+
 echo "Output written to $OUTPUT"
