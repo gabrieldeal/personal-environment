@@ -65,6 +65,7 @@
     puppet-mode
     robe
     rubocop
+    undo-tree
     web-mode
     ws-trim))
 
@@ -309,6 +310,8 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Misc settings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(global-undo-tree-mode 1)
 
 ;; Used by M-x diff (override them using C-u M-x diff):
 (setq diff-switches "-U5")
@@ -1170,7 +1173,9 @@ This makes it easy to figure out which prefix to pass to yank."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(package-selected-packages
+   (quote
+    (undo-tree ws-trim web-mode rubocop robe puppet-mode paredit nxml-mode markdown-mode magit jsx-mode json-mode flycheck clever-cmd cider))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
