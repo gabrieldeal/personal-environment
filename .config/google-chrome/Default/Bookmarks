@@ -1,5 +1,5 @@
 {
-   "checksum": "bae9f5748bbc3cb7a4bea9bfe9fa2540",
+   "checksum": "4250564ac6ea1c153a2ed322d1944016",
    "roots": {
       "bookmark_bar": {
          "children": [ {
@@ -188,7 +188,7 @@
                "id": "146",
                "name": "API: Redux Form ",
                "type": "url",
-               "url": "http://redux-form.com/6.0.0-rc.4/docs/api/"
+               "url": "http://redux-form.com/6.0.1/docs/api/"
             } ],
             "date_added": "13109913180212489",
             "date_modified": "13116540488561818",
