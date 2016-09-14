@@ -1,5 +1,5 @@
 {
-   "checksum": "4250564ac6ea1c153a2ed322d1944016",
+   "checksum": "c6a9822e93f89256b9fec3070c171047",
    "roots": {
       "bookmark_bar": {
          "children": [ {
@@ -39,6 +39,12 @@
             "type": "url",
             "url": "https://calendar.google.com/calendar/b/3/render#main_7"
          }, {
+            "date_added": "13117746321445184",
+            "id": "149",
+            "name": "",
+            "type": "url",
+            "url": "https://app.zeplin.io/project.html#pid=577d63cd378feb8f3cf8919c&dashboard"
+         }, {
             "date_added": "13108843578000000",
             "id": "18",
             "name": "m",
@@ -50,18 +56,6 @@
             "name": "h",
             "type": "url",
             "url": "https://www.pivotaltracker.com/n/projects/957060"
-         }, {
-            "date_added": "13108843758000000",
-            "id": "20",
-            "name": "",
-            "type": "url",
-            "url": "https://play.spotify.com/collection/albums"
-         }, {
-            "date_added": "13108843777000000",
-            "id": "21",
-            "name": "",
-            "type": "url",
-            "url": "https://music.amazon.com/my/albums/Beethoven:+Symphonies+?ref_=dm_wcp_albm_link_s#genres"
          }, {
             "date_added": "13109379486566789",
             "id": "31",
@@ -99,12 +93,6 @@
                "name": "Babel REPL",
                "type": "url",
                "url": "https://babeljs.io/repl/"
-            }, {
-               "date_added": "13111614954033700",
-               "id": "63",
-               "name": "Material-UI",
-               "type": "url",
-               "url": "http://www.material-ui.com/#/"
             }, {
                "date_added": "13111198972002845",
                "id": "62",
@@ -160,6 +148,12 @@
                "type": "url",
                "url": "https://facebook.github.io/immutable-js/docs/#/Map"
             }, {
+               "date_added": "13118342577082102",
+               "id": "150",
+               "name": "API: Immutable.js Record",
+               "type": "url",
+               "url": "https://facebook.github.io/immutable-js/docs/#/Record"
+            }, {
                "date_added": "13113102721063114",
                "id": "88",
                "name": "API: Jasmine",
@@ -184,6 +178,12 @@
                "type": "url",
                "url": "https://lodash.com/docs"
             }, {
+               "date_added": "13117080719806993",
+               "id": "148",
+               "name": "API: Material UI",
+               "type": "url",
+               "url": "http://www.material-ui.com/#/components/app-bar"
+            }, {
                "date_added": "13116474574267857",
                "id": "146",
                "name": "API: Redux Form ",
@@ -191,308 +191,25 @@
                "url": "http://redux-form.com/6.0.1/docs/api/"
             } ],
             "date_added": "13109913180212489",
-            "date_modified": "13116540488561818",
+            "date_modified": "13118342591578066",
             "id": "40",
             "name": "Mobile dev",
             "type": "folder"
          }, {
-            "children": [ {
-               "date_added": "13114746893513788",
-               "id": "91",
-               "name": "Visual Directory",
-               "type": "url",
-               "url": "http://localhost:3000/visual-directory#/"
-            }, {
-               "date_added": "13114746893514102",
-               "id": "92",
-               "name": "Visual Directory",
-               "type": "url",
-               "url": "https://qa.ossd.co/visual-directory#/"
-            }, {
-               "date_added": "13114746893514376",
-               "id": "93",
-               "name": "Visual Directory",
-               "type": "url",
-               "url": "http://localhost:3000/visual-directory#/search"
-            }, {
-               "date_added": "13114746893514613",
-               "id": "94",
-               "name": "Visual Directory",
-               "type": "url",
-               "url": "https://qa.ossd.co/visual-directory#/search"
-            }, {
-               "date_added": "13114746893514836",
-               "id": "95",
-               "name": "Visual Directory",
-               "type": "url",
-               "url": "http://localhost:3000/visual-directory#/search/mary"
-            }, {
-               "date_added": "13114746893515062",
-               "id": "96",
-               "name": "Visual Directory",
-               "type": "url",
-               "url": "https://qa.ossd.co/visual-directory#/search/mary"
-            }, {
-               "date_added": "13114746893515282",
-               "id": "97",
-               "name": "Visual Directory",
-               "type": "url",
-               "url": "http://localhost:3000/visual-directory#/floors"
-            }, {
-               "date_added": "13114746893515501",
-               "id": "98",
-               "name": "Visual Directory",
-               "type": "url",
-               "url": "https://qa.ossd.co/visual-directory#/floors"
-            }, {
-               "date_added": "13114746893515715",
-               "id": "99",
-               "name": "Visual Directory",
-               "type": "url",
-               "url": "http://localhost:3000/visual-directory#/floors/3/pins/fK1q2v0OODPGXkZhRjfSeE"
-            }, {
-               "date_added": "13114746893515952",
-               "id": "100",
-               "name": "Visual Directory",
-               "type": "url",
-               "url": "https://qa.ossd.co/visual-directory#/floors/3/pins/685/346"
-            }, {
-               "date_added": "13114746893516188",
-               "id": "101",
-               "name": "Visual Directory",
-               "type": "url",
-               "url": "http://localhost:3000/visual-directory#/floors/3/help/pins"
-            }, {
-               "date_added": "13114746893516422",
-               "id": "102",
-               "name": "Visual Directory",
-               "type": "url",
-               "url": "https://qa.ossd.co/visual-directory#/floors/3/help/pins"
-            }, {
-               "date_added": "13114746893516652",
-               "id": "103",
-               "name": "Visual Directory",
-               "type": "url",
-               "url": "http://localhost:3000/visual-directory#/floors/3/pins/685/346"
-            }, {
-               "date_added": "13114746893516889",
-               "id": "104",
-               "name": "Visual Directory",
-               "type": "url",
-               "url": "https://qa.ossd.co/visual-directory#/floors/3/pins/685/346"
-            }, {
-               "date_added": "13114746893517117",
-               "id": "105",
-               "name": "Visual Directory",
-               "type": "url",
-               "url": "http://localhost:3000/visual-directory#/floors/3/pins/685/346"
-            }, {
-               "date_added": "13114746893517349",
-               "id": "106",
-               "name": "Visual Directory",
-               "type": "url",
-               "url": "https://qa.ossd.co/visual-directory#/floors/3/pins/685/346"
-            }, {
-               "date_added": "13114746893517578",
-               "id": "107",
-               "name": "Visual Directory",
-               "type": "url",
-               "url": "http://localhost:3000/visual-directory#/floors/3"
-            }, {
-               "date_added": "13114746893517825",
-               "id": "108",
-               "name": "Visual Directory",
-               "type": "url",
-               "url": "https://qa.ossd.co/visual-directory#/floors/3"
-            }, {
-               "date_added": "13114746893518053",
-               "id": "109",
-               "name": "Visual Directory",
-               "type": "url",
-               "url": "http://localhost:3000/visual-directory#/floors/3/rooms/523"
-            }, {
-               "date_added": "13114746893518290",
-               "id": "110",
-               "name": "Visual Directory",
-               "type": "url",
-               "url": "https://qa.ossd.co/visual-directory#/floors/3/rooms/523"
-            }, {
-               "date_added": "13114746893518521",
-               "id": "111",
-               "name": "Visual Directory",
-               "type": "url",
-               "url": "http://localhost:3000/visual-directory#/floors/3/seats/576"
-            }, {
-               "date_added": "13114746893518756",
-               "id": "112",
-               "name": "Visual Directory",
-               "type": "url",
-               "url": "https://qa.ossd.co/visual-directory#/floors/3/seats/576"
-            }, {
-               "date_added": "13114746893519009",
-               "id": "113",
-               "name": "Visual Directory",
-               "type": "url",
-               "url": "http://localhost:3000/visual-directory#/floors/3/seats/578"
-            }, {
-               "date_added": "13114746893519246",
-               "id": "114",
-               "name": "Visual Directory",
-               "type": "url",
-               "url": "https://qa.ossd.co/visual-directory#/floors/3/seats/578"
-            }, {
-               "date_added": "13114746893519477",
-               "id": "115",
-               "name": "Visual Directory",
-               "type": "url",
-               "url": "http://localhost:3000/visual-directory#/floors/3/shares/407"
-            }, {
-               "date_added": "13114746893519712",
-               "id": "116",
-               "name": "Visual Directory",
-               "type": "url",
-               "url": "https://qa.ossd.co/visual-directory#/floors/3/shares/407"
-            }, {
-               "date_added": "13114746893519942",
-               "id": "117",
-               "name": "Visual Directory",
-               "type": "url",
-               "url": "http://localhost:3000/visual-directory#/floors/3/shares/407/seats/574"
-            }, {
-               "date_added": "13114746893520177",
-               "id": "118",
-               "name": "Visual Directory",
-               "type": "url",
-               "url": "https://qa.ossd.co/visual-directory#/floors/3/shares/407/seats/574"
-            }, {
-               "date_added": "13114746893520414",
-               "id": "119",
-               "name": "Visual Directory",
-               "type": "url",
-               "url": "http://localhost:3000/visual-directory#/floors/3/utilities/65739"
-            }, {
-               "date_added": "13114746893520648",
-               "id": "120",
-               "name": "Visual Directory",
-               "type": "url",
-               "url": "https://qa.ossd.co/visual-directory#/floors/3/utilities/65739"
-            }, {
-               "date_added": "13114746893520889",
-               "id": "121",
-               "name": "Visual Directory",
-               "type": "url",
-               "url": "http://localhost:3000/visual-directory#/rooms/523/info"
-            }, {
-               "date_added": "13114746893521119",
-               "id": "122",
-               "name": "Visual Directory",
-               "type": "url",
-               "url": "https://qa.ossd.co/visual-directory#/rooms/523/info"
-            }, {
-               "date_added": "13114746893521347",
-               "id": "123",
-               "name": "Visual Directory",
-               "type": "url",
-               "url": "http://localhost:3000/visual-directory#/seats/576/info"
-            }, {
-               "date_added": "13114746893521580",
-               "id": "124",
-               "name": "Visual Directory",
-               "type": "url",
-               "url": "https://qa.ossd.co/visual-directory#/seats/576/info"
-            }, {
-               "date_added": "13114746893521829",
-               "id": "125",
-               "name": "Visual Directory",
-               "type": "url",
-               "url": "http://localhost:3000/visual-directory#/seats/578/info"
-            }, {
-               "date_added": "13114746893522066",
-               "id": "126",
-               "name": "Visual Directory",
-               "type": "url",
-               "url": "https://qa.ossd.co/visual-directory#/seats/578/info"
-            }, {
-               "date_added": "13114746893522295",
-               "id": "127",
-               "name": "Visual Directory",
-               "type": "url",
-               "url": "http://localhost:3000/visual-directory#/utilities/65739/info"
-            }, {
-               "date_added": "13114746893522527",
-               "id": "128",
-               "name": "Visual Directory",
-               "type": "url",
-               "url": "https://qa.ossd.co/visual-directory#/utilities/65739/info"
-            }, {
-               "date_added": "13114746893522783",
-               "id": "129",
-               "name": "Visual Directory",
-               "type": "url",
-               "url": "http://localhost:3000/visual-directory#/rooms/407"
-            }, {
-               "date_added": "13114746893523038",
-               "id": "130",
-               "name": "Visual Directory",
-               "type": "url",
-               "url": "https://qa.ossd.co/visual-directory#/rooms/407"
-            }, {
-               "date_added": "13114746893523274",
-               "id": "131",
-               "name": "Visual Directory",
-               "type": "url",
-               "url": "http://localhost:3000/visual-directory#/seats/578"
-            }, {
-               "date_added": "13114746893523509",
-               "id": "132",
-               "name": "Visual Directory",
-               "type": "url",
-               "url": "https://qa.ossd.co/visual-directory#/seats/578"
-            }, {
-               "date_added": "13114746893523741",
-               "id": "133",
-               "name": "Visual Directory",
-               "type": "url",
-               "url": "http://localhost:3000/visual-directory#/seats/91181"
-            }, {
-               "date_added": "13114746893523976",
-               "id": "134",
-               "name": "Visual Directory",
-               "type": "url",
-               "url": "https://qa.ossd.co/visual-directory#/seats/91181"
-            }, {
-               "date_added": "13114746893524211",
-               "id": "135",
-               "name": "Visual Directory",
-               "type": "url",
-               "url": "http://localhost:3000/visual-directory#/employees/OSS-12999"
-            }, {
-               "date_added": "13114746893524479",
-               "id": "136",
-               "name": "Visual Directory",
-               "type": "url",
-               "url": "https://qa.ossd.co/visual-directory#/employees/OSS-12999"
-            }, {
-               "date_added": "13114746893524715",
-               "id": "137",
-               "name": "Visual Directory",
-               "type": "url",
-               "url": "http://localhost:3000/visual-directory#/utilities/65739"
-            }, {
-               "date_added": "13114746893524949",
-               "id": "138",
-               "name": "Visual Directory",
-               "type": "url",
-               "url": "https://qa.ossd.co/visual-directory#/utilities/65739"
-            } ],
-            "date_added": "13114746893513332",
-            "date_modified": "13114746893524949",
-            "id": "90",
-            "name": "MVD Pages",
-            "type": "folder"
+            "date_added": "13108843758000000",
+            "id": "20",
+            "name": "",
+            "type": "url",
+            "url": "https://play.spotify.com/collection/albums"
+         }, {
+            "date_added": "13108843777000000",
+            "id": "21",
+            "name": "",
+            "type": "url",
+            "url": "https://music.amazon.com/my/albums/Beethoven:+Symphonies+?ref_=dm_wcp_albm_link_s#genres"
          } ],
          "date_added": "13099617023729630",
-         "date_modified": "13115779251410681",
+         "date_modified": "13118362277384666",
          "id": "1",
          "name": "Bookmarks bar",
          "type": "folder"
