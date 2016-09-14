@@ -88,6 +88,9 @@
 (autoload 'magit-diff "magit" "doc" t)
 (autoload 'magit-status "magit" "doc" t)
 (autoload 'magit-log "magit" "doc" t)
+(autoload 'magit-status "magit" "doc" t)
+
+(global-set-key (kbd "C-x g") 'magit-status)
 
 (defun gmd-vc-root-dir()
   (let ((root-dir (gmd-chomp (gmd-shell-command-to-string "git rev-parse --show-toplevel"))))
