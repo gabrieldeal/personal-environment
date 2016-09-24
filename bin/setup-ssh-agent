@@ -5,12 +5,22 @@
 which ssh-add >/dev/null 2>&1 || PATH=/usr/bin:$PATH
 
 ssh-add -l &>/dev/null
-if [ "$?" == 2 ]; then
+status=$?
+if [ "$status" == 1 ]; then
+    # Connected to ssh-agent, but no identities have been added
+    ssh-add
+elif [ "$status" == 2 ]; then
+    # No ssh-agent config or the config is out of date
     test -r ~/.ssh-agent && \
 	eval "$(<~/.ssh-agent)" >/dev/null
 
     ssh-add -l &>/dev/null
-    if [ "$?" == 2 ]; then
+    status=$?
+    if [ "$status" == 1 ]; then
+	# ssh-agent is running, but no identities have been added
+	ssh-add
+    elif [ "$status" == 2 ]; then
+	# ssh-agent is not running
 	(umask 066; ssh-agent > ~/.ssh-agent)
 	eval "$(<~/.ssh-agent)" >/dev/null
 	ssh-add
