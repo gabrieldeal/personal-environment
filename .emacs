@@ -306,9 +306,9 @@
 
 ;; Make emacs share the copy/paste clipboard that everything else uses.
 (if (boundp 'x-select-enable-clipboard)
-    (progn
-      (setq x-select-enable-clipboard t)
-      (setq interprogram-paste-function 'x-cut-buffer-or-selection-value)))
+    (setq x-select-enable-clipboard t))
+(if (boundp 'x-cut-buffer-or-selection-value)
+    (setq interprogram-paste-function 'x-cut-buffer-or-selection-value))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Misc settings
