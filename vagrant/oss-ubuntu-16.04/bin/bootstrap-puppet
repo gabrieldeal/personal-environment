@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# -*- shell-script -*-
+
+sudo apt-get install -y puppet && \
+mkdir -p /etc/puppet/modules && \
+for module in arioch-redis \
+	      maestrodev-rvm \
+	      3fs-phantomjs \
+	      willdurand-nodejs \
+	      puppetlabs-mysql
+do
+     (puppet module list | grep $module) || puppet module install $module || exit 1
+done

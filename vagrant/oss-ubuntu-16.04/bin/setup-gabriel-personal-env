@@ -1,0 +1,17 @@
+#!/bin/bash
+# -*- shell-script -*-
+
+EMACS_URL=http://ftp.gnu.org/gnu/emacs/emacs-25.1.tar.gz
+TINYDESK_URL=https://raw.githubusercontent.com/jaalto/project-emacs--tinydesk/master/tinydesk.el
+
+cd ~/ \
+    && (test -d config || git clone git@github.com:gabrielmdeal/personal-environment.git config) \
+    && for f in config/.??* ; do rm -f `basename $f` && ln -s $f; done \
+    && ln -snf
+    && (mkdir -p ~/.emacs.d/manual && cd ~/.emacs.d/manual && wget $TINYDESK_URL) \
+    && cd /tmp \
+    && (test -f emacs-25.1.tar.gz || wget $EMACS_URL) \
+    && (test -d emacs-25.1 || tar zxvf emacs-25.1.tar.gz) \
+    && (which emacs; [ $? == 1 ] || sudo apt-get -y remove emacs24) \
+    && (cd emacs-25.1 && ./configure && make && sudo make install)
+
