@@ -1,0 +1,14 @@
+#!/usr/bin/bash
+#-*- shell-script -*-
+
+# This is ran via the Windows Start menu.
+# C:\cygwin\bin\mintty.exe -i /Cygwin-Terminal.ico -e C:\Users\Gabriel\home\bin\vagrant-up oss-ubuntu-16.04
+
+# The PATH is not set correctly when started via a Windows shortcut.
+which ssh-add >/dev/null 2>&1 || PATH=/usr/bin:$PATH
+
+cd ~/config/vagrant/"$1"
+vagrant up && exec vagrant ssh
+
+# Something failed.
+exec bash -i
