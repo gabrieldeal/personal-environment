@@ -60,6 +60,10 @@ package { 'imagemagick':
   ensure => 'installed'
 }
 
+package { 'xauth':
+  ensure => 'installed'
+}
+
 package { 'git':
   ensure => 'installed'
 }
