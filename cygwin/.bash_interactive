@@ -25,18 +25,4 @@ export LESS="-I -R"
 # Disable constantly changing the terminal title.
 export PROMPT_COMMAND=
 
-######################################################################
-## SSH Agent
-
-ssh-add -l &>/dev/null
-if [ "$?" == 2 ]; then
-    test -r ~/.ssh-agent && \
-	eval "$(<~/.ssh-agent)" >/dev/null
-
-    ssh-add -l &>/dev/null
-    if [ "$?" == 2 ]; then
-	(umask 066; ssh-agent > ~/.ssh-agent)
-	eval "$(<~/.ssh-agent)" >/dev/null
-	ssh-add
-    fi
-fi
+. ~/bin/setup-ssh-agent
