@@ -1083,9 +1083,14 @@ This makes it easy to figure out which prefix to pass to yank."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; OSS UI helpers
 
-(defun gmd-start-interactive-shell-with-command (buffer-name command)
+(defun gmd-start-interactive-shell-with-command (buffer-name command &optional switch-to-buffer)
+  "Start an interactive shell, or switch to it if it is already running.
+BUFFER-NAME - the name of the buffer running COMMAND.
+COMMAND - the command the shell is started with.
+SWITCH-TO-BUFFER - whether to switch to the buffer if it is already running."
   (if (get-buffer buffer-name)
-      (switch-to-buffer buffer-name)
+      (if switch-to-buffer
+	  (switch-to-buffer buffer-name))
     (let* ((default-directory (gmd-vc-root-dir))
 	   (buffer (shell buffer-name))
 	   (process (get-buffer-process buffer)))
@@ -1093,6 +1098,7 @@ This makes it easy to figure out which prefix to pass to yank."
       (comint-send-string process (concat "echo Starting...;" command "\n")))))
 
 (defun gmd-start-ui-environment ()
+  "Start Rails/React processes for OSS."
   (interactive)
   (gmd-start-interactive-shell-with-command "*npm run build*"
 					    "./node_modules/webpack/bin/webpack.js -w -d --define __DEVELOPMENT__=true --progress")
@@ -1107,17 +1113,20 @@ This makes it easy to figure out which prefix to pass to yank."
 (defun gmd-start-js-repl ()
   (interactive)
   (gmd-start-interactive-shell-with-command "*shell* js repl"
-					    "./node_modules/babel-cli/bin/babel-node.js"))
+					    "./node_modules/babel-cli/bin/babel-node.js"
+					    't))
 
 (defun gmd-start-rails-console ()
   (interactive)
   (gmd-start-interactive-shell-with-command "*rails console*"
-					    "rails console"))
+					    "rails console"
+					    't))
 
 (defun gmd-start-karma-webserver ()
   (interactive)
   (gmd-start-interactive-shell-with-command "*karma webserver*"
-					    "./node_modules/karma/bin/karma start karma.config.js --no-single-run"))
+					    "./node_modules/karma/bin/karma start karma.config.js --no-single-run"
+					    't))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; This comint filter strips the escape sequences that the
