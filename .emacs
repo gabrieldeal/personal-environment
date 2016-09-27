@@ -1094,8 +1094,8 @@ This makes it easy to figure out which prefix to pass to yank."
 
 (defun gmd-start-ui-environment ()
   (interactive)
-  ;; (gmd-start-interactive-shell-with-command "*npm run build*"
-  ;; 					    "./node_modules/webpack/bin/webpack.js -w -d --define __DEVELOPMENT__=true --progress")
+  (gmd-start-interactive-shell-with-command "*npm run build*"
+					    "./node_modules/webpack/bin/webpack.js -w -d --define __DEVELOPMENT__=true --progress")
   (gmd-start-interactive-shell-with-command "*mailcatcher*"
 					    "kill `ps -fwwwHe | grep bin/mailcatche[r] | awk '{print $2}'`; mailcatcher --foreground")
   (gmd-start-interactive-shell-with-command "*rails server*"
