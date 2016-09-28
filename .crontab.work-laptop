@@ -23,3 +23,4 @@
 
 # Chrome doesn't play well with symlinking or hard linking this file to my local git repo:
 13 17 * * * cp ~/.config/google-chrome/Default/Bookmarks ~/config/.config/google-chrome/Default/Bookmarks
+55 8 * * * ~/local/bin/standup-notifier

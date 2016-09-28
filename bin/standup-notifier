@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+#-*- shell-script -*-
+
+time="8:59:30"
+if [ -n "$1" ]
+then
+    time="$1"
+fi
+
+message="standup!"
+if [ -n "$2" ]
+then
+    message="$2"
+fi
+
+seconds=$(( $(date -d "$time" +%s) - $(date +%s) ))
+(sleep $seconds && notify-send "$message") &
