@@ -1097,6 +1097,20 @@ SWITCH-TO-BUFFER - whether to switch to the buffer if it is already running."
       (ansi-color-for-comint-mode-on)
       (comint-send-string process (concat "echo Starting...;" command "\n")))))
 
+(defun gmd-kill-buffer-unconditionally (buffer-name)
+  "Kill BUFFER-NAME without prompting for confirmation."
+  (if (get-buffer buffer-name)
+      (let ((kill-buffer-query-functions (delq 'process-kill-buffer-query-function kill-buffer-query-functions)))
+	(kill-buffer buffer-name))))
+
+(defun gmd-restart-ui-environment ()
+  "Kill UI processes and then start them again."
+  (interactive)
+  (gmd-kill-buffer-unconditionally "*npm run build*")
+  (gmd-kill-buffer-unconditionally "*mailcatcher*")
+  (gmd-kill-buffer-unconditionally "*rails server*")
+  (gmd-start-ui-environment))
+
 (defun gmd-start-ui-environment ()
   "Start Rails/React processes for OSS."
   (interactive)
