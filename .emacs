@@ -1115,7 +1115,7 @@ SWITCH-TO-BUFFER - whether to switch to the buffer if it is already running."
   "Start Rails/React processes for OSS."
   (interactive)
   (gmd-start-interactive-shell-with-command "*npm run build*"
-					    "./node_modules/webpack/bin/webpack.js -w -d --define __DEVELOPMENT__=true --progress")
+					    "npm install && ./node_modules/webpack/bin/webpack.js -w -d --define __DEVELOPMENT__=true --progress")
   (gmd-start-interactive-shell-with-command "*mailcatcher*"
 					    "kill `ps -fwwwHe | grep bin/mailcatche[r] | awk '{print $2}'`; mailcatcher --foreground")
   (gmd-start-interactive-shell-with-command "*rails server*"
