@@ -21,7 +21,9 @@
 # 
 # m h  dom mon dow   command
 
+USER=gabrielx
+
 # Chrome doesn't play well with symlinking or hard linking this file to my local git repo:
 13 17 * * * cp ~/.config/google-chrome/Default/Bookmarks ~/config/.config/google-chrome/Default/Bookmarks
-13 17 * * * apt-clone clone ~/Backups/apt-clone-state-ubuntu-$(lsb_release -sr)-$(date +%F).tar.gz
-55 8 * * * ~/local/bin/standup-notifier
+13 17 * * * apt-clone clone ~/Backups/apt-clone-state-ubuntu-$(lsb_release -sr)-$(date +%F).tar.gz  >>/tmp/$USER-cron.err 2>&1
+55 8 * * * ~/local/bin/standup-notifier >>/tmp/$USER-cron.err 2>&1
