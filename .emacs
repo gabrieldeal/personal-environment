@@ -921,7 +921,7 @@ sub get_options {
 
 (defun clever-cmd-ruby-mode-compile-command ()
   (concat "cd " (or (gmd-vc-root-dir) ".") ; Default to current directory.
-	  " && rspec  ~/config/.rspec_color.rb --format documentation %s:%l"))
+	  " && bundle exec rspec  ~/config/.rspec_color.rb --format documentation %s:%l"))
 
 (defun clever-cmd-js-mode-compile-command ()
   (concat "cd " (or (gmd-vc-root-dir) ".") ; Default to current directory.
