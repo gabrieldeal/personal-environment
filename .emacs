@@ -129,6 +129,15 @@
 				    (interactive)
 				    (scroll-up-command 1)))))
 
+(add-hook 'magit-status-mode-hook
+	  (lambda()
+	    (local-set-key "\M-p" (lambda()
+				    (interactive)
+				    (scroll-down-command 1)))
+	    (local-set-key "\M-n" (lambda()
+				    (interactive)
+				    (scroll-up-command 1)))))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Tinydesk
 
