@@ -1,5 +1,5 @@
 {
-   "checksum": "ac24722ada28f3a13c30548e8b3b8dda",
+   "checksum": "e9ebfccf079173cdbb413fa9595959ff",
    "roots": {
       "bookmark_bar": {
          "children": [ {
@@ -43,7 +43,7 @@
             "id": "17",
             "name": "",
             "type": "url",
-            "url": "https://calendar.google.com/calendar/b/3/render#main_7"
+            "url": "https://calendar.google.com/calendar/b/0/render#main_7%7Cweek"
          }, {
             "date_added": "13117746321445184",
             "id": "149",
