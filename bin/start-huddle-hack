@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+#-*-shell-script-*-
+
+# Because I am a bad person.
+
+development_file=config/environments/development.rb
+temp_development_file=/tmp/$USER-development.rb
+
+test -f tmp/pids/server.pid \
+    && kill `cat tmp/pids/server.pid` \
+    && sleep 1
+
+if ! test -f $development_file
+then
+   echo "Missing $development_file" 2>&1
+   exit 1
+fi
+
+# Turn on job control for 'fg':
+set -m
+
+cp $development_file $temp_development_file \
+    && sed 's/Bullet.raise = true/Bullet.raise = false/' $temp_development_file >$development_file \
+    && rails s -b 0.0.0.0 -p 3000 &
+
+# Wait for the webserver to start before undoing the development.rb changes:
+while ! GET http://0.0.0.0:3000 >/dev/null 2>&1
+do
+    sleep 1
+    echo Pinging the webserver...
+done
+
+cp $temp_development_file $development_file \
+    && rm $temp_development_file
+
+fg

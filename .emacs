@@ -1128,7 +1128,7 @@ SWITCH-TO-BUFFER - whether to switch to the buffer if it is already running."
   (gmd-start-interactive-shell-with-command "*mailcatcher*"
 					    "kill `ps -fwwwHe | grep bin/mailcatche[r] | awk '{print $2}'`; mailcatcher --foreground")
   (gmd-start-interactive-shell-with-command "*rails server*"
-					    "test -f tmp/pids/server.pid && kill `cat tmp/pids/server.pid`; rails s -b 0.0.0.0 -p 3000"))
+					    "start-huddle-hack"))
 
 ;; This requires customization of comint-output-filter-functions to
 ;; eliminate some escape sequences that ansi-color-for-comint-mode-on
