@@ -8,7 +8,16 @@
 which ssh-add >/dev/null 2>&1 || PATH=/usr/bin:$PATH
 
 cd ~/config/vagrant/"$1"
-vagrant up && exec vagrant ssh
+
+vagrant up \
+    && exec vagrant ssh
+
+# I should be able to run this between `vagrant up` and `vagrant
+# ssh`.  But it seems unable to access STDIN.
+echo '
+Did it fail because it is an encrypted VM?  If so, run this:
+"C:\Program Files\Oracle\VirtualBox\VBoxManage.exe" controlvm "oss-ubuntu-1604_default_1476749648554_15582" addencpassword "oss-ubuntu-1604_default_1476749648554_15582" -
+'
 
 # Something failed.
 exec bash -i
