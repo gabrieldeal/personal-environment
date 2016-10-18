@@ -13,6 +13,9 @@ Vagrant.configure("2") do |config|
   config.vm.network :forwarded_port, guest: 3000, host: 3000, auto_correct: true
   config.ssh.forward_x11 = true
 
+  # Ideally only the encrypted VM would have access to the OSS ssh
+  # keys.  But Github doesn't support organization-specific public
+  # keys.
   config.vm.provision "file", source: "~/.ssh/id_rsa", destination: "~/.ssh/id_rsa"
   config.vm.provision "file", source: "~/.ssh/id_rsa.pub", destination: "~/.ssh/id_rsa.pub"
   config.vm.provision "shell", privileged: false, inline: 'chmod -R go-rwx ~/.ssh'
