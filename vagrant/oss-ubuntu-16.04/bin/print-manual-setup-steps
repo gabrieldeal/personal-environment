@@ -5,6 +5,7 @@ echo '
 
 
 If this is a brand new VM, then run this in the VM:
+    passwd vagrant
     ssh-agent -s >~/.ssh-agent
     eval `cat ~/.ssh-agent`
     ssh-add
