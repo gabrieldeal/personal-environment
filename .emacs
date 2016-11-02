@@ -924,7 +924,7 @@ sub get_options {
   (format "grep -nr --include=\"*.rb\" --include=\"*.erb\" --include=\"*.rake\" %s --regexp "
 	  default-directory))
 (defun clever-cmd-web-mode-grep-command ()
-  (format "grep -nr --exclude-dir generated --include=\"*.js\" --include=\"*.jsx\" --include=\"*.es6\" %s --regexp "
+  (format "grep -nr --exclude-dir generated --exclude-dir node_modules --include=\"*.js\" --include=\"*.jsx\" --include=\"*.es6\" %s --regexp "
 	  default-directory))
 (defalias 'clever-cmd-js-mode-grep-command 'clever-cmd-web-mode-grep-command)
 
