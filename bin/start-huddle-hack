@@ -3,8 +3,21 @@
 
 # Because I am a bad person.
 
+port=3000
+if [ -n "$1" ]
+then
+    port=$1
+fi
+
 development_file=config/environments/development.rb
 temp_development_file=/tmp/$USER-development.rb
+
+ping_app=curl
+if ! which $ping_app
+then
+   echo "ERROR: Missing $ping_app" 1>&2
+   exit 1
+fi
 
 test -f tmp/pids/server.pid \
     && kill `cat tmp/pids/server.pid` \
@@ -21,12 +34,12 @@ set -m
 
 cp $development_file $temp_development_file \
     && sed 's/Bullet.raise = true/Bullet.raise = false/' $temp_development_file >$development_file \
-    && rails s -b 0.0.0.0 -p 3000 &
+    && rails s -b 0.0.0.0 -p $port &
 
 # Wait for the webserver to start before undoing the development.rb changes:
-while ! GET http://0.0.0.0:3000 >/dev/null 2>&1
+while ! $ping_app http://0.0.0.0:$port >/dev/null 2>&1
 do
-    sleep 1
+    sleep 1 || exit 1
     echo Pinging the webserver...
 done
 
