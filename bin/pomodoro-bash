@@ -43,6 +43,7 @@ SET_CHAT_STATUS_COMMAND=`find_command set-chat-status true`
 BANNER_PRINTER_COMMAND=`find_command figlet banner toilet echo`
 COUNTDOWN_PRINTER_COMMAND=`find_command cowsay echo`
 SOUND_PLAYER_COMMAND=`find_command paplay sndfile-play mpg123 beep true`
+UPDATE_INTERVAL_SECONDS=1
 WORK_SECONDS=$(( 20 * 60 ))
 BREAK_SECONDS=$(( 5 * 60 ))
 PROMPT_TO_START=
@@ -87,17 +88,20 @@ check_required_value BANNER_PRINTER_COMMAND
 check_required_value COUNTDOWN_PRINTER_COMMAND
 
 function count_down {
-    local y_coordinate=$1
+    local message=$1
     local seconds=$2
+
+    local banner_message=`$BANNER_PRINTER_COMMAND "$message"`
 
     local now=`date +%s`
     local end_date=$(( $now + $seconds ))
     while [ $end_date -gt $now ]
     do
 	seconds_left=$(( $end_date - $now ))
-	tput cup $y_coordinate 0
+	tput clear
+	echo "$banner_message"
 	$COUNTDOWN_PRINTER_COMMAND `format_seconds_as_hh_mm $seconds_left`
-    	sleep 1
+	sleep $UPDATE_INTERVAL_SECONDS
 	now=`date +%s`
     done
 }
@@ -157,11 +161,7 @@ function do_interval_count_down {
     $SET_CHAT_STATUS_COMMAND dnd
     set_application_indicator_icon "$WORKING_ICON"
 
-    tput clear
-    tput cup 0 0
-    $BANNER_PRINTER_COMMAND 'P o m o !'
-
-    count_down $count_down_y_coordinate $WORK_SECONDS
+    count_down 'P o m o !' $WORK_SECONDS
 }
 
 function do_break_count_down {
@@ -170,11 +170,7 @@ function do_break_count_down {
     $SET_CHAT_STATUS_COMMAND chat
     set_application_indicator_icon "$TAKING_A_BREAK_ICON"
 
-    tput clear
-    tput cup 0 0
-    $BANNER_PRINTER_COMMAND 'B r e a k !'
-
-    count_down $count_down_y_coordinate $BREAK_SECONDS
+    count_down 'B r e a k !' $BREAK_SECONDS
 }
 
 function prompt_to_start_over {
@@ -206,7 +202,6 @@ function main_loop {
     fi
 
     tput civis
-    local count_down_y_coordinate=`$BANNER_PRINTER_COMMAND X | wc -l`
     while true
     do
 	do_interval_count_down
