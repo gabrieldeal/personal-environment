@@ -120,12 +120,13 @@ function format_seconds_as_hh_mm {
 function tear_down {
     tput cnorm
     tear_down_application_indicator
+    $SET_CHAT_STATUS_COMMAND chat
+    exit 0
 }
 
 function tear_down_application_indicator {
     rm -f $APPLICATION_INDICATOR_ICON_FILE $APPLICATION_INDICATOR_CONFIG_FILE
     killall indicator-sysmonitor
-    exit 0
 }
 
 # https://github.com/fossfreedom/indicator-sysmonitor
