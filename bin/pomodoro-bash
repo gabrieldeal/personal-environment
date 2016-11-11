@@ -22,7 +22,7 @@ WAITING_TO_START_ICON=~/local/pomodoro-bash/circle_question.svg
 # "Text Message Alert 3 Sound" by Daniel Simion is licensed under CC BY 3.0.
 # http://soundbible.com/2156-Text-Message-Alert-3.html
 # https://creativecommons.org/licenses/by/3.0/
-WAITING_TO_START_SOUND=~/local/pomodoro-bash/alert.mp3
+WAITING_TO_START_SOUND=~/local/pomodoro-bash/alert.ogg
 
 APPLICATION_INDICATOR_CONFIG_FILE=/tmp/$USER-pomodoro-indicator-config.txt
 APPLICATION_INDICATOR_ICON_FILE=/tmp/$USER-pomodoro-indicator-icon.txt
