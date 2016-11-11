@@ -14,4 +14,7 @@ then
 fi
 
 seconds=$(( $(date -d "$time" +%s) - $(date +%s) ))
+
+export DISPLAY=:0
+export XAUTHORITY=/home/gabrielx/.Xauthority
 (sleep $seconds && notify-send "$message") &
