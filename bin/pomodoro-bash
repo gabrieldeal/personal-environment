@@ -39,12 +39,12 @@ function find_command {
     done
 }
 
-SET_CHAT_STATUS_COMMAND=`find_command set-chat-status true`
+SET_CHAT_STATUS_COMMAND=`find_command set-chat-status`
 BANNER_PRINTER_COMMAND=`find_command figlet banner toilet echo`
 
 # https://github.com/ffleming/dogsay
 BREAK_COUNTDOWN_PRINTER=`find_command dogsay cowsay dinosay echo`
-WORK_COUNTDOWN_PRINTER=`find_command dinosay cowsay  dogsay echo`
+WORK_COUNTDOWN_PRINTER=`find_command dinosay cowsay dogsay echo`
 
 SOUND_PLAYER_COMMAND=`find_command paplay sndfile-play mpg123 beep`
 APPLICATION_INDICATOR_COMMAND=`find_command indicator-sysmonitor`
@@ -133,7 +133,7 @@ function format_seconds_as_hh_mm {
 function tear_down {
     tput cnorm
     tear_down_application_indicator
-    $SET_CHAT_STATUS_COMMAND chat
+    set_chat_status chat
     exit 0
 }
 
@@ -174,6 +174,15 @@ function send_notification {
     fi
 }
 
+function set_chat_status {
+    if [ -n "$SET_CHAT_STATUS_COMMAND" ]
+    then
+	local new_status=$1
+
+	$SET_CHAT_STATUS_COMMAND $new_status
+    fi
+}
+
 function play_sound {
     if [ -n "$SOUND_PLAYER_COMMAND" ]
     then
@@ -184,7 +193,7 @@ function play_sound {
 }
 
 function do_interval_count_down {
-    $SET_CHAT_STATUS_COMMAND dnd
+    set_chat_status dnd
     set_application_indicator_icon "$WORKING_ICON"
 
     count_down 'P o m o !' "$WORK_COUNTDOWN_PRINTER" $WORK_SECONDS
@@ -193,7 +202,7 @@ function do_interval_count_down {
 function do_break_count_down {
     play_sound "$TAKING_A_BREAK_SOUND"
     send_notification "Take a break!" "$TAKING_A_BREAK_ICON"
-    $SET_CHAT_STATUS_COMMAND chat
+    set_chat_status chat
     set_application_indicator_icon "$TAKING_A_BREAK_ICON"
 
     count_down 'B r e a k !' "$BREAK_COUNTDOWN_PRINTER" $BREAK_SECONDS
