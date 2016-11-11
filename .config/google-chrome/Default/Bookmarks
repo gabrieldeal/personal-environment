@@ -1,5 +1,5 @@
 {
-   "checksum": "e9ebfccf079173cdbb413fa9595959ff",
+   "checksum": "63b5388d2dd784e501b0065cc556d5ec",
    "roots": {
       "bookmark_bar": {
          "children": [ {
@@ -8,6 +8,12 @@
             "name": "",
             "type": "url",
             "url": "http://localhost:3000/visual-directory#/"
+         }, {
+            "date_added": "13123275561800268",
+            "id": "162",
+            "name": "VM",
+            "type": "url",
+            "url": "http://localhost:3001/visual-directory#/"
          }, {
             "date_added": "13108843792000000",
             "id": "14",
@@ -136,6 +142,12 @@
                "type": "url",
                "url": "https://github.com/airbnb/enzyme/blob/master/docs/api/mount.md"
             }, {
+               "date_added": "13122588577124847",
+               "id": "159",
+               "name": "API: enzyme matchers (formerly jasmine)",
+               "type": "url",
+               "url": "https://github.com/blainekasten/enzyme-matchers"
+            }, {
                "date_added": "13116540468158198",
                "id": "147",
                "name": "API: fetch-mock",
@@ -165,12 +177,6 @@
                "name": "API: Jasmine",
                "type": "url",
                "url": "http://jasmine.github.io/2.0/introduction.html"
-            }, {
-               "date_added": "13115779251410681",
-               "id": "139",
-               "name": "API: Jasmine-enzyme",
-               "type": "url",
-               "url": "https://github.com/blainekasten/jasmine-enzyme"
             }, {
                "date_added": "13110512524109171",
                "id": "50",
@@ -209,7 +215,7 @@
                "url": "https://developer.mozilla.org/en-US/docs/Web/SVG"
             } ],
             "date_added": "13109913180212489",
-            "date_modified": "13120270905240621",
+            "date_modified": "13123275588369726",
             "id": "40",
             "name": "Mobile dev",
             "type": "folder"
@@ -233,7 +239,7 @@
             "url": "https://music.amazon.com/my/albums/Beethoven:+Symphonies+?ref_=dm_wcp_albm_link_s#genres"
          } ],
          "date_added": "13099617023729630",
-         "date_modified": "13120336505116893",
+         "date_modified": "13123275595151653",
          "id": "1",
          "name": "Bookmarks bar",
          "type": "folder"
