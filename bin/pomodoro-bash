@@ -100,7 +100,7 @@ function count_down {
 	seconds_left=$(( $end_date - $now ))
 	local countdown_message=$($COUNTDOWN_PRINTER_COMMAND `format_seconds_as_hh_mm $seconds_left`)
 	tput clear
-	echo "$banner_message$countdown_message"
+	echo -e "$banner_message\n$countdown_message"
 	sleep $UPDATE_INTERVAL_SECONDS
 	now=`date +%s`
     done
