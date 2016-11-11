@@ -1,0 +1,14 @@
+# To validate:
+# desktop-file-validate ~/.local/share/applications/*.desktop
+
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=emacs@gabrielx-laptop huddle Ubuntu
+Icon=emacs
+Path=/home/gabrielx/projects/oss/huddle
+Exec=/home/gabrielx/local/bin/run-in /home/gabrielx/projects/oss/huddle emacs
+StartupNotify=false
+StartupWMClass=Emacs
+OnlyShowIn=Unity;
+X-UnityGenerated=true

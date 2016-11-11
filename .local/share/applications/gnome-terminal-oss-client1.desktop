@@ -1,0 +1,22 @@
+# To validate:
+# desktop-file-validate ~/.local/share/applications/*.desktop
+
+[Desktop Entry]
+Name=Terminal OSS client1 CentOS VM
+Comment=Use the command line
+Keywords=shell;prompt;command;commandline;client1;centos vm;
+TryExec=gnome-terminal
+Path=/home/gabrielx/projects/oss/puppet_modules
+Exec="gnome-terminal --window-with-profile='CentOS VM' --geometry 160x55++0 --execute vagrant ssh client1"
+Icon=utilities-terminal
+Type=Application
+X-GNOME-DocPath=gnome-terminal/index.html
+X-GNOME-Bugzilla-Bugzilla=GNOME
+X-GNOME-Bugzilla-Product=gnome-terminal
+X-GNOME-Bugzilla-Component=BugBuddyBugs
+X-GNOME-Bugzilla-Version=3.12.3
+Categories=GNOME;GTK;System;TerminalEmulator;
+StartupNotify=true
+OnlyShowIn=GNOME;Unity;
+X-Ubuntu-Gettext-Domain=gnome-terminal
+
