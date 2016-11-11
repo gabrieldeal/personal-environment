@@ -127,7 +127,7 @@ function tear_down_application_indicator {
 function initialize_application_indicator {
     echo '{"on_startup": false, "sensors": {"pomodoro": ["", "cat '$APPLICATION_INDICATOR_ICON_FILE'"] }, "interval": 2.0, "custom_text": "{pomodoro}"}' >$APPLICATION_INDICATOR_CONFIG_FILE
     echo "Starting..." >$APPLICATION_INDICATOR_ICON_FILE
-    indicator-sysmonitor --config="$APPLICATION_INDICATOR_CONFIG_FILE" >/dev/null 2&>1 &
+    indicator-sysmonitor --config="$APPLICATION_INDICATOR_CONFIG_FILE" >/dev/null 2>&1 &
 }
 
 function set_application_indicator_icon {
