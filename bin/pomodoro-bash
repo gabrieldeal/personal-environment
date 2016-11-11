@@ -41,7 +41,11 @@ function find_command {
 
 SET_CHAT_STATUS_COMMAND=`find_command set-chat-status true`
 BANNER_PRINTER_COMMAND=`find_command figlet banner toilet echo`
-COUNTDOWN_PRINTER_COMMAND=`find_command cowsay echo`
+
+# https://github.com/ffleming/dogsay
+BREAK_COUNTDOWN_PRINTER=`find_command dogsay cowsay dinosay echo`
+WORK_COUNTDOWN_PRINTER=`find_command dinosay cowsay  dogsay echo`
+
 SOUND_PLAYER_COMMAND=`find_command paplay sndfile-play mpg123 beep`
 APPLICATION_INDICATOR_COMMAND=`find_command indicator-sysmonitor`
 NOTIFICATION_COMMAND=`find_command notify-send`
@@ -88,11 +92,13 @@ function check_required_value {
 }
 
 check_required_value BANNER_PRINTER_COMMAND
-check_required_value COUNTDOWN_PRINTER_COMMAND
+check_required_value BREAK_COUNTDOWN_PRINTER
+check_required_value WORK_COUNTDOWN_PRINTER
 
 function count_down {
     local message=$1
-    local seconds=$2
+    local countdown_printer=$2
+    local seconds=$3
 
     local banner_message=`$BANNER_PRINTER_COMMAND "$message"`
 
@@ -101,7 +107,7 @@ function count_down {
     while [ $end_date -gt $now ]
     do
 	seconds_left=$(( $end_date - $now ))
-	local countdown_message=$($COUNTDOWN_PRINTER_COMMAND `format_seconds_as_hh_mm $seconds_left`)
+	local countdown_message=$($countdown_printer `format_seconds_as_hh_mm $seconds_left`)
 	tput clear
 	echo -e "$banner_message\n$countdown_message"
 	sleep $UPDATE_INTERVAL_SECONDS
@@ -181,7 +187,7 @@ function do_interval_count_down {
     $SET_CHAT_STATUS_COMMAND dnd
     set_application_indicator_icon "$WORKING_ICON"
 
-    count_down 'P o m o !' $WORK_SECONDS
+    count_down 'P o m o !' "$WORK_COUNTDOWN_PRINTER" $WORK_SECONDS
 }
 
 function do_break_count_down {
@@ -190,7 +196,7 @@ function do_break_count_down {
     $SET_CHAT_STATUS_COMMAND chat
     set_application_indicator_icon "$TAKING_A_BREAK_ICON"
 
-    count_down 'B r e a k !' $BREAK_SECONDS
+    count_down 'B r e a k !' "$BREAK_COUNTDOWN_PRINTER" $BREAK_SECONDS
 }
 
 function prompt_to_start_over {
