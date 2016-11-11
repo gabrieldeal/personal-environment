@@ -1,0 +1,15 @@
+#!/bin/bash
+#-*- shell-script -*-
+
+# Useful for commands that are not evaluated in a shell (so you can't
+# use && or ; to cd then run the command).
+
+directory=$1
+shift
+cd $directory || exit 1
+
+# Without this, Ruby syntax highlighting doesn't work in emacs.
+source "$HOME/.rvm/scripts/rvm"
+source $(rvm `cat .ruby-version` do rvm env --path)
+
+exec "$@"
