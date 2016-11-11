@@ -39,6 +39,7 @@ function find_command {
     done
 }
 
+SET_CHAT_STATUS_COMMAND=`find_command set-chat-status true`
 BANNER_PRINTER_COMMAND=`find_command figlet banner toilet echo`
 COUNTDOWN_PRINTER_COMMAND=`find_command cowsay echo`
 SOUND_PLAYER_COMMAND=`find_command paplay sndfile-play mpg123 beep true`
@@ -84,7 +85,6 @@ function check_required_value {
 
 check_required_value BANNER_PRINTER_COMMAND
 check_required_value COUNTDOWN_PRINTER_COMMAND
-check_required_value SOUND_PLAYER_COMMAND
 
 function count_down {
     local y_coordinate=$1
@@ -153,6 +153,7 @@ function play_sound {
 }
 
 function do_interval_count_down {
+    $SET_CHAT_STATUS_COMMAND dnd
     set_application_indicator_icon "$WORKING_ICON"
 
     tput clear
@@ -165,6 +166,7 @@ function do_interval_count_down {
 function do_break_count_down {
     $SOUND_PLAYER_COMMAND "$TAKING_A_BREAK_SOUND"
     send_notification "Take a break!" "$TAKING_A_BREAK_ICON"
+    $SET_CHAT_STATUS_COMMAND chat
     set_application_indicator_icon "$TAKING_A_BREAK_ICON"
 
     tput clear
