@@ -46,7 +46,7 @@ function find_command {
 
 BANNER_PRINTER_COMMAND=`find_command figlet banner toilet echo`
 COUNTDOWN_PRINTER_COMMAND=`find_command cowsay echo`
-SOUND_PLAYER_COMMAND=`find_command paplay beep true`
+SOUND_PLAYER_COMMAND=`find_command paplay sndfile-play mpg123 beep true`
 WORK_SECONDS=$(( 20 * 60 ))
 BREAK_SECONDS=$(( 5 * 60 ))
 
@@ -141,6 +141,10 @@ function send_notification {
     local icon=$2
 
     notify-send --urgency=normal --icon="$icon" "$message"
+}
+
+function play_sound {
+    $SOUND_PLAYER_COMMAND "$1" >/dev/null 2>&1
 }
 
 function do_interval_count_down {
