@@ -43,6 +43,9 @@ SET_CHAT_STATUS_COMMAND=`find_command set-chat-status true`
 BANNER_PRINTER_COMMAND=`find_command figlet banner toilet echo`
 COUNTDOWN_PRINTER_COMMAND=`find_command cowsay echo`
 SOUND_PLAYER_COMMAND=`find_command paplay sndfile-play mpg123 beep`
+APPLICATION_INDICATOR_COMMAND=`find_command indicator-sysmonitor`
+NOTIFICATION_COMMAND=`find_command notify-send`
+
 UPDATE_INTERVAL_SECONDS=1
 WORK_SECONDS=$(( 20 * 60 ))
 BREAK_SECONDS=$(( 5 * 60 ))
@@ -129,28 +132,40 @@ function tear_down {
 }
 
 function tear_down_application_indicator {
-    rm -f $APPLICATION_INDICATOR_ICON_FILE $APPLICATION_INDICATOR_CONFIG_FILE
-    killall indicator-sysmonitor
+    if [ -n "$APPLICATION_INDICATOR_COMMAND" ]
+    then
+       rm -f $APPLICATION_INDICATOR_ICON_FILE $APPLICATION_INDICATOR_CONFIG_FILE
+       killall "$APPLICATION_INDICATOR_COMMAND"
+    fi
 }
 
 # https://github.com/fossfreedom/indicator-sysmonitor
 function initialize_application_indicator {
-    echo '{"on_startup": false, "sensors": {"pomodoro": ["", "cat '$APPLICATION_INDICATOR_ICON_FILE'"] }, "interval": 2.0, "custom_text": "{pomodoro}"}' >$APPLICATION_INDICATOR_CONFIG_FILE
-    echo "Starting..." >$APPLICATION_INDICATOR_ICON_FILE
-    indicator-sysmonitor --config="$APPLICATION_INDICATOR_CONFIG_FILE" >/dev/null 2>&1 &
+    if [ -n "$APPLICATION_INDICATOR_COMMAND" ]
+    then
+	echo '{"on_startup": false, "sensors": {"pomodoro": ["", "cat '$APPLICATION_INDICATOR_ICON_FILE'"] }, "interval": 2.0, "custom_text": "{pomodoro}"}' >$APPLICATION_INDICATOR_CONFIG_FILE
+	echo "Starting..." >$APPLICATION_INDICATOR_ICON_FILE
+	"$APPLICATION_INDICATOR_COMMAND" --config="$APPLICATION_INDICATOR_CONFIG_FILE" >/dev/null 2>&1 &
+    fi
 }
 
 function set_application_indicator_icon {
-    echo "USE_ICON:$1" >$APPLICATION_INDICATOR_ICON_FILE
+    if [ -n "$APPLICATION_INDICATOR_COMMAND" ]
+    then
+	echo "USE_ICON:$1" >$APPLICATION_INDICATOR_ICON_FILE
+    fi
 }
 
 # https://wiki.ubuntu.com/NotifyOSD
 # https://developer.gnome.org/notification-spec/
 function send_notification {
-    local message=$1
-    local icon=$2
+    if [ -n "$NOTIFICATION_COMMAND" ]
+    then
+	local message=$1
+	local icon=$2
 
-    notify-send --urgency=normal --icon="$icon" "$message"
+	"$NOTIFICATION_COMMAND" --urgency=normal --icon="$icon" "$message"
+    fi
 }
 
 function play_sound {
