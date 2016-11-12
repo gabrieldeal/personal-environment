@@ -24,6 +24,8 @@ WAITING_TO_START_ICON=~/local/pomodoro-bash/circle_question.svg
 # https://creativecommons.org/licenses/by/3.0/
 WAITING_TO_START_SOUND=~/local/pomodoro-bash/alert.ogg
 
+LOG_FILE=/dev/null
+
 APPLICATION_INDICATOR_CONFIG_FILE=/tmp/$USER-pomodoro-indicator-config.txt
 APPLICATION_INDICATOR_ICON_FILE=/tmp/$USER-pomodoro-indicator-icon.txt
 
@@ -127,7 +129,7 @@ function count_down {
     local countdown_printer=$2
     local seconds=$3
 
-    local banner_message=`$BANNER_PRINTER_COMMAND "$message"`
+    local banner_message=`$BANNER_PRINTER_COMMAND "$message" 2>&1`
 
     local command_result=
     local now=`date +%s`
@@ -181,7 +183,7 @@ function tear_down_application_indicator {
     if [ -n "$APPLICATION_INDICATOR_COMMAND" ]
     then
        rm -f $APPLICATION_INDICATOR_ICON_FILE $APPLICATION_INDICATOR_CONFIG_FILE
-       killall "$APPLICATION_INDICATOR_COMMAND"
+       killall "$APPLICATION_INDICATOR_COMMAND" >/dev/null 2>&1
     fi
 }
 
@@ -191,7 +193,7 @@ function initialize_application_indicator {
     then
 	echo '{"on_startup": false, "sensors": {"pomodoro": ["", "cat '$APPLICATION_INDICATOR_ICON_FILE'"] }, "interval": 2.0, "custom_text": "{pomodoro}"}' >$APPLICATION_INDICATOR_CONFIG_FILE
 	echo "Starting..." >$APPLICATION_INDICATOR_ICON_FILE
-	"$APPLICATION_INDICATOR_COMMAND" --config="$APPLICATION_INDICATOR_CONFIG_FILE" >/dev/null 2>&1 &
+	"$APPLICATION_INDICATOR_COMMAND" --config="$APPLICATION_INDICATOR_CONFIG_FILE" >>$LOG_FILE 2>&1 &
     fi
 }
 
@@ -210,7 +212,7 @@ function send_notification {
 	local message=$1
 	local icon=$2
 
-	"$NOTIFICATION_COMMAND" --urgency=normal --icon="$icon" "$message"
+	"$NOTIFICATION_COMMAND" --urgency=normal --icon="$icon" "$message" >>$LOG_FILE 2>&1
     fi
 }
 
@@ -219,14 +221,14 @@ function set_chat_status {
     then
 	local new_status=$1
 
-	$SET_CHAT_STATUS_COMMAND $new_status &
+	$SET_CHAT_STATUS_COMMAND $new_status >>$LOG_FILE 2>&1 &
     fi
 }
 
 function play_sound {
     if [ -n "$SOUND_PLAYER_COMMAND" ]
     then
-	"$SOUND_PLAYER_COMMAND" "$1" >/dev/null 2>&1
+	"$SOUND_PLAYER_COMMAND" "$1" >>$LOG_FILE 2>&1
     else
 	echo -ne ''
     fi
@@ -274,7 +276,7 @@ function prompt_to_start {
     set_application_indicator_icon "$WAITING_TO_START_ICON"
 
     tput clear
-    $BANNER_PRINTER_COMMAND "R e a d y ?"
+    $BANNER_PRINTER_COMMAND "R e a d y ?" 2>&1
 
     local default_command=s
     while true
