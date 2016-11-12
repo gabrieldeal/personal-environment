@@ -1,0 +1,67 @@
+#!/usr/bin/ruby
+#-*- ruby -*-
+
+require 'json'
+require 'net/http'
+require 'optparse'
+
+OPTIONS = {}
+
+def get_options
+  OptionParser.new do |opts|
+    opts.banner = "Usage: set-chat-status [OPTIONS]"
+
+    opts.on("-u", "--user-id-or-name USER", "Hipchat user ID or name. E.g., @TomJones or 9193041") { |v| OPTIONS[:user] = v }
+    opts.on("-a", "--auth-token-filename FILENAME",
+            "File containing your Hipchat auth token with Administer Group and View Group permissions. See https://www.hipchat.com/account/api") do |v|
+      OPTIONS[:auth_token_filename] = v
+    end
+    opts.on("-s", "--status STATUS", "The status to set to (away, chat, dnd") { |v| OPTIONS[:status] = v }
+    opts.on("-h", "--hipchat-host HOST", "The Hipchat server") { |v| OPTIONS[:host] = v }
+  end.parse!
+
+  OPTIONS
+end
+
+def get_user(auth_token, http)
+  uri = URI("https://#{OPTIONS[:host]}/v2/user/#{OPTIONS[:user]}?auth_token=#{auth_token}")
+  request = Net::HTTP::Get.new(uri)
+
+  response = http.request(request)
+  fail "Update failed: #{response.inspect}" unless response.is_a?(Net::HTTPSuccess)
+
+  user = JSON.parse(response.body, symbolize_names: true)
+
+  {
+    "email": user[:email],
+    "is_group_admin": user[:is_group_admin],
+    "mention_name": user[:mention_name],
+    "name": user[:name],
+    "presence": { "show": user[:presence][:show] },
+    "roles": user[:roles],
+    "timezone": user[:timezone],
+    "title": user[:title],
+  }
+end
+
+def update_user(auth_token, http, user)
+  uri = URI("https://#{OPTIONS[:host]}/v2/user/#{OPTIONS[:user]}?auth_token=#{auth_token}")
+  request = Net::HTTP::Put.new(uri)
+  request.body = user.to_json
+  request['Content-Type'] = 'application/json'
+
+  response = http.request(request)
+  fail "Update failed: #{response.inspect} #{response.body}" unless response.is_a?(Net::HTTPSuccess)
+end
+
+get_options
+auth_token = File.read(OPTIONS[:auth_token_filename])
+
+http = Net::HTTP.new(OPTIONS[:host], 443)
+http.use_ssl = true
+
+user = get_user(auth_token, http)
+user[:presence][:show] = OPTIONS[:status]
+update_user(auth_token, http, user)
+
+exit 0

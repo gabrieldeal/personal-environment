@@ -1,21 +1,9 @@
 #!/bin/bash
 #-*- shell-script -*-
 
-# Possible values are:
-# away
-# chat (available)
-# dnd (do not disturb)
-NEW_STATUS=$1
+STATUS=$1
 
-# Get the auth token at https://paradem.hipchat.com/account/api
-AUTH_TOKEN_FILE=~/tmp/auth-token.txt
-chmod go-rwx $AUTH_TOKEN_FILE
-AUTH_TOKEN=`cat $AUTH_TOKEN_FILE`
-
-# Get the JSON from this:
-# curl -X get 'https://paradem.hipchat.com/v2/user/@GabrielDeal?auth_token=TIBbvI7ihVSiAoMOq1VZ6IFkMi2qJk5eEuogbhuh'
-JSON='{ "email": "gabriel@dicksonlabs.com", "is_group_admin": false, "mention_name": "GabrielDeal", "name": "Gabriel Deal", "presence": { "show": "'$NEW_STATUS'" }, "roles": ["user"], "timezone": "America/Los_Angeles", "title": "Programmer" }'
-URL="https://paradem.hipchat.com/v2/user/@GabrielDeal?auth_token=$AUTH_TOKEN"
-
-curl -X put --data "$JSON" -H 'Content-Type: application/json' "$URL"
-exit $?
+set-hipchat-status -u '@GabrielDeal' \
+                   -a ~/tmp/auth-token.txt \
+                   -h paradem.hipchat.com \
+                   -s $STATUS
