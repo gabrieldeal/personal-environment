@@ -236,7 +236,7 @@ function do_interval_count_down {
     set_chat_status dnd
     set_application_indicator_icon "$WORKING_ICON"
 
-    count_down 'P o m o !' "$WORK_COUNTDOWN_PRINTER" $WORK_SECONDS
+    count_down 'F o c u s !' "$WORK_COUNTDOWN_PRINTER" $WORK_SECONDS
 }
 
 function do_break_count_down {
