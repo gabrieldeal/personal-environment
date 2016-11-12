@@ -179,7 +179,7 @@ function set_chat_status {
     then
 	local new_status=$1
 
-	$SET_CHAT_STATUS_COMMAND $new_status
+	$SET_CHAT_STATUS_COMMAND $new_status &
     fi
 }
 
