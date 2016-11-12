@@ -226,7 +226,7 @@ function set_chat_status {
 function play_sound {
     if [ -n "$SOUND_PLAYER_COMMAND" ]
     then
-	play_sound "$1" >/dev/null 2>&1
+	"$SOUND_PLAYER_COMMAND" "$1" >/dev/null 2>&1
     else
 	echo -ne ''
     fi
