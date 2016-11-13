@@ -124,20 +124,75 @@ function handle_command {
     return 1
 }
 
+function handle_screen_resize {
+    local lines=`tput lines`
+    local columns=`tput cols`
+
+    if [ $lines -ge 40 ] && [ $columns -ge 113 ]
+    then
+	SIZE_CATEGORY=Large
+    elif [ $lines -ge 23 ] && [ $columns -ge 64 ]
+    then
+	SIZE_CATEGORY=Medium
+    elif [ $lines -ge 12 ] && [ $columns -ge 41 ]
+    then
+	SIZE_CATEGORY=Small
+    else
+	SIZE_CATEGORY=Tiny
+    fi
+}
+
+function print_countdown {
+    local printer="$1"
+    local message="$2"
+
+    if [ $SIZE_CATEGORY = "Small" ] || [ $SIZE_CATEGORY = "Tiny" ]
+    then
+	echo "$message" 2>&1
+    elif [ $SIZE_CATEGORY = "Large" ]
+    then
+	$printer "$message" 2>&1
+    else # Medium
+	if [ "$printer" = "dinosay" ]
+	then
+	    dinosay -d small "$message" 2>&1
+	elif [ "$printer" = "dogsay" ]
+	then
+	    dogsay -d sit "$message" 2>&1
+	elif [ "$printer" = "cowsay" ]
+	then
+	    cowsay "$message" 2>&1
+	else
+	    echo "$message" 2>&1
+	fi
+    fi
+}
+
+function print_banner {
+    local message="$1"
+
+    if [ $SIZE_CATEGORY = "Tiny" ]
+    then
+	echo "$message" 2>&1
+    else
+	"$BANNER_PRINTER_COMMAND" "$message" 2>&1
+    fi
+}
+
 function count_down {
     local message=$1
     local countdown_printer=$2
     local seconds=$3
-
-    local banner_message=`$BANNER_PRINTER_COMMAND "$message" 2>&1`
 
     local command_result=
     local now=`date +%s`
     local end_date=$(( $now + $seconds ))
     while [ $end_date -gt $now ]
     do
-	seconds_left=$(( $end_date - $now ))
-	local countdown_message=$($countdown_printer `format_seconds_as_hh_mm $seconds_left`)
+	local seconds_left=$(( $end_date - $now ))
+	local formatted_time_left=`format_seconds_as_hh_mm $seconds_left`
+	local countdown_message=$(print_countdown "$countdown_printer" "$formatted_time_left")
+	local banner_message=`print_banner "$message" 2>&1`
 
 	tput clear
 	discard_stdin
@@ -276,7 +331,7 @@ function prompt_to_start {
     set_application_indicator_icon "$WAITING_TO_START_ICON"
 
     tput clear
-    $BANNER_PRINTER_COMMAND "R e a d y ?" 2>&1
+    print_banner "R e a d y ?"
 
     local default_command=s
     while true
@@ -299,6 +354,9 @@ function prompt_to_start {
 
 function set_up {
     trap tear_down SIGINT SIGTERM SIGHUP
+    trap handle_screen_resize WINCH
+
+    handle_screen_resize
     initialize_application_indicator
 
     if [ -n "$PROMPT_TO_START" ]
