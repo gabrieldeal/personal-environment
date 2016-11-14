@@ -228,7 +228,8 @@ function format_seconds_as_hh_mm {
 }
 
 function tear_down {
-    tput cnorm
+    stty sane
+    show_cursor
     tear_down_application_indicator
     set_chat_status chat
     exit 0
@@ -366,7 +367,7 @@ function set_up {
 }
 
 function main_loop {
-    tput civis
+    hide_cursor
     while true
     do
 	do_interval_count_down
