@@ -2,8 +2,8 @@
 # desktop-file-validate ~/.local/share/applications/*.desktop
 
 [Desktop Entry]
-Exec=gnome-terminal --execute /home/gabrielx/local/bin/pomodoro-bash
+Exec=gnome-terminal --geometry 114x40 --execute /home/gabrielx/local/bin/pomodoro-bash
 Icon=/home/gabrielx/local/pomodoro-bash/tomato13.png
 Name=Pomodoro Bash
 Type=Application
-Version=1.1
+Version=1.0
