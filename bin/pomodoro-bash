@@ -55,7 +55,7 @@ NOTIFICATION_COMMAND=`find_command notify-send`
 INTERACTIVE_COMMANDS="Start new pomo (s), take a break (b), quit (q)? "
 
 UPDATE_INTERVAL_SECONDS=1
-WORK_SECONDS=$(( 20 * 60 ))
+WORK_SECONDS=$(( 25 * 60 ))
 BREAK_SECONDS=$(( 5 * 60 ))
 PROMPT_TO_START=
 
