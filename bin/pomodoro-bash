@@ -298,19 +298,10 @@ function do_interval_count_down {
 }
 
 function do_break_count_down {
-    play_sound "$TAKING_A_BREAK_SOUND"
-    send_notification "Take a break!" "$TAKING_A_BREAK_ICON"
     set_chat_status chat
     set_application_indicator_icon "$TAKING_A_BREAK_ICON"
 
     count_down 'B r e a k !' "$BREAK_COUNTDOWN_PRINTER" $BREAK_SECONDS
-}
-
-function prompt_to_start_over {
-    send_notification "Break over, man!" "$WORKING_ICON"
-    play_sound "$WAITING_TO_START_SOUND"
-
-    prompt_to_start
 }
 
 function discard_stdin {
@@ -371,8 +362,14 @@ function main_loop {
     while true
     do
 	do_interval_count_down
+
+	send_notification "Take a break!" "$TAKING_A_BREAK_ICON"
+	play_sound "$TAKING_A_BREAK_SOUND"
 	do_break_count_down
-	prompt_to_start_over
+
+	send_notification "Break over, man!" "$WORKING_ICON"
+	play_sound "$WAITING_TO_START_SOUND"
+	prompt_to_start
     done
 }
 
