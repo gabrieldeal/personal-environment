@@ -40,12 +40,6 @@ function find_command {
 }
 
 SET_CHAT_STATUS_COMMAND=`find_command set-chat-status`
-BANNER_PRINTER_COMMAND=`find_command figlet banner toilet echo`
-
-# https://github.com/ffleming/dogsay
-BREAK_COUNTDOWN_PRINTER=`find_command dogsay cowsay dinosay echo`
-WORK_COUNTDOWN_PRINTER=`find_command dinosay cowsay dogsay echo`
-
 SOUND_PLAYER_COMMAND=`find_command paplay sndfile-play mpg123 beep`
 APPLICATION_INDICATOR_COMMAND=`find_command indicator-sysmonitor`
 NOTIFICATION_COMMAND=`find_command notify-send`
@@ -93,10 +87,6 @@ function check_required_value {
     fi
 }
 
-check_required_value BANNER_PRINTER_COMMAND
-check_required_value BREAK_COUNTDOWN_PRINTER
-check_required_value WORK_COUNTDOWN_PRINTER
-
 function handle_command {
     local command=$1
 
@@ -126,59 +116,208 @@ function handle_screen_resize {
     local lines=`tput lines`
     local columns=`tput cols`
 
-    if [ $lines -ge 40 ] && [ $columns -ge 113 ]
+    if [ $lines -ge 39 ] && [ $columns -ge 83 ]
     then
-	SIZE_CATEGORY=Large
-    elif [ $lines -ge 23 ] && [ $columns -ge 64 ]
+	SIZE_CATEGORY=large
+    elif [ $lines -ge 23 ] && [ $columns -ge 49 ]
     then
-	SIZE_CATEGORY=Medium
-    elif [ $lines -ge 12 ] && [ $columns -ge 41 ]
+	SIZE_CATEGORY=medium
+    elif [ $lines -ge 10 ] && [ $columns -ge 49 ]
     then
-	SIZE_CATEGORY=Small
+	SIZE_CATEGORY=small
     else
-	SIZE_CATEGORY=Tiny
+	SIZE_CATEGORY=tiny
     fi
 }
 
-function print_countdown {
-    local printer="$1"
-    local message="$2"
+function print_countdown_time {
+    local time=$1
+    local size=$2
+    local type=$3
 
-    if [ $SIZE_CATEGORY = "Small" ] || [ $SIZE_CATEGORY = "Tiny" ]
-    then
-	echo "$message" 2>&1
-    elif [ $SIZE_CATEGORY = "Large" ]
-    then
-	$printer "$message" 2>&1
-    else # Medium
-	if [ "$printer" = "dinosay" ]
-	then
-	    dinosay -d small "$message" 2>&1
-	elif [ "$printer" = "dogsay" ]
-	then
-	    dogsay -d sit "$message" 2>&1
-	elif [ "$printer" = "cowsay" ]
-	then
-	    cowsay "$message" 2>&1
-	else
-	    echo "$message" 2>&1
-	fi
-    fi
+    # Using sed instead of variable substitutions because some of the
+    # ASCII art contains special shell characters.
+    eval "print_${size}_${type}_time" | sed "s/\$time/$time/"
 }
 
-function print_banner {
-    local message="$1"
+function print_tiny_break_time {
+    echo '$time'
+}
+function print_small_break_time {
+    echo '$time'
+}
+function print_medium_break_time {
+    local time=$1
 
-    if [ $SIZE_CATEGORY = "Tiny" ]
-    then
-	echo "$message" 2>&1
-    else
-	"$BANNER_PRINTER_COMMAND" "$message" 2>&1
-    fi
+    # ASCII art from dogsay. MIT License. Copyright (c) 2015 Forrest Fleming.
+    # https://github.com/ffleming/dogsay
+    cat <<'EOT' -
++-------+
+| $time |
++-------+
+\   _
+ \ /  \
+  /|oo \
+ (_|  /_)
+   `@/  \
+   |     \     _
+    \||   \   //
+    |||\ /  \//
+  _//|| _\   /
+ (_/(_|(____/
+EOT
+}
+function print_large_break_time {
+    local time=$1
+
+    # ASCII art from dogsay. MIT License. Copyright (c) 2015 Forrest Fleming.
+    # https://github.com/ffleming/dogsay
+    cat <<'EOT' -
+			  _            +-------+
+			,:'/   _..._   | $time |
+		       // ( `""-.._.'  +-------+
+                       \| /    6\___  /
+                       |     6      4
+                       |            /
+                       \_       .--'
+                       (_'---'`)
+                       / `'---`()
+                     ,'        |
+     ,            .'`          |
+     )\       _.-'             ;
+    / |    .'`   _            /
+  /` /   .'       '.        , |
+ /  /   /           \   ;   | |
+|  \  |            |  .|   | |
+  \  `"|           /.-' |   | |
+   '-..-\       _.;.._  |   |.;-.
+         \    <`.._  )) |  .;-. ))
+         (__.  `  ))-'  \_    ))'
+             `'--"`       `"""`
+EOT
+}
+
+function print_tiny_work_time {
+    echo '$time'
+}
+function print_small_work_time {
+    echo '$time'
+}
+function print_medium_work_time {
+    local time=$1
+
+    # ASCII art from dogsay. MIT License. Copyright (c) 2015 Forrest Fleming.
+    # https://github.com/ffleming/dogsay
+    cat <<'EOT' -
+		   __   +-------+
+		  / _) /| $time |
+	 _.----._/ /    +-------+
+       /          /
+.--__/  (  | (  |'
+ '-__..-'|_|--|_|
+EOT
+}
+# https://github.com/ffleming/dogsay
+function print_large_work_time {
+    local time=$1
+
+    # ASCII art from dogsay. MIT License. Copyright (c) 2015 Forrest Fleming.
+    # https://github.com/ffleming/dogsay
+    cat <<'EOT' -
++-------+
+| $time |           .-=-==--==--.
++-------+     ..-=="  ,'o`)      `.
+             ,'         `"'         \
+          \ :  (                     `.__...._
+            |                  )    /         `-=-.
+            :       ,vv.-._   /    /               `---==-._
+             \/\/\/VV ^ d88`;'    /                         `.
+                 ``  ^/d88P!'    /             ,              `._
+                    ^/    !'   ,.      ,      /                  "-,,__,,--'""""-.
+                   ^/    !'  ,'  \ . .(      (         _           )  ) ) ) ))_,-.\
+                  ^(__ ,!',"'   ;:+.:%:a.     \:.. . ,'          )  )  ) ) ,"'    '
+                  ',,,'','     /o:::":%:%a.    \:.:.:         .    )  ) _,'
+                   """'       ;':::'' `+%%%a._  \%:%|         ;.). _,-""
+                          ,-='_.-'      ``:%::)  )%:|        /:._,"
+                         (/(/"           ," ,'_,'%%%:       (_,'
+                                        (  (//(`.___;        \
+                                         \     \    `         `
+                                          `.    `.   `.        :
+                                            \. . .\    : . . . :
+                                             \. . .:    `.. . .:
+                                              `..:.:\     \:...\
+                                               ;:.:.;      ::...:
+                                               ):%::       :::::;
+                                           __,::%:(        :::::
+                                        ,;:%%%%%%%:        ;:%::
+                                          ;,--""-.`\  ,=--':%:%:\
+                                         /"       "| /-".:%%%%%%%\
+                                                         ;,-"'`)%%)
+                                                        /"      "|
+EOT
+}
+
+function print_tiny_break_banner {
+    echo "Break!"
+}
+function print_small_break_banner {
+    print_large_break_banner
+}
+function print_medium_break_banner {
+    print_large_break_banner
+}
+function print_large_break_banner {
+    cat <<'EOT' -
+ ____                          _      _
+| __ )   _ __    ___    __ _  | | __ | |
+|  _ \  | '__|  / _ \  / _` | | |/ / | |
+| |_) | | |    |  __/ | (_| | |   <  |_|
+|____/  |_|     \___|  \__,_| |_|\_\ (_)
+
+EOT
+}
+
+function print_tiny_ready_banner {
+    echo "Ready?"
+}
+function print_small_ready_banner {
+    print_large_ready_banner
+}
+function print_medium_ready_banner {
+    print_large_ready_banner
+}
+function print_large_ready_banner {
+    cat <<'EOT' -
+ ____                       _           ___
+|  _ \    ___    __ _    __| |  _   _  |__ \
+| |_) |  / _ \  / _` |  / _` | | | | |   / /
+|  _ <  |  __/ | (_| | | (_| | | |_| |  |_|
+|_| \_\  \___|  \__,_|  \__,_|  \__, |  (_)
+				|___/
+EOT
+}
+
+function print_tiny_work_banner {
+    echo "Focus!"
+}
+function print_small_work_banner {
+    print_large_work_banner
+}
+function print_medium_work_banner {
+    print_large_work_banner
+}
+function print_large_work_banner {
+    cat <<'EOT' -
+ _____                                _
+|  ___|   ___     ___   _   _   ___  | |
+| |_     / _ \   / __| | | | | / __| | |
+|  _|   | (_) | | (__  | |_| | \__ \ |_|
+|_|      \___/   \___|  \__,_| |___/ (_)
+EOT
 }
 
 function count_down {
-    local message=$1
+    local type=$1
     local countdown_printer=$2
     local seconds=$3
 
@@ -189,15 +328,17 @@ function count_down {
     do
 	handle_screen_resize
 
+	local banner_function_name="print_${SIZE_CATEGORY}_${type}_banner"
+	local banner_message=$("$banner_function_name")
+
 	local seconds_left=$(( $end_date - $now ))
 	local formatted_time_left=`format_seconds_as_hh_mm $seconds_left`
-	local countdown_message=$(print_countdown "$countdown_printer" "$formatted_time_left")
-	local banner_message=`print_banner "$message" 2>&1`
+	local countdown_message=$(print_countdown_time "$formatted_time_left" "$SIZE_CATEGORY" "$type")
 
 	tput clear
 	discard_stdin
-	echo -e "$banner_message"
-	echo -e "$countdown_message\n\n"
+	echo -e "$banner_message\n"
+	echo -e "$countdown_message\n"
 	echo -e "$INTERACTIVE_COMMANDS $command_result"
 
 	local wait_seconds=1
@@ -294,14 +435,14 @@ function do_interval_count_down {
     set_chat_status dnd
     set_application_indicator_icon "$WORKING_ICON"
 
-    count_down 'F o c u s !' "$WORK_COUNTDOWN_PRINTER" $WORK_SECONDS
+    count_down "work" "$WORK_COUNTDOWN_PRINTER" $WORK_SECONDS
 }
 
 function do_break_count_down {
     set_chat_status chat
     set_application_indicator_icon "$TAKING_A_BREAK_ICON"
 
-    count_down 'B r e a k !' "$BREAK_COUNTDOWN_PRINTER" $BREAK_SECONDS
+    count_down "break" "$BREAK_COUNTDOWN_PRINTER" $BREAK_SECONDS
 }
 
 function discard_stdin {
@@ -323,7 +464,7 @@ function prompt_to_start {
     set_application_indicator_icon "$WAITING_TO_START_ICON"
 
     tput clear
-    print_banner "R e a d y ?"
+    eval "print_${SIZE_CATEGORY}_ready_banner"
 
     local default_command=s
     while true
