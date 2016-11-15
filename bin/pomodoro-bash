@@ -187,6 +187,8 @@ function count_down {
     local end_date=$(( $now + $seconds ))
     while [ $end_date -gt $now ]
     do
+	handle_screen_resize
+
 	local seconds_left=$(( $end_date - $now ))
 	local formatted_time_left=`format_seconds_as_hh_mm $seconds_left`
 	local countdown_message=$(print_countdown "$countdown_printer" "$formatted_time_left")
@@ -344,7 +346,10 @@ function prompt_to_start {
 
 function set_up {
     trap tear_down SIGINT SIGTERM SIGHUP
-    trap handle_screen_resize WINCH
+
+    # Handling the WINCH signal was causing random freezes when I resized
+    # the screen on Ubuntu 14.04:
+    # trap handle_screen_resize WINCH
 
     handle_screen_resize
     initialize_application_indicator
