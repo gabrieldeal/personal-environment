@@ -333,6 +333,7 @@ function count_down {
 
 	local seconds_left=$(( $end_date - $now ))
 	local formatted_time_left=`format_seconds_as_hh_mm $seconds_left`
+	formatted_time_left="$(start_text_standout_mode)$formatted_time_left$(end_text_standout_mode)"
 	local countdown_message=$(print_countdown_time "$formatted_time_left" "$SIZE_CATEGORY" "$type")
 
 	tput clear
@@ -450,6 +451,14 @@ function discard_stdin {
     do
 	read -s -n 1
     done
+}
+
+function start_text_standout_mode {
+    tput smso
+}
+
+function end_text_standout_mode {
+    tput rmso
 }
 
 function hide_cursor {
