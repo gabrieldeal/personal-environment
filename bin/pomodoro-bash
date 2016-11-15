@@ -67,7 +67,7 @@ do
 	    shift
 	    ;;
 	-h|*)
-	    echo "pomodoro-bash [ -w WORK_SECONDS ] [ -b BREAK_SECONDS ]"
+	    echo "pomodoro-bash [ -w WORK_SECONDS ] [ -b BREAK_SECONDS ] [ -p ]"
 	    exit 0
 	    ;;
     esac
@@ -76,15 +76,6 @@ done
 function fail {
     echo "$*" 1>&2
     exit 1
-}
-
-function check_required_value {
-    local variable_name=$1
-    local variable_value=${!variable_name}
-    if [ -z "$variable_value" ]
-    then
-	fail "No value for $variable_name"
-    fi
 }
 
 function handle_command {
@@ -104,7 +95,7 @@ function handle_command {
     then
 	tput clear
 	echo -e "\nTaking a break..."
-	do_break_count_down
+	do_break_countdown
 	prompt_to_start
 	main_loop
     fi
@@ -217,7 +208,6 @@ function print_medium_work_time {
  '-__..-'|_|--|_|
 EOT
 }
-# https://github.com/ffleming/dogsay
 function print_large_work_time {
     local time=$1
 
@@ -342,6 +332,7 @@ function count_down {
 	echo -e "$countdown_message\n"
 	echo -e "$INTERACTIVE_COMMANDS $command_result"
 
+	hide_cursor
 	local wait_seconds=1
 	read -s -n 1 -t $wait_seconds command
 	if [ -n "$command" ]
@@ -373,7 +364,7 @@ function tear_down {
     stty sane
     show_cursor
     tear_down_application_indicator
-    set_chat_status chat
+    set_chat_status "chat"
     exit 0
 }
 
@@ -432,15 +423,15 @@ function play_sound {
     fi
 }
 
-function do_interval_count_down {
-    set_chat_status dnd
+function do_work_countdown {
+    set_chat_status "dnd"
     set_application_indicator_icon "$WORKING_ICON"
 
     count_down "work" "$WORK_COUNTDOWN_PRINTER" $WORK_SECONDS
 }
 
-function do_break_count_down {
-    set_chat_status chat
+function do_break_countdown {
+    set_chat_status "chat"
     set_application_indicator_icon "$TAKING_A_BREAK_ICON"
 
     count_down "break" "$BREAK_COUNTDOWN_PRINTER" $BREAK_SECONDS
@@ -511,14 +502,13 @@ function set_up {
 }
 
 function main_loop {
-    hide_cursor
     while true
     do
-	do_interval_count_down
+	do_work_countdown
 
 	send_notification "Take a break!" "$TAKING_A_BREAK_ICON"
 	play_sound "$TAKING_A_BREAK_SOUND"
-	do_break_count_down
+	do_break_countdown
 
 	send_notification "Break over, man!" "$WORKING_ICON"
 	play_sound "$WAITING_TO_START_SOUND"
