@@ -5,11 +5,9 @@
 # http://www.clipartlord.com/category/food-clip-art/vegetables-clip-art/tomato-clip-art/
 WORKING_ICON=~/local/pomodoro-bash/tomato13.png
 
-# "Jump" by Alexander Blagochevsky is licenced under CC BY 3.0 / background
-# and red circle added to the original.
-# https://thenounproject.com/term/jumping-jack/150919/
-# https://creativecommons.org/licenses/by/3.0/
-TAKING_A_BREAK_ICON=~/local/pomodoro-bash/jump-white.png
+# Public domain dog.
+# https://thenounproject.com/term/dog/364/
+TAKING_A_BREAK_ICON=~/local/pomodoro-bash/dog.svg
 
 # "Barking of a dog" by Wikimedia Commons is licensed under CC BY 3.0.
 # https://commons.wikimedia.org/wiki/File:Barking_of_a_dog.ogg
