@@ -3,7 +3,7 @@
 
 STATUS=$1
 
+HIPCHAT_AUTH_TOKEN=$(cat ~/tmp/auth-token.txt) \
 set-hipchat-status -u '@GabrielDeal' \
-                   -a ~/tmp/auth-token.txt \
-                   -h paradem.hipchat.com \
+		   -h paradem.hipchat.com \
                    -s $STATUS
