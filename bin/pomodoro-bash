@@ -122,13 +122,16 @@ function handle_screen_resize {
 }
 
 function print_countdown_time {
-    local time=$1
-    local size=$2
-    local type=$3
+    local type=$1
+    local end_date=$2
+
+    local seconds_left=$(( $end_date - $now ))
+    local formatted_time_left=`format_seconds_as_hh_mm $seconds_left`
+    formatted_time_left="$(start_text_standout_mode)$formatted_time_left$(end_text_standout_mode)"
 
     # Using sed instead of variable substitutions because some of the
     # ASCII art contains special shell characters.
-    eval "print_${size}_${type}_time" | sed "s/\$time/$time/"
+    eval "print_${SIZE_CATEGORY}_${type}_time" | sed "s/\$time/$formatted_time_left/"
 }
 
 function print_tiny_break_time {
@@ -247,6 +250,13 @@ function print_large_work_time {
 EOT
 }
 
+function print_banner {
+    local type=$1
+
+    local banner_function_name="print_${SIZE_CATEGORY}_${type}_banner"
+    eval "$banner_function_name"
+}
+
 function print_tiny_break_banner {
     echo "Break!"
 }
@@ -318,16 +328,11 @@ function count_down {
     do
 	handle_screen_resize
 
-	local banner_function_name="print_${SIZE_CATEGORY}_${type}_banner"
-	local banner_message=$("$banner_function_name")
+	local banner_message=$(print_banner "$type")
+	local countdown_message=$(print_countdown_time "$type" "$end_date")
 
-	local seconds_left=$(( $end_date - $now ))
-	local formatted_time_left=`format_seconds_as_hh_mm $seconds_left`
-	formatted_time_left="$(start_text_standout_mode)$formatted_time_left$(end_text_standout_mode)"
-	local countdown_message=$(print_countdown_time "$formatted_time_left" "$SIZE_CATEGORY" "$type")
-
-	tput clear
 	discard_stdin
+	tput clear
 	echo -e "$banner_message\n"
 	echo -e "$countdown_message\n"
 	echo -e "$INTERACTIVE_COMMANDS $command_result"
@@ -387,29 +392,31 @@ function initialize_application_indicator {
 }
 
 function set_application_indicator_icon {
+    local icon_path=$1
+
     if [ -n "$APPLICATION_INDICATOR_COMMAND" ]
     then
-	echo "USE_ICON:$1" >$APPLICATION_INDICATOR_ICON_FILE
+	echo "USE_ICON:$icon_path" >$APPLICATION_INDICATOR_ICON_FILE
     fi
 }
 
 # https://wiki.ubuntu.com/NotifyOSD
 # https://developer.gnome.org/notification-spec/
 function send_notification {
+    local message=$1
+    local icon=$2
+
     if [ -n "$NOTIFICATION_COMMAND" ]
     then
-	local message=$1
-	local icon=$2
-
 	"$NOTIFICATION_COMMAND" --urgency=normal --icon="$icon" "$message" >>$LOG_FILE 2>&1
     fi
 }
 
 function set_chat_status {
+    local new_status=$1
+
     if [ -n "$SET_CHAT_STATUS_COMMAND" ]
     then
-	local new_status=$1
-
 	$SET_CHAT_STATUS_COMMAND $new_status >>$LOG_FILE 2>&1 &
     fi
 }
