@@ -10,24 +10,40 @@ def read_options
   OptionParser.new do |opts|
     opts.banner = 'Usage: set-chat-status [OPTIONS]'
 
-    opts.on('-u', '--user-id-or-name USER', 'Hipchat user ID or name. E.g., @TomJones or 9193041') { |v| options[:user_name] = v }
-    opts.on('-a', '--auth-token-filename FILENAME',
-            'File containing your Hipchat auth token with Administer Group and View Group permissions. See https://www.hipchat.com/account/api') do |v|
-      options[:auth_token_filename] = v
+    opts.on('-u',
+            '--user-id-or-name USER',
+            'Hipchat user ID or name. E.g., @TomJones or 9193041') do |v|
+      options[:user_name] = v
     end
-    opts.on('-s', '--status STATUS', 'The status to set to (away, chat, dnd') { |v| options[:status] = v }
-    opts.on('-h', '--hipchat-host HOST', 'The Hipchat server') { |v| options[:host] = v }
+    opts.on('-a', '--auth-token TOKEN',
+            'Your Hipchat auth token with Administer Group' \
+            ' and View Group permissions. ' \
+            'See https://www.hipchat.com/account/api') do |v|
+      options[:auth_token] = v
+    end
+    opts.on('-s',
+            '--status STATUS',
+            'The status to set to (away, chat, dnd') do |v|
+      options[:status] = v
+    end
+    opts.on('-h', '--hipchat-host HOST', 'The Hipchat server') do |v|
+      options[:host] = v
+    end
   end.parse!
+
+  options[:auth_token] ||= ENV['HIPCHAT_AUTH_TOKEN']
 
   options
 end
 
 def get_user(params)
-  uri = URI("https://#{params[:host]}/v2/user/#{params[:user_name]}?auth_token=#{params[:auth_token]}")
+  uri = URI("https://#{params[:host]}" \
+            "/v2/user/#{params[:user_name]}" \
+            "?auth_token=#{params[:auth_token]}")
   request = Net::HTTP::Get.new(uri)
 
   response = params[:http].request(request)
-  fail "Update failed: #{response.inspect}" unless response.is_a?(Net::HTTPSuccess)
+  raise "Update failed: #{response.inspect}" unless response.is_a?(Net::HTTPSuccess)
 
   user = JSON.parse(response.body, symbolize_names: true)
 
@@ -44,27 +60,28 @@ def get_user(params)
 end
 
 def update_user(params)
-  uri = URI("https://#{params[:host]}/v2/user/@#{params[:user][:mention_name]}?auth_token=#{params[:auth_token]}")
+  uri = URI("https://#{params[:host]}" \
+            "/v2/user/@#{params[:user][:mention_name]}" \
+            "?auth_token=#{params[:auth_token]}")
   request = Net::HTTP::Put.new(uri)
   request.body = params[:user].to_json
   request['Content-Type'] = 'application/json'
 
   response = params[:http].request(request)
-  fail "Update failed: #{response.inspect} #{response.body}" unless response.is_a?(Net::HTTPSuccess)
+  raise "Update failed: #{response.inspect} #{response.body}" unless response.is_a?(Net::HTTPSuccess)
 end
 
 options = read_options
-auth_token = File.read(options[:auth_token_filename])
 
 http = Net::HTTP.new(options[:host], 443)
 http.use_ssl = true
 
-user = get_user(auth_token: auth_token,
+user = get_user(auth_token: options[:auth_token],
                 http: http,
                 host: options[:host],
                 user_name: options[:user_name])
 user[:presence][:show] = options[:status]
-update_user(auth_token: auth_token,
+update_user(auth_token: options[:auth_token],
             http: http,
             user: user,
             host: options[:host])
