@@ -40,8 +40,13 @@ function find_command {
 }
 
 SET_CHAT_STATUS_COMMAND=`find_command set-chat-status`
+
+# Mac OS: afplay
 SOUND_PLAYER_COMMAND=`find_command paplay sndfile-play mpg123 beep`
+
 APPLICATION_INDICATOR_COMMAND=`find_command indicator-sysmonitor`
+
+# Mac OS: display notification "the message" with title "the title" subtitle "the subtitle"
 NOTIFICATION_COMMAND=`find_command notify-send`
 
 INTERACTIVE_COMMANDS="Start new pomo (s), take a break (b), quit (q)? "
