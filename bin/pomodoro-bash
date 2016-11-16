@@ -49,7 +49,7 @@ APPLICATION_INDICATOR_COMMAND=`find_command indicator-sysmonitor`
 # Mac OS: display notification "the message" with title "the title" subtitle "the subtitle"
 NOTIFICATION_COMMAND=`find_command notify-send`
 
-INTERACTIVE_COMMANDS="Start new pomo (s), take a break (b), quit (q)? "
+INTERACTIVE_COMMANDS="Start new pomo (s), start pomo with a goal (g), take a break (b), quit (q)? "
 
 UPDATE_INTERVAL_SECONDS=1
 WORK_SECONDS=$(( 25 * 60 ))
@@ -91,6 +91,14 @@ function handle_command {
 	tput clear
 	echo -ne "Starting a new pomo..."
 	main_loop
+    elif [ "$command" = "g" ]
+    then
+	tput clear
+	show_cursor
+	echo -e "What is your goal for this pomo? "
+	read -e goal
+	echo -ne "Starting a new pomo..."
+	main_loop "$goal"
     elif [ "$command" = "q" ]
     then
 	echo -e "\nBye!"
@@ -112,13 +120,13 @@ function handle_screen_resize {
     local lines=`tput lines`
     local columns=`tput cols`
 
-    if [ $lines -ge 39 ] && [ $columns -ge 83 ]
+    if [ $lines -ge 40 ] && [ $columns -ge 83 ]
     then
 	SIZE_CATEGORY=large
-    elif [ $lines -ge 23 ] && [ $columns -ge 49 ]
+    elif [ $lines -ge 24 ] && [ $columns -ge 49 ]
     then
 	SIZE_CATEGORY=medium
-    elif [ $lines -ge 10 ] && [ $columns -ge 49 ]
+    elif [ $lines -ge 11 ] && [ $columns -ge 49 ]
     then
 	SIZE_CATEGORY=small
     else
@@ -325,6 +333,7 @@ function count_down {
     local type=$1
     local countdown_printer=$2
     local seconds=$3
+    local goal=$4
 
     local command_result=
     local now=`date +%s`
@@ -339,6 +348,10 @@ function count_down {
 	discard_stdin
 	tput clear
 	echo -e "$banner_message\n"
+	if [ -n "$goal" ]
+	then
+	    echo -e "Goal: $goal\n"
+	fi
 	echo -e "$countdown_message\n"
 	echo -e "$INTERACTIVE_COMMANDS $command_result"
 
@@ -436,10 +449,12 @@ function play_sound {
 }
 
 function do_work_countdown {
+    local goal=$1
+
     set_chat_status "dnd"
     set_application_indicator_icon "$WORKING_ICON"
 
-    count_down "work" "$WORK_COUNTDOWN_PRINTER" $WORK_SECONDS
+    count_down "work" "$WORK_COUNTDOWN_PRINTER" $WORK_SECONDS "$goal"
 }
 
 function do_break_countdown {
@@ -514,9 +529,11 @@ function set_up {
 }
 
 function main_loop {
+    local goal=$1
+
     while true
     do
-	do_work_countdown
+	do_work_countdown "$goal"
 
 	send_notification "Take a break!" "$TAKING_A_BREAK_ICON"
 	play_sound "$TAKING_A_BREAK_SOUND"
