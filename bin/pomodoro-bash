@@ -51,7 +51,7 @@ fi
 default_sound_player_program=$(find_command paplay madplay sndfile-play mpg123 afplay beep)
 if [ -z "$SOUND_PLAYER_COMMAND" ] && [ -n "$default_sound_player_program" ]
 then
-    SOUND_PLAYER_COMMAND=("$default_sound_player_program" %s)
+    SOUND_PLAYER_COMMAND="$default_sound_player_program %s"
 fi
 
 # No default value for SET_CHAT_STATUS_COMMAND.
@@ -64,7 +64,7 @@ fi
 default_notification_command=$(find_command notify-send)
 if [ -z "$NOTIFICATION_COMMAND" ] && [ -n "$default_notification_command" ]
 then
-    NOTIFICATION_COMMAND=("$default_notification_command" %s)
+    NOTIFICATION_COMMAND="$default_notification_command %s"
 fi
 
 while [ "$#" -gt 0 ]
@@ -90,19 +90,11 @@ do
 done
 
 run_command() {
-    local command_argument=$1
-    shift
-    local command=("$@")
+    local command_format=$1
+    local command_argument=$2
 
-    local index=0
-    local end=${#command[@]}
-    while [ $index -lt $end ]
-    do
-	command[$index]=$(printf -- "${command[$index]}" "$command_argument")
-	index=$(($index + 1))
-    done
-
-    "${command[@]}" >>$LOG_FILE 2>&1 &
+    local command=$(printf "$command_format" "$command_argument")
+    eval "$command" >>$LOG_FILE 2>&1 &
 }
 
 fail() {
@@ -466,7 +458,7 @@ send_notification() {
 
     if [ -n "$NOTIFICATION_COMMAND" ]
     then
-	run_command "$message" "${NOTIFICATION_COMMAND[@]}"
+	run_command "$NOTIFICATION_COMMAND" "$message"
     fi
 }
 
@@ -475,7 +467,7 @@ set_chat_status() {
 
     if [ -n "$SET_CHAT_STATUS_COMMAND" ]
     then
-	run_command "$new_status" "${SET_CHAT_STATUS_COMMAND[@]}"
+	run_command "$SET_CHAT_STATUS_COMMAND" "$new_status"
     fi
 }
 
@@ -484,7 +476,7 @@ play_sound() {
 
     if [ -n "$SOUND_PLAYER_COMMAND" ]
     then
-	run_command "$sound_file" "${SOUND_PLAYER_COMMAND[@]}"
+	run_command "$SOUND_PLAYER_COMMAND" "$sound_file"
     else
 	printf ''
     fi
