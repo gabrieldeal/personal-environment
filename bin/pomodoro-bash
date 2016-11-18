@@ -27,24 +27,24 @@ fi
 
 # "FREE RED TOMATO CLIP ART" by OpenGameArt.org is public domain.
 # http://www.clipartlord.com/category/food-clip-art/vegetables-clip-art/tomato-clip-art/
-: ${WORKING_ICON:=~/local/pomodoro-bash/tomato13.png}
+: ${WORKING_ICON:="$HOME/local/pomodoro-bash/tomato13.png"}
 
 # Public domain dog.
 # https://thenounproject.com/term/dog/364/
-: ${TAKING_A_BREAK_ICON::=~/local/pomodoro-bash/dog.svg}
+: ${TAKING_A_BREAK_ICON::="$HOME/local/pomodoro-bash/dog.svg"}
 
 # "Barking of a dog" by Wikimedia Commons is licensed under CC BY 3.0.
 # https://commons.wikimedia.org/wiki/File:Barking_of_a_dog.ogg
 # https://creativecommons.org/licenses/by/3.0/
-: ${TAKING_A_BREAK_SOUND:=~/local/pomodoro-bash/Barking_of_a_dog.mp3}
+: ${TAKING_A_BREAK_SOUND:="$HOME/local/pomodoro-bash/Barking_of_a_dog.mp3"}
 
 # I made this one.
-: ${WAITING_TO_START_ICON:=~/local/pomodoro-bash/circle_question.svg}
+: ${WAITING_TO_START_ICON:="$HOME/local/pomodoro-bash/circle_question.svg"}
 
 # "Text Message Alert 3 Sound" by Daniel Simion is licensed under CC BY 3.0.
 # http://soundbible.com/2156-Text-Message-Alert-3.html
 # https://creativecommons.org/licenses/by/3.0/
-: ${WAITING_TO_START_SOUND:=~/local/pomodoro-bash/alert.mp3}
+: ${WAITING_TO_START_SOUND:="$HOME/local/pomodoro-bash/alert.mp3"}
 
 : ${LOG_FILE:=/dev/null}
 
