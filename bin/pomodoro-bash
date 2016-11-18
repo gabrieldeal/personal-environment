@@ -120,7 +120,6 @@ handle_command() {
 	main_loop "$goal"
     elif [ "$command" = "q" ]
     then
-	printf "\nBye!\n"
 	tear_down
 	exit 0
     elif [ "$command" = "b" ]
@@ -421,6 +420,7 @@ tear_down() {
     show_cursor
     tear_down_application_indicator
     set_chat_status "chat"
+    printf "\nBye!\n"
     exit 0
 }
 
@@ -547,7 +547,7 @@ prompt_to_start() {
 }
 
 set_up() {
-    trap tear_down SIGINT SIGTERM SIGHUP
+    trap tear_down INT TERM HUP
 
     # Handling the WINCH signal was causing random freezes when I resized
     # the screen on Ubuntu 14.04:
