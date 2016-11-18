@@ -123,7 +123,7 @@ handle_command() {
 	tput clear
 	show_cursor
 	printf "What is your goal for this pomo? "
-	read -e goal
+	read goal
 	printf "Starting a new pomo..."
 	main_loop "$goal"
     elif [ "$command" = "q" ]
@@ -356,6 +356,16 @@ print_large_work_banner() {
 EOT
 }
 
+read_char() {
+    local timeout_seconds=$1
+
+    local timeout_args=${timeout_seconds:+min 0 time $(($timeout_seconds * 10))}
+    local old_settings=$(stty -g)
+    stty raw isig -echo $timeout_args
+    printf '%s' $(dd bs=1 count=1 2>/dev/null)
+    stty $old_settings
+}
+
 count_down() {
     local type=$1
     local countdown_printer=$2
@@ -388,7 +398,7 @@ count_down() {
 	local wait_seconds=1
 
 	# To make this POSIX: http://stackoverflow.com/questions/32213758
-	read -s -n 1 -t $wait_seconds command
+	local command=$(read_char $wait_seconds)
 	if [ -n "$command" ]
 	then
 	    handle_command "$command"
@@ -497,9 +507,9 @@ do_break_countdown() {
 }
 
 discard_stdin() {
-    while read -t 0
+    while [ -n "$(read_char 0)" ]
     do
-	read -s -n 1
+	:
     done
 }
 
@@ -531,7 +541,7 @@ prompt_to_start() {
 	discard_stdin
 	printf "\n$INTERACTIVE_COMMANDS_PROMPT [$default_command] "
 	show_cursor
-	read -n 1 command
+	local command="$(read_char | tr -d '\r\n')"
 	hide_cursor
 
 	if [ -z "$command" ]
