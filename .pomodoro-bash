@@ -13,10 +13,11 @@
 # WAITING_TO_START_ICON=
 # WAITING_TO_START_SOUND=
 #
-# LOG_FILE=
-#
-# SET_CHAT_STATUS_COMMAND=
-# SOUND_PLAYER_COMMAND=
+LOG_FILE="$HOME/tmp/pomodoro-bash.log"
+
+SET_CHAT_STATUS_COMMAND=("set-hipchat-status" "-u" "@GabrielDeal" "-h" "api.hipchat.com" "-s" "%s" "--auth-token" "$(cat "$HOME/.ssh/auth-token.txt")")
+
+# SOUND_PLAYER_COMMAND=()
 # NOTIFICATION_COMMAND=
 #
 # APPLICATION_INDICATOR_COMMAND=

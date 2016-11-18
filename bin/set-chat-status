@@ -1,9 +1,0 @@
-#!/bin/bash
-#-*- shell-script -*-
-
-STATUS=$1
-
-HIPCHAT_AUTH_TOKEN=$(cat ~/tmp/auth-token.txt) \
-set-hipchat-status -u '@GabrielDeal' \
-		   -h paradem.hipchat.com \
-                   -s $STATUS
