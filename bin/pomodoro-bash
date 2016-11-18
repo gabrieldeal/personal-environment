@@ -16,7 +16,7 @@ find_command() {
 CONFIG_FILE="$HOME/.pomodoro-bash"
 if [ -e "$CONFIG_FILE" ]
 then
-    source "$CONFIG_FILE"
+    . "$CONFIG_FILE"
 fi
 
 : ${UPDATE_INTERVAL_SECONDS:=1}
