@@ -52,7 +52,7 @@ def get_user(params)
     is_group_admin: user[:is_group_admin],
     mention_name: user[:mention_name],
     name: user[:name],
-    presence: { show: user[:presence][:show] },
+    presence: { show: (user[:presence] || {})[:show] },
     roles: user[:roles],
     timezone: user[:timezone],
     title: user[:title]
