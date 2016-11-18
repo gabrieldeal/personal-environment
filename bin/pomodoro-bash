@@ -1,7 +1,7 @@
 #!/bin/bash
 # -*- shell-script -*-
 
-function find_command {
+find_command() {
     for command in "$@"
     do
 	which "$command" >/dev/null 2>&1
@@ -89,7 +89,7 @@ do
     esac
 done
 
-function run_command {
+run_command() {
     local command_argument=$1
     shift
     local command=("$@")
@@ -105,12 +105,12 @@ function run_command {
     "${command[@]}" >>$LOG_FILE 2>&1 &
 }
 
-function fail {
+fail() {
     echo "$*" 1>&2
     exit 1
 }
 
-function handle_command {
+handle_command() {
     local command=$1
 
     if [ "$command" = "s" ]
@@ -143,7 +143,7 @@ function handle_command {
     return 1
 }
 
-function handle_screen_resize {
+handle_screen_resize() {
     local lines=`tput lines`
     local columns=`tput cols`
 
@@ -161,7 +161,7 @@ function handle_screen_resize {
     fi
 }
 
-function print_countdown_time {
+print_countdown_time() {
     local type=$1
     local end_date=$2
 
@@ -174,13 +174,13 @@ function print_countdown_time {
     eval "print_${SIZE_CATEGORY}_${type}_time" | sed "s/\$time/$formatted_time_left/"
 }
 
-function print_tiny_break_time {
+print_tiny_break_time() {
     echo '$time'
 }
-function print_small_break_time {
+print_small_break_time() {
     echo '$time'
 }
-function print_medium_break_time {
+print_medium_break_time() {
     local time=$1
 
     # ASCII art from dogsay. MIT License. Copyright (c) 2015 Forrest Fleming.
@@ -201,7 +201,7 @@ function print_medium_break_time {
  (_/(_|(____/
 EOT
 }
-function print_large_break_time {
+print_large_break_time() {
     local time=$1
 
     # ASCII art from dogsay. MIT License. Copyright (c) 2015 Forrest Fleming.
@@ -231,13 +231,13 @@ function print_large_break_time {
 EOT
 }
 
-function print_tiny_work_time {
+print_tiny_work_time() {
     echo '$time'
 }
-function print_small_work_time {
+print_small_work_time() {
     echo '$time'
 }
-function print_medium_work_time {
+print_medium_work_time() {
     local time=$1
 
     # ASCII art from dogsay. MIT License. Copyright (c) 2015 Forrest Fleming.
@@ -251,7 +251,7 @@ function print_medium_work_time {
  '-__..-'|_|--|_|
 EOT
 }
-function print_large_work_time {
+print_large_work_time() {
     local time=$1
 
     # ASCII art from dogsay. MIT License. Copyright (c) 2015 Forrest Fleming.
@@ -290,23 +290,23 @@ function print_large_work_time {
 EOT
 }
 
-function print_banner {
+print_banner() {
     local type=$1
 
     local banner_function_name="print_${SIZE_CATEGORY}_${type}_banner"
     eval "$banner_function_name"
 }
 
-function print_tiny_break_banner {
+print_tiny_break_banner() {
     echo "Break!"
 }
-function print_small_break_banner {
+print_small_break_banner() {
     print_large_break_banner
 }
-function print_medium_break_banner {
+print_medium_break_banner() {
     print_large_break_banner
 }
-function print_large_break_banner {
+print_large_break_banner() {
     cat <<'EOT' -
  ____                          _      _
 | __ )   _ __    ___    __ _  | | __ | |
@@ -317,16 +317,16 @@ function print_large_break_banner {
 EOT
 }
 
-function print_tiny_ready_banner {
+print_tiny_ready_banner() {
     echo "Ready?"
 }
-function print_small_ready_banner {
+print_small_ready_banner() {
     print_large_ready_banner
 }
-function print_medium_ready_banner {
+print_medium_ready_banner() {
     print_large_ready_banner
 }
-function print_large_ready_banner {
+print_large_ready_banner() {
     cat <<'EOT' -
  ____                       _           ___
 |  _ \    ___    __ _    __| |  _   _  |__ \
@@ -337,16 +337,16 @@ function print_large_ready_banner {
 EOT
 }
 
-function print_tiny_work_banner {
+print_tiny_work_banner() {
     echo "Focus!"
 }
-function print_small_work_banner {
+print_small_work_banner() {
     print_large_work_banner
 }
-function print_medium_work_banner {
+print_medium_work_banner() {
     print_large_work_banner
 }
-function print_large_work_banner {
+print_large_work_banner() {
     cat <<'EOT' -
  _____                                _
 |  ___|   ___     ___   _   _   ___  | |
@@ -356,7 +356,7 @@ function print_large_work_banner {
 EOT
 }
 
-function count_down {
+count_down() {
     local type=$1
     local countdown_printer=$2
     local seconds=$3
@@ -395,7 +395,7 @@ function count_down {
     done
 }
 
-function format_seconds_as_hh_mm {
+format_seconds_as_hh_mm() {
     local seconds=$1
 
     local hours=`expr $seconds / 3600`
@@ -410,7 +410,7 @@ function format_seconds_as_hh_mm {
     printf "%02d:%02d\n" $minutes $seconds
 }
 
-function tear_down {
+tear_down() {
     stty sane
     show_cursor
     tear_down_application_indicator
@@ -418,7 +418,7 @@ function tear_down {
     exit 0
 }
 
-function tear_down_application_indicator {
+tear_down_application_indicator() {
     if [ -n "$APPLICATION_INDICATOR_COMMAND" ]
     then
        rm -f $APPLICATION_INDICATOR_ICON_FILE $APPLICATION_INDICATOR_CONFIG_FILE
@@ -427,7 +427,7 @@ function tear_down_application_indicator {
 }
 
 # https://github.com/fossfreedom/indicator-sysmonitor
-function initialize_application_indicator {
+initialize_application_indicator() {
     if [ -n "$APPLICATION_INDICATOR_COMMAND" ]
     then
 	echo '{"on_startup": false, "sensors": {"pomodoro": ["", "cat '$APPLICATION_INDICATOR_ICON_FILE'"] }, "interval": 2.0, "custom_text": "{pomodoro}"}' >$APPLICATION_INDICATOR_CONFIG_FILE
@@ -436,7 +436,7 @@ function initialize_application_indicator {
     fi
 }
 
-function set_application_indicator_icon {
+set_application_indicator_icon() {
     local icon_path=$1
 
     if [ -n "$APPLICATION_INDICATOR_COMMAND" ]
@@ -447,7 +447,7 @@ function set_application_indicator_icon {
 
 # https://wiki.ubuntu.com/NotifyOSD
 # https://developer.gnome.org/notification-spec/
-function send_notification {
+send_notification() {
     local message=$1
 
     if [ -n "$NOTIFICATION_COMMAND" ]
@@ -456,7 +456,7 @@ function send_notification {
     fi
 }
 
-function set_chat_status {
+set_chat_status() {
     local new_status=$1
 
     if [ -n "$SET_CHAT_STATUS_COMMAND" ]
@@ -465,7 +465,7 @@ function set_chat_status {
     fi
 }
 
-function play_sound {
+play_sound() {
     local sound_file=$1
 
     if [ -n "$SOUND_PLAYER_COMMAND" ]
@@ -476,7 +476,7 @@ function play_sound {
     fi
 }
 
-function do_work_countdown {
+do_work_countdown() {
     local goal=$1
 
     set_chat_status "dnd"
@@ -485,37 +485,37 @@ function do_work_countdown {
     count_down "work" "$WORK_COUNTDOWN_PRINTER" $WORK_SECONDS "$goal"
 }
 
-function do_break_countdown {
+do_break_countdown() {
     set_chat_status "chat"
     set_application_indicator_icon "$TAKING_A_BREAK_ICON"
 
     count_down "break" "$BREAK_COUNTDOWN_PRINTER" $BREAK_SECONDS
 }
 
-function discard_stdin {
+discard_stdin() {
     while read -t 0
     do
 	read -s -n 1
     done
 }
 
-function start_text_standout_mode {
+start_text_standout_mode() {
     tput smso
 }
 
-function end_text_standout_mode {
+end_text_standout_mode() {
     tput rmso
 }
 
-function hide_cursor {
+hide_cursor() {
     tput civis
 }
 
-function show_cursor {
+show_cursor() {
     tput cnorm
 }
 
-function prompt_to_start {
+prompt_to_start() {
     set_application_indicator_icon "$WAITING_TO_START_ICON"
 
     tput clear
@@ -540,7 +540,7 @@ function prompt_to_start {
     done
 }
 
-function set_up {
+set_up() {
     trap tear_down SIGINT SIGTERM SIGHUP
 
     # Handling the WINCH signal was causing random freezes when I resized
@@ -556,7 +556,7 @@ function set_up {
     fi
 }
 
-function main_loop {
+main_loop() {
     local goal=$1
 
     while true
