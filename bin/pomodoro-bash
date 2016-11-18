@@ -7,7 +7,7 @@ find_command() {
 	command -v "$command" >/dev/null 2>&1
 	if [ $? = 0 ]
 	then
-	    echo "$command"
+	    printf "$command\n"
 	    return
 	fi
     done
@@ -83,7 +83,7 @@ do
 	    shift
 	    ;;
 	-h|*)
-	    echo "pomodoro-bash [ -w WORK_SECONDS ] [ -b BREAK_SECONDS ] [ -p ]"
+	    printf "pomodoro-bash [ -w WORK_SECONDS ] [ -b BREAK_SECONDS ] [ -p ]\n"
 	    exit 0
 	    ;;
     esac
@@ -106,7 +106,7 @@ run_command() {
 }
 
 fail() {
-    echo "$*" 1>&2
+    printf "$*\n" 1>&2
     exit 1
 }
 
@@ -116,25 +116,25 @@ handle_command() {
     if [ "$command" = "s" ]
     then
 	tput clear
-	echo -ne "Starting a new pomo..."
+	printf "Starting a new pomo..."
 	main_loop
     elif [ "$command" = "g" ]
     then
 	tput clear
 	show_cursor
-	echo -e "What is your goal for this pomo? "
+	printf "What is your goal for this pomo? "
 	read -e goal
-	echo -ne "Starting a new pomo..."
+	printf "Starting a new pomo..."
 	main_loop "$goal"
     elif [ "$command" = "q" ]
     then
-	echo -e "\nBye!"
+	printf "\nBye!\n"
 	tear_down
 	exit 0
     elif [ "$command" = "b" ]
     then
 	tput clear
-	echo -e "\nTaking a break..."
+	printf "\nTaking a break..."
 	do_break_countdown
 	prompt_to_start
 	main_loop
@@ -175,10 +175,10 @@ print_countdown_time() {
 }
 
 print_tiny_break_time() {
-    echo '$time'
+    printf '$time\n'
 }
 print_small_break_time() {
-    echo '$time'
+    print_tiny_break_time
 }
 print_medium_break_time() {
     local time=$1
@@ -232,10 +232,10 @@ EOT
 }
 
 print_tiny_work_time() {
-    echo '$time'
+    printf '$time\n'
 }
 print_small_work_time() {
-    echo '$time'
+    print_tiny_work_time
 }
 print_medium_work_time() {
     local time=$1
@@ -298,7 +298,7 @@ print_banner() {
 }
 
 print_tiny_break_banner() {
-    echo "Break!"
+    printf "Break!\n"
 }
 print_small_break_banner() {
     print_large_break_banner
@@ -318,7 +318,7 @@ EOT
 }
 
 print_tiny_ready_banner() {
-    echo "Ready?"
+    printf "Ready?\n"
 }
 print_small_ready_banner() {
     print_large_ready_banner
@@ -338,7 +338,7 @@ EOT
 }
 
 print_tiny_work_banner() {
-    echo "Focus!"
+    printf "Focus!\n"
 }
 print_small_work_banner() {
     print_large_work_banner
@@ -376,13 +376,13 @@ count_down() {
 	tput clear
 
 	# Replace with printf to be POSIX compliant. http://pubs.opengroup.org/onlinepubs/009695399/utilities/echo.html
-	echo -e "$banner_message\n"
+	printf "$banner_message\n"
 	if [ -n "$goal" ]
 	then
-	    echo -e "Goal: $goal\n"
+	    printf "Goal: $goal\n"
 	fi
-	echo -e "$countdown_message\n"
-	echo -e "$INTERACTIVE_COMMANDS_PROMPT $command_result"
+	printf "$countdown_message\n"
+	printf "$INTERACTIVE_COMMANDS_PROMPT $command_result"
 
 	hide_cursor
 	local wait_seconds=1
@@ -405,7 +405,7 @@ format_seconds_as_hh_mm() {
     local hours=`expr $seconds / 3600`
     if [ $hours -gt 0 ]
     then
-	echo "I refuse to do that long of a pomodoro!" 1>&2
+	printf "I refuse to do that long of a pomodoro!\n" 1>&2
 	exit 1
     fi
 
@@ -434,8 +434,8 @@ tear_down_application_indicator() {
 initialize_application_indicator() {
     if [ -n "$APPLICATION_INDICATOR_COMMAND" ]
     then
-	echo '{"on_startup": false, "sensors": {"pomodoro": ["", "cat '$APPLICATION_INDICATOR_ICON_FILE'"] }, "interval": 2.0, "custom_text": "{pomodoro}"}' >$APPLICATION_INDICATOR_CONFIG_FILE
-	echo "Starting..." >$APPLICATION_INDICATOR_ICON_FILE
+	printf '{"on_startup": false, "sensors": {"pomodoro": ["", "cat '$APPLICATION_INDICATOR_ICON_FILE'"] }, "interval": 2.0, "custom_text": "{pomodoro}"}\n' >$APPLICATION_INDICATOR_CONFIG_FILE
+	printf "Starting..." >$APPLICATION_INDICATOR_ICON_FILE
 	"$APPLICATION_INDICATOR_COMMAND" --config="$APPLICATION_INDICATOR_CONFIG_FILE" >>$LOG_FILE 2>&1 &
     fi
 }
@@ -445,7 +445,7 @@ set_application_indicator_icon() {
 
     if [ -n "$APPLICATION_INDICATOR_COMMAND" ]
     then
-	echo "USE_ICON:$icon_path" >$APPLICATION_INDICATOR_ICON_FILE
+	printf "USE_ICON:$icon_path\n" >$APPLICATION_INDICATOR_ICON_FILE
     fi
 }
 
@@ -476,7 +476,7 @@ play_sound() {
     then
 	run_command "$sound_file" "${SOUND_PLAYER_COMMAND[@]}"
     else
-	echo -ne ''
+	printf ''
     fi
 }
 
@@ -529,7 +529,7 @@ prompt_to_start() {
     while true
     do
 	discard_stdin
-	echo -ne "\n$INTERACTIVE_COMMANDS_PROMPT [$default_command] "
+	printf "\n$INTERACTIVE_COMMANDS_PROMPT [$default_command] "
 	show_cursor
 	read -n 1 command
 	hide_cursor
@@ -540,7 +540,7 @@ prompt_to_start() {
 	fi
 
 	handle_command $command
-	echo -e "\nHuh?"
+	printf "\nHuh?"
     done
 }
 
