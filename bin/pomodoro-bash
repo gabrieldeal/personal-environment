@@ -94,9 +94,12 @@ function run_command {
     shift
     local command=("$@")
 
-    for index in $(seq 0 $(( ${#command[@]} - 1 )))
+    index=0
+    end=${#command[@]}
+    while [ $index -lt $end ]
     do
 	command[$index]=$(printf -- "${command[$index]}" "$command_argument")
+	index=$(($index + 1))
     done
 
     "${command[@]}" >>$LOG_FILE 2>&1 &
