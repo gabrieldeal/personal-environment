@@ -94,8 +94,8 @@ run_command() {
     shift
     local command=("$@")
 
-    index=0
-    end=${#command[@]}
+    local index=0
+    local end=${#command[@]}
     while [ $index -lt $end ]
     do
 	command[$index]=$(printf -- "${command[$index]}" "$command_argument")
