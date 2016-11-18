@@ -18,8 +18,11 @@ LOG_FILE="$HOME/tmp/pomodoro-bash.log"
 SET_CHAT_STATUS_COMMAND=("set-hipchat-status" "-u" "@GabrielDeal" "-h" "api.hipchat.com" "-s" "%s" "--auth-token" "$(cat "$HOME/.ssh/auth-token.txt")")
 
 # SOUND_PLAYER_COMMAND=()
-# NOTIFICATION_COMMAND=
-#
+
+## Mac OS:
+# NOTIFICATION_COMMAND=(display notification "%s")
+
+
 # APPLICATION_INDICATOR_COMMAND=
 # APPLICATION_INDICATOR_CONFIG_FILE=
 # APPLICATION_INDICATOR_ICON_FILE=

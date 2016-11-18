@@ -61,8 +61,11 @@ fi
 : ${APPLICATION_INDICATOR_ICON_FILE:=${TMPDIR:-/tmp}/$USER-pomodoro-indicator-icon.txt}
 
 # Mac OS: display notification "the message" with title "the title" subtitle "the subtitle"
-: ${NOTIFICATION_COMMAND:=`find_command notify-send`}
-
+default_notification_command=$(find_command notify-send)
+if [ -z "$NOTIFICATION_COMMAND" ] && [ -n "$default_notification_command" ]
+then
+    NOTIFICATION_COMMAND=("$default_notification_command" %s)
+fi
 
 while [ "$#" -gt 0 ]
 do
@@ -444,11 +447,10 @@ function set_application_indicator_icon {
 # https://developer.gnome.org/notification-spec/
 function send_notification {
     local message=$1
-    local icon=$2
 
     if [ -n "$NOTIFICATION_COMMAND" ]
     then
-	"$NOTIFICATION_COMMAND" --urgency=normal --icon="$icon" "$message" >>$LOG_FILE 2>&1
+	run_command "$message" "${NOTIFICATION_COMMAND[@]}"
     fi
 }
 
@@ -559,11 +561,11 @@ function main_loop {
     do
 	do_work_countdown "$goal"
 
-	send_notification "Take a break!" "$TAKING_A_BREAK_ICON"
+	send_notification "Take a break!"
 	play_sound "$TAKING_A_BREAK_SOUND"
 	do_break_countdown
 
-	send_notification "Break over, man!" "$WORKING_ICON"
+	send_notification "Break over, man!"
 	play_sound "$WAITING_TO_START_SOUND"
 	prompt_to_start
     done
