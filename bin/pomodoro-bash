@@ -92,9 +92,8 @@ done
 function run_command {
     local command_argument=$1
     shift
-    local command_format=("$@")
+    local command=("$@")
 
-    command=("${command_format[@]}")
     for index in $(seq 0 $(( ${#command[@]} - 1 )))
     do
 	command[$index]=$(printf -- "${command[$index]}" "$command_argument")
