@@ -7,7 +7,7 @@ find_command() {
 	command -v "$command" >/dev/null 2>&1
 	if [ $? = 0 ]
 	then
-	    printf "$command\n"
+	    printf "%s\n" "$command"
 	    return
 	fi
     done
@@ -98,7 +98,7 @@ run_command() {
 }
 
 fail() {
-    printf "$*\n" 1>&2
+    echo "$*" 1>&2
     exit 1
 }
 
@@ -377,13 +377,13 @@ count_down() {
 	tput clear
 
 	# Replace with printf to be POSIX compliant. http://pubs.opengroup.org/onlinepubs/009695399/utilities/echo.html
-	printf "$banner_message\n"
+	printf "%s\n" "$banner_message"
 	if [ -n "$goal" ]
 	then
-	    printf "Goal: $goal\n"
+	    printf "Goal: %s\n" "$goal"
 	fi
-	printf "$countdown_message\n"
-	printf "$INTERACTIVE_COMMANDS_PROMPT $command_result"
+	printf "%s\n" "$countdown_message"
+	printf "%s %s" "$INTERACTIVE_COMMANDS_PROMPT" "$command_result"
 
 	hide_cursor
 	local wait_seconds=1
