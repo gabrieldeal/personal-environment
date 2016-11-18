@@ -374,6 +374,8 @@ count_down() {
 
 	discard_stdin
 	tput clear
+
+	# Replace with printf to be POSIX compliant. http://pubs.opengroup.org/onlinepubs/009695399/utilities/echo.html
 	echo -e "$banner_message\n"
 	if [ -n "$goal" ]
 	then
@@ -384,6 +386,8 @@ count_down() {
 
 	hide_cursor
 	local wait_seconds=1
+
+	# To make this POSIX: http://stackoverflow.com/questions/32213758
 	read -s -n 1 -t $wait_seconds command
 	if [ -n "$command" ]
 	then
