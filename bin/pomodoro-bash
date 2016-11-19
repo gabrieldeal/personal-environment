@@ -375,7 +375,6 @@ count_down() {
 	local banner_message="$(print_banner "$type")"
 	local countdown_message="$(print_countdown_time "$type" "$end_date")"
 
-	discard_stdin
 	tput clear
 
 	# Replace with printf to be POSIX compliant. http://pubs.opengroup.org/onlinepubs/009695399/utilities/echo.html
@@ -391,6 +390,7 @@ count_down() {
 
 	# To make this POSIX: http://stackoverflow.com/questions/32213758
 	local command="$(read_char $wait_seconds)"
+	discard_stdin
 	if [ -n "$command" ]
 	then
 	    handle_command "$command"
