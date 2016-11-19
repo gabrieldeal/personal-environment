@@ -107,34 +107,35 @@ fail() {
     exit 1
 }
 
-handle_command() {
+handle_interactive_command() {
     local command="$1"
 
-    if [ "$command" = "s" ]
-    then
-	tput clear
-	printf "Starting a new pomo..."
-	main_loop
-    elif [ "$command" = "g" ]
-    then
-	tput clear
-	show_cursor
-	printf "What is your goal for this pomo? "
-	read goal
-	printf "Starting a new pomo..."
-	main_loop "$goal"
-    elif [ "$command" = "q" ]
-    then
-	tear_down
-	exit 0
-    elif [ "$command" = "b" ]
-    then
-	tput clear
-	printf "\nTaking a break..."
-	do_break_countdown
-	prompt_to_start
-	main_loop
-    fi
+    case "$command" in
+	s)
+	    tput clear
+	    printf "Starting a new pomo..."
+	    main_loop
+	    ;;
+	g)
+	    tput clear
+	    show_cursor
+	    printf "What is your goal for this pomo? "
+	    read goal
+	    printf "Starting a new pomo..."
+	    main_loop "$goal"
+	    ;;
+	q)
+	    tear_down
+	    exit 0
+	    ;;
+	b)
+	    tput clear
+	    printf "\nTaking a break..."
+	    do_break_countdown
+	    prompt_to_start
+	    main_loop
+	    ;;
+    esac
 
     return 1
 }
@@ -395,7 +396,7 @@ count_down() {
 	discard_stdin
 	if [ -n "$command" ]
 	then
-	    handle_command "$command"
+	    handle_interactive_command "$command"
 	    command_result="Huh? "
 	fi
 
@@ -560,7 +561,7 @@ prompt_to_start() {
 	    command=$default_command
 	fi
 
-	handle_command "$command"
+	handle_interactive_command "$command"
 	printf "\nHuh?"
     done
 }
