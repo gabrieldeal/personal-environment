@@ -37,7 +37,7 @@ read_configuration() {
 
     : ${LOG_FILE:=/dev/null}
 
-    default_sound_player_program=$(find_command paplay madplay sndfile-play mpg123 afplay beep)
+    local default_sound_player_program=$(find_command paplay madplay sndfile-play mpg123 afplay beep)
     if [ -z "$SOUND_PLAYER_COMMAND" ] && [ -n "$default_sound_player_program" ]
     then
 	SOUND_PLAYER_COMMAND="\"$default_sound_player_program\" \"%s\""
@@ -50,7 +50,7 @@ read_configuration() {
     : ${APPLICATION_INDICATOR_ICON_FILE:=${TMPDIR:-/tmp}/$USER-pomodoro-indicator-icon.txt}
 
     # Mac OS: display notification "the message" with title "the title" subtitle "the subtitle"
-    default_notification_command=$(find_command notify-send)
+    local default_notification_command=$(find_command notify-send)
     if [ -z "$NOTIFICATION_COMMAND" ] && [ -n "$default_notification_command" ]
     then
 	NOTIFICATION_COMMAND="\"$default_notification_command\" \"%s\""
@@ -81,7 +81,6 @@ read_command_line_options() {
 	esac
     done
 }
-
 
 find_command() {
     for command in "$@"
@@ -383,7 +382,6 @@ count_down() {
 
 	tput clear
 
-	# Replace with printf to be POSIX compliant. http://pubs.opengroup.org/onlinepubs/009695399/utilities/echo.html
 	printf "%s\n" "$banner_message"
 	if [ -n "$goal" ]
 	then
@@ -393,8 +391,6 @@ count_down() {
 	printf "%s %s" "$INTERACTIVE_COMMANDS_PROMPT" "$command_result"
 
 	local wait_seconds=1
-
-	# To make this POSIX: http://stackoverflow.com/questions/32213758
 	local command="$(read_char $wait_seconds)"
 	discard_stdin
 	if [ -n "$command" ]
