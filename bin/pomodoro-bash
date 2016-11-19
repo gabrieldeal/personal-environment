@@ -94,7 +94,7 @@ run_command() {
     local command_argument="$2"
 
     local command="$(printf "$command_format" "$command_argument")"
-    eval "$command" >>$LOG_FILE 2>&1 &
+    eval "$command" >>"$LOG_FILE" 2>&1 &
 }
 
 fail() {
@@ -428,19 +428,34 @@ tear_down() {
 tear_down_application_indicator() {
     if [ -n "$APPLICATION_INDICATOR_COMMAND" ]
     then
-       rm -f $APPLICATION_INDICATOR_ICON_FILE $APPLICATION_INDICATOR_CONFIG_FILE
+       rm -f "$APPLICATION_INDICATOR_ICON_FILE" "$APPLICATION_INDICATOR_CONFIG_FILE"
        killall "$APPLICATION_INDICATOR_COMMAND" >/dev/null 2>&1
     fi
 }
 
 # https://github.com/fossfreedom/indicator-sysmonitor
 initialize_application_indicator() {
-    if [ -n "$APPLICATION_INDICATOR_COMMAND" ]
+    if [ -z "$APPLICATION_INDICATOR_COMMAND" ]
     then
-	printf '{"on_startup": false, "sensors": {"pomodoro": ["", "cat '$APPLICATION_INDICATOR_ICON_FILE'"] }, "interval": 2.0, "custom_text": "{pomodoro}"}\n' >$APPLICATION_INDICATOR_CONFIG_FILE
-	printf "Starting..." >$APPLICATION_INDICATOR_ICON_FILE
-	"$APPLICATION_INDICATOR_COMMAND" --config="$APPLICATION_INDICATOR_CONFIG_FILE" >>$LOG_FILE 2>&1 &
+	return
     fi
+
+    local json_config_format='
+{
+    "on_startup": false,
+    "sensors": {
+	"pomodoro": [
+	    "",
+	    "cat \"%s\""
+	 ]
+    },
+    "interval": 2.0,
+    "custom_text": "{pomodoro}"
+}
+'
+    printf "$json_config_format" "$APPLICATION_INDICATOR_ICON_FILE" >"$APPLICATION_INDICATOR_CONFIG_FILE"
+    printf "Starting..." >"$APPLICATION_INDICATOR_ICON_FILE"
+    "$APPLICATION_INDICATOR_COMMAND" --config="$APPLICATION_INDICATOR_CONFIG_FILE" >>"$LOG_FILE" 2>&1 &
 }
 
 set_application_indicator_icon() {
@@ -448,7 +463,7 @@ set_application_indicator_icon() {
 
     if [ -n "$APPLICATION_INDICATOR_COMMAND" ]
     then
-	printf "USE_ICON:$icon_path\n" >$APPLICATION_INDICATOR_ICON_FILE
+	printf "USE_ICON:$icon_path\n" >"$APPLICATION_INDICATOR_ICON_FILE"
     fi
 }
 
@@ -542,7 +557,7 @@ prompt_to_start() {
 	    command=$default_command
 	fi
 
-	handle_command $command
+	handle_command "$command"
 	printf "\nHuh?"
     done
 }
