@@ -18,9 +18,25 @@ read_configuration() {
     # http://www.clipartlord.com/category/food-clip-art/vegetables-clip-art/tomato-clip-art/
     : ${WORKING_ICON:="$HOME/local/pomodoro-bash/tomato13.png"}
 
+    # ASCII art from dogsay. MIT License. Copyright (c) 2015 Forrest Fleming.
+    # https://github.com/ffleming/dogsay
+    : ${WORKING_LARGE_ASCII_ART:="$HOME/local/pomodoro-bash/large-dino.txt"}
+
+    # ASCII art from dogsay. MIT License. Copyright (c) 2015 Forrest Fleming.
+    # https://github.com/ffleming/dogsay
+    : ${WORKING_MEDIUM_ASCII_ART:="$HOME/local/pomodoro-bash/medium-dino.txt"}
+
     # Public domain dog.
     # https://thenounproject.com/term/dog/364/
     : ${TAKING_A_BREAK_ICON:="$HOME/local/pomodoro-bash/dog.svg"}
+
+    # ASCII art from dogsay. MIT License. Copyright (c) 2015 Forrest Fleming.
+    # https://github.com/ffleming/dogsay
+    : ${TAKING_A_BREAK_LARGE_ASCII_ART:="$HOME/local/pomodoro-bash/large-dog.txt"}
+
+    # ASCII art from dogsay. MIT License. Copyright (c) 2015 Forrest Fleming.
+    # https://github.com/ffleming/dogsay
+    : ${TAKING_A_BREAK_MEDIUM_ASCII_ART:="$HOME/local/pomodoro-bash/medium-dog.txt"}
 
     # "Barking of a dog" by Wikimedia Commons is licensed under CC BY 3.0.
     # https://commons.wikimedia.org/wiki/File:Barking_of_a_dog.ogg
@@ -114,54 +130,10 @@ print_small_break_time() {
     print_tiny_break_time
 }
 print_medium_break_time() {
-    local time="$1"
-
-    # ASCII art from dogsay. MIT License. Copyright (c) 2015 Forrest Fleming.
-    # https://github.com/ffleming/dogsay
-    cat <<'EOT' -
-+-------+
-| $time |
-+-------+
-\   _
- \ /  \
-  /|oo \
- (_|  /_)
-   `@/  \
-   |     \     _
-    \||   \   //
-    |||\ /  \//
-  _//|| _\   /
- (_/(_|(____/
-EOT
+    cat "$TAKING_A_BREAK_MEDIUM_ASCII_ART"
 }
 print_large_break_time() {
-    local time="$1"
-
-    # ASCII art from dogsay. MIT License. Copyright (c) 2015 Forrest Fleming.
-    # https://github.com/ffleming/dogsay
-    cat <<'EOT' -
-			  _            +-------+
-			,:'/   _..._   | $time |
-		       // ( `""-.._.'  +-------+
-                       \| /    6\___  /
-                       |     6      4
-                       |            /
-                       \_       .--'
-                       (_'---'`)
-                       / `'---`()
-                     ,'        |
-     ,            .'`          |
-     )\       _.-'             ;
-    / |    .'`   _            /
-  /` /   .'       '.        , |
- /  /   /           \   ;   | |
-|  \  |            |  .|   | |
-  \  `"|           /.-' |   | |
-   '-..-\       _.;.._  |   |.;-.
-         \    <`.._  )) |  .;-. ))
-         (__.  `  ))-'  \_    ))'
-             `'--"`       `"""`
-EOT
+    cat "$TAKING_A_BREAK_LARGE_ASCII_ART"
 }
 
 print_tiny_work_time() {
@@ -171,56 +143,10 @@ print_small_work_time() {
     print_tiny_work_time
 }
 print_medium_work_time() {
-    local time="$1"
-
-    # ASCII art from dogsay. MIT License. Copyright (c) 2015 Forrest Fleming.
-    # https://github.com/ffleming/dogsay
-    cat <<'EOT' -
-		   __   +-------+
-		  / _) /| $time |
-	 _.----._/ /    +-------+
-       /          /
-.--__/  (  | (  |'
- '-__..-'|_|--|_|
-EOT
+    cat "$WORKING_MEDIUM_ASCII_ART"
 }
 print_large_work_time() {
-    local time="$1"
-
-    # ASCII art from dogsay. MIT License. Copyright (c) 2015 Forrest Fleming.
-    # https://github.com/ffleming/dogsay
-    cat <<'EOT' -
-+-------+
-| $time |           .-=-==--==--.
-+-------+     ..-=="  ,'o`)      `.
-             ,'         `"'         \
-          \ :  (                     `.__...._
-            |                  )    /         `-=-.
-            :       ,vv.-._   /    /               `---==-._
-             \/\/\/VV ^ d88`;'    /                         `.
-                 ``  ^/d88P!'    /             ,              `._
-                    ^/    !'   ,.      ,      /                  "-,,__,,--'""""-.
-                   ^/    !'  ,'  \ . .(      (         _           )  ) ) ) ))_,-.\
-                  ^(__ ,!',"'   ;:+.:%:a.     \:.. . ,'          )  )  ) ) ,"'    '
-                  ',,,'','     /o:::":%:%a.    \:.:.:         .    )  ) _,'
-                   """'       ;':::'' `+%%%a._  \%:%|         ;.). _,-""
-                          ,-='_.-'      ``:%::)  )%:|        /:._,"
-                         (/(/"           ," ,'_,'%%%:       (_,'
-                                        (  (//(`.___;        \
-                                         \     \    `         `
-                                          `.    `.   `.        :
-                                            \. . .\    : . . . :
-                                             \. . .:    `.. . .:
-                                              `..:.:\     \:...\
-                                               ;:.:.;      ::...:
-                                               ):%::       :::::;
-                                           __,::%:(        :::::
-                                        ,;:%%%%%%%:        ;:%::
-                                          ;,--""-.`\  ,=--':%:%:\
-                                         /"       "| /-".:%%%%%%%\
-                                                         ;,-"'`)%%)
-                                                        /"      "|
-EOT
+    cat "$WORKING_LARGE_ASCII_ART"
 }
 
 print_banner() {
