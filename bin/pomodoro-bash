@@ -273,6 +273,7 @@ handle_interactive_command() {
     return 1
 }
 
+# FIXME: derive this from the output data during initialization.
 handle_screen_resize() {
     local lines=$(tput lines)
     local columns=$(tput cols)
@@ -405,7 +406,7 @@ set_application_indicator_icon() {
 
     if [ -n "$APPLICATION_INDICATOR_COMMAND" ]
     then
-	printf "USE_ICON:$icon_path\n" >"$APPLICATION_INDICATOR_ICON_FILE"
+	echo "USE_ICON:$icon_path" >"$APPLICATION_INDICATOR_ICON_FILE"
     fi
 }
 
@@ -493,7 +494,7 @@ prompt_to_start() {
     while true
     do
 	discard_stdin
-	printf "\n$INTERACTIVE_COMMANDS_PROMPT [$default_command] "
+	printf "\n%s [%s] " "$INTERACTIVE_COMMANDS_PROMPT" "$default_command"
 
 	show_cursor
 	local command="$(read_char | tr -d '\r\n')"
