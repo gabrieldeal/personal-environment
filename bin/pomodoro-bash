@@ -51,7 +51,7 @@ fi
 default_sound_player_program=$(find_command paplay madplay sndfile-play mpg123 afplay beep)
 if [ -z "$SOUND_PLAYER_COMMAND" ] && [ -n "$default_sound_player_program" ]
 then
-    SOUND_PLAYER_COMMAND="$default_sound_player_program %s"
+    SOUND_PLAYER_COMMAND="\"$default_sound_player_program\" \"%s\""
 fi
 
 # No default value for SET_CHAT_STATUS_COMMAND.
@@ -64,7 +64,7 @@ fi
 default_notification_command=$(find_command notify-send)
 if [ -z "$NOTIFICATION_COMMAND" ] && [ -n "$default_notification_command" ]
 then
-    NOTIFICATION_COMMAND="$default_notification_command %s"
+    NOTIFICATION_COMMAND="\"$default_notification_command\" \"%s\""
 fi
 
 while [ "$#" -gt 0 ]
