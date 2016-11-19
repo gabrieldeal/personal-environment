@@ -56,7 +56,7 @@ fi
 
 # No default value for SET_CHAT_STATUS_COMMAND.
 
-: ${APPLICATION_INDICATOR_COMMAND:=`find_command indicator-sysmonitor`}
+: ${APPLICATION_INDICATOR_COMMAND:=$(find_command indicator-sysmonitor)}
 : ${APPLICATION_INDICATOR_CONFIG_FILE:=${TMPDIR:-/tmp}/$USER-pomodoro-indicator-config.txt}
 : ${APPLICATION_INDICATOR_ICON_FILE:=${TMPDIR:-/tmp}/$USER-pomodoro-indicator-icon.txt}
 
@@ -135,8 +135,8 @@ handle_command() {
 }
 
 handle_screen_resize() {
-    local lines=`tput lines`
-    local columns=`tput cols`
+    local lines=$(tput lines)
+    local columns=$(tput cols)
 
     if [ $lines -ge 40 ] && [ $columns -ge 83 ]
     then
@@ -364,7 +364,7 @@ count_down() {
     local goal="$4"
 
     local command_result=
-    local now="`date +%s`"
+    local now="$(date +%s)"
     local end_date=$(( $now + $seconds ))
     while [ $end_date -gt $now ]
     do
@@ -396,22 +396,22 @@ count_down() {
 	    command_result="Huh? "
 	fi
 
-	now=`date +%s`
+	now=$(date +%s)
     done
 }
 
 format_seconds_as_hh_mm() {
     local seconds=$1
 
-    local hours=`expr $seconds / 3600`
+    local hours=$(expr $seconds / 3600)
     if [ $hours -gt 0 ]
     then
 	printf "I refuse to do that long of a pomodoro!\n" 1>&2
 	exit 1
     fi
 
-    local minutes=`expr $seconds  % 3600 / 60`
-    local seconds=`expr $seconds % 60`
+    local minutes=$(expr $seconds  % 3600 / 60)
+    local seconds=$(expr $seconds % 60)
     printf "%02d:%02d\n" $minutes $seconds
 }
 
