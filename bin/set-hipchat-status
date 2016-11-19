@@ -7,7 +7,26 @@ require 'optparse'
 
 def read_options
   options = {}
-  OptionParser.new do |opts|
+
+  parser, options = make_option_parser
+  parser.parse!
+
+  if options[:auth_token].nil? && !ENV['HIPCHAT_AUTH_TOKEN'].nil?
+    options[:auth_token] = ENV['HIPCHAT_AUTH_TOKEN']
+  end
+
+  validate_options(options)
+
+  options
+rescue => e
+  STDERR.puts "Error: #{e.message}\n\n"
+  STDERR.puts parser.help if parser
+  exit 1
+end
+
+def make_option_parser
+  options = {}
+  parser = OptionParser.new do |opts|
     opts.banner = 'Usage: set-chat-status [OPTIONS]'
 
     opts.on('-u',
@@ -29,11 +48,19 @@ def read_options
     opts.on('-h', '--hipchat-host HOST', 'The Hipchat server') do |v|
       options[:host] = v
     end
-  end.parse!
+  end
 
-  options[:auth_token] ||= ENV['HIPCHAT_AUTH_TOKEN']
+  [parser, options]
+end
 
-  options
+def validate_options(options)
+  errors = []
+  %i(user_name auth_token status host).each do |required_option|
+    next if options.key?(required_option)
+    errors << "Missing #{required_option.to_s.gsub('_', ' ')}."
+  end
+
+  raise ArgumentError.new(errors.join(' ')) unless errors.empty?
 end
 
 def get_user(params)
@@ -72,6 +99,7 @@ def update_user(params)
 end
 
 options = read_options
+validate_options(options)
 
 http = Net::HTTP.new(options[:host], 443)
 http.use_ssl = true
