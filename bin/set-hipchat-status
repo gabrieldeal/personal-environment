@@ -95,7 +95,10 @@ def update_user(params)
   request['Content-Type'] = 'application/json'
 
   response = params[:http].request(request)
-  raise "Update failed: #{response.inspect} #{response.body}" unless response.is_a?(Net::HTTPSuccess)
+
+  unless response.is_a?(Net::HTTPSuccess)
+    raise "Update failed: #{response.inspect} #{response.body}"
+  end
 end
 
 options = read_options
@@ -106,9 +109,11 @@ http.use_ssl = true
 
 user = get_user(auth_token: options[:auth_token],
                 http: http,
-                host: options[:host],
-                user_name: options[:user_name])
+                user_name: options[:user_name],
+                host: options[:host])
+
 user[:presence][:show] = options[:status]
+
 update_user(auth_token: options[:auth_token],
             http: http,
             user: user,
