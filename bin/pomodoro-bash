@@ -363,6 +363,8 @@ count_down() {
     local seconds="$3"
     local goal="$4"
 
+    hide_cursor
+
     local command_result=
     local now="$(date +%s)"
     local end_date=$(( $now + $seconds ))
@@ -385,7 +387,6 @@ count_down() {
 	printf "%s\n" "$countdown_message"
 	printf "%s %s" "$INTERACTIVE_COMMANDS_PROMPT" "$command_result"
 
-	hide_cursor
 	local wait_seconds=1
 
 	# To make this POSIX: http://stackoverflow.com/questions/32213758
