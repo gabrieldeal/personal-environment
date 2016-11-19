@@ -1,6 +1,8 @@
 #!/usr/bin/env ruby2.0
 #-*- ruby -*-
 
+# This may belong here: https://github.com/hipchat/hipchat-cli
+
 require 'json'
 require 'net/http'
 require 'optparse'
