@@ -80,81 +80,17 @@ read_command_line_options() {
 		;;
 	esac
     done
+
+    validate_timer_duration $WORK_SECONDS
+    validate_timer_duration $BREAK_SECONDS
 }
 
-find_command() {
-    for command in "$@"
-    do
-	command -v "$command" >/dev/null 2>&1
-	if [ $? = 0 ]
-	then
-	    printf "%s" "$command"
-	    return
-	fi
-    done
-}
+validate_timer_duration() {
+    local duration_seconds="$1"
 
-run_command() {
-    local command_format="$1"
-    local command_argument="$2"
-
-    local command="$(printf "$command_format" "$command_argument")"
-    eval "$command" >>"$LOG_FILE" 2>&1 &
-}
-
-fail() {
-    echo "$*" 1>&2
-    exit 1
-}
-
-handle_interactive_command() {
-    local command="$1"
-
-    case "$command" in
-	s)
-	    tput clear
-	    printf "Starting a new pomo..."
-	    main_loop
-	    ;;
-	g)
-	    tput clear
-	    show_cursor
-	    printf "What is your goal for this pomo? "
-	    read goal
-	    printf "Starting a new pomo..."
-	    main_loop "$goal"
-	    ;;
-	q)
-	    tear_down
-	    exit 0
-	    ;;
-	b)
-	    tput clear
-	    printf "\nTaking a break..."
-	    do_break_countdown
-	    prompt_to_start
-	    main_loop
-	    ;;
-    esac
-
-    return 1
-}
-
-handle_screen_resize() {
-    local lines=$(tput lines)
-    local columns=$(tput cols)
-
-    if [ $lines -ge 40 ] && [ $columns -ge 83 ]
+    if [ $duration_seconds -ge $(( 60 * 60 )) ]
     then
-	SIZE_CATEGORY=large
-    elif [ $lines -ge 24 ] && [ $columns -ge 49 ]
-    then
-	SIZE_CATEGORY=medium
-    elif [ $lines -ge 11 ] && [ $columns -ge 49 ]
-    then
-	SIZE_CATEGORY=small
-    else
-	SIZE_CATEGORY=tiny
+	fail "$duration_seconds seconds is too long!"
     fi
 }
 
@@ -353,6 +289,82 @@ print_large_work_banner() {
 EOT
 }
 
+find_command() {
+    for command in "$@"
+    do
+	command -v "$command" >/dev/null 2>&1
+	if [ $? = 0 ]
+	then
+	    printf "%s" "$command"
+	    return
+	fi
+    done
+}
+
+run_command() {
+    local command_format="$1"
+    local command_argument="$2"
+
+    local command="$(printf "$command_format" "$command_argument")"
+    eval "$command" >>"$LOG_FILE" 2>&1 &
+}
+
+fail() {
+    echo "$*" 1>&2
+    exit 1
+}
+
+handle_interactive_command() {
+    local command="$1"
+
+    case "$command" in
+	s)
+	    clear_screen
+	    printf "Starting a new pomo..."
+	    main_loop
+	    ;;
+	g)
+	    clear_screen
+	    show_cursor
+	    printf "What is your goal for this pomo? "
+	    read goal
+	    printf "Starting a new pomo..."
+	    main_loop "$goal"
+	    ;;
+	q)
+	    tear_down
+	    exit 0
+	    ;;
+	b)
+	    clear_screen
+	    printf "\nTaking a break..."
+	    do_break_countdown
+	    prompt_to_start
+	    main_loop
+	    ;;
+    esac
+
+    return 1
+}
+
+handle_screen_resize() {
+    local lines=$(tput lines)
+    local columns=$(tput cols)
+
+    if [ $lines -ge 40 ] && [ $columns -ge 83 ]
+    then
+	SIZE_CATEGORY=large
+    elif [ $lines -ge 24 ] && [ $columns -ge 49 ]
+    then
+	SIZE_CATEGORY=medium
+    elif [ $lines -ge 11 ] && [ $columns -ge 49 ]
+    then
+	SIZE_CATEGORY=small
+    else
+	SIZE_CATEGORY=tiny
+    fi
+}
+
 read_char() {
     local timeout_seconds=$1
 
@@ -361,6 +373,25 @@ read_char() {
     stty raw isig -echo $timeout_args
     printf '%s' $(dd bs=1 count=1 2>/dev/null)
     stty $old_settings
+}
+
+print_count_down_screen() {
+    local type="$1"
+    local end_date="$2"
+    local goal="$3"
+    local command_result="$4"
+
+    local banner_message="$(print_banner "$type")"
+    local countdown_message="$(print_countdown_time "$type" "$end_date")"
+
+    clear_screen
+    printf "%s\n" "$banner_message"
+    if [ -n "$goal" ]
+    then
+	printf "Goal: %s\n" "$goal"
+    fi
+    printf "%s\n" "$countdown_message"
+    printf "%s %s" "$INTERACTIVE_COMMANDS_PROMPT" "$command_result"
 }
 
 count_down() {
@@ -372,24 +403,12 @@ count_down() {
     hide_cursor
 
     local command_result=
-    local now="$(date +%s)"
+    local now=$(date +%s)
     local end_date=$(( $now + $seconds ))
     while [ $end_date -gt $now ]
     do
 	handle_screen_resize
-
-	local banner_message="$(print_banner "$type")"
-	local countdown_message="$(print_countdown_time "$type" "$end_date")"
-
-	tput clear
-
-	printf "%s\n" "$banner_message"
-	if [ -n "$goal" ]
-	then
-	    printf "Goal: %s\n" "$goal"
-	fi
-	printf "%s\n" "$countdown_message"
-	printf "%s %s" "$INTERACTIVE_COMMANDS_PROMPT" "$command_result"
+	print_count_down_screen "$type" "$end_date" "$goal" "$command_result"
 
 	local wait_seconds=1
 	local command="$(read_char $wait_seconds)"
@@ -407,15 +426,8 @@ count_down() {
 format_seconds_as_hh_mm() {
     local seconds=$1
 
-    local hours=$(expr $seconds / 3600)
-    if [ $hours -gt 0 ]
-    then
-	printf "I refuse to do that long of a pomodoro!\n" 1>&2
-	exit 1
-    fi
-
-    local minutes=$(expr $seconds  % 3600 / 60)
-    local seconds=$(expr $seconds % 60)
+    local minutes=$(( $seconds % 3600 / 60 ))
+    local seconds=$(( $seconds % 60 ))
     printf "%02d:%02d\n" $minutes $seconds
 }
 
@@ -541,10 +553,14 @@ show_cursor() {
     tput cnorm
 }
 
+clear_screen() {
+    tput clear
+}
+
 prompt_to_start() {
     set_application_indicator_icon "$WAITING_TO_START_ICON"
 
-    tput clear
+    clear_screen
     eval "print_${SIZE_CATEGORY}_ready_banner"
 
     local default_command=s
@@ -552,6 +568,7 @@ prompt_to_start() {
     do
 	discard_stdin
 	printf "\n$INTERACTIVE_COMMANDS_PROMPT [$default_command] "
+
 	show_cursor
 	local command="$(read_char | tr -d '\r\n')"
 	hide_cursor
