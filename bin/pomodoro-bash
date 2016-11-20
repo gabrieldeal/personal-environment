@@ -59,8 +59,8 @@ read_configuration() {
     # No default value for SET_CHAT_STATUS_COMMAND.
 
     : ${APPLICATION_INDICATOR_COMMAND:=$(find_command indicator-sysmonitor)}
-    : ${APPLICATION_INDICATOR_CONFIG_FILE:=${TMPDIR:-/tmp}/$USER-pomodoro-indicator-config.txt}
-    : ${APPLICATION_INDICATOR_ICON_FILE:=${TMPDIR:-/tmp}/$USER-pomodoro-indicator-icon.txt}
+    : ${APPLICATION_INDICATOR_CONFIG_FILE:="${TMPDIR:-/tmp}/$USER-pomodoro-indicator-config.txt"}
+    : ${APPLICATION_INDICATOR_ICON_FILE:="${TMPDIR:-/tmp}/$USER-pomodoro-indicator-icon.txt"}
 
     # Mac OS: display notification "the message" with title "the title" subtitle "the subtitle"
     local default_notification_command=$(find_command notify-send)
