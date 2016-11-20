@@ -101,10 +101,7 @@ read_command_line_options() {
 validate_timer_duration() {
     local duration_seconds="$1"
 
-    if [ $duration_seconds -ge $(( 60 * 60 )) ]
-    then
-	fail "$duration_seconds seconds is too long!"
-    fi
+    [ $duration_seconds -ge $(( 60 * 60 )) ] && fail "$duration_seconds seconds is too long!"
 }
 
 print_countdown_time() {
@@ -310,10 +307,7 @@ print_count_down_screen() {
 
     clear_screen
     printf "%s\n" "$banner_message"
-    if [ -n "$goal" ]
-    then
-	printf "Goal: %s\n" "$goal"
-    fi
+    [ -n "$goal" ] && printf "Goal: %s\n" "$goal"
     printf "%s\n" "$countdown_message"
     printf "%s %s" "$INTERACTIVE_COMMANDS_PROMPT" "$command_result"
 }
@@ -401,10 +395,7 @@ initialize_application_indicator() {
 set_application_indicator_icon() {
     local icon_path="$1"
 
-    if [ -n "$APPLICATION_INDICATOR_COMMAND" ]
-    then
-	echo "USE_ICON:$icon_path" >"$APPLICATION_INDICATOR_ICON_FILE"
-    fi
+    [ -n "$APPLICATION_INDICATOR_COMMAND" ] && echo "USE_ICON:$icon_path" >"$APPLICATION_INDICATOR_ICON_FILE"
 }
 
 # https://wiki.ubuntu.com/NotifyOSD
@@ -412,19 +403,13 @@ set_application_indicator_icon() {
 send_notification() {
     local message="$1"
 
-    if [ -n "$NOTIFICATION_COMMAND" ]
-    then
-	run_command "$NOTIFICATION_COMMAND" "$message"
-    fi
+    [ -n "$NOTIFICATION_COMMAND" ] && run_command "$NOTIFICATION_COMMAND" "$message"
 }
 
 set_chat_status() {
     local new_status="$1"
 
-    if [ -n "$SET_CHAT_STATUS_COMMAND" ]
-    then
-	run_command "$SET_CHAT_STATUS_COMMAND" "$new_status"
-    fi
+    [ -n "$SET_CHAT_STATUS_COMMAND" ] && run_command "$SET_CHAT_STATUS_COMMAND" "$new_status"
 }
 
 play_sound() {
@@ -497,10 +482,7 @@ prompt_to_start() {
 	local command="$(read_char | tr -d '\r\n')"
 	hide_cursor
 
-	if [ -z "$command" ]
-	then
-	    command=$default_command
-	fi
+	[ -z "$command" ] && command=$default_command
 
 	handle_interactive_command "$command"
 	printf "\nHuh?"
@@ -517,10 +499,7 @@ initialize() {
     handle_screen_resize
     initialize_application_indicator
 
-    if [ -n "$PROMPT_TO_START" ]
-    then
-	prompt_to_start
-    fi
+    [ -n "$PROMPT_TO_START" ] && prompt_to_start
 }
 
 main_loop() {
