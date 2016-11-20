@@ -121,8 +121,9 @@ is_integer() {
 }
 
 print_countdown_time() {
-    local type="$1"
-    local end_date="$2"
+    local screen_type="$1"
+    local size_category="$2"
+    local end_date="$3"
 
     local seconds_left=$(( $end_date - $now ))
     local formatted_time_left="$(format_seconds_as_hh_mm $seconds_left)"
@@ -130,7 +131,7 @@ print_countdown_time() {
 
     # Using sed instead of variable substitutions because some of the
     # ASCII art contains special shell characters.
-    eval "print_${SIZE_CATEGORY}_${type}_time" | sed "s/\$time/$formatted_time_left/"
+    "print_${size_category}_${screen_type}_time" | sed "s/\$time/$formatted_time_left/"
 }
 
 print_tiny_break_time() { printf '$time\n'; }
@@ -142,13 +143,6 @@ print_tiny_work_time() { printf '$time\n'; }
 print_small_work_time() { print_tiny_work_time; }
 print_medium_work_time() { cat "$WORKING_MEDIUM_ASCII_ART"; }
 print_large_work_time() { cat "$WORKING_LARGE_ASCII_ART"; }
-
-print_banner() {
-    local type="$1"
-
-    local banner_function_name="print_${SIZE_CATEGORY}_${type}_banner"
-    eval "$banner_function_name"
-}
 
 print_tiny_break_banner() { printf "Break!\n"; }
 print_small_break_banner() { print_large_break_banner; }
@@ -223,25 +217,6 @@ handle_interactive_command() {
     return 1
 }
 
-# FIXME: derive this from the output data during initialization.
-handle_screen_resize() {
-    local lines=$(tput lines)
-    local columns=$(tput cols)
-
-    if [ $lines -ge 40 ] && [ $columns -ge 83 ]
-    then
-	SIZE_CATEGORY=large
-    elif [ $lines -ge 24 ] && [ $columns -ge 49 ]
-    then
-	SIZE_CATEGORY=medium
-    elif [ $lines -ge 11 ] && [ $columns -ge 49 ]
-    then
-	SIZE_CATEGORY=small
-    else
-	SIZE_CATEGORY=tiny
-    fi
-}
-
 read_char() {
     local timeout_seconds=$1
 
@@ -252,14 +227,87 @@ read_char() {
     stty $old_settings
 }
 
-print_count_down_screen() {
-    local type="$1"
-    local end_date="$2"
-    local goal="$3"
-    local command_result="$4"
+get_lines() { echo "$1" | wc -l; }
+get_columns() {
+    local text="$1"
 
-    local banner_message="$(print_banner "$type")"
-    local countdown_message="$(print_countdown_time "$type" "$end_date")"
+    local IFS='
+'
+    local longest_line=0
+    for line in $text
+    do
+	[ ${#line} -gt $longest_line ] && longest_line=${#line}
+    done
+    echo $longest_line
+}
+
+does_text_fit_dimensions() {
+    local text="$1"
+    local screen_lines="$2"
+    local screen_columns="$3"
+
+    local text_lines="$(get_lines "$text")"
+    local text_columns="$(get_columns "$text")"
+    [ $screen_lines -ge $text_lines ] && [ $screen_columns -ge $text_columns ]
+    return $?
+}
+
+LAST_SCREEN_COLUMNS=0
+LAST_SCREEN_LINES=0
+LAST_SCREEN_TYPE=0
+update_screen_category() {
+    local screen_type="$1"
+
+    local screen_lines="$(tput lines)"
+    local screen_columns="$(tput cols)"
+
+    if [ $LAST_SCREEN_LINES -eq $screen_lines ] && [ $LAST_SCREEN_COLUMNS -eq $screen_columns ] && [ $LAST_SCREEN_TYPE = $screen_type ]
+    then
+	return
+    fi
+    LAST_SCREEN_COLUMNS="$screen_columns"
+    LAST_SCREEN_LINES="$screen_lines"
+    LAST_SCREEN_TYPE="$screen_type"
+
+    for size_category in large medium small
+    do
+	local output="$("print_${screen_type}_screen" "$size_category" "$@")"
+	if does_text_fit_dimensions "$output" "$screen_lines" "$screen_columns"
+	then
+	   SIZE_CATEGORY="$size_category"
+	   return
+	fi
+    done
+
+    SIZE_CATEGORY=tiny
+}
+
+print_screen() {
+    local screen_type="$1"
+    shift
+
+    update_screen_category "$screen_type" "$@"
+    "print_${screen_type}_screen" "$SIZE_CATEGORY" "$@"
+}
+
+print_ready_screen() {
+    local size_category="$1"
+
+    "print_${size_category}_ready_banner"
+    printf "\n%s [s] " "$INTERACTIVE_COMMANDS_PROMPT"
+}
+
+print_break_screen() { print_count_down_screen "break" "$@"; }
+print_work_screen() { print_count_down_screen "work" "$@"; }
+print_count_down_screen() {
+    local screen_type="$1"
+    local size_category="$2"
+    local end_date="$3"
+    local goal="$4"
+    local command_result="$5"
+
+    local banner_message="$("print_${size_category}_${screen_type}_banner")"
+    local countdown_message="$(print_countdown_time "$screen_type" "$size_category" "$end_date")"
 
     clear_screen
     printf "%s\n" "$banner_message"
@@ -269,7 +317,7 @@ print_count_down_screen() {
 }
 
 count_down() {
-    local type="$1"
+    local screen_type="$1"
     local countdown_printer="$2"
     local seconds="$3"
     local goal="$4"
@@ -281,8 +329,7 @@ count_down() {
     local end_date=$(( $now + $seconds ))
     while [ $end_date -gt $now ]
     do
-	handle_screen_resize
-	print_count_down_screen "$type" "$end_date" "$goal" "$command_result"
+	print_screen "$screen_type" "$end_date" "$goal" "$command_result"
 
 	local wait_seconds=1
 	local command="$(read_char $wait_seconds)"
@@ -318,7 +365,7 @@ tear_down_application_indicator() {
     if [ -n "$APPLICATION_INDICATOR_COMMAND" ]
     then
        rm -f "$APPLICATION_INDICATOR_ICON_FILE" "$APPLICATION_INDICATOR_CONFIG_FILE"
-       # Ick!!!
+       # FIXME: Ick!!!
        killall "$APPLICATION_INDICATOR_COMMAND" >/dev/null 2>&1
     fi
 }
@@ -426,13 +473,12 @@ prompt_to_start() {
     set_application_indicator_icon "$WAITING_TO_START_ICON"
 
     clear_screen
-    eval "print_${SIZE_CATEGORY}_ready_banner"
+    print_screen "ready"
 
     local default_command=s
     while true
     do
 	discard_stdin
-	printf "\n%s [%s] " "$INTERACTIVE_COMMANDS_PROMPT" "$default_command"
 
 	show_cursor
 	local command="$(read_char | tr -d '\r\n')"
@@ -441,7 +487,7 @@ prompt_to_start() {
 	[ -z "$command" ] && command=$default_command
 
 	handle_interactive_command "$command"
-	printf "\nHuh?"
+	printf "\nHuh? "
     done
 }
 
@@ -452,7 +498,6 @@ initialize() {
     # the screen on Ubuntu 14.04:
     # trap handle_screen_resize WINCH
 
-    handle_screen_resize
     initialize_application_indicator
 
     [ -n "$PROMPT_TO_START" ] && prompt_to_start
