@@ -2,11 +2,8 @@
 # -*- shell-script -*-
 
 read_configuration() {
-    CONFIG_FILE="$HOME/.pomodoro-bash"
-    if [ -e "$CONFIG_FILE" ]
-    then
-	. "$CONFIG_FILE"
-    fi
+    local config_file="$HOME/.pomodoro-bash"
+    [ -e "$config_file" ] && . "$config_file"
 
     : ${UPDATE_INTERVAL_SECONDS:=1}
     : ${WORK_SECONDS:=$(( 25 * 60 ))}
