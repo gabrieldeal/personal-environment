@@ -23,6 +23,8 @@ read_configuration() {
     # https://github.com/ffleming/dogsay
     : ${WORKING_MEDIUM_ASCII_ART:="$HOME/local/pomodoro-bash/medium-dino.txt"}
 
+    : ${WORKING_LARGE_BANNER:="$HOME/local/pomodoro-bash/banner-large-working.txt"}
+
     # Public domain dog.
     # https://thenounproject.com/term/dog/364/
     : ${TAKING_A_BREAK_ICON:="$HOME/local/pomodoro-bash/dog.svg"}
@@ -34,6 +36,8 @@ read_configuration() {
     # ASCII art from dogsay. MIT License. Copyright (c) 2015 Forrest Fleming.
     # https://github.com/ffleming/dogsay
     : ${TAKING_A_BREAK_MEDIUM_ASCII_ART:="$HOME/local/pomodoro-bash/medium-dog.txt"}
+
+    : ${TAKING_A_BREAK_LARGE_BANNER:="$HOME/local/pomodoro-bash/banner-large-taking-a-break.txt"}
 
     # "Barking of a dog" by Wikimedia Commons is licensed under CC BY 3.0.
     # https://commons.wikimedia.org/wiki/File:Barking_of_a_dog.ogg
@@ -47,6 +51,8 @@ read_configuration() {
     # http://soundbible.com/2156-Text-Message-Alert-3.html
     # https://creativecommons.org/licenses/by/3.0/
     : ${WAITING_TO_START_SOUND:="$HOME/local/pomodoro-bash/alert.mp3"}
+
+    : ${WAITING_TO_START_LARGE_BANNER:="$HOME/local/pomodoro-bash/banner-large-waiting-to-start.txt"}
 
     : ${LOG_FILE:=/dev/null}
 
@@ -147,43 +153,17 @@ print_banner() {
 print_tiny_break_banner() { printf "Break!\n"; }
 print_small_break_banner() { print_large_break_banner; }
 print_medium_break_banner() { print_large_break_banner; }
-print_large_break_banner() {
-    cat <<'EOT' -
- ____                          _      _
-| __ )   _ __    ___    __ _  | | __ | |
-|  _ \  | '__|  / _ \  / _` | | |/ / | |
-| |_) | | |    |  __/ | (_| | |   <  |_|
-|____/  |_|     \___|  \__,_| |_|\_\ (_)
-
-EOT
-}
+print_large_break_banner() { cat "$TAKING_A_BREAK_LARGE_BANNER"; }
 
 print_tiny_ready_banner() { printf "Ready?\n"; }
 print_small_ready_banner() { print_large_ready_banner; }
 print_medium_ready_banner() { print_large_ready_banner; }
-print_large_ready_banner() {
-    cat <<'EOT' -
- ____                       _           ___
-|  _ \    ___    __ _    __| |  _   _  |__ \
-| |_) |  / _ \  / _` |  / _` | | | | |   / /
-|  _ <  |  __/ | (_| | | (_| | | |_| |  |_|
-|_| \_\  \___|  \__,_|  \__,_|  \__, |  (_)
-				|___/
-EOT
-}
+print_large_ready_banner() { cat "$WAITING_TO_START_LARGE_BANNER"; }
 
 print_tiny_work_banner() { printf "Focus!\n"; }
 print_small_work_banner() { print_large_work_banner; }
 print_medium_work_banner() { print_large_work_banner; }
-print_large_work_banner() {
-    cat <<'EOT' -
- _____                                _
-|  ___|   ___     ___   _   _   ___  | |
-| |_     / _ \   / __| | | | | / __| | |
-|  _|   | (_) | | (__  | |_| | \__ \ |_|
-|_|      \___/   \___|  \__,_| |___/ (_)
-EOT
-}
+print_large_work_banner() { cat "$WORKING_LARGE_BANNER"; }
 
 find_command() {
     for command in "$@"
