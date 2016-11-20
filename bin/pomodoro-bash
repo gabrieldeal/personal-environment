@@ -73,14 +73,16 @@ read_configuration() {
 read_command_line_options() {
     while [ "$#" -gt 0 ]
     do
-	case $1 in
+	case "$1" in
 	    -w)
-		WORK_SECONDS=$2
-		shift 2
+		WORK_SECONDS="$2"
+		shift
+		shift
 		;;
 	    -b)
-		BREAK_SECONDS=$2
-		shift 2
+		BREAK_SECONDS="$2"
+		shift
+		shift
 		;;
 	    -p)
 		PROMPT_TO_START=1
@@ -101,7 +103,15 @@ read_command_line_options() {
 validate_timer_duration() {
     local duration_seconds="$1"
 
-    [ $duration_seconds -ge $(( 60 * 60 )) ] && fail "$duration_seconds seconds is too long!"
+    is_integer "$duration_seconds" || fail "Duration '$duration_seconds' is not an integer!"
+    [ $duration_seconds -ge $(( 60 * 60 )) ] && fail "Duration '$duration_seconds' seconds is too long!"
+}
+
+is_integer() {
+    local value="$1"
+
+    [ -n "${value##*[!0-9]*}" ]
+    return $?
 }
 
 print_countdown_time() {
