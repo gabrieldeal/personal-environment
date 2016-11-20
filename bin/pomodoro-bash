@@ -127,31 +127,15 @@ print_countdown_time() {
     eval "print_${SIZE_CATEGORY}_${type}_time" | sed "s/\$time/$formatted_time_left/"
 }
 
-print_tiny_break_time() {
-    printf '$time\n'
-}
-print_small_break_time() {
-    print_tiny_break_time
-}
-print_medium_break_time() {
-    cat "$TAKING_A_BREAK_MEDIUM_ASCII_ART"
-}
-print_large_break_time() {
-    cat "$TAKING_A_BREAK_LARGE_ASCII_ART"
-}
+print_tiny_break_time() { printf '$time\n'; }
+print_small_break_time() { print_tiny_break_time; }
+print_medium_break_time() { cat "$TAKING_A_BREAK_MEDIUM_ASCII_ART"; }
+print_large_break_time() { cat "$TAKING_A_BREAK_LARGE_ASCII_ART"; }
 
-print_tiny_work_time() {
-    printf '$time\n'
-}
-print_small_work_time() {
-    print_tiny_work_time
-}
-print_medium_work_time() {
-    cat "$WORKING_MEDIUM_ASCII_ART"
-}
-print_large_work_time() {
-    cat "$WORKING_LARGE_ASCII_ART"
-}
+print_tiny_work_time() { printf '$time\n'; }
+print_small_work_time() { print_tiny_work_time; }
+print_medium_work_time() { cat "$WORKING_MEDIUM_ASCII_ART"; }
+print_large_work_time() { cat "$WORKING_LARGE_ASCII_ART"; }
 
 print_banner() {
     local type="$1"
@@ -160,15 +144,9 @@ print_banner() {
     eval "$banner_function_name"
 }
 
-print_tiny_break_banner() {
-    printf "Break!\n"
-}
-print_small_break_banner() {
-    print_large_break_banner
-}
-print_medium_break_banner() {
-    print_large_break_banner
-}
+print_tiny_break_banner() { printf "Break!\n"; }
+print_small_break_banner() { print_large_break_banner; }
+print_medium_break_banner() { print_large_break_banner; }
 print_large_break_banner() {
     cat <<'EOT' -
  ____                          _      _
@@ -180,15 +158,9 @@ print_large_break_banner() {
 EOT
 }
 
-print_tiny_ready_banner() {
-    printf "Ready?\n"
-}
-print_small_ready_banner() {
-    print_large_ready_banner
-}
-print_medium_ready_banner() {
-    print_large_ready_banner
-}
+print_tiny_ready_banner() { printf "Ready?\n"; }
+print_small_ready_banner() { print_large_ready_banner; }
+print_medium_ready_banner() { print_large_ready_banner; }
 print_large_ready_banner() {
     cat <<'EOT' -
  ____                       _           ___
@@ -200,15 +172,9 @@ print_large_ready_banner() {
 EOT
 }
 
-print_tiny_work_banner() {
-    printf "Focus!\n"
-}
-print_small_work_banner() {
-    print_large_work_banner
-}
-print_medium_work_banner() {
-    print_large_work_banner
-}
+print_tiny_work_banner() { printf "Focus!\n"; }
+print_small_work_banner() { print_large_work_banner; }
+print_medium_work_banner() { print_large_work_banner; }
 print_large_work_banner() {
     cat <<'EOT' -
  _____                                _
