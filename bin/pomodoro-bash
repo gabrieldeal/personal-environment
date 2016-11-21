@@ -56,7 +56,7 @@ read_configuration() {
 
     : ${LOG_FILE:=/dev/null}
 
-    local default_sound_player_program=$(find_command paplay madplay sndfile-play mpg123 afplay beep)
+    local default_sound_player_program="$(find_command paplay madplay sndfile-play mpg123 afplay beep)"
     if [ -z "$SOUND_PLAYER_COMMAND" ] && [ -n "$default_sound_player_program" ]
     then
 	SOUND_PLAYER_COMMAND="\"$default_sound_player_program\" \"%s\""
@@ -64,12 +64,12 @@ read_configuration() {
 
     # No default value for SET_CHAT_STATUS_COMMAND.
 
-    : ${APPLICATION_INDICATOR_COMMAND:=$(find_command indicator-sysmonitor)}
+    : ${APPLICATION_INDICATOR_COMMAND:="$(find_command indicator-sysmonitor)"}
     : ${APPLICATION_INDICATOR_CONFIG_FILE:="${TMPDIR:-/tmp}/$USER-pomodoro-indicator-config.txt"}
     : ${APPLICATION_INDICATOR_ICON_FILE:="${TMPDIR:-/tmp}/$USER-pomodoro-indicator-icon.txt"}
 
     # Mac OS: display notification "the message" with title "the title" subtitle "the subtitle"
-    local default_notification_command=$(find_command notify-send)
+    local default_notification_command="$(find_command notify-send)"
     if [ -z "$NOTIFICATION_COMMAND" ] && [ -n "$default_notification_command" ]
     then
 	NOTIFICATION_COMMAND="\"$default_notification_command\" \"%s\""
@@ -102,8 +102,8 @@ read_command_line_options() {
 	esac
     done
 
-    validate_timer_duration $WORK_SECONDS
-    validate_timer_duration $BREAK_SECONDS
+    validate_timer_duration "$WORK_SECONDS"
+    validate_timer_duration "$BREAK_SECONDS"
 }
 
 validate_timer_duration() {
@@ -233,12 +233,12 @@ get_columns() {
 
     local IFS='
 '
-    local longest_line=0
+    local columns=0
     for line in $text
     do
-	[ ${#line} -gt $longest_line ] && longest_line=${#line}
+	[ ${#line} -gt $columns ] && columns=${#line}
     done
-    echo $longest_line
+    echo $columns
 }
 
 does_text_fit_dimensions() {
