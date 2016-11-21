@@ -365,8 +365,7 @@ tear_down_application_indicator() {
     if [ -n "$APPLICATION_INDICATOR_COMMAND" ]
     then
        rm -f "$APPLICATION_INDICATOR_ICON_FILE" "$APPLICATION_INDICATOR_CONFIG_FILE"
-       # FIXME: Ick!!!
-       killall "$APPLICATION_INDICATOR_COMMAND" >/dev/null 2>&1
+       [ -n "$APPLICATION_INDICATOR_PID" ] && kill "$APPLICATION_INDICATOR_PID"
     fi
 }
 
@@ -393,6 +392,7 @@ initialize_application_indicator() {
     printf "$json_config_format" "$APPLICATION_INDICATOR_ICON_FILE" >"$APPLICATION_INDICATOR_CONFIG_FILE"
     printf "Starting..." >"$APPLICATION_INDICATOR_ICON_FILE"
     "$APPLICATION_INDICATOR_COMMAND" --config="$APPLICATION_INDICATOR_CONFIG_FILE" >>"$LOG_FILE" 2>&1 &
+    APPLICATION_INDICATOR_PID="$!"
 }
 
 set_application_indicator_icon() {
