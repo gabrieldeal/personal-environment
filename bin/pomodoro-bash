@@ -42,7 +42,7 @@ read_configuration() {
     # "Barking of a dog" by Wikimedia Commons is licensed under CC BY 3.0.
     # https://commons.wikimedia.org/wiki/File:Barking_of_a_dog.ogg
     # https://creativecommons.org/licenses/by/3.0/
-    : ${TAKING_A_BREAK_SOUND:="$HOME/local/pomodoro-bash/Barking_of_a_dog.mp3"}
+    : ${TAKING_A_BREAK_AUDIO_FILE:="$HOME/local/pomodoro-bash/Barking_of_a_dog.mp3"}
 
     # I made this one.
     : ${WAITING_TO_START_ICON:="$HOME/local/pomodoro-bash/circle_question.svg"}
@@ -50,16 +50,16 @@ read_configuration() {
     # "Text Message Alert 3 Sound" by Daniel Simion is licensed under CC BY 3.0.
     # http://soundbible.com/2156-Text-Message-Alert-3.html
     # https://creativecommons.org/licenses/by/3.0/
-    : ${WAITING_TO_START_SOUND:="$HOME/local/pomodoro-bash/alert.mp3"}
+    : ${WAITING_TO_START_AUDIO_FILE:="$HOME/local/pomodoro-bash/alert.mp3"}
 
     : ${WAITING_TO_START_LARGE_BANNER:="$HOME/local/pomodoro-bash/banner-large-waiting-to-start.txt"}
 
     : ${LOG_FILE:=/dev/null}
 
-    local default_sound_player_program="$(find_command paplay madplay sndfile-play mpg123 afplay beep)"
-    if [ -z "$SOUND_PLAYER_COMMAND" ] && [ -n "$default_sound_player_program" ]
+    local default_audio_player="$(find_command paplay madplay sndfile-play mpg123 afplay beep)"
+    if [ -z "$AUDIO_PLAYER_COMMAND" ] && [ -n "$default_audio_player" ]
     then
-	SOUND_PLAYER_COMMAND="\"$default_sound_player_program\" \"%s\""
+	AUDIO_PLAYER_COMMAND="\"$default_audio_player\" \"%s\""
     fi
 
     # No default value for SET_CHAT_STATUS_COMMAND.
@@ -415,12 +415,12 @@ set_chat_status() {
     [ -n "$SET_CHAT_STATUS_COMMAND" ] && run_command "$SET_CHAT_STATUS_COMMAND" "$new_status"
 }
 
-play_sound() {
-    local sound_file="$1"
+play_audio() {
+    local audio_file="$1"
 
-    if [ -n "$SOUND_PLAYER_COMMAND" ]
+    if [ -n "$AUDIO_PLAYER_COMMAND" ]
     then
-	run_command "$SOUND_PLAYER_COMMAND" "$sound_file"
+	run_command "$AUDIO_PLAYER_COMMAND" "$audio_file"
     else
 	printf ''
     fi
@@ -511,11 +511,11 @@ main_loop() {
 	do_work_countdown "$goal"
 
 	send_notification "Take a break!"
-	play_sound "$TAKING_A_BREAK_SOUND"
+	play_audio "$TAKING_A_BREAK_AUDIO_FILE"
 	do_break_countdown
 
 	send_notification "Break over, man!"
-	play_sound "$WAITING_TO_START_SOUND"
+	play_audio "$WAITING_TO_START_AUDIO_FILE"
 	prompt_to_start
     done
 }

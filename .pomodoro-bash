@@ -9,15 +9,15 @@
 #
 # WORKING_ICON=
 # TAKING_A_BREAK_ICON=
-# TAKING_A_BREAK_SOUND=
+# TAKING_A_BREAK_AUDIO_FILE=
 # WAITING_TO_START_ICON=
-# WAITING_TO_START_SOUND=
+# WAITING_TO_START_AUDIO_FILE=
 #
 LOG_FILE="$HOME/tmp/pomodoro-bash.log"
 
 SET_CHAT_STATUS_COMMAND="set-hipchat-status -u @GabrielDeal -h api.hipchat.com -s %s --auth-token $(cat $HOME/.ssh/auth-token.txt)"
 
-# SOUND_PLAYER_COMMAND=()
+# AUDIO_PLAYER_COMMAND=()
 
 ## Mac OS:
 # NOTIFICATION_COMMAND=(display notification %s)
