@@ -54,14 +54,23 @@ read_configuration() {
     : ${APPLICATION_INDICATOR_CONFIG_FILE:="${TMPDIR:-/tmp}/$USER-pomodoro-indicator-config.txt"}
     : ${APPLICATION_INDICATOR_ICON_FILE:="${TMPDIR:-/tmp}/$USER-pomodoro-indicator-icon.txt"}
 
-    # Mac OS: display notification "the message" with title "the title" subtitle "the subtitle"
+    initialize_notification_configuration
+    initialize_audio_configuration
+}
+
+initialize_notification_configuration() {
+    local platform=$(uname)
+    if [ $platform = 'Darwin' ]
+    then
+	NOTIFICATION_COMMAND="osascript -e 'display notification \"%s\" with title \"Pomodoro\"'"
+	return
+    fi
+
     local default_notification_command="$(find_command notify-send)"
     if [ -z "$NOTIFICATION_COMMAND" ] && [ -n "$default_notification_command" ]
     then
 	NOTIFICATION_COMMAND="\"$default_notification_command\" \"%s\""
     fi
-
-    initialize_audio_configuration
 }
 
 initialize_audio_configuration() {
