@@ -9,6 +9,7 @@ shift
 cd $directory || exit 1
 
 # Without this, Ruby syntax highlighting doesn't work in emacs.
+source "$HOME/.nvm/nvm.sh"
 source "$HOME/.rvm/scripts/rvm"
 source $(rvm `cat .ruby-version` do rvm env --path)
 
