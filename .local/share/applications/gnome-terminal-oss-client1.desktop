@@ -7,7 +7,7 @@ Comment=Use the command line
 Keywords=shell;prompt;command;commandline;client1;centos vm;
 TryExec=gnome-terminal
 Path=/home/gabrielx/projects/oss/puppet_modules
-Exec="gnome-terminal --window-with-profile='CentOS VM' --geometry 160x55++0 --execute vagrant ssh client1"
+Exec=gnome-terminal --window-with-profile=CentOSVM --geometry 160x55++0 --execute vagrant ssh client1
 Icon=utilities-terminal
 Type=Application
 X-GNOME-DocPath=gnome-terminal/index.html
