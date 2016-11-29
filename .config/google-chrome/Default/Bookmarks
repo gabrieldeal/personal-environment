@@ -1,5 +1,5 @@
 {
-   "checksum": "63b5388d2dd784e501b0065cc556d5ec",
+   "checksum": "f5173538c415c46d802897d1afe4173f",
    "roots": {
       "bookmark_bar": {
          "children": [ {
@@ -31,7 +31,7 @@
             "id": "16",
             "name": "PR",
             "type": "url",
-            "url": "https://github.com/pulls?q=is%3Aopen+is%3Apr+repo%3Aofficespacesoftware%2Fhuddle+repo%3Aofficespacesoftware%2Ftasks+repo%3Aofficespacesoftware%2Fpuppet_modules+repo%3Aofficespacesoftware%2Fkit+"
+            "url": "http://tinyurl.com/oss-github-prs-2"
          }, {
             "date_added": "13118434410095656",
             "id": "151",
