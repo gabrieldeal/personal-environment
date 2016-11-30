@@ -57,6 +57,7 @@ initialize_notification_configuration() {
     # https://developer.gnome.org/notification-spec/
     local default_notification_command="$(find_command notify-send)"
     if [ -z "$NOTIFICATION_COMMAND" ] && [ -n "$default_notification_command" ]; then
+	# FIXME: add icon to notify-send command.
 	NOTIFICATION_COMMAND="\"$default_notification_command\" \"%s\""
     fi
 }
@@ -93,7 +94,6 @@ initialize_audio_player_configuration() {
 
     AUDIO_PLAYER_COMMAND="\"$audio_player\" \"%s\""
     return 0
-
 }
 
 read_command_line_options() {
@@ -179,8 +179,7 @@ print_medium_work_banner() { print_large_work_banner; }
 print_large_work_banner() { cat "$WORKING_LARGE_BANNER"; }
 
 find_command() {
-    for command in "$@"
-    do
+    for command in "$@"; do
 	command -v "$command" >/dev/null 2>&1
 	if [ $? = 0 ]; then
 	    printf "%s" "$command"
@@ -250,8 +249,7 @@ get_columns() {
     local IFS='
 '
     local columns=0
-    for line in $text
-    do
+    for line in $text; do
 	[ ${#line} -gt $columns ] && columns=${#line}
     done
     echo $columns
@@ -277,6 +275,7 @@ update_screen_category() {
     local screen_lines="$(tput lines)"
     local screen_columns="$(tput cols)"
 
+    # Trapping the WINCH signal was causing random freezes when I resized the screen on Ubuntu 14.04.
     if [ $LAST_SCREEN_LINES -eq $screen_lines ] && [ $LAST_SCREEN_COLUMNS -eq $screen_columns ] && [ $LAST_SCREEN_TYPE = $screen_type ]; then
 	return
     fi
@@ -284,8 +283,7 @@ update_screen_category() {
     LAST_SCREEN_LINES="$screen_lines"
     LAST_SCREEN_TYPE="$screen_type"
 
-    for size_category in large medium small
-    do
+    for size_category in large medium small; do
 	local output="$("print_${screen_type}_screen" "$size_category" "$@")"
 	if does_text_fit_dimensions "$output" "$screen_lines" "$screen_columns"; then
 	   SIZE_CATEGORY="$size_category"
@@ -365,6 +363,7 @@ format_seconds_as_hh_mm() {
 }
 
 tear_down() {
+    # FIXME: save original stty settings and restore?
     stty sane
     show_cursor
     tear_down_application_indicator
@@ -485,13 +484,7 @@ prompt_to_start() {
 
 initialize() {
     trap tear_down INT TERM HUP
-
-    # Handling the WINCH signal was causing random freezes when I resized
-    # the screen on Ubuntu 14.04:
-    # trap handle_screen_resize WINCH
-
     initialize_application_indicator
-
     [ -n "$PROMPT_TO_START" ] && prompt_to_start
 }
 
