@@ -59,7 +59,7 @@ read_configuration() {
 }
 
 initialize_notification_configuration() {
-    local platform=$(uname)
+    local platform="$(uname)"
     if [ $platform = 'Darwin' ]
     then
 	NOTIFICATION_COMMAND="osascript -e 'display notification \"%s\" with title \"Pomodoro\"'"
@@ -250,7 +250,7 @@ handle_interactive_command() {
 }
 
 read_char() {
-    local timeout_seconds=$1
+    local timeout_seconds="$1"
 
     local timeout_args="${timeout_seconds:+min 0 time $(($timeout_seconds * 10))}"
     local old_settings="$(stty -g)"
@@ -377,7 +377,7 @@ count_down() {
 }
 
 format_seconds_as_hh_mm() {
-    local seconds=$1
+    local seconds="$1"
 
     local minutes=$(( $seconds % 3600 / 60 ))
     local seconds=$(( $seconds % 60 ))
@@ -516,7 +516,7 @@ prompt_to_start() {
 	local command="$(read_char | tr -d '\r\n')"
 	hide_cursor
 
-	[ -z "$command" ] && command=$default_command
+	[ -z "$command" ] && command="$default_command"
 
 	handle_interactive_command "$command"
 	printf "\nHuh? "
