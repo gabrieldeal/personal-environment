@@ -11,42 +11,28 @@ read_configuration() {
     : ${PROMPT_TO_START:=""}
     : ${INTERACTIVE_COMMANDS_PROMPT:="Start new pomo (s), start pomo with a goal (g), take a break (b), quit (q)? "}
 
+    # ASCII art from dogsay. MIT License. Copyright (c) 2015 Forrest Fleming.
+    # https://github.com/ffleming/dogsay
+    : ${WORKING_LARGE_ASCII_ART:="$HOME/local/pomodoro-bash/large-dino.txt"}
+    : ${WORKING_MEDIUM_ASCII_ART:="$HOME/local/pomodoro-bash/medium-dino.txt"}
+    : ${TAKING_A_BREAK_LARGE_ASCII_ART:="$HOME/local/pomodoro-bash/large-dog.txt"}
+    : ${TAKING_A_BREAK_MEDIUM_ASCII_ART:="$HOME/local/pomodoro-bash/medium-dog.txt"}
+
     # "FREE RED TOMATO CLIP ART" by OpenGameArt.org is public domain.
     # http://www.clipartlord.com/category/food-clip-art/vegetables-clip-art/tomato-clip-art/
     : ${WORKING_ICON:="$HOME/local/pomodoro-bash/tomato13.png"}
 
-    # ASCII art from dogsay. MIT License. Copyright (c) 2015 Forrest Fleming.
-    # https://github.com/ffleming/dogsay
-    : ${WORKING_LARGE_ASCII_ART:="$HOME/local/pomodoro-bash/large-dino.txt"}
-
-    # ASCII art from dogsay. MIT License. Copyright (c) 2015 Forrest Fleming.
-    # https://github.com/ffleming/dogsay
-    : ${WORKING_MEDIUM_ASCII_ART:="$HOME/local/pomodoro-bash/medium-dino.txt"}
-
-    : ${WORKING_LARGE_BANNER:="$HOME/local/pomodoro-bash/banner-large-working.txt"}
-
-    # Public domain dog.
-    # https://thenounproject.com/term/dog/364/
+    # Public domain dog. https://thenounproject.com/term/dog/364/
     : ${TAKING_A_BREAK_ICON:="$HOME/local/pomodoro-bash/dog.svg"}
-
-    # ASCII art from dogsay. MIT License. Copyright (c) 2015 Forrest Fleming.
-    # https://github.com/ffleming/dogsay
-    : ${TAKING_A_BREAK_LARGE_ASCII_ART:="$HOME/local/pomodoro-bash/large-dog.txt"}
-
-    # ASCII art from dogsay. MIT License. Copyright (c) 2015 Forrest Fleming.
-    # https://github.com/ffleming/dogsay
-    : ${TAKING_A_BREAK_MEDIUM_ASCII_ART:="$HOME/local/pomodoro-bash/medium-dog.txt"}
-
-    : ${TAKING_A_BREAK_LARGE_BANNER:="$HOME/local/pomodoro-bash/banner-large-taking-a-break.txt"}
 
     # I made this one.
     : ${WAITING_TO_START_ICON:="$HOME/local/pomodoro-bash/circle_question.svg"}
 
-
+    : ${WORKING_LARGE_BANNER:="$HOME/local/pomodoro-bash/banner-large-working.txt"}
+    : ${TAKING_A_BREAK_LARGE_BANNER:="$HOME/local/pomodoro-bash/banner-large-taking-a-break.txt"}
     : ${WAITING_TO_START_LARGE_BANNER:="$HOME/local/pomodoro-bash/banner-large-waiting-to-start.txt"}
 
     : ${LOG_FILE:=/dev/null}
-
 
     # No default value for SET_CHAT_STATUS_COMMAND.
 
@@ -163,7 +149,7 @@ print_countdown_time() {
 
     # Using sed instead of variable substitutions because some of the
     # ASCII art contains special shell characters.
-    "print_${size_category}_${screen_type}_time" | sed "s/\$time/$formatted_time_left/"
+    "print_${size_category}_${screen_type}_time" | sed "s/\$time/$formatted_time_left/" | grep -v '^#'
 }
 
 print_tiny_break_time() { printf '$time\n'; }
