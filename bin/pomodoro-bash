@@ -87,6 +87,10 @@ initialize_audio_configuration() {
     # https://commons.wikimedia.org/wiki/File:Barking_of_a_dog.ogg
     # https://creativecommons.org/licenses/by/3.0/
     : ${TAKING_A_BREAK_AUDIO_FILE:="$HOME/local/pomodoro-bash/Barking_of_a_dog.$audio_type"}
+
+    # "Tyrannosaurus Rex Roar Sound" from soundbible.com is public domain.
+    # http://soundbible.com/1748-Tyrannosaurus-Rex-Roar.html
+    : ${WORKING_AUDIO_FILE:="$HOME/local/pomodoro-bash/Tyrannosaurus Rex Roar.$audio_type"}
 }
 
 initialize_audio_player_configuration() {
@@ -536,6 +540,7 @@ main_loop() {
 
     while true
     do
+	play_audio "$WORKING_AUDIO_FILE"
 	do_work_countdown "$goal"
 
 	send_notification "Take a break!"
