@@ -434,12 +434,15 @@ play_audio() {
 do_work_countdown() {
     local goal="$1"
 
+    play_audio "$WORKING_AUDIO_FILE"
     set_chat_status "dnd"
     set_application_indicator_icon "$WORKING_ICON"
     count_down "work" "$WORK_COUNTDOWN_PRINTER" $WORK_SECONDS "$goal"
 }
 
 do_break_countdown() {
+    send_notification "Take a break!"
+    play_audio "$TAKING_A_BREAK_AUDIO_FILE"
     set_chat_status "chat"
     set_application_indicator_icon "$TAKING_A_BREAK_ICON"
     count_down "break" "$BREAK_COUNTDOWN_PRINTER" $BREAK_SECONDS
@@ -458,6 +461,8 @@ show_cursor() { tput cnorm; }
 clear_screen() { tput clear; }
 
 prompt_to_start() {
+    send_notification "Break over, man!"
+    play_audio "$WAITING_TO_START_AUDIO_FILE"
     set_application_indicator_icon "$WAITING_TO_START_ICON"
 
     clear_screen
@@ -494,15 +499,8 @@ main_loop() {
     local goal="$1"
 
     while true; do
-	play_audio "$WORKING_AUDIO_FILE"
 	do_work_countdown "$goal"
-
-	send_notification "Take a break!"
-	play_audio "$TAKING_A_BREAK_AUDIO_FILE"
 	do_break_countdown
-
-	send_notification "Break over, man!"
-	play_audio "$WAITING_TO_START_AUDIO_FILE"
 	prompt_to_start
     done
 }
