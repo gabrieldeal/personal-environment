@@ -207,8 +207,7 @@ handle_interactive_command() {
 
     case "$command" in
 	s)
-	    clear_screen
-	    printf "Starting a new pomo..."
+	    printf "\nStarting a new pomo..."
 	    main_loop
 	    ;;
 	g)
@@ -224,7 +223,6 @@ handle_interactive_command() {
 	    exit 0
 	    ;;
 	b)
-	    clear_screen
 	    printf "\nTaking a break..."
 	    do_break_countdown
 	    prompt_to_start
