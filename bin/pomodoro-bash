@@ -9,7 +9,7 @@ read_configuration() {
     : ${WORK_SECONDS:=$(( 25 * 60 ))}
     : ${BREAK_SECONDS:=$(( 5 * 60 ))}
     : ${PROMPT_TO_START:=""}
-    : ${INTERACTIVE_COMMANDS_PROMPT:="Start new pomo (s), start pomo with a goal (g), take a break (b), quit (q)? "}
+    INTERACTIVE_COMMANDS_PROMPT="Start new pomo (s), start pomo with a goal (g), take a break (b), quit (q)? "
 
     # ASCII art from dogsay. MIT License. Copyright (c) 2015 Forrest Fleming.
     # https://github.com/ffleming/dogsay
@@ -52,6 +52,8 @@ initialize_notification_configuration() {
 	return
     fi
 
+    # https://wiki.ubuntu.com/NotifyOSD
+    # https://developer.gnome.org/notification-spec/
     local default_notification_command="$(find_command notify-send)"
     if [ -z "$NOTIFICATION_COMMAND" ] && [ -n "$default_notification_command" ]
     then
@@ -312,7 +314,7 @@ print_ready_screen() {
     local size_category="$1"
 
     "print_${size_category}_ready_banner"
-    printf "\n%s [s] " "$INTERACTIVE_COMMANDS_PROMPT"
+    printf "\n%s[s] " "$INTERACTIVE_COMMANDS_PROMPT"
 }
 
 print_break_screen() { print_count_down_screen "break" "$@"; }
@@ -419,8 +421,6 @@ set_application_indicator_icon() {
     [ -n "$APPLICATION_INDICATOR_COMMAND" ] && echo "USE_ICON:$icon_path" >"$APPLICATION_INDICATOR_ICON_FILE"
 }
 
-# https://wiki.ubuntu.com/NotifyOSD
-# https://developer.gnome.org/notification-spec/
 send_notification() {
     local message="$1"
 
@@ -449,14 +449,12 @@ do_work_countdown() {
 
     set_chat_status "dnd"
     set_application_indicator_icon "$WORKING_ICON"
-
     count_down "work" "$WORK_COUNTDOWN_PRINTER" $WORK_SECONDS "$goal"
 }
 
 do_break_countdown() {
     set_chat_status "chat"
     set_application_indicator_icon "$TAKING_A_BREAK_ICON"
-
     count_down "break" "$BREAK_COUNTDOWN_PRINTER" $BREAK_SECONDS
 }
 
@@ -467,25 +465,11 @@ discard_stdin() {
     done
 }
 
-start_text_standout_mode() {
-    tput smso
-}
-
-end_text_standout_mode() {
-    tput rmso
-}
-
-hide_cursor() {
-    tput civis
-}
-
-show_cursor() {
-    tput cnorm
-}
-
-clear_screen() {
-    tput clear
-}
+start_text_standout_mode() { tput smso; }
+end_text_standout_mode() { tput rmso; }
+hide_cursor() { tput civis; }
+show_cursor() { tput cnorm; }
+clear_screen() { tput clear; }
 
 prompt_to_start() {
     set_application_indicator_icon "$WAITING_TO_START_ICON"
