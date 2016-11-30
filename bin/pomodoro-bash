@@ -45,6 +45,8 @@ read_configuration() {
 }
 
 initialize_notification_configuration() {
+    [ -n "$NOTIFICATION_COMMAND" ] && return
+
     local platform="$(uname)"
     if [ $platform = 'Darwin' ]
     then
