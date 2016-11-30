@@ -48,8 +48,7 @@ initialize_notification_configuration() {
     [ -n "$NOTIFICATION_COMMAND" ] && return
 
     local platform="$(uname)"
-    if [ $platform = 'Darwin' ]
-    then
+    if [ $platform = 'Darwin' ]; then
 	NOTIFICATION_COMMAND="osascript -e 'display notification \"%s\" with title \"Pomodoro\"'"
 	return
     fi
@@ -57,8 +56,7 @@ initialize_notification_configuration() {
     # https://wiki.ubuntu.com/NotifyOSD
     # https://developer.gnome.org/notification-spec/
     local default_notification_command="$(find_command notify-send)"
-    if [ -z "$NOTIFICATION_COMMAND" ] && [ -n "$default_notification_command" ]
-    then
+    if [ -z "$NOTIFICATION_COMMAND" ] && [ -n "$default_notification_command" ]; then
 	NOTIFICATION_COMMAND="\"$default_notification_command\" \"%s\""
     fi
 }
@@ -99,8 +97,7 @@ initialize_audio_player_configuration() {
 }
 
 read_command_line_options() {
-    while [ "$#" -gt 0 ]
-    do
+    while [ "$#" -gt 0 ]; do
 	case "$1" in
 	    -w)
 		WORK_SECONDS="$2"
@@ -185,8 +182,7 @@ find_command() {
     for command in "$@"
     do
 	command -v "$command" >/dev/null 2>&1
-	if [ $? = 0 ]
-	then
+	if [ $? = 0 ]; then
 	    printf "%s" "$command"
 	    return
 	fi
@@ -283,8 +279,7 @@ update_screen_category() {
     local screen_lines="$(tput lines)"
     local screen_columns="$(tput cols)"
 
-    if [ $LAST_SCREEN_LINES -eq $screen_lines ] && [ $LAST_SCREEN_COLUMNS -eq $screen_columns ] && [ $LAST_SCREEN_TYPE = $screen_type ]
-    then
+    if [ $LAST_SCREEN_LINES -eq $screen_lines ] && [ $LAST_SCREEN_COLUMNS -eq $screen_columns ] && [ $LAST_SCREEN_TYPE = $screen_type ]; then
 	return
     fi
     LAST_SCREEN_COLUMNS="$screen_columns"
@@ -294,8 +289,7 @@ update_screen_category() {
     for size_category in large medium small
     do
 	local output="$("print_${screen_type}_screen" "$size_category" "$@")"
-	if does_text_fit_dimensions "$output" "$screen_lines" "$screen_columns"
-	then
+	if does_text_fit_dimensions "$output" "$screen_lines" "$screen_columns"; then
 	   SIZE_CATEGORY="$size_category"
 	   return
 	fi
@@ -349,15 +343,13 @@ count_down() {
     local command_result=
     local now=$(date +%s)
     local end_date=$(( $now + $seconds ))
-    while [ $end_date -gt $now ]
-    do
+    while [ $end_date -gt $now ]; do
 	print_screen "$screen_type" "$end_date" "$goal" "$command_result"
 
 	local wait_seconds=1
 	local command="$(read_char $wait_seconds)"
 	discard_stdin
-	if [ -n "$command" ]
-	then
+	if [ -n "$command" ]; then
 	    handle_interactive_command "$command"
 	    command_result="Huh? "
 	fi
@@ -384,8 +376,7 @@ tear_down() {
 }
 
 tear_down_application_indicator() {
-    if [ -n "$APPLICATION_INDICATOR_COMMAND" ]
-    then
+    if [ -n "$APPLICATION_INDICATOR_COMMAND" ]; then
        rm -f "$APPLICATION_INDICATOR_ICON_FILE" "$APPLICATION_INDICATOR_CONFIG_FILE"
        [ -n "$APPLICATION_INDICATOR_PID" ] && kill "$APPLICATION_INDICATOR_PID"
     fi
@@ -393,10 +384,7 @@ tear_down_application_indicator() {
 
 # https://github.com/fossfreedom/indicator-sysmonitor
 initialize_application_indicator() {
-    if [ -z "$APPLICATION_INDICATOR_COMMAND" ]
-    then
-	return
-    fi
+    [ -z "$APPLICATION_INDICATOR_COMMAND" ] && return
 
     local json_config_format='
 {
@@ -438,8 +426,7 @@ set_chat_status() {
 play_audio() {
     local audio_file="$1"
 
-    if [ -n "$AUDIO_PLAYER_COMMAND" ]
-    then
+    if [ -n "$AUDIO_PLAYER_COMMAND" ]; then
 	run_command "$AUDIO_PLAYER_COMMAND" "$audio_file"
     else
 	printf ''
@@ -461,8 +448,7 @@ do_break_countdown() {
 }
 
 discard_stdin() {
-    while [ -n "$(read_char 0)" ]
-    do
+    while [ -n "$(read_char 0)" ]; do
 	:
     done
 }
@@ -480,8 +466,7 @@ prompt_to_start() {
     print_screen "ready"
 
     local default_command=s
-    while true
-    do
+    while true; do
 	discard_stdin
 
 	show_cursor
@@ -510,8 +495,7 @@ initialize() {
 main_loop() {
     local goal="$1"
 
-    while true
-    do
+    while true; do
 	play_audio "$WORKING_AUDIO_FILE"
 	do_work_countdown "$goal"
 
