@@ -20,6 +20,7 @@ read_configuration() {
 
     # "FREE RED TOMATO CLIP ART" by OpenGameArt.org is public domain.
     # http://www.clipartlord.com/category/food-clip-art/vegetables-clip-art/tomato-clip-art/
+    : ${NOTIFICATION_ICON:="$HOME/local/pomodoro-bash/tomato13.png"}
     : ${WORKING_ICON:="$HOME/local/pomodoro-bash/tomato13.png"}
 
     # Public domain dog. https://thenounproject.com/term/dog/364/
@@ -57,8 +58,7 @@ initialize_notification_configuration() {
     # https://developer.gnome.org/notification-spec/
     local default_notification_command="$(find_command notify-send)"
     if [ -n "$default_notification_command" ]; then
-	# FIXME: add icon to notify-send command.
-	NOTIFICATION_COMMAND="\"$default_notification_command\" \"%s\""
+	NOTIFICATION_COMMAND="\"$default_notification_command\" \"%s\" --icon \"$NOTIFICATION_ICON\""
     fi
 }
 
