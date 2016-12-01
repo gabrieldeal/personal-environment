@@ -934,7 +934,7 @@ sub get_options {
 
 (defun clever-cmd-js-mode-compile-command ()
   (concat "cd " (or (gmd-vc-root-dir) ".") ; Default to current directory.
-	  " && ./node_modules/karma/bin/karma start karma.config.js --no-auto-watch --single-run"))
+	  " && PHANTOMJS_BIN=/usr/bin/phantomjs yarn run test"))
 (defun clever-cmd-web-mode-compile-command ()
   (clever-cmd-js-mode-compile-command))
 
@@ -1124,7 +1124,7 @@ SWITCH-TO-BUFFER - whether to switch to the buffer if it is already running."
   "Start Rails/React processes for OSS."
   (interactive)
   (gmd-start-interactive-shell-with-command "*npm run build*"
-					    "yarn install && ./node_modules/webpack/bin/webpack.js -w -d --define __DEVELOPMENT__=true --progress")
+					    "yarn install && yarn run build")
   (gmd-start-interactive-shell-with-command "*mailcatcher*"
 					    "kill `ps -fwwwHe | grep bin/mailcatche[r] | awk '{print $2}'`; mailcatcher --foreground")
   (gmd-start-interactive-shell-with-command "*rails server*"
@@ -1148,7 +1148,7 @@ SWITCH-TO-BUFFER - whether to switch to the buffer if it is already running."
 (defun gmd-start-karma-webserver ()
   (interactive)
   (gmd-start-interactive-shell-with-command "*karma webserver*"
-					    "./node_modules/karma/bin/karma start karma.config.js --no-single-run"
+					    "yarn run test:watch"
 					    't))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
