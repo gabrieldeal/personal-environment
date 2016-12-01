@@ -55,11 +55,14 @@ initialize_notification_configuration() {
 	return
     fi
 
-    # https://wiki.ubuntu.com/NotifyOSD
-    # https://developer.gnome.org/notification-spec/
-    local default_notification_command="$(find_command notify-send)"
-    if [ -n "$default_notification_command" ]; then
-	NOTIFICATION_COMMAND="\"$default_notification_command\" \"%s\" --icon \"$NOTIFICATION_ICON\""
+    if command -v notify-send >/dev/null; then
+	NOTIFICATION_COMMAND="notify-send -i \"$NOTIFICATION_ICON\" Pomodoro \"%s\""
+	return
+    fi
+
+    if command -v notifu >/dev/null; then
+	NOTIFICATION_COMMAND="notifu /m \"%s\" /p Pomodoro /d 5000"
+	return
     fi
 }
 
