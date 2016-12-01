@@ -40,6 +40,7 @@ read_configuration() {
     : ${APPLICATION_INDICATOR_COMMAND:="$(find_command indicator-sysmonitor)"}
     : ${APPLICATION_INDICATOR_CONFIG_FILE:="${TMPDIR:-/tmp}/$USER-pomodoro-indicator-config.txt"}
     : ${APPLICATION_INDICATOR_ICON_FILE:="${TMPDIR:-/tmp}/$USER-pomodoro-indicator-icon.txt"}
+    APPLICATION_INDICATOR_CONFIG_TEMPLATE_FILE="$HOME/local/pomodoro-bash/indicator-sysmonitor-config.json"
 
     initialize_notification_configuration
     initialize_audio_configuration
@@ -383,19 +384,7 @@ tear_down_application_indicator() {
 initialize_application_indicator() {
     [ -z "$APPLICATION_INDICATOR_COMMAND" ] && return
 
-    local json_config_format='
-{
-    "on_startup": false,
-    "sensors": {
-	"pomodoro": [
-	    "",
-	    "cat \"%s\""
-	 ]
-    },
-    "interval": 2.0,
-    "custom_text": "{pomodoro}"
-}
-'
+    local json_config_format="$(cat "$APPLICATION_INDICATOR_CONFIG_TEMPLATE_FILE")"
     printf "$json_config_format" "$APPLICATION_INDICATOR_ICON_FILE" >"$APPLICATION_INDICATOR_CONFIG_FILE"
     printf "Starting..." >"$APPLICATION_INDICATOR_ICON_FILE"
     "$APPLICATION_INDICATOR_COMMAND" --config="$APPLICATION_INDICATOR_CONFIG_FILE" >>"$LOG_FILE" 2>&1 &
