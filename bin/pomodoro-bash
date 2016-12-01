@@ -374,10 +374,10 @@ tear_down() {
 }
 
 tear_down_application_indicator() {
-    if [ -n "$APPLICATION_INDICATOR_COMMAND" ]; then
-       rm -f "$APPLICATION_INDICATOR_ICON_FILE" "$APPLICATION_INDICATOR_CONFIG_FILE"
-       [ -n "$APPLICATION_INDICATOR_PID" ] && kill "$APPLICATION_INDICATOR_PID"
-    fi
+    [ -z "$APPLICATION_INDICATOR_COMMAND" ] && return
+
+    rm -f "$APPLICATION_INDICATOR_ICON_FILE" "$APPLICATION_INDICATOR_CONFIG_FILE"
+    [ -n "$APPLICATION_INDICATOR_PID" ] && kill "$APPLICATION_INDICATOR_PID"
 }
 
 # https://github.com/fossfreedom/indicator-sysmonitor
