@@ -208,6 +208,7 @@ run_command() {
     local command_argument="$2"
 
     local command="$(printf "$command_format" "$command_argument")"
+    echo "Running: $command" >>"$LOG_FILE"
     eval "$command" >>"$LOG_FILE" 2>&1 &
 }
 
