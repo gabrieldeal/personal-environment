@@ -1,0 +1,22 @@
+#!/usr/bin/bash
+#-*- shell-script -*-
+
+# This is for running apps via the Windows Start menu.
+# C:\cygwin\bin\mintty.exe -i C:\Users\Gabriel\config\local\pomodoro-bash\tomato13.ico -o Scrollbar=None -o ScrollbackLines=0 --title "Pomodoro Bash"  -e C:\Users\Gabriel\bin\cygwin-bootstrap pomodoro-bash
+
+
+# The PATH is not set correctly when started via a Windows shortcut.
+if ! command -v cat >/dev/null; then
+    export PATH="$PATH:/usr/bin"
+    export PATH="$PATH:$(dirname $0)"
+fi
+
+"$@"
+exit_code=$?
+if [ $exit_code -ne 0 ]; then
+    echo "Error" 1>&2
+    sleep 5 # Give some time before the window closes
+    /usr/bin/sleep 5
+fi
+
+exit $exit_code
