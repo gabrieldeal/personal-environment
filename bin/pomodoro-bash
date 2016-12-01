@@ -56,7 +56,7 @@ initialize_notification_configuration() {
     # https://wiki.ubuntu.com/NotifyOSD
     # https://developer.gnome.org/notification-spec/
     local default_notification_command="$(find_command notify-send)"
-    if [ -z "$NOTIFICATION_COMMAND" ] && [ -n "$default_notification_command" ]; then
+    if [ -n "$default_notification_command" ]; then
 	# FIXME: add icon to notify-send command.
 	NOTIFICATION_COMMAND="\"$default_notification_command\" \"%s\""
     fi
