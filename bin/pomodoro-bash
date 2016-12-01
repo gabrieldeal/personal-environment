@@ -64,9 +64,13 @@ initialize_notification_configuration() {
 }
 
 initialize_audio_configuration() {
-    local audio_type="ogg"
+    local audio_type=
     initialize_audio_player_configuration "mp3" "madplay" "mpg123" "mpg321" "afplay" && audio_type="mp3"
     initialize_audio_player_configuration "ogg" "paplay" "sndfile-play" "beep" && audio_type="ogg"
+    if [ -z "$AUDIO_PLAYER_COMMAND" ] && command -v vlc >/dev/null; then
+	AUDIO_PLAYER_COMMAND="vlc_play_sound \"%s\""
+	audio_type="mp3"
+    fi
 
     # "Text Message Alert 3 Sound" by Daniel Simion is licensed under CC BY 3.0.
     # http://soundbible.com/2156-Text-Message-Alert-3.html
@@ -95,6 +99,13 @@ initialize_audio_player_configuration() {
 
     AUDIO_PLAYER_COMMAND="\"$audio_player\" \"%s\""
     return 0
+}
+
+vlc_play_sound() {
+    local sound_file="$1"
+
+    (cd "$(dirname "$sound_file")" \
+	 && vlc --intf dummy --play-and-exit "$(basename "$sound_file")" >>"$LOG_FILE" 2>&1)
 }
 
 read_command_line_options() {
