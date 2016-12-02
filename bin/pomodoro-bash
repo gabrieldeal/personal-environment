@@ -1,5 +1,4 @@
 #!/usr/bin/env sh
-# -*- shell-script -*-
 
 read_configuration() {
     local config_file="$HOME/.pomodoro-bash"
