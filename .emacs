@@ -219,8 +219,6 @@
 ;; Set up default modes for different file types
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(setq auto-mode-alist '()) ;; so fundamental-mode will be default
-
 (setq auto-mode-alist (cons '("[Mm]akefile" . makefile-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.mk$" . makefile-mode) auto-mode-alist))
 
@@ -284,8 +282,6 @@
 (setq auto-mode-alist (cons '("\\.xsd$" . nxml-mode) auto-mode-alist))
 
 (setq auto-mode-alist (cons '("\\.sql$" . sql-mode) auto-mode-alist))
-
-(setq interpreter-mode-alist '())
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Settings for GUI mode:
