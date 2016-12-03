@@ -15,25 +15,25 @@ read_configuration() {
 
     # ASCII art from dogsay. MIT License. Copyright (c) 2015 Forrest Fleming.
     # https://github.com/ffleming/dogsay
-    : ${WORKING_LARGE_ASCII_ART:="$HOME/local/pomodoro-bash/large-dino.txt"}
-    : ${WORKING_MEDIUM_ASCII_ART:="$HOME/local/pomodoro-bash/medium-dino.txt"}
-    : ${TAKING_A_BREAK_LARGE_ASCII_ART:="$HOME/local/pomodoro-bash/large-dog.txt"}
-    : ${TAKING_A_BREAK_MEDIUM_ASCII_ART:="$HOME/local/pomodoro-bash/medium-dog.txt"}
+    : ${WORKING_LARGE_ASCII_ART:="$HOME/local/pomodoro-bash/ascii-art/large-dino.txt"}
+    : ${WORKING_MEDIUM_ASCII_ART:="$HOME/local/pomodoro-bash/ascii-art/medium-dino.txt"}
+    : ${TAKING_A_BREAK_LARGE_ASCII_ART:="$HOME/local/pomodoro-bash/ascii-art/large-dog.txt"}
+    : ${TAKING_A_BREAK_MEDIUM_ASCII_ART:="$HOME/local/pomodoro-bash/ascii-art/medium-dog.txt"}
 
     # "FREE RED TOMATO CLIP ART" by OpenGameArt.org is public domain.
     # http://www.clipartlord.com/category/food-clip-art/vegetables-clip-art/tomato-clip-art/
-    : ${NOTIFICATION_ICON:="$HOME/local/pomodoro-bash/tomato13.ico"}
-    : ${WORKING_ICON:="$HOME/local/pomodoro-bash/tomato13.png"}
+    : ${NOTIFICATION_ICON:="$HOME/local/pomodoro-bash/imagestomato13.ico"}
+    : ${WORKING_ICON:="$HOME/local/pomodoro-bash/imagestomato13.png"}
 
     # Public domain dog. https://thenounproject.com/term/dog/364/
-    : ${TAKING_A_BREAK_ICON:="$HOME/local/pomodoro-bash/dog.svg"}
+    : ${TAKING_A_BREAK_ICON:="$HOME/local/pomodoro-bash/imagesdog.svg"}
 
     # I made this one.
-    : ${WAITING_TO_START_ICON:="$HOME/local/pomodoro-bash/circle_question.svg"}
+    : ${WAITING_TO_START_ICON:="$HOME/local/pomodoro-bash/imagescircle_question.svg"}
 
-    : ${WORKING_LARGE_BANNER:="$HOME/local/pomodoro-bash/banner-large-working.txt"}
-    : ${TAKING_A_BREAK_LARGE_BANNER:="$HOME/local/pomodoro-bash/banner-large-taking-a-break.txt"}
-    : ${WAITING_TO_START_LARGE_BANNER:="$HOME/local/pomodoro-bash/banner-large-waiting-to-start.txt"}
+    : ${WORKING_LARGE_BANNER:="$HOME/local/pomodoro-bash/ascii-art/banner-large-working.txt"}
+    : ${TAKING_A_BREAK_LARGE_BANNER:="$HOME/local/pomodoro-bash/ascii-art/banner-large-taking-a-break.txt"}
+    : ${WAITING_TO_START_LARGE_BANNER:="$HOME/local/pomodoro-bash/ascii-art/banner-large-waiting-to-start.txt"}
 
     : ${LOG_FILE:=/dev/null}
 
@@ -42,7 +42,7 @@ read_configuration() {
     : ${APPLICATION_INDICATOR_COMMAND:="$(find_command indicator-sysmonitor)"}
     : ${APPLICATION_INDICATOR_CONFIG_FILE:="${TMPDIR:-/tmp}/$USER-$$-pomodoro-indicator-config.txt"}
     : ${APPLICATION_INDICATOR_ICON_FILE:="${TMPDIR:-/tmp}/$USER-$$-pomodoro-indicator-icon.txt"}
-    APPLICATION_INDICATOR_CONFIG_TEMPLATE_FILE="$HOME/local/pomodoro-bash/indicator-sysmonitor-config.json"
+    APPLICATION_INDICATOR_CONFIG_TEMPLATE_FILE="$HOME/local/pomodoro-bash/config/indicator-sysmonitor-config.json"
 
     initialize_notification_configuration
     initialize_audio_configuration
@@ -80,16 +80,16 @@ initialize_audio_configuration() {
     # "Text Message Alert 3 Sound" by Daniel Simion is licensed under CC BY 3.0.
     # http://soundbible.com/2156-Text-Message-Alert-3.html
     # https://creativecommons.org/licenses/by/3.0/
-    : ${WAITING_TO_START_AUDIO_FILE:="$HOME/local/pomodoro-bash/alert.$audio_type"}
+    : ${WAITING_TO_START_AUDIO_FILE:="$HOME/local/pomodoro-bash/audio/alert.$audio_type"}
 
     # "Barking of a dog" by Wikimedia Commons is licensed under CC BY 3.0.
     # https://commons.wikimedia.org/wiki/File:Barking_of_a_dog.ogg
     # https://creativecommons.org/licenses/by/3.0/
-    : ${TAKING_A_BREAK_AUDIO_FILE:="$HOME/local/pomodoro-bash/Barking_of_a_dog.$audio_type"}
+    : ${TAKING_A_BREAK_AUDIO_FILE:="$HOME/local/pomodoro-bash/audio/Barking_of_a_dog.$audio_type"}
 
     # "Tyrannosaurus Rex Roar Sound" from soundbible.com is public domain.
     # http://soundbible.com/1748-Tyrannosaurus-Rex-Roar.html
-    : ${WORKING_AUDIO_FILE:="$HOME/local/pomodoro-bash/Tyrannosaurus Rex Roar.$audio_type"}
+    : ${WORKING_AUDIO_FILE:="$HOME/local/pomodoro-bash/audio/Tyrannosaurus Rex Roar.$audio_type"}
 }
 
 initialize_audio_player_configuration() {
