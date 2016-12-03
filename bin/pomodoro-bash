@@ -1,5 +1,8 @@
 #!/usr/bin/env sh
 
+# TODO:
+# https://github.com/koalaman/shellcheck
+
 read_configuration() {
     local config_file="$HOME/.pomodoro-bash"
     [ -e "$config_file" ] && . "$config_file"
@@ -207,7 +210,7 @@ run_command() {
     local command_argument="$2"
 
     local command="$(printf "$command_format" "$command_argument")"
-    echo "Running: $command" >>"$LOG_FILE"
+    # Don't log the command since it may have an auth token in it.
     eval "$command" >>"$LOG_FILE" 2>&1 &
 }
 
