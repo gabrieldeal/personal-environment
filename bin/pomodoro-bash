@@ -51,8 +51,7 @@ read_configuration() {
 initialize_notification_configuration() {
     [ -n "$NOTIFICATION_COMMAND" ] && return
 
-    local platform="$(uname)"
-    if [ $platform = 'Darwin' ]; then
+    if command -v osascript >/dev/null; then
 	NOTIFICATION_COMMAND="osascript -e 'display notification \"%s\" with title \"Pomodoro\"'"
 	return
     fi
@@ -109,6 +108,7 @@ initialize_audio_player_configuration() {
 vlc_play_sound() {
     local sound_file="$1"
 
+    # CD to directory because VLC doesn't handle UNIX-style paths.
     (cd "$(dirname "$sound_file")" \
 	 && vlc --intf dummy --play-and-exit "$(basename "$sound_file")" >>"$LOG_FILE" 2>&1)
 }
@@ -266,7 +266,7 @@ count_columns() {
     echo $columns
 }
 
-does_text_fit_dimensions() {
+does_text_fit_screen() {
     local text="$1"
     local screen_lines="$2"
     local screen_columns="$3"
@@ -296,7 +296,7 @@ update_screen_category() {
 
     for size_category in large medium small; do
 	local output="$("print_${screen_type}_screen" "$size_category" "$@")"
-	if does_text_fit_dimensions "$output" "$screen_lines" "$screen_columns"; then
+	if does_text_fit_screen "$output" "$screen_lines" "$screen_columns"; then
 	   SIZE_CATEGORY="$size_category"
 	   return
 	fi
