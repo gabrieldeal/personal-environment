@@ -53,17 +53,10 @@ initialize_notification_configuration() {
 
     if command -v osascript >/dev/null; then
 	NOTIFICATION_COMMAND="osascript -e 'display notification \"%s\" with title \"Pomodoro\"'"
-	return
-    fi
-
-    if command -v notify-send >/dev/null; then
+    elif command -v notify-send >/dev/null; then
 	NOTIFICATION_COMMAND="notify-send -i \"$NOTIFICATION_ICON\" Pomodoro \"%s\""
-	return
-    fi
-
-    if command -v notifu >/dev/null; then
+    elif command -v notifu >/dev/null; then
 	NOTIFICATION_COMMAND="notifu /m \"%s\" /p Pomodoro /d 5000"
-	return
     fi
 }
 
