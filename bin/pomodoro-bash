@@ -159,9 +159,8 @@ is_integer() {
 print_countdown_time() {
     local screen_type="$1"
     local size_category="$2"
-    local end_date="$3"
+    local seconds_left="$3"
 
-    local seconds_left=$(( $end_date - $now ))
     local formatted_time_left="$(format_seconds_as_hh_mm $seconds_left)"
     formatted_time_left="$(start_text_standout_mode)$formatted_time_left$(end_text_standout_mode)"
 
@@ -334,12 +333,12 @@ print_work_screen() { print_count_down_screen "work" "$@"; }
 print_count_down_screen() {
     local screen_type="$1"
     local size_category="$2"
-    local end_date="$3"
+    local seconds_left="$3"
     local goal="$4"
     local command_result="$5"
 
     local banner_message="$("print_${size_category}_${screen_type}_banner")"
-    local countdown_message="$(print_countdown_time "$screen_type" "$size_category" "$end_date")"
+    local countdown_message="$(print_countdown_time "$screen_type" "$size_category" "$seconds_left")"
 
     clear_screen
     printf "%s\n" "$banner_message"
@@ -360,7 +359,8 @@ count_down() {
     local now=$(date +%s)
     local end_date=$(( $now + $seconds ))
     while [ $end_date -gt $now ]; do
-	print_screen "$screen_type" "$end_date" "$goal" "$command_result"
+	local seconds_left=$(( $end_date - $now ))
+	print_screen "$screen_type" "$seconds_left" "$goal" "$command_result"
 
 	local wait_seconds=1
 	local command="$(read_char $wait_seconds)"
