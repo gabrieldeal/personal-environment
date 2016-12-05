@@ -262,8 +262,8 @@ read_char() {
     stty $old_settings
 }
 
-get_lines() { echo "$1" | wc -l; }
-get_columns() {
+count_lines() { echo "$1" | wc -l; }
+count_columns() {
     local text="$1"
 
     local IFS='
@@ -280,8 +280,8 @@ does_text_fit_dimensions() {
     local screen_lines="$2"
     local screen_columns="$3"
 
-    local text_lines="$(get_lines "$text")"
-    local text_columns="$(get_columns "$text")"
+    local text_lines="$(count_lines "$text")"
+    local text_columns="$(count_columns "$text")"
     [ $screen_lines -ge $text_lines ] && [ $screen_columns -ge $text_columns ]
     return $?
 }
