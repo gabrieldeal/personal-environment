@@ -106,6 +106,21 @@ vlc_play_sound() {
 	 && vlc --intf dummy --play-and-exit "$(basename "$sound_file")" >>"$LOG_FILE" 2>&1)
 }
 
+find_command() {
+    for command in "$@"; do
+	command -v "$command" >/dev/null 2>&1
+	if [ $? = 0 ]; then
+	    printf "%s" "$command"
+	    return
+	fi
+    done
+}
+
+fail() {
+    echo "$*" 1>&2
+    exit 1
+}
+
 read_command_line_options() {
     while [ "$#" -gt 0 ]; do
 	case "$1" in
@@ -147,103 +162,6 @@ is_integer() {
 
     [ -n "${value##*[!0-9]*}" ]
     return $?
-}
-
-print_countdown_time() {
-    local screen_type="$1"
-    local size_category="$2"
-    local seconds_left="$3"
-
-    local formatted_time_left="$(format_seconds_as_hh_mm $seconds_left)"
-    formatted_time_left="$(start_text_standout_mode)$formatted_time_left$(end_text_standout_mode)"
-
-    # Using sed instead of variable substitutions because some of the
-    # ASCII art contains special shell characters.
-    "print_${size_category}_${screen_type}_time" | sed "s/\$time/$formatted_time_left/" | grep -v '^#'
-}
-
-print_tiny_break_time() { printf '$time\n'; }
-print_small_break_time() { print_tiny_break_time; }
-print_medium_break_time() { cat "$TAKING_A_BREAK_MEDIUM_ASCII_ART"; }
-print_large_break_time() { cat "$TAKING_A_BREAK_LARGE_ASCII_ART"; }
-
-print_tiny_work_time() { printf '$time\n'; }
-print_small_work_time() { print_tiny_work_time; }
-print_medium_work_time() { cat "$WORKING_MEDIUM_ASCII_ART"; }
-print_large_work_time() { cat "$WORKING_LARGE_ASCII_ART"; }
-
-print_tiny_break_banner() { printf "Break!\n"; }
-print_small_break_banner() { print_large_break_banner; }
-print_medium_break_banner() { print_large_break_banner; }
-print_large_break_banner() { cat "$TAKING_A_BREAK_LARGE_BANNER"; }
-
-print_tiny_ready_banner() { printf "Ready?\n"; }
-print_small_ready_banner() { print_large_ready_banner; }
-print_medium_ready_banner() { print_large_ready_banner; }
-print_large_ready_banner() { cat "$WAITING_TO_START_LARGE_BANNER"; }
-
-print_tiny_work_banner() { printf "Focus!\n"; }
-print_small_work_banner() { print_large_work_banner; }
-print_medium_work_banner() { print_large_work_banner; }
-print_large_work_banner() { cat "$WORKING_LARGE_BANNER"; }
-
-find_command() {
-    for command in "$@"; do
-	command -v "$command" >/dev/null 2>&1
-	if [ $? = 0 ]; then
-	    printf "%s" "$command"
-	    return
-	fi
-    done
-}
-
-run_command() {
-    local command_format="$1"
-    local command_argument="$2"
-
-    local command="$(printf "$command_format" "$command_argument")"
-    # Don't log the command since it may have an auth token in it.
-    eval "$command" >>"$LOG_FILE" 2>&1 &
-}
-
-fail() {
-    echo "$*" 1>&2
-    exit 1
-}
-
-handle_interactive_command() {
-    local command="$1"
-
-    case "$command" in
-	s)
-	    clear_screen
-	    printf "\nStarting a new pomo..."
-	    main_loop
-	    ;;
-	q)
-	    tear_down
-	    exit 0
-	    ;;
-	b)
-	    clear_screen
-	    printf "\nTaking a break..."
-	    do_break_countdown
-	    prompt_to_start
-	    main_loop
-	    ;;
-    esac
-
-    return 1
-}
-
-read_char() {
-    local timeout_seconds="$1"
-
-    local timeout_args="${timeout_seconds:+min 0 time $(($timeout_seconds * 10))}"
-    local old_settings="$(stty -g)"
-    stty raw isig -echo $timeout_args
-    printf '%s' "$(dd bs=1 count=1 2>/dev/null)"
-    stty $old_settings
 }
 
 count_lines() { echo "$1" | wc -l; }
@@ -298,6 +216,31 @@ update_screen_category() {
     SIZE_CATEGORY=tiny
 }
 
+print_tiny_break_time() { printf '$time\n'; }
+print_small_break_time() { print_tiny_break_time; }
+print_medium_break_time() { cat "$TAKING_A_BREAK_MEDIUM_ASCII_ART"; }
+print_large_break_time() { cat "$TAKING_A_BREAK_LARGE_ASCII_ART"; }
+
+print_tiny_work_time() { printf '$time\n'; }
+print_small_work_time() { print_tiny_work_time; }
+print_medium_work_time() { cat "$WORKING_MEDIUM_ASCII_ART"; }
+print_large_work_time() { cat "$WORKING_LARGE_ASCII_ART"; }
+
+print_tiny_break_banner() { printf "Break!\n"; }
+print_small_break_banner() { print_large_break_banner; }
+print_medium_break_banner() { print_large_break_banner; }
+print_large_break_banner() { cat "$TAKING_A_BREAK_LARGE_BANNER"; }
+
+print_tiny_ready_banner() { printf "Ready?\n"; }
+print_small_ready_banner() { print_large_ready_banner; }
+print_medium_ready_banner() { print_large_ready_banner; }
+print_large_ready_banner() { cat "$WAITING_TO_START_LARGE_BANNER"; }
+
+print_tiny_work_banner() { printf "Focus!\n"; }
+print_small_work_banner() { print_large_work_banner; }
+print_medium_work_banner() { print_large_work_banner; }
+print_large_work_banner() { cat "$WORKING_LARGE_BANNER"; }
+
 print_screen() {
     local screen_type="$1"
     shift
@@ -330,6 +273,27 @@ print_count_down_screen() {
     printf "%s %s" "$INTERACTIVE_COMMANDS_PROMPT" "$command_result"
 }
 
+print_countdown_time() {
+    local screen_type="$1"
+    local size_category="$2"
+    local seconds_left="$3"
+
+    local formatted_time_left="$(format_seconds_as_hh_mm $seconds_left)"
+    formatted_time_left="$(start_text_standout_mode)$formatted_time_left$(end_text_standout_mode)"
+
+    # Using sed instead of variable substitutions because some of the
+    # ASCII art contains special shell characters.
+    "print_${size_category}_${screen_type}_time" | sed "s/\$time/$formatted_time_left/" | grep -v '^#'
+}
+
+format_seconds_as_hh_mm() {
+    local seconds="$1"
+
+    local minutes=$(( $seconds % 3600 / 60 ))
+    local seconds=$(( $seconds % 60 ))
+    printf "%02d:%02d\n" $minutes $seconds
+}
+
 count_down() {
     local screen_type="$1"
     local countdown_printer="$2"
@@ -355,78 +319,12 @@ count_down() {
 	now=$(date +%s)
     done
 }
-
-format_seconds_as_hh_mm() {
-    local seconds="$1"
-
-    local minutes=$(( $seconds % 3600 / 60 ))
-    local seconds=$(( $seconds % 60 ))
-    printf "%02d:%02d\n" $minutes $seconds
-}
-
-tear_down() {
-    # FIXME: save original stty settings and restore?
-    stty sane
-    show_cursor
-    tear_down_application_indicator
-    set_chat_status "chat"
-    printf "\nBye!\n"
-    exit 0
-}
-
-tear_down_application_indicator() {
-    [ -z "$APPLICATION_INDICATOR_COMMAND" ] && return
-
-    rm -f "$APPLICATION_INDICATOR_ICON_FILE" "$APPLICATION_INDICATOR_CONFIG_FILE"
-    [ -n "$APPLICATION_INDICATOR_PID" ] && kill "$APPLICATION_INDICATOR_PID"
-}
-
-# https://github.com/fossfreedom/indicator-sysmonitor
-initialize_application_indicator() {
-    [ -z "$APPLICATION_INDICATOR_COMMAND" ] && return
-
-    local json_config_format="$(cat "$APPLICATION_INDICATOR_CONFIG_TEMPLATE_FILE")"
-    printf "$json_config_format" "$APPLICATION_INDICATOR_ICON_FILE" >"$APPLICATION_INDICATOR_CONFIG_FILE"
-    printf "Starting..." >"$APPLICATION_INDICATOR_ICON_FILE"
-    "$APPLICATION_INDICATOR_COMMAND" --config="$APPLICATION_INDICATOR_CONFIG_FILE" >>"$LOG_FILE" 2>&1 &
-    APPLICATION_INDICATOR_PID="$!"
-}
-
-set_application_indicator_icon() {
-    local icon_path="$1"
-
-    [ -n "$APPLICATION_INDICATOR_COMMAND" ] && echo "USE_ICON:$icon_path" >"$APPLICATION_INDICATOR_ICON_FILE"
-}
-
-send_notification() {
-    local message="$1"
-
-    [ -n "$NOTIFICATION_COMMAND" ] && run_command "$NOTIFICATION_COMMAND" "$message"
-}
-
-set_chat_status() {
-    local new_status="$1"
-
-    [ -n "$SET_CHAT_STATUS_COMMAND" ] && run_command "$SET_CHAT_STATUS_COMMAND" "$new_status"
-}
-
-play_audio() {
-    local audio_file="$1"
-
-    if [ -n "$AUDIO_PLAYER_COMMAND" ]; then
-	run_command "$AUDIO_PLAYER_COMMAND" "$audio_file"
-    else
-	printf ''
-    fi
-}
-
 do_work_countdown() {
     play_audio "$WORKING_AUDIO_FILE"
     set_chat_status "dnd"
     set_application_indicator_icon "$WORKING_ICON"
     count_down "work" "$WORK_COUNTDOWN_PRINTER" $WORK_SECONDS
 }
-
 do_break_countdown() {
     send_notification "Take a break!"
     play_audio "$TAKING_A_BREAK_AUDIO_FILE"
@@ -434,18 +332,6 @@ do_break_countdown() {
     set_application_indicator_icon "$TAKING_A_BREAK_ICON"
     count_down "break" "$BREAK_COUNTDOWN_PRINTER" $BREAK_SECONDS
 }
-
-discard_stdin() {
-    while [ -n "$(read_char 0)" ]; do
-	:
-    done
-}
-
-start_text_standout_mode() { tput smso; }
-end_text_standout_mode() { tput rmso; }
-hide_cursor() { tput civis; }
-show_cursor() { tput cnorm; }
-clear_screen() { tput clear; }
 
 prompt_to_start() {
     send_notification "Break over, man!"
@@ -470,10 +356,122 @@ prompt_to_start() {
     done
 }
 
+handle_interactive_command() {
+    local command="$1"
+
+    case "$command" in
+	s)
+	    clear_screen
+	    printf "\nStarting a new pomo..."
+	    main_loop
+	    ;;
+	q)
+	    tear_down
+	    exit 0
+	    ;;
+	b)
+	    clear_screen
+	    printf "\nTaking a break..."
+	    do_break_countdown
+	    prompt_to_start
+	    main_loop
+	    ;;
+    esac
+
+    return 1
+}
+
+read_char() {
+    local timeout_seconds="$1"
+
+    local timeout_args="${timeout_seconds:+min 0 time $(($timeout_seconds * 10))}"
+    local old_settings="$(stty -g)"
+    stty raw isig -echo $timeout_args
+    printf '%s' "$(dd bs=1 count=1 2>/dev/null)"
+    stty $old_settings
+}
+
+discard_stdin() {
+    while [ -n "$(read_char 0)" ]; do
+	:
+    done
+}
+
+start_text_standout_mode() { tput smso; }
+end_text_standout_mode() { tput rmso; }
+hide_cursor() { tput civis; }
+show_cursor() { tput cnorm; }
+clear_screen() { tput clear; }
+
+run_command() {
+    local command_format="$1"
+    local command_argument="$2"
+
+    local command="$(printf "$command_format" "$command_argument")"
+    # Don't log the command since it may have an auth token in it.
+    eval "$command" >>"$LOG_FILE" 2>&1 &
+}
+
+send_notification() {
+    local message="$1"
+
+    [ -n "$NOTIFICATION_COMMAND" ] && run_command "$NOTIFICATION_COMMAND" "$message"
+}
+
+set_chat_status() {
+    local new_status="$1"
+
+    [ -n "$SET_CHAT_STATUS_COMMAND" ] && run_command "$SET_CHAT_STATUS_COMMAND" "$new_status"
+}
+
+play_audio() {
+    local audio_file="$1"
+
+    if [ -n "$AUDIO_PLAYER_COMMAND" ]; then
+	run_command "$AUDIO_PLAYER_COMMAND" "$audio_file"
+    else
+	printf ''
+    fi
+}
+
+set_application_indicator_icon() {
+    local icon_path="$1"
+
+    [ -n "$APPLICATION_INDICATOR_COMMAND" ] && echo "USE_ICON:$icon_path" >"$APPLICATION_INDICATOR_ICON_FILE"
+}
+
+tear_down_application_indicator() {
+    [ -z "$APPLICATION_INDICATOR_COMMAND" ] && return
+
+    rm -f "$APPLICATION_INDICATOR_ICON_FILE" "$APPLICATION_INDICATOR_CONFIG_FILE"
+    [ -n "$APPLICATION_INDICATOR_PID" ] && kill "$APPLICATION_INDICATOR_PID"
+}
+
+# https://github.com/fossfreedom/indicator-sysmonitor
+initialize_application_indicator() {
+    [ -z "$APPLICATION_INDICATOR_COMMAND" ] && return
+
+    local json_config_format="$(cat "$APPLICATION_INDICATOR_CONFIG_TEMPLATE_FILE")"
+    printf "$json_config_format" "$APPLICATION_INDICATOR_ICON_FILE" >"$APPLICATION_INDICATOR_CONFIG_FILE"
+    printf "Starting..." >"$APPLICATION_INDICATOR_ICON_FILE"
+    "$APPLICATION_INDICATOR_COMMAND" --config="$APPLICATION_INDICATOR_CONFIG_FILE" >>"$LOG_FILE" 2>&1 &
+    APPLICATION_INDICATOR_PID="$!"
+}
+
 initialize() {
     trap tear_down INT TERM HUP
     initialize_application_indicator
     [ -n "$PROMPT_TO_START" ] && prompt_to_start
+}
+
+tear_down() {
+    # FIXME: save original stty settings and restore?
+    stty sane
+    show_cursor
+    tear_down_application_indicator
+    set_chat_status "chat"
+    printf "\nBye!\n"
+    exit 0
 }
 
 main_loop() {
