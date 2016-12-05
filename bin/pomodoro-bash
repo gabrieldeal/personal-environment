@@ -101,15 +101,14 @@ initialize_audio_player_configuration() {
 vlc_play_sound() {
     local sound_file="$1"
 
-    # CD to directory because VLC doesn't handle UNIX-style paths.
+    # CD to the sound directory because VLC can't handle UNIX-style paths.
     (cd "$(dirname "$sound_file")" \
 	 && vlc --intf dummy --play-and-exit "$(basename "$sound_file")" >>"$LOG_FILE" 2>&1)
 }
 
 find_command() {
     for command in "$@"; do
-	command -v "$command" >/dev/null 2>&1
-	if [ $? = 0 ]; then
+	if command -v "$command" >/dev/null; then
 	    printf "%s" "$command"
 	    return
 	fi
@@ -127,16 +126,13 @@ read_command_line_options() {
 	    -w)
 		WORK_SECONDS="$2"
 		shift
-		shift
 		;;
 	    -b)
 		BREAK_SECONDS="$2"
 		shift
-		shift
 		;;
 	    -p)
 		PROMPT_TO_START=1
-		shift
 		;;
 	    -h|*)
 		printf "pomodoro-bash [ -w WORK_SECONDS ] [ -b BREAK_SECONDS ] [ -p ]\n"
@@ -144,6 +140,7 @@ read_command_line_options() {
 		exit 0
 		;;
 	esac
+	shift
     done
 
     validate_timer_duration "$WORK_SECONDS"
