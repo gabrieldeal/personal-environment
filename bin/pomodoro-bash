@@ -22,14 +22,14 @@ read_configuration() {
 
     # "FREE RED TOMATO CLIP ART" by OpenGameArt.org is public domain.
     # http://www.clipartlord.com/category/food-clip-art/vegetables-clip-art/tomato-clip-art/
-    : ${NOTIFICATION_ICON:="$HOME/local/pomodoro-bash/imagestomato13.ico"}
-    : ${WORKING_ICON:="$HOME/local/pomodoro-bash/imagestomato13.png"}
+    : ${NOTIFICATION_ICON:="$HOME/local/pomodoro-bash/images/tomato13.ico"}
+    : ${WORKING_ICON:="$HOME/local/pomodoro-bash/images/tomato13.png"}
 
     # Public domain dog. https://thenounproject.com/term/dog/364/
-    : ${TAKING_A_BREAK_ICON:="$HOME/local/pomodoro-bash/imagesdog.svg"}
+    : ${TAKING_A_BREAK_ICON:="$HOME/local/pomodoro-bash/images/dog.svg"}
 
     # I made this one.
-    : ${WAITING_TO_START_ICON:="$HOME/local/pomodoro-bash/imagescircle_question.svg"}
+    : ${WAITING_TO_START_ICON:="$HOME/local/pomodoro-bash/images/circle_question.svg"}
 
     : ${WORKING_LARGE_BANNER:="$HOME/local/pomodoro-bash/ascii-art/banner-large-working.txt"}
     : ${TAKING_A_BREAK_LARGE_BANNER:="$HOME/local/pomodoro-bash/ascii-art/banner-large-taking-a-break.txt"}
