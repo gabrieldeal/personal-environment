@@ -4,6 +4,9 @@
 # SC2086 is "double quote to prevent globbing and word splitting". It gives too many false positives.
 
 # TODO:
+# Use https://github.com/matryer/bitbar to display status in the MacOS status menu.
+# Get rid of `command -v`. https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=733511
+# Get to run under /bin/posh
 # Windows taskbar notification
 #   Shell_NotifyIcon(): https://www.codeproject.com/kb/shell/stealthdialog.aspx
 #   http://www.mingw.org/
