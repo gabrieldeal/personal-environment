@@ -461,14 +461,14 @@ initialize_application_indicator() {
 }
 
 initialize() {
+    ORIGINAL_STTY_SETTINGS="$(stty -g)"
     trap tear_down INT TERM HUP
     initialize_application_indicator
     [ -n "$PROMPT_TO_START" ] && prompt_to_start
 }
 
 tear_down() {
-    # FIXME: save original stty settings and restore?
-    stty sane
+    [ -n "$ORIGINAL_STTY_SETTINGS" ] && stty $ORIGINAL_STTY_SETTINGS
     show_cursor
     tear_down_application_indicator
     set_chat_status "chat"
