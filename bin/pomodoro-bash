@@ -1,7 +1,9 @@
 #!/usr/bin/env sh
 
+# shellcheck disable=SC2086
+# SC2086 is "double quote to prevent globbing and word splitting". It gives too many false positives.
+
 # TODO:
-# https://github.com/koalaman/shellcheck
 # Windows taskbar notification
 #   Shell_NotifyIcon(): https://www.codeproject.com/kb/shell/stealthdialog.aspx
 #   http://www.mingw.org/
@@ -407,7 +409,7 @@ run_command() {
     local command_argument="$2"
 
     # shellcheck disable=SC2059
-    # SC2059 is "don't use variables in printf format".
+    # SC2059 is "don't use variables in printf format.
     local command="$(printf "$command_format" "$command_argument")"
 
     # Don't log the command since it may have an auth token in it.
@@ -458,7 +460,7 @@ initialize_application_indicator() {
     local json_config_format="$(cat "$APPLICATION_INDICATOR_CONFIG_TEMPLATE_FILE")"
 
     # shellcheck disable=SC2059
-    # SC2059 is "don't use variables in printf format".
+    # SC2059 is "don't use variables in printf format.
     printf "$json_config_format" "$APPLICATION_INDICATOR_ICON_FILE" >"$APPLICATION_INDICATOR_CONFIG_FILE"
 
     printf "Starting..." >"$APPLICATION_INDICATOR_ICON_FILE"
