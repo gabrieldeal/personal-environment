@@ -3,7 +3,7 @@
     "sensors": {
 	"pomodoro": [
 	    "",
-	    "cat \"%s\""
+            "cat \\"%s\\""
 	 ]
     },
     "interval": 2.0,
