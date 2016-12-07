@@ -43,8 +43,8 @@ read_configuration() {
     # No default value for SET_CHAT_STATUS_COMMAND.
 
     : ${APPLICATION_INDICATOR_COMMAND:="$(find_command indicator-sysmonitor)"}
-    : ${APPLICATION_INDICATOR_CONFIG_FILE:="${TMPDIR:-/tmp}/$USER-$$-pomodoro-indicator-config.txt"}
-    : ${APPLICATION_INDICATOR_ICON_FILE:="${TMPDIR:-/tmp}/$USER-$$-pomodoro-indicator-icon.txt"}
+    : ${APPLICATION_INDICATOR_CONFIG_FILE:="${TMPDIR:-/tmp}/$USER-${$}-pomodoro-indicator-config.txt"}
+    : ${APPLICATION_INDICATOR_ICON_FILE:="${TMPDIR:-/tmp}/$USER-${$}-pomodoro-indicator-icon.txt"}
     APPLICATION_INDICATOR_CONFIG_TEMPLATE_FILE="$HOME/local/pomodoro-bash/config/indicator-sysmonitor-config.json"
 
     initialize_notification_configuration
@@ -139,7 +139,7 @@ read_command_line_options() {
 		;;
 	    -h|*)
 		printf "pomodoro-bash [ -w WORK_SECONDS ] [ -b BREAK_SECONDS ] [ -p ]\n"
-		printf "\nSee the top of $0 for configuration hints.\n"
+		printf "\nSee the top of %s for configuration hints.\n" "$0"
 		exit 0
 		;;
 	esac
@@ -154,7 +154,7 @@ validate_timer_duration() {
     local duration_seconds="$1"
 
     is_integer "$duration_seconds" || fail "Duration '$duration_seconds' is not an integer!"
-    [ $duration_seconds -ge $(( 60 * 60 )) ] && fail "Duration '$duration_seconds' seconds is too long!"
+    [ "$duration_seconds" -ge $(( 60 * 60 )) ] && fail "Duration '$duration_seconds' seconds is too long!"
 }
 
 is_integer() {
@@ -174,7 +174,7 @@ count_columns() {
     for line in $text; do
 	[ ${#line} -gt $columns ] && columns=${#line}
     done
-    echo $columns
+    echo "$columns"
 }
 
 does_text_fit_screen() {
@@ -184,7 +184,7 @@ does_text_fit_screen() {
 
     local text_lines="$(count_lines "$text")"
     local text_columns="$(count_columns "$text")"
-    [ $screen_lines -ge $text_lines ] && [ $screen_columns -ge $text_columns ]
+    [ "$screen_lines" -ge "$text_lines" ] && [ "$screen_columns" -ge "$text_columns" ]
     return $?
 }
 
@@ -198,7 +198,7 @@ update_screen_category() {
     local screen_columns="$(tput cols)"
 
     # Trapping the WINCH signal was causing random freezes when I resized the screen on Ubuntu 14.04.
-    if [ $LAST_SCREEN_LINES -eq $screen_lines ] && [ $LAST_SCREEN_COLUMNS -eq $screen_columns ] && [ $LAST_SCREEN_TYPE = $screen_type ]; then
+    if [ "$LAST_SCREEN_LINES" -eq "$screen_lines" ] && [ "$LAST_SCREEN_COLUMNS" -eq "$screen_columns" ] && [ "$LAST_SCREEN_TYPE" = "$screen_type" ]; then
 	return
     fi
     LAST_SCREEN_COLUMNS="$screen_columns"
@@ -216,12 +216,12 @@ update_screen_category() {
     SIZE_CATEGORY=tiny
 }
 
-print_tiny_break_time() { printf '$time\n'; }
+print_tiny_break_time() { printf "\$time\n"; }
 print_small_break_time() { print_tiny_break_time; }
 print_medium_break_time() { cat "$TAKING_A_BREAK_MEDIUM_ASCII_ART"; }
 print_large_break_time() { cat "$TAKING_A_BREAK_LARGE_ASCII_ART"; }
 
-print_tiny_work_time() { printf '$time\n'; }
+print_tiny_work_time() { printf "\$time\n"; }
 print_small_work_time() { print_tiny_work_time; }
 print_medium_work_time() { cat "$WORKING_MEDIUM_ASCII_ART"; }
 print_large_work_time() { cat "$WORKING_LARGE_ASCII_ART"; }
@@ -278,7 +278,7 @@ print_countdown_time() {
     local size_category="$2"
     local seconds_left="$3"
 
-    local formatted_time_left="$(format_seconds_as_hh_mm $seconds_left)"
+    local formatted_time_left="$(format_seconds_as_hh_mm "$seconds_left")"
     formatted_time_left="$(start_text_standout_mode)$formatted_time_left$(end_text_standout_mode)"
 
     # Using sed instead of variable substitutions because some of the
@@ -289,8 +289,8 @@ print_countdown_time() {
 format_seconds_as_hh_mm() {
     local seconds="$1"
 
-    local minutes=$(( $seconds % 3600 / 60 ))
-    local seconds=$(( $seconds % 60 ))
+    local minutes=$(( seconds % 3600 / 60 ))
+    local seconds=$(( seconds % 60 ))
     printf "%02d:%02d\n" $minutes $seconds
 }
 
@@ -304,10 +304,10 @@ count_down() {
 
     local command_result=
     local now=$(date +%s)
-    local end_date=$(( $now + $seconds ))
-    while [ $end_date -gt $now ]; do
-	local seconds_left=$(( $end_date - $now ))
-	local minutes_left=$(( ($seconds_left + 60 - 1) / 60 ))
+    local end_date=$(( now + seconds ))
+    while [ "$end_date" -gt "$now" ]; do
+	local seconds_left=$(( end_date - now ))
+	local minutes_left=$(( (seconds_left + 60 - 1) / 60 ))
 	set_application_indicator "$icon" "${minutes_left}m"
 
 	print_screen "$screen_type" "$seconds_left" "$command_result"
@@ -326,12 +326,12 @@ count_down() {
 do_work_countdown() {
     play_audio "$WORKING_AUDIO_FILE"
     set_chat_status "dnd"
-    count_down "work" "$WORK_COUNTDOWN_PRINTER" $WORK_SECONDS "$WORKING_ICON"
+    count_down "work" "$WORK_COUNTDOWN_PRINTER" "$WORK_SECONDS" "$WORKING_ICON"
 }
 do_break_countdown() {
     play_audio "$TAKING_A_BREAK_AUDIO_FILE"
     set_chat_status "chat"
-    count_down "break" "$BREAK_COUNTDOWN_PRINTER" $BREAK_SECONDS "$TAKING_A_BREAK_ICON"
+    count_down "break" "$BREAK_COUNTDOWN_PRINTER" "$BREAK_SECONDS" "$TAKING_A_BREAK_ICON"
 }
 
 prompt_to_start() {
@@ -384,11 +384,11 @@ handle_interactive_command() {
 read_char() {
     local timeout_seconds="$1"
 
-    local timeout_args="${timeout_seconds:+min 0 time $(($timeout_seconds * 10))}"
+    local timeout_args="${timeout_seconds:+min 0 time $((timeout_seconds * 10))}"
     local old_settings="$(stty -g)"
     stty raw isig -echo $timeout_args
     printf '%s' "$(dd bs=1 count=1 2>/dev/null)"
-    stty $old_settings
+    stty "$old_settings"
 }
 
 discard_stdin() {
@@ -407,7 +407,10 @@ run_command() {
     local command_format="$1"
     local command_argument="$2"
 
+    # shellcheck disable=SC2059
+    # SC2059 is "don't use variables in printf format".
     local command="$(printf "$command_format" "$command_argument")"
+
     # Don't log the command since it may have an auth token in it.
     eval "$command" >>"$LOG_FILE" 2>&1 &
 }
@@ -454,7 +457,11 @@ initialize_application_indicator() {
     [ -z "$APPLICATION_INDICATOR_COMMAND" ] && return
 
     local json_config_format="$(cat "$APPLICATION_INDICATOR_CONFIG_TEMPLATE_FILE")"
+
+    # shellcheck disable=SC2059
+    # SC2059 is "don't use variables in printf format".
     printf "$json_config_format" "$APPLICATION_INDICATOR_ICON_FILE" >"$APPLICATION_INDICATOR_CONFIG_FILE"
+
     printf "Starting..." >"$APPLICATION_INDICATOR_ICON_FILE"
     "$APPLICATION_INDICATOR_COMMAND" --config="$APPLICATION_INDICATOR_CONFIG_FILE" >>"$LOG_FILE" 2>&1 &
     APPLICATION_INDICATOR_PID="$!"
