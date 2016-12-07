@@ -2,6 +2,9 @@
 
 # TODO:
 # https://github.com/koalaman/shellcheck
+# Windows taskbar notification
+#   Shell_NotifyIcon(): https://www.codeproject.com/kb/shell/stealthdialog.aspx
+#   http://www.mingw.org/
 
 read_configuration() {
     local config_file="$HOME/.pomodoro-bash"
