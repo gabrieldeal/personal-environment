@@ -296,9 +296,8 @@ format_seconds_as_hh_mm() {
 
 count_down() {
     local screen_type="$1"
-    local countdown_printer="$2"
-    local seconds="$3"
-    local icon="$4"
+    local seconds="$2"
+    local icon="$3"
 
     hide_cursor
 
@@ -326,12 +325,12 @@ count_down() {
 do_work_countdown() {
     play_audio "$WORKING_AUDIO_FILE"
     set_chat_status "dnd"
-    count_down "work" "$WORK_COUNTDOWN_PRINTER" "$WORK_SECONDS" "$WORKING_ICON"
+    count_down "work" "$WORK_SECONDS" "$WORKING_ICON"
 }
 do_break_countdown() {
     play_audio "$TAKING_A_BREAK_AUDIO_FILE"
     set_chat_status "chat"
-    count_down "break" "$BREAK_COUNTDOWN_PRINTER" "$BREAK_SECONDS" "$TAKING_A_BREAK_ICON"
+    count_down "break" "$BREAK_SECONDS" "$TAKING_A_BREAK_ICON"
 }
 
 prompt_to_start() {
