@@ -208,6 +208,7 @@ LAST_SCREEN_LINES=0
 LAST_SCREEN_TYPE=0
 update_screen_category() {
     local screen_type="$1"
+    shift # We use $@ below
 
     local screen_lines="$(tput lines)"
     local screen_columns="$(tput cols)"
