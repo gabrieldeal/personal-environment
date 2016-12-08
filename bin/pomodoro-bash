@@ -328,8 +328,8 @@ count_down() {
 
 	local wait_seconds=1
 	local command="$(read_char $wait_seconds)"
-	discard_stdin
 	if [ -n "$command" ]; then
+	    discard_stdin
 	    handle_interactive_command "$command"
 	    command_result="Huh? "
 	fi
