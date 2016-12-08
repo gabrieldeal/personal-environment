@@ -71,11 +71,11 @@ initialize_find_command() {
 initialize_notification_configuration() {
     [ -n "$NOTIFICATION_COMMAND" ] && return
 
-    if $FIND_COMMAND osascript >/dev/null; then
+    if find_command osascript >/dev/null; then
 	NOTIFICATION_COMMAND="osascript -e 'display notification \"%s\" with title \"Pomodoro\"'"
-    elif $FIND_COMMAND notify-send >/dev/null; then
+    elif find_command notify-send >/dev/null; then
 	NOTIFICATION_COMMAND="notify-send -i \"$NOTIFICATION_ICON\" Pomodoro \"%s\""
-    elif $FIND_COMMAND notifu >/dev/null; then
+    elif find_command notifu >/dev/null; then
 	NOTIFICATION_COMMAND="notifu /m \"%s\" /p Pomodoro /d 5000"
     fi
 }
@@ -84,7 +84,7 @@ initialize_audio_configuration() {
     local audio_type=
     initialize_audio_player_configuration "madplay" "mpg123" "mpg321" "afplay" && audio_type="mp3"
     initialize_audio_player_configuration "paplay" "sndfile-play" "beep" && audio_type="ogg"
-    if [ -z "$AUDIO_PLAYER_COMMAND" ] && $FIND_COMMAND vlc >/dev/null; then
+    if [ -z "$AUDIO_PLAYER_COMMAND" ] && find_command vlc >/dev/null; then
 	AUDIO_PLAYER_COMMAND="vlc_play_sound \"%s\""
 	audio_type="mp3"
     fi
@@ -126,9 +126,10 @@ find_command() {
     for command in "$@"; do
 	if $FIND_COMMAND "$command" >/dev/null 2>&1; then
 	    printf "%s" "$command"
-	    return
+	    return 0
 	fi
     done
+    return 1
 }
 
 fail() {
