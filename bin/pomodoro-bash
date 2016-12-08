@@ -484,7 +484,6 @@ initialize_application_indicator() {
 initialize() {
     ORIGINAL_STTY_SETTINGS="$(stty -g)"
     trap tear_down INT TERM HUP
-    initialize_find_command
     initialize_application_indicator
     [ -n "$PROMPT_TO_START" ] && prompt_to_start
 }
