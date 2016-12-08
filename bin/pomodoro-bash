@@ -301,7 +301,7 @@ format_seconds_as_hh_mm() {
 
     local minutes=$(( seconds % 3600 / 60 ))
     local seconds=$(( seconds % 60 ))
-    printf "%02d:%02d\n" $minutes $seconds
+    printf "%02d:%02d" $minutes $seconds
 }
 
 count_down() {
