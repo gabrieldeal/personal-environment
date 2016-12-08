@@ -120,7 +120,7 @@ vlc_play_sound() {
 
 find_command() {
     for command in "$@"; do
-	if $FIND_COMMAND "$command" >/dev/null; then
+	if $FIND_COMMAND "$command" >/dev/null 2>&1; then
 	    printf "%s" "$command"
 	    return
 	fi
