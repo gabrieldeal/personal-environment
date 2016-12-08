@@ -70,8 +70,8 @@ initialize_notification_configuration() {
 
 initialize_audio_configuration() {
     local audio_type=
-    initialize_audio_player_configuration "mp3" "madplay" "mpg123" "mpg321" "afplay" && audio_type="mp3"
-    initialize_audio_player_configuration "ogg" "paplay" "sndfile-play" "beep" && audio_type="ogg"
+    initialize_audio_player_configuration "madplay" "mpg123" "mpg321" "afplay" && audio_type="mp3"
+    initialize_audio_player_configuration "paplay" "sndfile-play" "beep" && audio_type="ogg"
     if [ -z "$AUDIO_PLAYER_COMMAND" ] && command -v vlc >/dev/null; then
 	AUDIO_PLAYER_COMMAND="vlc_play_sound \"%s\""
 	audio_type="mp3"
@@ -93,10 +93,6 @@ initialize_audio_configuration() {
 }
 
 initialize_audio_player_configuration() {
-    local audio_type="$1"
-    shift
-    # local audio_players="$@"
-
     [ -n "$AUDIO_PLAYER_COMMAND" ] && return 1
 
     local audio_player="$(find_command "$@")"
