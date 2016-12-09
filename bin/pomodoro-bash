@@ -44,11 +44,6 @@ read_configuration() {
 
     # No default value for SET_CHAT_STATUS_COMMAND.
 
-    APPLICATION_INDICATOR_COMMAND="$(find_command indicator-sysmonitor)"
-    APPLICATION_INDICATOR_CONFIG_FILE="${TMPDIR:-/tmp}/$USER-${$}-pomodoro-indicator-config.txt"
-    APPLICATION_INDICATOR_ICON_FILE="${TMPDIR:-/tmp}/$USER-${$}-pomodoro-indicator-icon.txt"
-    APPLICATION_INDICATOR_CONFIG_TEMPLATE_FILE="$POMO_ROOT/share/pomodoro-bash/config/indicator-sysmonitor-config.json"
-
     initialize_notification_configuration
     initialize_audio_configuration
 }
@@ -469,6 +464,11 @@ tear_down_application_indicator() {
 
 # https://github.com/fossfreedom/indicator-sysmonitor
 initialize_application_indicator() {
+    APPLICATION_INDICATOR_COMMAND="$(find_command indicator-sysmonitor)"
+    APPLICATION_INDICATOR_CONFIG_FILE="${TMPDIR:-/tmp}/$USER-${$}-pomodoro-indicator-config.txt"
+    APPLICATION_INDICATOR_ICON_FILE="${TMPDIR:-/tmp}/$USER-${$}-pomodoro-indicator-icon.txt"
+    APPLICATION_INDICATOR_CONFIG_TEMPLATE_FILE="$POMO_ROOT/share/pomodoro-bash/config/indicator-sysmonitor-config.json"
+
     [ -z "$APPLICATION_INDICATOR_COMMAND" ] && return
 
     local json_config_format="$(cat "$APPLICATION_INDICATOR_CONFIG_TEMPLATE_FILE")"
