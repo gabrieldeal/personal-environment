@@ -3,7 +3,6 @@
 # shellcheck disable=SC2086
 # SC2086 is "double quote to prevent globbing and word splitting". It gives too many false positives.
 
-
 # TODO:
 # * Rename to pomodoro-primitivo?
 
@@ -11,19 +10,26 @@ read_configuration() {
     local config_file="$HOME/.pomodoro-bash"
     [ -e "$config_file" ] && . "$config_file"
 
-    initialize_find_command
-
     : ${POMO_ROOT:="$HOME/local"}
     : ${POMO_WORK_SECONDS:=$(( 25 * 60 ))}
     : ${POMO_BREAK_SECONDS:=$(( 5 * 60 ))}
-    INTERACTIVE_COMMANDS_PROMPT="Start new pomo (s), take a break (b), quit (q)? "
+    : ${POMO_LOG_FILE:=/dev/null}
+
+    # No default value for:
+    #   POMO_DEBUG
+    #   POMO_SET_CHAT_STATUS_COMMAND
 
     # ASCII art from dogsay. MIT License. Copyright (c) 2015 Forrest Fleming.
     # https://github.com/ffleming/dogsay
-    : ${POMO_WORKING_LARGE_ASCII_ART:="$POMO_ROOT/share/pomodoro-bash/ascii-art/large-dino.txt"}
-    : ${POMO_WORKING_MEDIUM_ASCII_ART:="$POMO_ROOT/share/pomodoro-bash/ascii-art/medium-dino.txt"}
-    : ${POMO_TAKING_A_BREAK_LARGE_ASCII_ART:="$POMO_ROOT/share/pomodoro-bash/ascii-art/large-dog.txt"}
-    : ${POMO_TAKING_A_BREAK_MEDIUM_ASCII_ART:="$POMO_ROOT/share/pomodoro-bash/ascii-art/medium-dog.txt"}
+    : ${POMO_WORKING_LARGE_BODY:="$POMO_ROOT/share/pomodoro-bash/ascii-art/large-dino.txt"}
+    : ${POMO_WORKING_MEDIUM_BODY:="$POMO_ROOT/share/pomodoro-bash/ascii-art/medium-dino.txt"}
+    : ${POMO_TAKING_A_BREAK_LARGE_BODY:="$POMO_ROOT/share/pomodoro-bash/ascii-art/large-dog.txt"}
+    : ${POMO_TAKING_A_BREAK_MEDIUM_BODY:="$POMO_ROOT/share/pomodoro-bash/ascii-art/medium-dog.txt"}
+
+    # From figlet:
+    : ${POMO_WORKING_LARGE_BANNER:="$POMO_ROOT/share/pomodoro-bash/ascii-art/banner-large-working.txt"}
+    : ${POMO_TAKING_A_BREAK_LARGE_BANNER:="$POMO_ROOT/share/pomodoro-bash/ascii-art/banner-large-taking-a-break.txt"}
+    : ${POMO_WAITING_TO_START_LARGE_BANNER:="$POMO_ROOT/share/pomodoro-bash/ascii-art/banner-large-waiting-to-start.txt"}
 
     # "FREE RED TOMATO CLIP ART" by OpenGameArt.org is public domain.
     # http://www.clipartlord.com/category/food-clip-art/vegetables-clip-art/tomato-clip-art/
@@ -36,30 +42,8 @@ read_configuration() {
     # I made this one.
     : ${POMO_WAITING_TO_START_ICON:="$POMO_ROOT/share/pomodoro-bash/images/circle_question.svg"}
 
-    : ${POMO_WORKING_LARGE_BANNER:="$POMO_ROOT/share/pomodoro-bash/ascii-art/banner-large-working.txt"}
-    : ${POMO_TAKING_A_BREAK_LARGE_BANNER:="$POMO_ROOT/share/pomodoro-bash/ascii-art/banner-large-taking-a-break.txt"}
-    : ${POMO_WAITING_TO_START_LARGE_BANNER:="$POMO_ROOT/share/pomodoro-bash/ascii-art/banner-large-waiting-to-start.txt"}
-
-    : ${POMO_LOG_FILE:=/dev/null}
-
-    # No default value for SET_CHAT_STATUS_COMMAND.
-
     initialize_notification_configuration
     initialize_audio_configuration
-}
-
-initialize_find_command() {
-    [ -n "$POMO_FIND_COMMAND" ] && return
-
-    local command=
-    for command in "command -v" "which" "type"; do
-	if $command sh >/dev/null 2>&1; then
-	    POMO_FIND_COMMAND="$command"
-	    return
-	fi
-    done
-
-    fail "Unable to figure out how to find commands. Define the FIND_COMMAND env var."
 }
 
 initialize_notification_configuration() {
@@ -225,15 +209,15 @@ update_screen_category() {
     SIZE_CATEGORY=tiny
 }
 
-print_tiny_break_time() { printf "\$time\n"; }
-print_small_break_time() { print_tiny_break_time; }
-print_medium_break_time() { cat "$POMO_TAKING_A_BREAK_MEDIUM_ASCII_ART"; }
-print_large_break_time() { cat "$POMO_TAKING_A_BREAK_LARGE_ASCII_ART"; }
+print_tiny_break_body() { printf "\$time\n"; }
+print_small_break_body() { print_tiny_break_body; }
+print_medium_break_body() { cat "$POMO_TAKING_A_BREAK_MEDIUM_BODY"; }
+print_large_break_body() { cat "$POMO_TAKING_A_BREAK_LARGE_BODY"; }
 
-print_tiny_work_time() { printf "\$time\n"; }
-print_small_work_time() { print_tiny_work_time; }
-print_medium_work_time() { cat "$POMO_WORKING_MEDIUM_ASCII_ART"; }
-print_large_work_time() { cat "$POMO_WORKING_LARGE_ASCII_ART"; }
+print_tiny_work_body() { printf "\$time\n"; }
+print_small_work_body() { print_tiny_work_body; }
+print_medium_work_body() { cat "$POMO_WORKING_MEDIUM_BODY"; }
+print_large_work_body() { cat "$POMO_WORKING_LARGE_BODY"; }
 
 print_tiny_break_banner() { printf "Break!\n"; }
 print_small_break_banner() { print_large_break_banner; }
@@ -273,16 +257,16 @@ print_countdown_screen() {
     local seconds_left="$3"
     local command_result="$4"
 
-    local banner_message="$("print_${size_category}_${screen_type}_banner")"
-    local countdown_message="$(print_countdown_time "$screen_type" "$size_category" "$seconds_left")"
+    local banner="$("print_${size_category}_${screen_type}_banner")"
+    local body="$(print_countdown_body "$screen_type" "$size_category" "$seconds_left")"
 
     clear_screen
-    printf "%s\n" "$banner_message"
-    printf "%s\n" "$countdown_message"
+    printf "%s\n" "$banner"
+    printf "%s\n" "$body"
     printf "%s %s" "$INTERACTIVE_COMMANDS_PROMPT" "$command_result"
 }
 
-print_countdown_time() {
+print_countdown_body() {
     local screen_type="$1"
     local size_category="$2"
     local seconds_left="$3"
@@ -292,7 +276,7 @@ print_countdown_time() {
 
     # Using sed instead of variable substitutions because some of the
     # ASCII art contains special shell characters.
-    "print_${size_category}_${screen_type}_time" | sed "s/\$time/$formatted_time_left/" | grep -v '^#'
+    "print_${size_category}_${screen_type}_body" | sed "s/\$time/$formatted_time_left/" | grep -v '^#'
 }
 
 format_seconds_as_hh_mm() {
@@ -482,11 +466,31 @@ initialize_application_indicator() {
     APPLICATION_INDICATOR_PID="$!"
 }
 
+initialize_find_command() {
+    [ -n "$POMO_FIND_COMMAND" ] && return
+
+    local command=
+    for command in "command -v" "which" "type"; do
+	if $command sh >/dev/null 2>&1; then
+	    POMO_FIND_COMMAND="$command"
+	    return
+	fi
+    done
+
+    fail "Unable to figure out how to find commands. Define the FIND_COMMAND env var."
+}
+
 initialize() {
     ORIGINAL_STTY_SETTINGS="$(stty -g)"
+    INTERACTIVE_COMMANDS_PROMPT="Start new pomo (s), take a break (b), quit (q)? "
+
+    initialize_find_command
+    read_configuration
+    read_command_line_options "$@"
+
     trap tear_down INT TERM HUP
+
     initialize_application_indicator
-    [ -n "$PROMPT_TO_START" ] && prompt_to_start
 }
 
 tear_down() {
@@ -510,7 +514,6 @@ main_loop() {
     done
 }
 
-read_configuration
-read_command_line_options "$@"
-initialize
+initialize "$@"
+[ -n "$PROMPT_TO_START" ] && prompt_to_start
 main_loop
