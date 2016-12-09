@@ -14,7 +14,6 @@ read_configuration() {
     initialize_find_command
 
     : ${POMO_ROOT:="$HOME/local"}
-    : ${POMO_UPDATE_INTERVAL_SECONDS:=1}
     : ${POMO_WORK_SECONDS:=$(( 25 * 60 ))}
     : ${POMO_BREAK_SECONDS:=$(( 5 * 60 ))}
     INTERACTIVE_COMMANDS_PROMPT="Start new pomo (s), take a break (b), quit (q)? "
