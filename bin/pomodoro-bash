@@ -426,7 +426,9 @@ run_command() {
     # SC2059 is "don't use variables in printf format.
     local command="$(printf "$command_format" "$command_argument")"
 
-    # Don't log the command since it may have an auth token in it.
+    # Don't log the command normally since it may have an auth token in it.
+    [ -n "$POMO_DEBUG" ] && echo "Running: $command" >>"$POMO_LOG_FILE"
+
     eval "$command" >>"$POMO_LOG_FILE" 2>&1 &
 }
 
