@@ -273,9 +273,9 @@ print_ready_screen() {
     printf "\n%s[s] " "$INTERACTIVE_COMMANDS_PROMPT"
 }
 
-print_break_screen() { print_count_down_screen "break" "$@"; }
-print_work_screen() { print_count_down_screen "work" "$@"; }
-print_count_down_screen() {
+print_break_screen() { print_countdown_screen "break" "$@"; }
+print_work_screen() { print_countdown_screen "work" "$@"; }
+print_countdown_screen() {
     local screen_type="$1"
     local size_category="$2"
     local seconds_left="$3"
@@ -311,7 +311,7 @@ format_seconds_as_hh_mm() {
     printf "%02d:%02d" $minutes $seconds
 }
 
-count_down() {
+do_countdown() {
     local screen_type="$1"
     local seconds="$2"
     local icon="$3"
@@ -342,12 +342,12 @@ count_down() {
 do_work_countdown() {
     play_audio "$WORKING_AUDIO_FILE"
     set_chat_status "dnd"
-    count_down "work" "$WORK_SECONDS" "$WORKING_ICON"
+    do_countdown "work" "$WORK_SECONDS" "$WORKING_ICON"
 }
 do_break_countdown() {
     play_audio "$TAKING_A_BREAK_AUDIO_FILE"
     set_chat_status "chat"
-    count_down "break" "$BREAK_SECONDS" "$TAKING_A_BREAK_ICON"
+    do_countdown "break" "$BREAK_SECONDS" "$TAKING_A_BREAK_ICON"
 }
 
 prompt_to_start() {
