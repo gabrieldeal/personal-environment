@@ -17,7 +17,6 @@ read_configuration() {
     : ${POMO_UPDATE_INTERVAL_SECONDS:=1}
     : ${POMO_WORK_SECONDS:=$(( 25 * 60 ))}
     : ${POMO_BREAK_SECONDS:=$(( 5 * 60 ))}
-    : ${POMO_PROMPT_TO_START:=""}
     INTERACTIVE_COMMANDS_PROMPT="Start new pomo (s), take a break (b), quit (q)? "
 
     # ASCII art from dogsay. MIT License. Copyright (c) 2015 Forrest Fleming.
@@ -46,9 +45,9 @@ read_configuration() {
 
     # No default value for SET_CHAT_STATUS_COMMAND.
 
-    : ${APPLICATION_INDICATOR_COMMAND:="$(find_command indicator-sysmonitor)"}
-    : ${APPLICATION_INDICATOR_CONFIG_FILE:="${TMPDIR:-/tmp}/$USER-${$}-pomodoro-indicator-config.txt"}
-    : ${APPLICATION_INDICATOR_ICON_FILE:="${TMPDIR:-/tmp}/$USER-${$}-pomodoro-indicator-icon.txt"}
+    APPLICATION_INDICATOR_COMMAND="$(find_command indicator-sysmonitor)"
+    APPLICATION_INDICATOR_CONFIG_FILE="${TMPDIR:-/tmp}/$USER-${$}-pomodoro-indicator-config.txt"
+    APPLICATION_INDICATOR_ICON_FILE="${TMPDIR:-/tmp}/$USER-${$}-pomodoro-indicator-icon.txt"
     APPLICATION_INDICATOR_CONFIG_TEMPLATE_FILE="$POMO_ROOT/share/pomodoro-bash/config/indicator-sysmonitor-config.json"
 
     initialize_notification_configuration
@@ -150,7 +149,7 @@ read_command_line_options() {
 		shift
 		;;
 	    -p)
-		POMO_PROMPT_TO_START=1
+		PROMPT_TO_START=1
 		;;
 	    -h|*)
 		printf "pomodoro-bash [ -w WORK_SECONDS ] [ -b BREAK_SECONDS ] [ -p ]\n"
