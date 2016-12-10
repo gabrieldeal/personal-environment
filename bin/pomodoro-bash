@@ -1,10 +1,16 @@
 #!/usr/bin/env sh
+# ð
 
 # shellcheck disable=SC2086
 # SC2086 is "double quote to prevent globbing and word splitting". It gives too many false positives.
 
 # TODO:
 # * Rename to pomodoro-primitivo?
+# * https://github.com/julienXX/terminal-notifier
+#    terminal-notifier -message xx -title xx -subtitle xx
+# * sudo apt-get install python-notify2
+#    if python -m notify2
+#    POMO_NOTIFICATION_COMMAND='python -c \"import notify2; notify2.init('psh'); m = notify2.Notification('pomodoro-bash', '%s'); m.show();\""
 
 read_configuration() {
     local config_file="$HOME/.pomodoro-bash"
