@@ -21,6 +21,7 @@ shopt -s checkwinsize
 
 PS1='\w\$ '
 
+export PHANTOMJS_BIN=/usr/bin/phantomjs
 export EDITOR=emacs
 export PATH=$PATH:$HOME/local/bin
 export DISABLE_SPRING=1
