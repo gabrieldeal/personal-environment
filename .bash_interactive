@@ -1,6 +1,8 @@
 #-*-shell-script-*-
 
-# If not running interactively, don't do anything
+export PATH=$PATH:$HOME/local/bin
+
+# If not running interactively, then short-circuit
 case $- in
     *i*) ;;
       *) return;;
@@ -23,7 +25,6 @@ PS1='\w\$ '
 
 export PHANTOMJS_BIN=/usr/bin/phantomjs
 export EDITOR=emacs
-export PATH=$PATH:$HOME/local/bin
 export DISABLE_SPRING=1
 export LESS="-I -R"
 export CI_NAME="OSS-disable-simplecov"
