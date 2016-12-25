@@ -11,6 +11,6 @@ cd ~/ \
     && cd /tmp \
     && (test -f emacs-24.5.tar.gz || wget $EMACS_URL) \
     && (test -d emacs-24.5 || tar zxvf emacs-24.5.tar.gz) \
-    && (which emacs; [ $? == 1 ] || yes | sudo apt-get remove emacs24) \
-    && (cd emacs-24.5 && ./configure && make && sudo make install)
+    && (which emacs || sudo apt-get -y remove emacs24) \
+    && (sudo apt-get -y install libncurses-dev && cd emacs-24.5 && ./configure && make && sudo make install)
 
