@@ -29,6 +29,10 @@ export DISABLE_SPRING=1
 export LESS="-I -R"
 export CI_NAME="OSS-disable-simplecov"
 
+# For Debian packaging tools:
+export DEBFULLNAME="Gabriel M. Deal"
+export DEBEMAIL="gabriel.m.deal@gmail.com"
+
 alias emacs-git='emacs `git-opened-files`'
 
 export PROMPT_COMMAND='printf "\033]0;%s\007" "${HOSTNAME%%.*}"'
