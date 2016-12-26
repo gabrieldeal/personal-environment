@@ -20,7 +20,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.provision "file", source: "~/.ssh/id_rsa", destination: "~/.ssh/id_rsa"
   config.vm.provision "file", source: "~/.ssh/id_rsa.pub", destination: "~/.ssh/id_rsa.pub"
-  config.vm.provision "shell", privileged: false, inline: 'chmod -R go-rwx ~/.ssh'
+  config.vm.provision "file", source: "~/.gnupg", destination: "~/"
+  config.vm.provision "shell", privileged: false, inline: 'chmod -R go-rwx ~/.ssh ~/.gnupg'
 
   config.vm.provision :shell, inline: <<'EOT'
     mkdir -p /etc/puppet/modules
