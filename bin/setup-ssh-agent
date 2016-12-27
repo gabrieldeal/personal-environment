@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 # -*- shell-script -*-
 
 # The PATH is not set correctly when started via a Windows shortcut.
