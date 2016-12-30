@@ -326,6 +326,9 @@
 
 (global-undo-tree-mode 1)
 
+;; Because I can't get Karma to ignore .#*Spec.es6 files.  :(
+(setq create-lockfiles nil)
+
 ;; Used by M-x diff (override them using C-u M-x diff):
 (setq diff-switches "-U5")
 
