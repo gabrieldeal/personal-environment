@@ -150,6 +150,11 @@
 (defalias 'gmd-tinydesk-save-state 'tinydesk-save-state)
 (defalias 'gmd-tinydesk-recover-state 'tinydesk-recover-state)
 
+(defun gmd-tinydesk-recover-state-all ()
+  "For use with -f FUNCTION-NAME."
+  (interactive)
+  (tinydesk-recover-state "~/tmp/emacs-tinydesk/all"))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; WS mode
 ;; This strips trailing whitespace and converts tabs to spaces on

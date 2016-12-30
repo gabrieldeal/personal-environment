@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+
+echo foo >/tmp/foo
+/home/gabrielx/local/bin/run-in \
+    /home/gabrielx/projects/oss/huddle \
+    emacs -f magit-status \
+          -f gmd-start-ui-environment \
+          -f gmd-tinydesk-recover-state-all >/tmp/emacs-huddle.log 2>&1
