@@ -1,0 +1,55 @@
+#!/usr/bin/env perl
+
+# Massage Li Brannfor's Hayduke maps into a printable state.
+# * Merge the old and new map directories
+# * Sort them
+# * Orient them all in portrait
+
+use File::Basename ();
+use Image::Magick (); # http://www.imagemagick.org/script/perl-magick.php
+
+$^W = 1;
+
+my $dir = $ARGV[0];
+my $output_pdf = $ARGV[1] or die "Usage: $0 INPUT_DIRECTORY OUTPUT_PDF_FILENAME\n";
+
+my %sortable_to_actual;
+foreach my $actual_path (glob("$dir/*.JPG")) {
+    my $actual_filename = File::Basename::basename($actual_path);
+    my $sortable_filename = $actual_filename;
+    $sortable_filename =~ s/(\d+)/sprintf("%02d", $1)/ge;
+
+    my $update_path = "$dir/2015_updates/$actual_filename";
+    if (-e $update_path) {
+        print "Using 2015_updates subdirectory for $actual_filename\n";
+        $sortable_to_actual{$sortable_filename} = $update_path;
+    } else {
+        print "Using main directory for $actual_filename\n";
+        $sortable_to_actual{$sortable_filename} = $actual_path;
+    }
+}
+
+print "Reading images";
+my $pdf = Image::Magick->new();
+my @sorted_filenames = map { $sortable_to_actual{$_} } sort(keys(%sortable_to_actual));
+foreach my $path (@sorted_filenames) {
+    $| = 1; print ".";
+
+    my $img = Image::Magick->new();
+    $img->Read($path) == 1 or die "Failed to read $path";
+
+    my($height, $width) = $img->Get('height', 'width');
+    if ($height < $width) {
+        $img->Rotate(90);
+    }
+
+    push @$pdf, $img;
+}
+print "\n";
+
+print "Creating $output_pdf...\n";
+$pdf->[0]->Coalesce();
+$pdf->Write($output_pdf) == 1 or die "Failed to write $output_pdf";
+
+print "Done!\n";
+exit 0;
