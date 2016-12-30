@@ -16,7 +16,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; For M-x package-install
 
-(defun gmd-refresh-local-package-archive-contents (packages package-source-directory)
+(defun gmd-refresh-local-package-archive-contents(packages package-source-directory)
   (let ((should-refresh (or (not (boundp 'package-archive-contents))
 			    (not package-archive-contents))))
     (dolist (package packages)
@@ -29,7 +29,7 @@
     (if should-refresh
 	(package-refresh-contents))))
 
-(defun gmd-install-packages (packages)
+(defun gmd-install-packages(packages)
   (dolist (package packages)
     (when (not (package-installed-p package))
       (package-install package))))
@@ -172,7 +172,7 @@
 ;; the only SQL buffer.
 (add-hook 'sql-interactive-mode-hook 'sql-rename-buffer)
 
-(defun my-sql-save-history-hook ()
+(defun my-sql-save-history-hook()
   (let ((lval 'sql-input-ring-file-name)
 	(rval 'sql-product))
     (if (symbol-value rval)
@@ -186,7 +186,7 @@
 	       (symbol-name rval))))))
 (add-hook 'sql-interactive-mode-hook 'my-sql-save-history-hook)
 
-(defun gmd-format-sql ()
+(defun gmd-format-sql()
   "Format SQL queries"
   (interactive)
   (save-excursion
@@ -196,7 +196,7 @@
     (while (re-search-forward "\\\(\\<and\\>\\\)" nil t)
       (replace-match "\n\t\\1"))))
 
-(defun eat-sqlplus-junk (str)
+(defun eat-sqlplus-junk(str)
   "Eat the line numbers SQL*Plus returns.
     Put this on `comint-preoutput-filter-functions' if you are
     running SQL*Plus.
@@ -213,7 +213,7 @@
   (while (string-match " [ 1-9][0-9]  " str)
     (setq str (replace-match "" nil nil str)))
   str)
-(defun install-eat-sqlplus-junk ()
+(defun install-eat-sqlplus-junk()
   "Install `comint-preoutput-filter-functions' if appropriate.
     Add this function to `sql-interactive-mode-hook' in your .emacs:
     \(add-hook 'sql-mode-hook 'install-eat-sqlplus-junk)"
@@ -368,7 +368,7 @@
 ;; Misc functions
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(defun gmd-chomp (str)
+(defun gmd-chomp(str)
   (if (and str (string-match "[\n\t\s]+\\'" str))
       (replace-match "" t t str)
     str))
@@ -410,7 +410,7 @@
     (read-file-name "Directory name: ")
     't
     ".el$")))
-(defun gmd-internal-byte-compile-files (files)
+(defun gmd-internal-byte-compile-files(files)
   (if (> (length files) 0)
       (progn
 	  (byte-compile-file (car files))
@@ -457,7 +457,7 @@ sub get_options {
   (interactive)
   (setq c-basic-offset 2))
 
-(defun no-coloring ()
+(defun no-coloring()
   "switch indentation to two-spaces"
   (interactive)
   (set-face-foreground 'font-lock-comment-face "black")
@@ -722,7 +722,7 @@ sub get_options {
 ;; From http://www.emacswiki.org/emacs/CamelCase
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(defun un-camelcase-string (s &optional sep start)
+(defun un-camelcase-string(s &optional sep start)
   "Convert CamelCase string S to lower case with word separator SEP.
     Default for SEP is a hyphen \"-\".
 
@@ -746,7 +746,7 @@ sub get_options {
     (search-forward-regexp "\\<class\\>[ \t]+\\([A-Za-z0-9]+\\)")
     (match-string 1)))
 
-(defun extract-class-variables (&rest modifiers)
+(defun extract-class-variables(&rest modifiers)
   (let ((regexp
 	 (concat
 	  "^\\([ \t]*\\)"
@@ -763,9 +763,9 @@ sub get_options {
 				    (name (match-string 6)))
 				(list modifier type name))))))
 
-(defun generate-class-getter-setter (should-return-this
-				     generate-func
-				     &rest modifiers)
+(defun generate-class-getter-setter(should-return-this
+				    generate-func
+				    &rest modifiers)
   (let ((oldpoint (point)))
     (insert
      (mapconcat
@@ -775,7 +775,7 @@ sub get_options {
       "\n"))
     (c-indent-region oldpoint (point) t)))
 
-(defun make-hibernate-hbm-properties-format (should-return-this type var)
+(defun make-hibernate-hbm-properties-format(should-return-this type var)
   (let ((var-upcased (concat (upcase (substring var 0 1)) (substring var 1)))
 	(hibernate-type (cond
 			 ((equal type "Date") "timestamp")
@@ -792,7 +792,7 @@ sub get_options {
 				'make-hibernate-hbm-properties-format
 				'private))
 
-(defun make-oracle-ddl-format (should-return-this type var)
+(defun make-oracle-ddl-format(should-return-this type var)
   (let ((var-upcased (concat (upcase (substring var 0 1)) (substring var 1)))
 	(class-name (extract-class-name)))
     (format (concat "%s %s NOT NULL,")
@@ -808,7 +808,7 @@ sub get_options {
 				'make-oracle-ddl-format
 				'private))
 
-(defun make-java-mutators-format (should-return-this type var)
+(defun make-java-mutators-format(should-return-this type var)
   (let ((var-upcased (concat (upcase (substring var 0 1)) (substring var 1)))
 	(class-name (extract-class-name)))
     (if should-return-this
@@ -835,7 +835,7 @@ sub get_options {
 				'make-java-mutators-format
 				'private))
 
-(defun make-java-builders-format (should-return-this-not-used type var)
+(defun make-java-builders-format(should-return-this-not-used type var)
   (let ((var-upcased (concat (upcase (substring var 0 1)) (substring var 1)))
 	(class-name (extract-class-name)))
     (format (concat "@Override\n"
@@ -991,7 +991,7 @@ Install the filter like this:
 (advice-add 'compile :around #'clever-cmd-compile-wrapper)
 (advice-add 'grep :around #'clever-cmd-grep-wrapper)
 
-(defun gmd-get-filepath-from-jasmine-compilation-error-regexp-match ()
+(defun gmd-get-filepath-from-jasmine-compilation-error-regexp-match()
   (concat (match-string 1) "/" (match-string 2)))
 
 (eval-after-load "compile"
@@ -1034,7 +1034,7 @@ Install the filter like this:
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; From stevey@
 
-(defun show-kill-ring ()
+(defun show-kill-ring()
   "Shows the current contents of the kill ring in a separate buffer.
 This makes it easy to figure out which prefix to pass to yank."
   (interactive)
@@ -1101,10 +1101,10 @@ This makes it easy to figure out which prefix to pass to yank."
 
 ;; Overriding this function to fix the way p4.el wipes out all windows
 ;; and starts over with two windows horizontally split.
-(defun p4-noinput-buffer-action (cmd
-				 do-revert
-				 show-output
-				 &optional arguments preserve-buffer)
+(defun p4-noinput-buffer-action(cmd
+				do-revert
+				show-output
+				&optional arguments preserve-buffer)
   "Internal function called by various p4 commands."
   (save-excursion
     (save-excursion
@@ -1207,7 +1207,7 @@ SWITCH-TO-BUFFER - whether to switch to the buffer if it is already running."
 ;; [3G.  This code is from
 ;; https://oleksandrmanzyuk.wordpress.com/2011/11/05/better-emacs-shell-part-i/
 
-(defun regexp-alternatives (regexps)
+(defun regexp-alternatives(regexps)
   "Return the alternation of a list of regexps."
   (mapconcat (lambda (regexp)
                (concat "\\(?:" regexp "\\)"))
@@ -1225,18 +1225,18 @@ SWITCH-TO-BUFFER - whether to switch to the buffer if it is already running."
          ;; noop
 	 "\012\033\\[2K\033\\[1F")))
 
-(defun comint-filter-non-sgr-control-sequences-in-region (begin end)
+(defun comint-filter-non-sgr-control-sequences-in-region(begin end)
   (save-excursion
     (goto-char begin)
     (while (re-search-forward
             non-sgr-control-sequence-regexp end t)
       (replace-match ""))))
 
-(defun compilation-filter-non-sgr-control-sequences-in-region ()
+(defun compilation-filter-non-sgr-control-sequences-in-region()
   (comint-filter-non-sgr-control-sequences-in-region compilation-filter-start
 						     (point)))
 
-(defun comint-filter-non-sgr-control-sequences-in-output (ignored)
+(defun comint-filter-non-sgr-control-sequences-in-output(ignored)
   (let ((start-marker
          (or comint-last-output-start
              (point-min-marker)))
