@@ -4,7 +4,7 @@
 EMACS_URL=http://ftp.gnu.org/gnu/emacs/emacs-25.1.tar.gz
 TINYDESK_URL=https://raw.githubusercontent.com/jaalto/project-emacs--tinydesk/master/tinydesk.el
 
-function setup_home_dir() {
+setup_home_dir() {
     cd ~/ \
        && (test -d config || git clone git@github.com:gabrielmdeal/personal-environment.git config) \
        && for f in config/.??* ; do rm -f `basename $f` && ln -vs $f; done \
@@ -14,14 +14,14 @@ function setup_home_dir() {
 	   && for f in ../config/bin/*; do ln -vsnf $f; done)
 }
 
-function setup_tinydesk() {
+setup_tinydesk() {
     (mkdir -vp ~/.emacs.d/manual \
 	 && cd ~/.emacs.d/manual \
 	 && (test -f tinydesk.el \
 	     || wget $TINYDESK_URL))
 }
 
-function setup_emacs() {
+setup_emacs() {
     if emacs --version | grep -q "GNU Emacs 25.1"
     then
        return
@@ -30,7 +30,7 @@ function setup_emacs() {
     cd /tmp \
        && (test -f emacs-25.1.tar.gz || wget $EMACS_URL) \
        && (test -d emacs-25.1 || tar zxvf emacs-25.1.tar.gz) \
-       && (which emacs; [ $? == 1 ] || sudo apt-get -y remove emacs24) \
+       && (which emacs >/dev/null 2>&1 || sudo apt-get -y remove emacs24) \
        && (cd emacs-25.1 && ./configure && make && sudo make install)
 }
 
