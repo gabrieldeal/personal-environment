@@ -35,7 +35,7 @@
       (package-install package))))
 
 (defvar gmd-package-archive-directory (expand-file-name "~/.emacs.d/gmd/"))
-(defvar gmd-package-source-directory (expand-file-name "~/config/emacs/package-archives"))
+(defvar gmd-package-source-directory (expand-file-name "~/projects/clever-cmd"))
 
 (autoload 'package-upload-file "package-x" "doc" t)
 (with-eval-after-load "package-x"
@@ -906,9 +906,33 @@ sub get_options {
 (define-key esc-map "\C-h" 'backward-kill-word)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Compile & grep customizations
+;; compilation-mode filter for Ruby's byebug:
+
+(defun clever-cmd-convert-to-ruby-console()
+  "Changes a compilation-mode window into a Ruby console (useful for debugging rspecs)."
+  (interactive)
+  (read-only-mode 0)
+  (require 'inf-ruby)
+  (inf-ruby-mode))
+
+;;;###autoload
+(defun clever-cmd-ruby-byebug-compilation-filter ()
+  "Convert a compilation window to a Ruby console if a byebug breakpoint is hit.
+
+Install the filter like this:
+\(add-hook 'compilation-filter-hook 'clever-cmd-ruby-byebug-compilation-filter)"
+  (if (not (local-variable-if-set-p 'clever-cmd-ruby-byebug-compilation-filter-is-done))
+      (save-excursion
+	(goto-char compilation-filter-start)
+	(if (re-search-forward "^(byebug) " nil t)
+	    (progn
+	      (clever-cmd-convert-to-ruby-console)
+	      (make-local-variable 'clever-cmd-ruby-byebug-compilation-filter-is-done))))))
 
 (add-hook 'compilation-filter-hook 'clever-cmd-ruby-byebug-compilation-filter)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Compile & grep customizations
 
 ; grep-null-device=nil keep M-x grep from appending "/dev/null" to the
 ; end of my grep commands (needs to happen before the mode hook is
@@ -916,26 +940,48 @@ sub get_options {
 (setq grep-null-device nil)
 
 (setq grep-command "grep -nr ")
-(defun clever-cmd-ruby-mode-grep-command ()
+
+(require 'clever-cmd)
+
+(defun gmd-clever-cmd-ruby-mode-grep-command()
   (format "grep -nr --include=\"*.rb\" --include=\"*.erb\" --include=\"*.rake\" %s --regexp "
 	  default-directory))
-(defun clever-cmd-web-mode-grep-command ()
+(add-to-list 'clever-cmd-grep-major-mode-alist
+	     '(ruby-mode . gmd-clever-cmd-ruby-mode-grep-command))
+
+(defun gmd-clever-cmd-web-mode-grep-command()
   (format "grep -nr --exclude-dir generated --exclude-dir node_modules --include=\"*.js\" --include=\"*.jsx\" --include=\"*.es6\" %s --regexp "
 	  default-directory))
-(defalias 'clever-cmd-js-mode-grep-command 'clever-cmd-web-mode-grep-command)
+(add-to-list 'clever-cmd-grep-major-mode-alist
+	     '(web-mode . gmd-clever-cmd-web-mode-grep-command))
+(add-to-list 'clever-cmd-grep-major-mode-alist
+	     '(js-mode . gmd-clever-cmd-web-mode-grep-command))
 
-(defun clever-cmd-ruby-mode-compile-command ()
+(defun gmd-clever-cmd-ruby-mode-compile-command()
   (concat "cd " (or (gmd-vc-root-dir) ".") ; Default to current directory.
 	  " && bundle exec rspec  ~/config/.rspec_color.rb --format documentation %s:%l"))
+(add-to-list 'clever-cmd-compile-major-mode-alist
+	     '(ruby-mode . gmd-clever-cmd-ruby-mode-compile-command))
 
-(defun clever-cmd-js-mode-compile-command ()
+(defun gmd-clever-cmd-web-mode-compile-command()
   (concat "cd " (or (gmd-vc-root-dir) ".") ; Default to current directory.
 	  " && PHANTOMJS_BIN=/usr/bin/phantomjs yarn run test"))
-(defun clever-cmd-web-mode-compile-command ()
-  (clever-cmd-js-mode-compile-command))
+(add-to-list 'clever-cmd-compile-major-mode-alist
+	     '(js-mode . gmd-clever-cmd-web-mode-compile-command))
+(add-to-list 'clever-cmd-compile-major-mode-alist
+	     '(web-mode . gmd-clever-cmd-web-mode-compile-command))
 
-(advice-add 'compile :around #'clever-cmd-compile-with-smart-command)
-(advice-add 'grep :around #'clever-cmd-grep-with-smart-command)
+(add-to-list 'clever-cmd-compile-file-name-regexp-alist
+	     '("\\<Gemfile$" . gmd-clever-cmd-ruby-mode-compile-command))
+(add-to-list 'clever-cmd-compile-file-name-regexp-alist
+	     '("\\<package\\.json$" . gmd-clever-cmd-web-mode-compile-command))
+(add-to-list 'clever-cmd-grep-file-name-regexp-alist
+	     '("\\<package\\.json$" . gmd-clever-cmd-web-mode-grep-command))
+(add-to-list 'clever-cmd-grep-file-name-regexp-alist
+	     '("\\<random\\.test$" . "random test worked!"))
+
+(advice-add 'compile :around #'clever-cmd-compile-wrapper)
+(advice-add 'grep :around #'clever-cmd-grep-wrapper)
 
 (defun gmd-get-filepath-from-jasmine-compilation-error-regexp-match ()
   (concat (match-string 1) "/" (match-string 2)))
