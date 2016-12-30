@@ -4,7 +4,17 @@
 EMACS_URL=http://ftp.gnu.org/gnu/emacs/emacs-24.5.tar.gz
 TINYDESK_URL=https://raw.githubusercontent.com/jaalto/project-emacs--tinydesk/master/tinydesk.el
 
+setup_clever_cmd() {
+    local dir="$HOME/projects/clever-cmd"
+
+    [ -e "$dir/clever-cmd.el" ] && return 0
+
+    mkdir -p "$dir" \
+	&& git clone git@github.com:gabrielmdeal/clever-cmd.git "$dir"
+}
+
 cd ~/ \
+    && setup_clever_cmd \
     && (test -d config || git clone git@github.com:gabrielmdeal/personal-environment.git config) \
     && for f in config/.??* ; do rm -f `basename $f` && ln -s $f; done \
     && (mkdir -p ~/.emacs.d/manual && cd ~/.emacs.d/manual && wget $TINYDESK_URL) \
