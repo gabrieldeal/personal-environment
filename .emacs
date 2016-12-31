@@ -275,6 +275,7 @@
 
 (setq auto-mode-alist (cons '("\\.emacs$" . emacs-lisp-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.el$" . emacs-lisp-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '("\\<Cask$" . emacs-lisp-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.elc$" . emacs-lisp-mode) auto-mode-alist))
 
 (setq auto-mode-alist (cons '("\\.xml$" . nxml-mode) auto-mode-alist))
@@ -987,6 +988,11 @@ Install the filter like this:
 	     '("\\<package\\.json$" . gmd-clever-cmd-web-mode-grep-command))
 (add-to-list 'clever-cmd-grep-file-name-regexp-alist
 	     '("\\<random\\.test$" . "random test worked!"))
+
+(defun gmd-ert-runner-compile-command()
+  (concat (gmd-cd-to-project-root-command) " && cask exec ert-runner"))
+(add-to-list 'clever-cmd-compile-file-name-regexp-alist
+	     '("/test/.*test.el$" . gmd-ert-runner-compile-command))
 
 (advice-add 'compile :around #'clever-cmd-compile-wrapper)
 (advice-add 'grep :around #'clever-cmd-grep-wrapper)
