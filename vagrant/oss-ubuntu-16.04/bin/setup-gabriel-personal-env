@@ -14,6 +14,15 @@ setup_home_dir() {
 	   && for f in ../config/bin/*; do ln -vsnf $f; done)
 }
 
+setup_clever_cmd() {
+    local dir="$HOME/projects/clever-cmd"
+
+    [ -e "$dir/clever-cmd.el" ] && return 0
+
+    mkdir -p "$dir" \
+	&& git clone git@github.com:gabrielmdeal/clever-cmd.git "$dir"
+}
+
 setup_tinydesk() {
     (mkdir -vp ~/.emacs.d/manual \
 	 && cd ~/.emacs.d/manual \
@@ -37,4 +46,5 @@ setup_emacs() {
 cd ~/ \
     && setup_home_dir \
     && setup_tinydesk \
+    && setup_clever_cmd \
     && setup_emacs
