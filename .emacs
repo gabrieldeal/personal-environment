@@ -950,44 +950,43 @@ Install the filter like this:
 
 (setq grep-command "grep -nr ")
 
+(defun gmd-cd-to-project-root-command()
+  (concat  "cd " (or (gmd-vc-root-dir) ".")))
+
 (require 'clever-cmd)
 
-(defun gmd-clever-cmd-ruby-mode-grep-command()
+(defun gmd-ruby-grep-command()
   (format "grep -nr --include=\"*.rb\" --include=\"*.erb\" --include=\"*.rake\" %s --regexp "
 	  default-directory))
 (add-to-list 'clever-cmd-grep-major-mode-alist
-	     '(ruby-mode . gmd-clever-cmd-ruby-mode-grep-command))
+	     '(ruby-mode . gmd-ruby-grep-command))
 
-(defun gmd-clever-cmd-web-mode-grep-command()
+(defun gmd-javascript-grep-command()
   (format "grep -nr --exclude-dir generated --exclude-dir node_modules --include=\"*.js\" --include=\"*.jsx\" --include=\"*.es6\" %s --regexp "
 	  default-directory))
 (add-to-list 'clever-cmd-grep-major-mode-alist
-	     '(web-mode . gmd-clever-cmd-web-mode-grep-command))
+	     '(web-mode . gmd-javascript-grep-command))
 (add-to-list 'clever-cmd-grep-major-mode-alist
-	     '(js-mode . gmd-clever-cmd-web-mode-grep-command))
+	     '(js-mode . gmd-javascript-grep-command))
 
-(defun gmd-clever-cmd-ruby-mode-compile-command()
-  (concat "cd " (or (gmd-vc-root-dir) ".") ; Default to current directory.
+(defun gmd-rspec-compile-command()
+  (concat (gmd-cd-to-project-root-command)
 	  " && bundle exec rspec  ~/config/.rspec_color.rb --format documentation %s:%l"))
-(add-to-list 'clever-cmd-compile-major-mode-alist
-	     '(ruby-mode . gmd-clever-cmd-ruby-mode-compile-command))
+(add-to-list 'clever-cmd-compile-file-name-regexp-alist
+	     '("/specs/.*\\.rb$\\|_spec.rb$" . gmd-rspec-compile-command))
 
-(defun gmd-clever-cmd-web-mode-compile-command()
-  (concat "cd " (or (gmd-vc-root-dir) ".") ; Default to current directory.
+(defun gmd-javascript-compile-command()
+  (concat (gmd-cd-to-project-root-command)
 	  " && PHANTOMJS_BIN=/usr/bin/phantomjs yarn run test"))
 (add-to-list 'clever-cmd-compile-major-mode-alist
-	     '(js-mode . gmd-clever-cmd-web-mode-compile-command))
+	     '(js-mode . gmd-javascript-compile-command))
 (add-to-list 'clever-cmd-compile-major-mode-alist
-	     '(web-mode . gmd-clever-cmd-web-mode-compile-command))
+	     '(web-mode . gmd-javascript-compile-command))
 
 (add-to-list 'clever-cmd-compile-file-name-regexp-alist
-	     '("\\<Gemfile$" . gmd-clever-cmd-ruby-mode-compile-command))
-(add-to-list 'clever-cmd-compile-file-name-regexp-alist
-	     '("\\<package\\.json$" . gmd-clever-cmd-web-mode-compile-command))
+	     '("\\<package\\.json$" . gmd-javascript-compile-command))
 (add-to-list 'clever-cmd-grep-file-name-regexp-alist
-	     '("\\<package\\.json$" . gmd-clever-cmd-web-mode-grep-command))
-(add-to-list 'clever-cmd-grep-file-name-regexp-alist
-	     '("\\<random\\.test$" . "random test worked!"))
+	     '("\\<package\\.json$" . gmd-javascript-grep-command))
 
 (defun gmd-ert-runner-compile-command()
   (concat (gmd-cd-to-project-root-command) " && cask exec ert-runner"))
