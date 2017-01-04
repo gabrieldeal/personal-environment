@@ -4,36 +4,84 @@
 # * Merge the old and new map directories
 # * Sort them
 # * Orient them all in portrait
+# * Combine all the JPEGs into one 30k PDF and one 100k PDF
 
 use File::Basename ();
 use Image::Magick (); # http://www.imagemagick.org/script/perl-magick.php
 
 $^W = 1;
 
-my $dir = $ARGV[0];
-my $output_pdf = $ARGV[1] or die "Usage: $0 INPUT_DIRECTORY OUTPUT_PDF_FILENAME\n";
+main();
 
-my %sortable_to_actual;
-foreach my $actual_path (glob("$dir/*.JPG")) {
-    my $actual_filename = File::Basename::basename($actual_path);
-    my $sortable_filename = $actual_filename;
-    $sortable_filename =~ s/(\d+)/sprintf("%02d", $1)/ge;
+exit 0;
 
-    my $update_path = "$dir/2015_updates/$actual_filename";
-    if (-e $update_path) {
-        print "Using 2015_updates subdirectory for $actual_filename\n";
-        $sortable_to_actual{$sortable_filename} = $update_path;
-    } else {
-        print "Using main directory for $actual_filename\n";
-        $sortable_to_actual{$sortable_filename} = $actual_path;
-    }
+sub main {
+    my $input_dir = $ARGV[0];
+    my $output_dir = $ARGV[1] or die "Usage: $0 INPUT_DIRECTORY OUTPUT_DIRECTORY\n";
+
+    create_100k_pdf("$input_dir/100k", "$output_dir/100k.pdf");
+    create_30k_pdf("$input_dir/30k", "$output_dir/30k.pdf");
 }
 
-print "Reading images";
-my $pdf = Image::Magick->new();
-my @sorted_filenames = map { $sortable_to_actual{$_} } sort(keys(%sortable_to_actual));
-foreach my $path (@sorted_filenames) {
-    $| = 1; print ".";
+sub create_30k_pdf {
+    my ($input_dir, $output_pdf) = @_;
+
+    my %sortable_to_actual;
+    foreach my $actual_path (glob("$input_dir/*.JPG")) {
+        my $actual_filename = File::Basename::basename($actual_path);
+        my $sortable_filename = $actual_filename;
+        $sortable_filename =~ s/(\d+)/sprintf("%02d", $1)/ge;
+
+        my $update_path = "$input_dir/2015_updates/$actual_filename";
+        if (-e $update_path) {
+            print "Using 2015_updates subdirectory for $actual_filename\n";
+            $sortable_to_actual{$sortable_filename} = $update_path;
+        } else {
+            print "Using main directory for $actual_filename\n";
+            $sortable_to_actual{$sortable_filename} = $actual_path;
+        }
+    }
+
+    create_pdf(\%sortable_to_actual, $output_pdf);
+}
+
+sub create_100k_pdf {
+    my ($input_dir, $output_pdf) = @_;
+
+    my %sortable_to_actual;
+    foreach my $actual_path (glob("$input_dir/*.JPG")) {
+        my $actual_filename = File::Basename::basename($actual_path);
+        my $sortable_filename = $actual_filename;
+        $sortable_filename =~ s/(\d+)/sprintf("%02d", $1)/ge;
+        $sortable_filename =~ s/overview_grandcanyon/overview_map13_grandcanyon/;
+        $sortable_to_actual{$sortable_filename} = $actual_path;
+    }
+
+    use Data::Dumper; print Dumper(\%sortable_to_actual);
+
+    create_pdf(\%sortable_to_actual, $output_pdf);
+}
+
+sub create_pdf {
+    my ($sortable_to_actual, $output_pdf) = @_;
+
+    print "Processing images";
+    my $pdf = Image::Magick->new();
+    my @sorted_filenames = map { $sortable_to_actual->{$_} } sort(keys(%$sortable_to_actual));
+    foreach my $path (@sorted_filenames) {
+        $| = 1; print ".";
+
+        push @$pdf, create_oriented_image($path);
+    }
+    print "\n";
+
+    print "Creating $output_pdf...\n";
+    $pdf->[0]->Coalesce();
+    $pdf->Write($output_pdf) == 1 or die "Failed to write $output_pdf";
+}
+
+sub create_oriented_image {
+    my ($path) = @_;
 
     my $img = Image::Magick->new();
     $img->Read($path) == 1 or die "Failed to read $path";
@@ -43,13 +91,5 @@ foreach my $path (@sorted_filenames) {
         $img->Rotate(90);
     }
 
-    push @$pdf, $img;
+    return $img;
 }
-print "\n";
-
-print "Creating $output_pdf...\n";
-$pdf->[0]->Coalesce();
-$pdf->Write($output_pdf) == 1 or die "Failed to write $output_pdf";
-
-print "Done!\n";
-exit 0;
