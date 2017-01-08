@@ -35,5 +35,5 @@ fi
 if [ -n "$1" ]
 then
     # This is used in a shortcut to run ssh after setting up ssh-agent.
-    exec "$@"
+    exec "$@" >~/tmp/setup-ssh-agent.log 2>&1
 fi
