@@ -989,7 +989,7 @@ Install the filter like this:
 	     '("\\<package\\.json$" . gmd-javascript-grep-command))
 
 (defun gmd-ert-runner-compile-command()
-  (concat (gmd-cd-to-project-root-command) " && cask exec ert-runner"))
+  (concat (gmd-cd-to-project-root-command) " && cask exec ert-runner && bin/lint"))
 (add-to-list 'clever-cmd-compile-file-name-regexp-alist
 	     '("/test/.*test.el$" . gmd-ert-runner-compile-command))
 
