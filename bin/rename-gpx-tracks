@@ -44,7 +44,10 @@ sub main {
     my $count = 1;
     my $name = $g_options{name} ? "$g_options{name} " : "";
     while (defined(my $line = <$fh>)) {
-        if ($line =~ s/<name>/sprintf("<name>$name%03d ", $count)/e) {
+        if ($line =~ s{<name>(.*?)(\d+)(.*)</name>}{sprintf("<name>$1%03d$3</name>", $2)}e) {
+            # If there is already a number, then make it sortable:
+        } elsif ($line =~ s/<name>/sprintf("<name>$name%03d ", $count)/e) {
+            # If there is no number, then insert one.
             $count++;
         }
         print $line;
