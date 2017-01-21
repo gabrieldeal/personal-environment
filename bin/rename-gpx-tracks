@@ -1,0 +1,54 @@
+#!/usr/bin/env perl
+
+# Add numbers to the start of the track names so MyTrails will sort
+# them correctly.
+
+use Getopt::Long ();
+use IO::File ();
+
+my @g_options = qw(
+    name=s
+    help
+);
+
+main();
+
+sub usage {
+    my ($message) = @_;
+
+    $message ||= '';
+
+    my ($prog) = ($0 =~ /([^\/]+)$/);
+    $message . sprintf("Usage: $prog [ OPTIONS ] FILENAME\nOptions:\n\t--"
+                       . join("\n\t--", @g_options)
+                       . <<EOT);
+EOT
+}
+
+sub get_options {
+    local $SIG{__WARN__};
+    if (! Getopt::Long::GetOptions(\%g_options, @g_options)
+	|| $g_options{'help'})
+    {
+        die usage();
+        exit 1;
+    }
+
+    $g_options{filename} = $ARGV[0] || die usage("Missing filename");
+}
+
+sub main {
+    get_options();
+
+    my $fh = IO::File->new($g_options{filename}, 'r') or die "Can't open file: $!";
+    my $count = 1;
+    my $name = $g_options{name} ? "$g_options{name} " : "";
+    while (defined(my $line = <$fh>)) {
+        if ($line =~ s/<name>/sprintf("<name>$name%03d ", $count)/e) {
+            $count++;
+        }
+        print $line;
+    }
+
+    exit 0;
+}
