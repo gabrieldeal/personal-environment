@@ -550,6 +550,10 @@ sub get_options {
 		      (setq web-mode-code-indent-offset 2)
 		      )))
 
+(add-hook 'sh-mode-hook
+	  (function (lambda()
+		      (setq indent-tabs-mode nil))))
+
 (add-hook 'buffer-menu-mode-hook
 	  (function (lambda()
 		      (font-lock-mode -1))))
