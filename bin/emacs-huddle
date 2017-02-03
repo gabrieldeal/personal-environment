@@ -5,4 +5,5 @@ echo foo >/tmp/foo
     /home/gabrielx/projects/oss/huddle \
     emacs -f magit-status \
           -f gmd-start-ui-environment \
+          -f gmd-start-rails-console \
           -f gmd-tinydesk-recover-state-all >/tmp/emacs-huddle.log 2>&1
