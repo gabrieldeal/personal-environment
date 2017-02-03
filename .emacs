@@ -544,6 +544,7 @@ sub get_options {
 	  (function (lambda()
 		      (setq web-mode-enable-auto-quoting nil)
 		      (setq web-mode-markup-indent-offset 2)
+		      (setq web-mode-attr-indent-offset 2)
 		      (setq web-mode-css-indent-offset 2)
 		      (setq indent-tabs-mode nil)
 		      (setq web-mode-code-indent-offset 2)
