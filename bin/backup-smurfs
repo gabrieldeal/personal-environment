@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #-*- shell-script -*-
 
-dir="/cygdrive/e/$(date +%Y%m%d)"
+dir="/cygdrive/e"
 # rsync --delete --dry-run
 mkdir -p "$dir" \
     && rsync -avh "/cygdrive/c/Users" "$dir"
