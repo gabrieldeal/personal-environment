@@ -2,7 +2,7 @@
 #-*- shell-script -*-
 
 # This is ran via the Windows Start menu.
-# C:\cygwin\bin\mintty.exe -i /Cygwin-Terminal.ico -e C:\Users\Gabriel\bin\vagrant-up oss-ubuntu-16.04
+# C:\cygwin\bin\mintty.exe --hold error -i /Cygwin-Terminal.ico -e C:\Users\Gabriel\bin\vagrant-up ubuntu-16.04
 
 # The PATH is not set correctly when started via a Windows shortcut.
 which ssh-add >/dev/null 2>&1 || PATH=/usr/bin:$PATH
