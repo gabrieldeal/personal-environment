@@ -3,7 +3,17 @@
 
 PROJECT_ROOT=$(vc-root-dir)
 
+NODE_MODULES_ROOT="$PROJECT_ROOT/node_modules"
+ESLINT_RC="$PROJECT_ROOT/.eslintrc.js"
+if [ ! -d "$NODE_MODULES_ROOT" ]
+then
+    NODE_MODULES_ROOT="$PROJECT_ROOT/vendor/node_modules"
+    ESLINT_RC="$PROJECT_ROOT/vendor/.eslintrc.js"
+fi
+
+cd "$NODE_MODULES_ROOT/.." || exit 1
+
 . "$HOME/.nvm/nvm.sh"
 nvm  use --silent 5
-"$PROJECT_ROOT/node_modules/eslint/bin/eslint.js" "$@"
+"$NODE_MODULES_ROOT/eslint/bin/eslint.js" -c "$ESLINT_RC" "$@"
 exit $?
