@@ -4,8 +4,6 @@
 # Useful for commands that are not evaluated in a shell (so you can't
 # use && or ; to cd then run the command).
 
-. ~/.bash_interactive
-
 directory="$1"
 shift
 cd "$directory" || exit 1
