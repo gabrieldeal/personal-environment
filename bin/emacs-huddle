@@ -1,6 +1,5 @@
 #!/usr/bin/env sh
 
-echo foo >/tmp/foo
 /home/gabrielx/local/bin/run-in \
     /home/gabrielx/projects/oss/huddle \
     emacs -f magit-status \
