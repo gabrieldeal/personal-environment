@@ -13,7 +13,7 @@ development_file=config/environments/development.rb
 temp_development_file=/tmp/$USER-development.rb
 
 ping_app=curl
-if ! which $ping_app
+if ! which $ping_app >/dev/null 2>&1
 then
    echo "ERROR: Missing $ping_app" 1>&2
    exit 1
