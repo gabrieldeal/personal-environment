@@ -5,4 +5,4 @@
     emacs -f magit-status \
           -f gmd-start-ui-environment \
           -f gmd-start-rails-console \
-          -f gmd-tinydesk-recover-state-all >/tmp/emacs-huddle.log 2>&1
+          -f gmd-tinydesk-recover-state-all 2>&1 | tee /tmp/emacs-huddle.log
