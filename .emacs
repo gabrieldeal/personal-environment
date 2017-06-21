@@ -550,9 +550,16 @@ sub get_options {
 		      (setq web-mode-code-indent-offset 2)
 		      )))
 
-(add-hook 'sh-mode-hook
+(setq web-mode-content-types-alist '(("javascript" . "\\.es6\\'")))
+(add-hook 'web-mode-hook
 	  (function (lambda()
-		      (setq indent-tabs-mode nil))))
+		      (setq web-mode-enable-auto-quoting nil)
+		      (setq web-mode-markup-indent-offset 2)
+		      (setq web-mode-attr-indent-offset 2)
+		      (setq web-mode-css-indent-offset 2)
+		      (setq indent-tabs-mode nil)
+		      (setq web-mode-code-indent-offset 2)
+		      )))
 
 (add-hook 'buffer-menu-mode-hook
 	  (function (lambda()
@@ -983,7 +990,7 @@ Install the filter like this:
 (defun gmd-javascript-compile-command()
   (concat (gmd-cd-to-project-root-command)
 	  "/vendor"
-	  " && PHANTOMJS_BIN=/usr/bin/phantomjs yarn run test"))
+	  " && ../bin/karma --no-single-run --auto-watch"))
 (add-to-list 'clever-cmd-compile-major-mode-alist
 	     '(js-mode . gmd-javascript-compile-command))
 (add-to-list 'clever-cmd-compile-major-mode-alist
