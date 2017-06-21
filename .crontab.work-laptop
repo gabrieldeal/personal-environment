@@ -26,4 +26,4 @@ USER=gabrielx
 # Chrome doesn't play well with symlinking or hard linking this file to my local git repo:
 13 17 * * * cp ~/.config/google-chrome/Default/Bookmarks ~/config/.config/google-chrome/Default/Bookmarks
 13 17 * * * ~/local/bin/backup-apt >>/tmp/$USER-cron.log 2>&1
-55 8 * * * ~/local/bin/standup-notifier >>/tmp/$USER-cron.log 2>&1
+55 7 * * * ~/local/bin/standup-notifier >>/tmp/$USER-cron.log 2>&1
