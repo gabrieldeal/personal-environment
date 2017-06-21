@@ -982,6 +982,7 @@ Install the filter like this:
 
 (defun gmd-javascript-compile-command()
   (concat (gmd-cd-to-project-root-command)
+	  "/vendor"
 	  " && PHANTOMJS_BIN=/usr/bin/phantomjs yarn run test"))
 (add-to-list 'clever-cmd-compile-major-mode-alist
 	     '(js-mode . gmd-javascript-compile-command))
