@@ -6,9 +6,9 @@
 
 . ~/.bash_interactive
 
-directory=$1
+directory="$1"
 shift
-cd $directory || exit 1
+cd "$directory" || exit 1
 
 # Without this, Ruby syntax highlighting doesn't work in emacs.
 source "$HOME/.nvm/nvm.sh"
