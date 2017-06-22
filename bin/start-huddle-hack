@@ -33,7 +33,7 @@ fi
 set -m
 
 cp $development_file $temp_development_file \
-    && sed 's/Bullet.raise = true/Bullet.raise = false/' $temp_development_file >$development_file \
+    && sed 's/Bullet.raise = true/Bullet.raise = false/; s/localhost:8080/192.168.1.126:8080/' $temp_development_file >$development_file \
     && rails s -b 0.0.0.0 -p $port &
 
 # Wait for the webserver to start before undoing the development.rb changes:
