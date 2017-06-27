@@ -1,32 +1,32 @@
 {
-   "checksum": "a2cbc7585d3f20a4c87c24a52442e082",
+   "checksum": "90e36d018c715c16e121703045f42fc0",
    "roots": {
       "bookmark_bar": {
          "children": [ {
             "date_added": "13111194038526800",
             "id": "61",
             "meta_info": {
-               "last_visited_desktop": "13142561628239206"
+               "last_visited_desktop": "13142646684282210"
             },
             "name": "",
             "type": "url",
             "url": "http://localhost:3000/visual-directory#/"
          }, {
-            "date_added": "13109280285000000",
-            "id": "15",
+            "date_added": "13142619553982886",
+            "id": "188",
             "meta_info": {
-               "last_visited_desktop": "13142449874851233"
+               "last_visited_desktop": "13142649317498772"
             },
-            "name": "",
+            "name": "VD PR",
             "type": "url",
-            "url": "https://zoom.us/j/767717636"
+            "url": "https://github.com/officespacesoftware/huddle/pulls?utf8=%E2%9C%93&q=is%3Apr%20is%3Aopen%20involves%3Aetrejos%20involves%3Anathantalewis%20involves%3Anthapaliya%20involves%3Ajnamkung%20involves%3Agabrielmdeal"
          }, {
             "date_added": "13118434410095656",
             "id": "151",
             "meta_info": {
-               "last_visited_desktop": "13142556845584274"
+               "last_visited_desktop": "13142648319868588"
             },
-            "name": "",
+            "name": "h",
             "type": "url",
             "url": "https://github.com/officespacesoftware/huddle"
          }, {
@@ -42,7 +42,7 @@
             "date_added": "13108843735000000",
             "id": "17",
             "meta_info": {
-               "last_visited_desktop": "13142561222261479"
+               "last_visited_desktop": "13142649615017510"
             },
             "name": "",
             "type": "url",
@@ -51,7 +51,7 @@
             "date_added": "13117746321445184",
             "id": "149",
             "meta_info": {
-               "last_visited_desktop": "13142462537790567"
+               "last_visited_desktop": "13142567754420276"
             },
             "name": "",
             "type": "url",
@@ -60,7 +60,7 @@
             "date_added": "13129259883309318",
             "id": "180",
             "meta_info": {
-               "last_visited_desktop": "13142462499681249"
+               "last_visited_desktop": "13142567745020214"
             },
             "name": "",
             "type": "url",
@@ -70,7 +70,7 @@
                "date_added": "13109913155408134",
                "id": "39",
                "meta_info": {
-                  "last_visited_desktop": "13142563396596536"
+                  "last_visited_desktop": "13142615402324595"
                },
                "name": "chrome - remote debug",
                "type": "url",
@@ -79,7 +79,7 @@
                "date_added": "13110516954357148",
                "id": "51",
                "meta_info": {
-                  "last_visited_desktop": "13142555440605932"
+                  "last_visited_desktop": "13142626660574678"
                },
                "name": "Karma DEBUG RUNNER",
                "type": "url",
@@ -124,7 +124,7 @@
                "date_added": "13113103349074291",
                "id": "89",
                "meta_info": {
-                  "last_visited_desktop": "13142555554434417"
+                  "last_visited_desktop": "13142627447514923"
                },
                "name": "API: Enzyme - mount",
                "type": "url",
@@ -178,7 +178,7 @@
                "date_added": "13113102721063114",
                "id": "88",
                "meta_info": {
-                  "last_visited_desktop": "13130974174595893"
+                  "last_visited_desktop": "13142627108283436"
                },
                "name": "API: Jasmine",
                "type": "url",
@@ -196,7 +196,7 @@
                "date_added": "13110508339375933",
                "id": "47",
                "meta_info": {
-                  "last_visited_desktop": "13131049856532115"
+                  "last_visited_desktop": "13142631248761717"
                },
                "name": "API: lodash documentation",
                "type": "url",
@@ -257,7 +257,7 @@
                "url": "http://localhost:3000/visual-directory?key=f44647b3ea3e997e723c4d9f1f573678&kiosk_id=35"
             } ],
             "date_added": "13109913180212489",
-            "date_modified": "13142549322285231",
+            "date_modified": "13142619553982886",
             "id": "40",
             "name": "Mobile dev",
             "type": "folder"
@@ -266,7 +266,7 @@
                "date_added": "13108843792000000",
                "id": "14",
                "meta_info": {
-                  "last_visited_desktop": "13142528787124271"
+                  "last_visited_desktop": "13142647652896017"
                },
                "name": "",
                "type": "url",
@@ -275,7 +275,7 @@
                "date_added": "13108843578000000",
                "id": "18",
                "meta_info": {
-                  "last_visited_desktop": "13142534956121580"
+                  "last_visited_desktop": "13142628309714486"
                },
                "name": "m",
                "type": "url",
@@ -293,7 +293,7 @@
                "date_added": "13109353655053212",
                "id": "30",
                "meta_info": {
-                  "last_visited_desktop": "13142550329573993"
+                  "last_visited_desktop": "13142644926702570"
                },
                "name": "",
                "type": "url",
@@ -329,7 +329,7 @@
                "date_added": "13108843758000000",
                "id": "20",
                "meta_info": {
-                  "last_visited_desktop": "13141764319203387"
+                  "last_visited_desktop": "13142642200688064"
                },
                "name": "",
                "type": "url",
@@ -360,7 +360,7 @@
             "url": "http://well.blogs.nytimes.com/projects/workouts/"
          } ],
          "date_added": "13099617023729630",
-         "date_modified": "13142457381385717",
+         "date_modified": "13142619563660114",
          "id": "1",
          "name": "Bookmarks bar",
          "type": "folder"
