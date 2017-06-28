@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 #-*- shell-script -*-
 
+export DISPLAY=:0
+export XAUTHORITY=/home/gabrielx/.Xauthority
+
 time="$1"
 if [ -z "$time" ]
 then
@@ -17,8 +20,5 @@ then
 fi
 
 seconds=$(( $(date -d "$time" +%s) - $(date +%s) ))
-
 expire_ms=$(( 60 * 1000 ))
-export DISPLAY=:0
-export XAUTHORITY=/home/gabrielx/.Xauthority
 (sleep $seconds && notify-send -t $expire_ms -u critical "$message") &
