@@ -989,8 +989,7 @@ Install the filter like this:
 
 (defun gmd-javascript-compile-command()
   (concat (gmd-cd-to-project-root-command)
-	  "/vendor"
-	  " && ../bin/karma --no-single-run --auto-watch"))
+	  " && yarn run test:watch # eslint:all"))
 (add-to-list 'clever-cmd-compile-major-mode-alist
 	     '(js-mode . gmd-javascript-compile-command))
 (add-to-list 'clever-cmd-compile-major-mode-alist
