@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+# Because 'nvm' is a shell function:
+. "$HOME/.nvm/nvm.sh"
+
+ip="$(hostname -I)"
+rm -rf node_modules vendor/node_modules \
+    && nvm install stable \
+    && yarn install \
+    && bin/webpack-dev-server --host "$ip"
