@@ -4,4 +4,4 @@
 dir="/cygdrive/e"
 # rsync --delete --dry-run
 mkdir -p "$dir" \
-    && rsync -avh "/cygdrive/c/Users" "$dir"
+    && rsync -avh "/cygdrive/c/Users" "$dir" "$@"
