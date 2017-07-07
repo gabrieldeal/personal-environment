@@ -52,7 +52,9 @@
 (add-to-list 'package-archives
 	     (cons "gmd" gmd-package-archive-directory) t)
 
-(defvar gmd-local-packages '(clever-cmd))
+(defvar gmd-local-packages
+  '(clever-cmd
+    clever-cmd-example-config))
 (defvar gmd-remote-packages
   '(cider
     clojure-mode
@@ -92,17 +94,11 @@
 
 (global-set-key (kbd "C-x g") 'magit-status)
 
-(defun gmd-vc-root-dir()
-  (let ((root-dir (gmd-chomp (gmd-shell-command-to-string "git rev-parse --show-toplevel"))))
-    (if root-dir
-	(concat root-dir "/") ; Without the trailing slash, the diff buffer has nothing in it.
-      nil)))
-
 ;; Set the default directory, so I can press enter on a line of my
 ;; diff buffer and it will take me to the changed file -- even if I
 ;; run the diff somewhere other than at the root of my repo.
 (defun gmd-around-magit-diff(orig-fun &rest args)
-  (let ((default-directory (gmd-vc-root-dir)))
+  (let ((default-directory (clever-cmd-ec--vc-root-dir)))
     (if (not default-directory)
 	(message "Unable to determine version control root directory")
       (apply orig-fun args)
@@ -369,16 +365,6 @@
 ;; Misc functions
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(defun gmd-chomp(str)
-  (if (and str (string-match "[\n\t\s]+\\'" str))
-      (replace-match "" t t str)
-    str))
-
-(defun gmd-shell-command-to-string(command)
-  (with-temp-buffer
-    (if	(= 0 (call-process-shell-command command nil (current-buffer)))
-	(buffer-string)
-      nil)))
 
 ;; I thought join-lines was a built in??? Anyway it dissappeared.  I
 ;; wish emacs lisp had a good namespacing system.
@@ -535,7 +521,7 @@ sub get_options {
      (setq-default flycheck-disabled-checkers
 		   (append flycheck-disabled-checkers '(javascript-jshint)))
      (flycheck-add-mode 'javascript-eslint 'web-mode)
-     (setq flycheck-eslintrc (concat (gmd-vc-root-dir) ".eslintrc"))))
+     (setq flycheck-eslintrc (concat (clever-cmd-ec--vc-root-dir) ".eslintrc"))))
 
 ;; This variable must be defined before web-mode is autoloaded in
 ;; order for the first file to be recognized correctly.
@@ -962,51 +948,7 @@ Install the filter like this:
 
 (setq grep-command "grep -nr ")
 
-(defun gmd-cd-to-project-root-command()
-  (concat  "cd " (or (gmd-vc-root-dir) ".")))
-
-(require 'clever-cmd)
-
-(defun gmd-ruby-grep-command()
-  (format "grep -nr --include=\"*.rb\" --include=\"*.erb\" --include=\"*.rake\" %s --regexp "
-	  default-directory))
-(add-to-list 'clever-cmd-grep-major-mode-alist
-	     '(ruby-mode . gmd-ruby-grep-command))
-
-(defun gmd-javascript-grep-command()
-  (format "grep -nr --exclude-dir generated --exclude-dir node_modules --include=\"*.js\" --include=\"*.jsx\" --include=\"*.es6\" %s --regexp "
-	  default-directory))
-(add-to-list 'clever-cmd-grep-major-mode-alist
-	     '(web-mode . gmd-javascript-grep-command))
-(add-to-list 'clever-cmd-grep-major-mode-alist
-	     '(js-mode . gmd-javascript-grep-command))
-
-(defun gmd-rspec-compile-command()
-  (concat (gmd-cd-to-project-root-command)
-	  " && bundle exec rspec  ~/config/.rspec_color.rb --format documentation %s:%l"))
-(add-to-list 'clever-cmd-compile-file-name-regexp-alist
-	     '("/specs/.*\\.rb$\\|_spec.rb$" . gmd-rspec-compile-command))
-
-(defun gmd-javascript-compile-command()
-  (concat (gmd-cd-to-project-root-command)
-	  " && yarn run test:watch # eslint:all"))
-(add-to-list 'clever-cmd-compile-major-mode-alist
-	     '(js-mode . gmd-javascript-compile-command))
-(add-to-list 'clever-cmd-compile-major-mode-alist
-	     '(web-mode . gmd-javascript-compile-command))
-
-(add-to-list 'clever-cmd-compile-file-name-regexp-alist
-	     '("\\<package\\.json$" . gmd-javascript-compile-command))
-(add-to-list 'clever-cmd-grep-file-name-regexp-alist
-	     '("\\<package\\.json$" . gmd-javascript-grep-command))
-
-(defun gmd-ert-runner-compile-command()
-  (concat (gmd-cd-to-project-root-command) " && cask exec ert-runner && bin/lint"))
-(add-to-list 'clever-cmd-compile-file-name-regexp-alist
-	     '("/test/.*test.el$" . gmd-ert-runner-compile-command))
-
-(advice-add 'compile :around #'clever-cmd-compile-wrapper)
-(advice-add 'grep :around #'clever-cmd-grep-wrapper)
+(require 'clever-cmd-example-config)
 
 (defun gmd-get-filepath-from-jasmine-compilation-error-regexp-match()
   (concat (match-string 1) "/" (match-string 2)))
@@ -1167,7 +1109,7 @@ SWITCH-TO-BUFFER - whether to switch to the buffer if it is already running."
   (if (get-buffer buffer-name)
       (if switch-to-buffer
 	  (switch-to-buffer buffer-name))
-    (let* ((default-directory (gmd-vc-root-dir))
+    (let* ((default-directory (clever-cmd-ec--vc-root-dir))
 	   (buffer (shell buffer-name))
 	   (process (get-buffer-process buffer)))
       (ansi-color-for-comint-mode-on)
