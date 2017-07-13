@@ -9,14 +9,18 @@ then
     port=$1
 fi
 
+fail() {
+    echo "$@" 1>&2
+    exit 1
+}
+
 development_file=config/environments/development.rb
 temp_development_file=/tmp/$USER-development.rb
 
 ping_app=curl
 if ! which $ping_app >/dev/null 2>&1
 then
-   echo "ERROR: Missing $ping_app" 1>&2
-   exit 1
+   fail "ERROR: Missing $ping_app"
 fi
 
 test -f tmp/pids/server.pid \
@@ -25,8 +29,7 @@ test -f tmp/pids/server.pid \
 
 if ! test -f $development_file
 then
-   echo "Missing $development_file" 2>&1
-   exit 1
+   fail "Missing $development_file"
 fi
 
 # Turn on job control for 'fg':
@@ -35,6 +38,10 @@ set -m
 cp "$development_file" "$temp_development_file" \
     && sed 's/Bullet.raise = true/Bullet.raise = false/;' "$temp_development_file" >"$development_file" \
     && rails s -b 0.0.0.0 -p "$port" &
+if [ "$?" -ne 0 ]
+then
+    fail "Error starting rails server"
+fi
 
 # Wait for the webserver to start before undoing the development.rb changes:
 while ! $ping_app "http://0.0.0.0:$port" >/dev/null 2>&1
