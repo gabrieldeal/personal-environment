@@ -3,7 +3,7 @@
 # Because 'nvm' is a shell function:
 . "$HOME/.nvm/nvm.sh"
 
-ip="$(hostname -I)"
+ip="$(hostname -I | tr -d '[:space:]')"
 rm -rf node_modules vendor/node_modules \
     && nvm install stable \
     && yarn install \
