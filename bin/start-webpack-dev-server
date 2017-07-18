@@ -3,7 +3,21 @@
 # Because 'nvm' is a shell function:
 . "$HOME/.nvm/nvm.sh"
 
-ip="$(hostname -I | tr -d '[:space:]')"
+ip="$1"
+
+if [ -z "$ip" ]
+then
+    ips="$(hostname -I)"
+    ip_count="$(echo "$ips" | wc -w)"
+    if [ "$ip_count" -ne 1 ]
+    then
+	echo "Got $ip_count IPs: '$ips'" 1>&2
+	exit 1
+    fi
+
+    ip="$(echo "$ips" | tr -d '[:space:]')"
+fi
+
 rm -rf node_modules vendor/node_modules \
     && nvm install stable \
     && yarn install \
