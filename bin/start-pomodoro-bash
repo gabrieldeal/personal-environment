@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+# Also see
+# https://github.com/gabrielmdeal/pomodoro-bash/blob/master/usr/share/applications/pomodoro-bash.desktop
+
+exec xterm -bg WebMaroon \
+	   -T "Pomodoro Bash" \
+	   -geometry 85x40 \
+	   -e /usr/bin/pomodoro-bash -p -m
