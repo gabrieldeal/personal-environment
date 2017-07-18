@@ -37,11 +37,14 @@ set -m
 
 cp "$development_file" "$temp_development_file" \
     && sed 's/Bullet.raise = true/Bullet.raise = false/;' "$temp_development_file" >"$development_file" \
-    && rails s -b 0.0.0.0 -p "$port" &
+    && bundle install \
+    && for n in test development ; do bin/rake db:migrate RAILS_ENV=$n ; done
 if [ "$?" -ne 0 ]
 then
-    fail "Error starting rails server"
+    fail "Error setting up rails env"
 fi
+
+rails s -b 0.0.0.0 -p "$port" &
 
 # Wait for the webserver to start before undoing the development.rb changes:
 while ! $ping_app "http://0.0.0.0:$port" >/dev/null 2>&1
