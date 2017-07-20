@@ -16,7 +16,7 @@
 POMO_LOG_FILE="$HOME/tmp/pomodoro-bash.log"
 POMO_DEBUG=1
 
-POMO_SET_CHAT_STATUS_COMMAND="$HOME/local/bin/set-hipchat-status -u @GabrielDeal -h api.hipchat.com -s %s --auth-token $(cat $HOME/.ssh/auth-token.txt)"
+POMO_SET_CHAT_STATUS_COMMAND="set-hipchat-status -u @GabrielDeal -h api.hipchat.com -s %s --auth-token $(cat $HOME/.ssh/auth-token.txt)"
 
 # AUDIO_PLAYER_COMMAND=
 
