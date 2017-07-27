@@ -1,0 +1,97 @@
+#!/usr/bin/env bash
+
+## To use:
+# git clone https://github.com/gabrielmdeal/personal-environment.git /tmp/personal-environment && /tmp/bin/setup-personal-environment
+
+EMACS_URL=http://ftp.gnu.org/gnu/emacs/emacs-25.1.tar.gz
+TINYDESK_URL=https://raw.githubusercontent.com/jaalto/project-emacs--tinydesk/master/tinydesk.el
+
+fail() {
+    echo "$@" 1>&2
+    exit 1
+}
+
+os_pre_setup_command="true"
+os_post_setup_command="true"
+os_type="$(uname -o)"
+case "$os_type" in
+    "Cygwin")
+	os_pre_setup_command="cygwin_pre_setup"
+	os_post_setup_command="cygwin_post_setup"
+	;;
+
+    "GNU/Linux")
+	os_post_setup_command="setup_emacs"
+	;;
+esac
+
+cygwin_pre_setup() {
+    PATH="$PATH:/usr/bin"
+    export PATH
+
+    HOME="$(cygpath "$USERPROFILE")"
+    export HOME
+
+    "$HOME/Downloads/setup-x86_64.exe" -q -P emacs,wget,git
+}
+
+cygwin_post_setup() {
+    # Use the Windows home directory for Cygwin:
+    (grep -q '^db_home:' /etc/nsswitch.conf || echo "db_home: windows" >>/etc/nsswitch.conf) \
+	&& cd "$HOME" \
+	&& for f in projects/personal-environment/cygwin/.??* ; do ln -vsnf "$f"; done
+}
+
+check_dependencies() {
+    for program in git wget
+    do
+	command -v $program >/dev/null || fail "Missing '$program'"
+    done
+    test -f "$HOME/.ssh/id_rsa" || fail "Missing SSH keys"
+}
+
+setup_home_dir() {
+    cd "$HOME" \
+       && mkdir -p projects \
+       && (test -d projects/personal-environment || git clone git@github.com:gabrielmdeal/personal-environment.git projects/personal-environment) \
+       && for f in projects/personal-environment/.??* ; do rm -f "$(basename "$f")" && ln -vs "$f"; done \
+       && (mkdir -vp "$HOME/bin" \
+	   && cd "$HOME/bin" \
+	   && for f in "../projects/personal-environment/bin/"*; do ln -vsnf "$f"; done)
+}
+
+setup_clever_cmd() {
+    local dir="$HOME/projects/clever-cmd"
+
+    [ -e "$dir/clever-cmd.el" ] && return 0
+
+    mkdir -p "$dir" \
+	&& git clone git@github.com:gabrielmdeal/clever-cmd.git "$dir"
+}
+
+setup_tinydesk() {
+    (mkdir -vp "$HOME/.emacs.d/manual" \
+	 && cd "$HOME/.emacs.d/manual" \
+	 && (test -f tinydesk.el \
+	     || wget "$TINYDESK_URL"))
+}
+
+setup_emacs() {
+    if emacs --version 2>/dev/null | grep -q "GNU Emacs 25.1"
+    then
+       return
+    fi
+       
+    cd /tmp \
+       && (test -f emacs-25.1.tar.gz || wget $EMACS_URL) \
+       && (test -d emacs-25.1 || tar zxvf emacs-25.1.tar.gz) \
+       && (which emacs >/dev/null 2>&1 || sudo apt-get -y remove emacs24) \
+       && (cd emacs-25.1 && ./configure && make && sudo make install)
+}
+
+"$os_pre_setup_command" \
+    && check_dependencies \
+    && setup_home_dir \
+    && setup_tinydesk \
+    && setup_clever_cmd \
+    && "$os_post_setup_command" \

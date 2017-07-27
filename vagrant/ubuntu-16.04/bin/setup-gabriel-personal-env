@@ -1,6 +1,11 @@
 #!/bin/bash
 # -*- shell-script -*-
 
+
+echo "Use ~/bin/setup-personal-environment" 1>&2
+exit 1
+
+
 EMACS_URL=http://ftp.gnu.org/gnu/emacs/emacs-25.1.tar.gz
 TINYDESK_URL=https://raw.githubusercontent.com/jaalto/project-emacs--tinydesk/master/tinydesk.el
 
