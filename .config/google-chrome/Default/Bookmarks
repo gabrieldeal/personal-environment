@@ -1,69 +1,116 @@
 {
-   "checksum": "1c4f6a861bd67f4d95eaa45c3ef273ed",
+   "checksum": "f38920e917ca9e8c10079202c58b6160",
    "roots": {
       "bookmark_bar": {
          "children": [ {
             "date_added": "13111194038526800",
             "id": "61",
             "meta_info": {
-               "last_visited_desktop": "13144451014399337"
+               "last_visited_desktop": "13145584963512242"
             },
             "name": "",
+            "sync_transaction_version": "458",
             "type": "url",
-            "url": "http://localhost:3000/visual-directory#/"
+            "url": "http://192.168.1.126:3000/visual-directory#/"
          }, {
             "date_added": "13142619553982886",
             "id": "188",
             "meta_info": {
-               "last_visited_desktop": "13144457565805703"
+               "last_visited_desktop": "13145587358877089"
             },
             "name": "PR",
+            "sync_transaction_version": "484",
             "type": "url",
             "url": "https://github.com/officespacesoftware/huddle/pulls?utf8=%E2%9C%93&q=is%3Apr%20is%3Aopen%20involves%3Aetrejos%20involves%3Anathantalewis%20involves%3Anthapaliya%20involves%3Ajnamkung%20involves%3Agabrielmdeal"
          }, {
             "date_added": "13118434410095656",
             "id": "151",
             "meta_info": {
-               "last_visited_desktop": "13144461460133560"
+               "last_visited_desktop": "13145581872761230"
             },
             "name": "h",
+            "sync_transaction_version": "413",
             "type": "url",
             "url": "https://github.com/officespacesoftware/huddle"
          }, {
             "date_added": "13129862991517539",
             "id": "183",
             "meta_info": {
-               "last_visited_desktop": "13144449755564755"
+               "last_visited_desktop": "13145558440840508"
             },
             "name": "",
+            "sync_transaction_version": "370",
             "type": "url",
             "url": "https://www.pivotaltracker.com/n/projects/1421752"
          }, {
             "date_added": "13108843735000000",
             "id": "17",
             "meta_info": {
-               "last_visited_desktop": "13144441242419743"
+               "last_visited_desktop": "13145560298241613"
             },
             "name": "",
+            "sync_transaction_version": "385",
             "type": "url",
             "url": "https://calendar.google.com/calendar/b/0/render#main_7%7Cweek"
          }, {
             "date_added": "13129259883309318",
             "id": "180",
             "meta_info": {
-               "last_visited_desktop": "13144461178604875"
+               "last_visited_desktop": "13145586213967298"
             },
             "name": "",
+            "sync_transaction_version": "482",
             "type": "url",
             "url": "https://projects.invisionapp.com/d/main#/projects"
          }, {
             "children": [ {
+               "date_added": "13142457381385717",
+               "id": "186",
+               "meta_info": {
+                  "last_visited_desktop": "13145584973863944"
+               },
+               "name": "VD - kiosk (localhost)",
+               "sync_transaction_version": "470",
+               "type": "url",
+               "url": "http://localhost:3000/visual-directory?key=05aee2b4d75dc87117d5a348e49ec63b&kiosk_id=6"
+            }, {
+               "date_added": "13143832909635362",
+               "id": "191",
+               "meta_info": {
+                  "last_visited_desktop": "13145058110024279"
+               },
+               "name": "VD - kiosk (huddle.ossd.co)",
+               "sync_transaction_version": "471",
+               "type": "url",
+               "url": "http://huddle.ossd.co/visual-directory?key=05aee2b4d75dc87117d5a348e49ec63b&kiosk_id=6"
+            }, {
+               "date_added": "13126847530739854",
+               "id": "170",
+               "meta_info": {
+                  "last_visited_desktop": "13141964735100666"
+               },
+               "name": "",
+               "sync_transaction_version": "437",
+               "type": "url",
+               "url": "https://officespace-team.slack.com/messages/general/team/gabrieldeal/"
+            }, {
+               "date_added": "13126847525536235",
+               "id": "169",
+               "meta_info": {
+                  "last_visited_desktop": "13141964832310158"
+               },
+               "name": "",
+               "sync_transaction_version": "436",
+               "type": "url",
+               "url": "https://elpassionofficespace.slack.com/messages/development/team/gabrieldeal/"
+            }, {
                "date_added": "13109913155408134",
                "id": "39",
                "meta_info": {
                   "last_visited_desktop": "13144366224409191"
                },
                "name": "chrome - remote debug",
+               "sync_transaction_version": "3",
                "type": "url",
                "url": "chrome://inspect/#devices"
             }, {
@@ -73,42 +120,49 @@
                   "last_visited_desktop": "13144371738761886"
                },
                "name": "Karma DEBUG RUNNER",
+               "sync_transaction_version": "3",
                "type": "url",
                "url": "http://localhost:9876/debug.html"
             }, {
                "date_added": "13109904278070648",
                "id": "38",
                "name": "Remote Debugging on Android with Chrome - Google Chrome",
+               "sync_transaction_version": "3",
                "type": "url",
                "url": "https://developer.chrome.com/devtools/docs/remote-debugging"
             }, {
                "date_added": "13110482878837167",
                "id": "45",
                "name": "Debugging Firefox for Android over USB - Firefox Developer Tools | MDN",
+               "sync_transaction_version": "3",
                "type": "url",
                "url": "https://developer.mozilla.org/en-US/docs/Tools/Remote_Debugging/Debugging_Firefox_for_Android_with_WebIDE"
             }, {
                "date_added": "13111790441377440",
                "id": "64",
                "name": "Component Specs and Lifecycle | React",
+               "sync_transaction_version": "3",
                "type": "url",
                "url": "https://facebook.github.io/react/docs/component-specs.html"
             }, {
                "date_added": "13112398028193766",
                "id": "67",
                "name": "Webpack configuration",
+               "sync_transaction_version": "3",
                "type": "url",
                "url": "https://webpack.github.io/docs/configuration.html"
             }, {
                "date_added": "13112406836550263",
                "id": "68",
                "name": "Sass: Sass Basics",
+               "sync_transaction_version": "3",
                "type": "url",
                "url": "http://sass-lang.com/guide"
             }, {
                "date_added": "13111177412355969",
                "id": "60",
                "name": "API: Chai - Expect / Should",
+               "sync_transaction_version": "3",
                "type": "url",
                "url": "http://chaijs.com/api/bdd/"
             }, {
@@ -118,12 +172,14 @@
                   "last_visited_desktop": "13144371922862718"
                },
                "name": "API: Enzyme - mount",
+               "sync_transaction_version": "3",
                "type": "url",
                "url": "https://github.com/airbnb/enzyme/blob/master/docs/api/mount.md"
             }, {
                "date_added": "13122588577124847",
                "id": "159",
                "name": "API: enzyme matchers (formerly jasmine)",
+               "sync_transaction_version": "3",
                "type": "url",
                "url": "https://github.com/blainekasten/enzyme-matchers"
             }, {
@@ -133,6 +189,7 @@
                   "last_visited_desktop": "13130557648746051"
                },
                "name": "API: fetch-mock",
+               "sync_transaction_version": "3",
                "type": "url",
                "url": "https://github.com/wheresrhys/fetch-mock"
             }, {
@@ -142,6 +199,7 @@
                   "last_visited_desktop": "13142549377376156"
                },
                "name": "API: Flow type cheat sheet",
+               "sync_transaction_version": "3",
                "type": "url",
                "url": "https://www.saltycrane.com/blog/2016/06/flow-type-cheat-sheet/"
             }, {
@@ -151,15 +209,17 @@
                   "last_visited_desktop": "13143052546169639"
                },
                "name": "API: Immutable.js List",
+               "sync_transaction_version": "3",
                "type": "url",
                "url": "https://facebook.github.io/immutable-js/docs/#/List"
             }, {
                "date_added": "13110508405974297",
                "id": "49",
                "meta_info": {
-                  "last_visited_desktop": "13143052582313050"
+                  "last_visited_desktop": "13145572182870217"
                },
                "name": "API: Immutable.js Map",
+               "sync_transaction_version": "398",
                "type": "url",
                "url": "https://facebook.github.io/immutable-js/docs/#/Map"
             }, {
@@ -169,6 +229,7 @@
                   "last_visited_desktop": "13143052561311434"
                },
                "name": "API: Immutable.js Record",
+               "sync_transaction_version": "3",
                "type": "url",
                "url": "https://facebook.github.io/immutable-js/docs/#/Record"
             }, {
@@ -178,6 +239,7 @@
                   "last_visited_desktop": "13142627108283436"
                },
                "name": "API: Jasmine",
+               "sync_transaction_version": "3",
                "type": "url",
                "url": "http://jasmine.github.io/2.0/introduction.html"
             }, {
@@ -187,6 +249,7 @@
                   "last_visited_desktop": "13130533790999775"
                },
                "name": "API: Javascript Array",
+               "sync_transaction_version": "3",
                "type": "url",
                "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"
             }, {
@@ -196,21 +259,24 @@
                   "last_visited_desktop": "13142631248761717"
                },
                "name": "API: lodash documentation",
+               "sync_transaction_version": "3",
                "type": "url",
                "url": "https://lodash.com/docs"
             }, {
                "date_added": "13117080719806993",
                "id": "148",
                "meta_info": {
-                  "last_visited_desktop": "13144452209531392"
+                  "last_visited_desktop": "13145495519540167"
                },
                "name": "API: Material UI",
+               "sync_transaction_version": "294",
                "type": "url",
                "url": "http://www.material-ui.com/#/components/app-bar"
             }, {
                "date_added": "13127521992818235",
                "id": "175",
                "name": "API - Mocha",
+               "sync_transaction_version": "3",
                "type": "url",
                "url": "http://mochajs.org/#table-of-contents"
             }, {
@@ -220,6 +286,7 @@
                   "last_visited_desktop": "13143086128490103"
                },
                "name": "API: PixiJS",
+               "sync_transaction_version": "3",
                "type": "url",
                "url": "https://pixijs.github.io/docs/index.html"
             }, {
@@ -229,156 +296,147 @@
                   "last_visited_desktop": "13131150223467569"
                },
                "name": "API: Redux Form ",
+               "sync_transaction_version": "3",
                "type": "url",
                "url": "http://redux-form.com/6.0.1/docs/api/"
             }, {
                "date_added": "13119407654625859",
                "id": "152",
                "name": "API: SVG",
+               "sync_transaction_version": "3",
                "type": "url",
                "url": "https://developer.mozilla.org/en-US/docs/Web/SVG"
-            }, {
-               "date_added": "13142457381385717",
-               "id": "186",
-               "meta_info": {
-                  "last_visited_desktop": "13142459220959112"
-               },
-               "name": "VD - kiosk (localhost)",
-               "type": "url",
-               "url": "http://localhost:3000/visual-directory?key=05aee2b4d75dc87117d5a348e49ec63b&kiosk_id=6"
-            }, {
-               "date_added": "13143832909635362",
-               "id": "191",
-               "name": "VD - kiosk (huddle.ossd.co)",
-               "type": "url",
-               "url": "http://huddle.ossd.co/visual-directory?key=05aee2b4d75dc87117d5a348e49ec63b&kiosk_id=6"
-            }, {
-               "date_added": "13143862615407799",
-               "id": "192",
-               "meta_info": {
-                  "last_visited_desktop": "13143862665495474"
-               },
-               "name": "Google Contacts",
-               "type": "url",
-               "url": "https://contacts.google.com/u/1/search/sarah"
             } ],
             "date_added": "13109913180212489",
-            "date_modified": "13143862615407799",
+            "date_modified": "13145585696699411",
             "id": "40",
-            "name": "Mobile dev",
+            "name": "work",
+            "sync_transaction_version": "428",
             "type": "folder"
          }, {
             "children": [ {
-               "date_added": "13108843792000000",
-               "id": "14",
-               "meta_info": {
-                  "last_visited_desktop": "13144434327797449"
-               },
-               "name": "",
-               "type": "url",
-               "url": "https://docs.google.com/spreadsheets/d/1mQBZI5ZRhE4CIjET-iEiYynOSaolXbc6gfWjkTd8LCg/edit#gid=0"
-            }, {
-               "date_added": "13108843578000000",
-               "id": "18",
-               "meta_info": {
-                  "last_visited_desktop": "13144449755564755"
-               },
-               "name": "m",
-               "type": "url",
-               "url": "https://www.pivotaltracker.com/n/projects/1421752"
-            }, {
-               "date_added": "13108843606000000",
-               "id": "19",
-               "meta_info": {
-                  "last_visited_desktop": "13143783184431627"
-               },
-               "name": "h",
-               "type": "url",
-               "url": "https://www.pivotaltracker.com/n/projects/957060"
-            }, {
-               "date_added": "13109353655053212",
-               "id": "30",
-               "meta_info": {
-                  "last_visited_desktop": "13144457395039143"
-               },
-               "name": "",
-               "type": "url",
-               "url": "https://mail.google.com/mail/u/0/#inbox"
-            }, {
-               "date_added": "13126847520140039",
-               "id": "168",
-               "meta_info": {
-                  "last_visited_desktop": "13143758022546258"
-               },
-               "name": "",
-               "type": "url",
-               "url": "https://paradem.hipchat.com/chat"
-            }, {
-               "date_added": "13126847525536235",
-               "id": "169",
-               "meta_info": {
-                  "last_visited_desktop": "13141964832310158"
-               },
-               "name": "",
-               "type": "url",
-               "url": "https://elpassionofficespace.slack.com/messages/development/team/gabrieldeal/"
-            }, {
-               "date_added": "13126847530739854",
-               "id": "170",
-               "meta_info": {
-                  "last_visited_desktop": "13141964735100666"
-               },
-               "name": "",
-               "type": "url",
-               "url": "https://officespace-team.slack.com/messages/general/team/gabrieldeal/"
-            }, {
                "date_added": "13108843758000000",
                "id": "20",
                "meta_info": {
-                  "last_visited_desktop": "13144291074952128"
+                  "last_visited_desktop": "13145577683852837"
                },
-               "name": "",
+               "name": "Spotify",
+               "sync_transaction_version": "472",
                "type": "url",
                "url": "https://play.spotify.com/collection/albums"
+            }, {
+               "date_added": "13145585696699411",
+               "id": "202",
+               "meta_info": {
+                  "last_visited_desktop": "13145585696699556"
+               },
+               "name": "Pandora",
+               "sync_transaction_version": "480",
+               "type": "url",
+               "url": "https://www.pandora.com/stations"
             }, {
                "date_added": "13126847562390273",
                "id": "172",
                "meta_info": {
                   "last_visited_desktop": "13143239267323100"
                },
-               "name": "",
+               "name": "Amazon Cloud Player",
+               "sync_transaction_version": "473",
                "type": "url",
                "url": "https://music.amazon.com/my/albums"
+            }, {
+               "date_added": "13109379486566789",
+               "id": "31",
+               "meta_info": {
+                  "last_visited_desktop": "13144973624365667"
+               },
+               "name": "7 Minute Workout",
+               "sync_transaction_version": "474",
+               "type": "url",
+               "url": "http://well.blogs.nytimes.com/projects/workouts/"
+            }, {
+               "date_added": "13145585304226403",
+               "id": "200",
+               "meta_info": {
+                  "last_visited_desktop": "13145585304226665"
+               },
+               "name": "Gmail - formerly.gabriel",
+               "sync_transaction_version": "455",
+               "type": "url",
+               "url": "https://mail.google.com/mail/u/1/#inbox"
             } ],
             "date_added": "13126847463431993",
-            "date_modified": "13126847620578374",
+            "date_modified": "13145585709658046",
             "id": "165",
             "name": "break",
+            "sync_transaction_version": "3",
             "type": "folder"
          }, {
-            "date_added": "13109379486566789",
-            "id": "31",
-            "meta_info": {
-               "last_visited_desktop": "13144457651182736"
-            },
-            "name": "",
-            "type": "url",
-            "url": "http://well.blogs.nytimes.com/projects/workouts/"
+            "children": [ {
+               "date_added": "13108843792000000",
+               "id": "14",
+               "meta_info": {
+                  "last_visited_desktop": "13145556674924665"
+               },
+               "name": "timesheet",
+               "sync_transaction_version": "466",
+               "type": "url",
+               "url": "https://docs.google.com/spreadsheets/d/1mQBZI5ZRhE4CIjET-iEiYynOSaolXbc6gfWjkTd8LCg/edit#gid=0"
+            }, {
+               "date_added": "13109353655053212",
+               "id": "30",
+               "meta_info": {
+                  "last_visited_desktop": "13145585279535810"
+               },
+               "name": "Gmail - dicksonlabs",
+               "sync_transaction_version": "467",
+               "type": "url",
+               "url": "https://mail.google.com/mail/u/0/#inbox"
+            }, {
+               "date_added": "13126847520140039",
+               "id": "168",
+               "meta_info": {
+                  "last_visited_desktop": "13144953611908292"
+               },
+               "name": "Hipchat",
+               "sync_transaction_version": "468",
+               "type": "url",
+               "url": "https://paradem.hipchat.com/chat"
+            } ],
+            "date_added": "13145585581801714",
+            "date_modified": "13145585607715655",
+            "id": "201",
+            "name": "pinned",
+            "sync_transaction_version": "462",
+            "type": "folder"
          } ],
          "date_added": "13099617023729630",
-         "date_modified": "13143832909635362",
+         "date_modified": "13145585598733020",
          "id": "1",
          "name": "Bookmarks bar",
+         "sync_transaction_version": "3",
          "type": "folder"
       },
       "other": {
-         "children": [  ],
+         "children": [ {
+            "date_added": "13143862615407799",
+            "id": "192",
+            "meta_info": {
+               "last_visited_desktop": "13143862665495474"
+            },
+            "name": "Google Contacts",
+            "sync_transaction_version": "469",
+            "type": "url",
+            "url": "https://contacts.google.com/u/1/search/sarah"
+         } ],
          "date_added": "13099617023729636",
-         "date_modified": "13109825735595464",
+         "date_modified": "13145585630976001",
          "id": "2",
          "name": "Other bookmarks",
+         "sync_transaction_version": "3",
          "type": "folder"
       },
+      "sync_transaction_version": "484",
       "synced": {
          "children": [  ],
          "date_added": "13099617023729636",
