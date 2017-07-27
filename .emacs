@@ -151,6 +151,11 @@
   (interactive)
   (tinydesk-recover-state "~/tmp/emacs-tinydesk/all"))
 
+(defun gmd-tinydesk-recover-state-yellowleaf-trips ()
+  "For use with -f FUNCTION-NAME."
+  (interactive)
+  (tinydesk-recover-state "~/tmp/emacs-tinydesk/yellowleaf-trips"))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; WS mode
 ;; This strips trailing whitespace and converts tabs to spaces on
