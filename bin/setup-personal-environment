@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
 
 ## To use:
-# git clone https://github.com/gabrielmdeal/personal-environment.git /tmp/personal-environment && /tmp/bin/setup-personal-environment
+# git clone https://github.com/gabrielmdeal/personal-environment.git /tmp/personal-environment && /tmp/personal-environment/bin/setup-personal-environment
+#
+## Or if no git, then just cut-n-paste:
+# vi /tmp/setup && sh /tmp/setup
 
 EMACS_URL=http://ftp.gnu.org/gnu/emacs/emacs-25.1.tar.gz
 TINYDESK_URL=https://raw.githubusercontent.com/jaalto/project-emacs--tinydesk/master/tinydesk.el
@@ -25,6 +28,10 @@ case "$os_type" in
 	;;
 esac
 
+fail_missing_cygwin_setup() {
+    fail "Missing the Cygwin setup app in the Downloads directory"
+}
+
 cygwin_pre_setup() {
     PATH="$PATH:/usr/bin"
     export PATH
@@ -32,7 +39,11 @@ cygwin_pre_setup() {
     HOME="$(cygpath "$USERPROFILE")"
     export HOME
 
-    "$HOME/Downloads/setup-x86_64.exe" -q -P emacs,wget,git
+    for setup_app in "$HOME/Downloads/setup-x86_64.exe" "$HOME/Downloads/setup-x86.exe" fail_missing_cygwin_setup
+    do
+	test -f "$setup_app" && break
+    done
+    "$setup_app" -q -P emacs,wget,git
 }
 
 cygwin_post_setup() {
