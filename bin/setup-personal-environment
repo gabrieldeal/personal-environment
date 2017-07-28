@@ -73,19 +73,23 @@ setup_home_dir() {
 
 setup_github_projects() {
     setup_github_project "clever-cmd" "git@github.com:gabrielmdeal/clever-cmd.git"
-    setup_github_project "autoit-mode" "git@github.com:gabrielmdeal/autoit-mode.git"
+    setup_github_project "autoit-mode" "git@github.com:gabrielmdeal/autoit-mode.git" "add-comment-indent-hook"
 }
 
 setup_github_project() {
     local name="$1"
     local github_url="$2"
+    local branch="$3"
+
+    [ -z "$branch" ] && branch="master"
 
     local dir="$HOME/projects/$name"
 
     [ -e "$dir" ] && return 0
 
     mkdir -p "$dir" \
-	&& git clone "$github_url" "$dir"
+	&& git clone "$github_url" "$dir" \
+	&& (cd "$dir" && git checkout "$branch")
 }
 
 setup_tinydesk() {
