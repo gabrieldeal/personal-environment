@@ -16,16 +16,21 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; For M-x package-install
 
-(defun gmd-refresh-local-package-archive-contents(packages package-source-directory)
+(defun gmd-refresh-local-package-archive-contents(package-infos)
   (let ((should-refresh (or (not (boundp 'package-archive-contents))
 			    (not package-archive-contents))))
-    (dolist (package packages)
-      (unless (assoc package package-archive-contents)
-	(progn
-	  (package-upload-file (format "%s/%s.el"
-				       package-source-directory
-				       package))
-	  (setq should-refresh t))))
+    (dolist (package-info package-infos)
+      (let ((package (nth 0 package-info))
+	    (package-source-directory (nth 1 package-info)))
+	(unless (assoc package package-archive-contents)
+	  (progn
+(message (format "%s/%s.el"
+					 package-source-directory
+					 package))
+	    (package-upload-file (format "%s/%s.el"
+					 package-source-directory
+					 package))
+	    (setq should-refresh t)))))
     (if should-refresh
 	(package-refresh-contents))))
 
@@ -35,7 +40,6 @@
       (package-install package))))
 
 (defvar gmd-package-archive-directory (expand-file-name "~/.emacs.d/gmd/"))
-(defvar gmd-package-source-directory (expand-file-name "~/projects/clever-cmd"))
 
 (autoload 'package-upload-file "package-x" "doc" t)
 (with-eval-after-load "package-x"
@@ -52,9 +56,13 @@
 (add-to-list 'package-archives
 	     (cons "gmd" gmd-package-archive-directory) t)
 
+(defvar gmd-clever-cmd-package-source-directory (expand-file-name "~/projects/clever-cmd"))
+(defvar gmd-autoit-mode-package-source-directory (expand-file-name "~/projects/autoit-mode"))
 (defvar gmd-local-packages
-  '(clever-cmd
-    clever-cmd-example-config))
+  (list (list 'autoit-smie gmd-autoit-mode-package-source-directory)
+	(list 'autoit-mode gmd-autoit-mode-package-source-directory)
+	(list 'clever-cmd gmd-clever-cmd-package-source-directory)
+	(list 'clever-cmd-example-config gmd-clever-cmd-package-source-directory)))
 (defvar gmd-remote-packages
   '(cider
     clojure-mode
@@ -72,8 +80,8 @@
     ws-trim))
 
 (package-initialize)
-(gmd-refresh-local-package-archive-contents gmd-local-packages gmd-package-source-directory)
-(gmd-install-packages (append gmd-local-packages gmd-remote-packages))
+(gmd-refresh-local-package-archive-contents gmd-local-packages)
+(gmd-install-packages (append (mapcar 'car gmd-local-packages) gmd-remote-packages))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Set load path and load libraries
@@ -251,6 +259,8 @@
 (setq auto-mode-alist (cons '("\\.es6$" . web-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.jsx$" . web-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.js$" . web-mode) auto-mode-alist))
+
+(setq auto-mode-alist (cons '("\\.au3$" . autoit-mode) auto-mode-alist))
 
 (setq auto-mode-alist (cons '("\\.rb$" . ruby-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.rake$" . ruby-mode) auto-mode-alist))

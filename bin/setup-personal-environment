@@ -71,13 +71,21 @@ setup_home_dir() {
 	   && for f in "../projects/personal-environment/bin/"*; do ln -vsnf "$f"; done)
 }
 
-setup_clever_cmd() {
-    local dir="$HOME/projects/clever-cmd"
+setup_github_projects() {
+    setup_github_project "clever-cmd" "git@github.com:gabrielmdeal/clever-cmd.git"
+    setup_github_project "autoit-mode" "git@github.com:gabrielmdeal/autoit-mode.git"
+}
 
-    [ -e "$dir/clever-cmd.el" ] && return 0
+setup_github_project() {
+    local name="$1"
+    local github_url="$2"
+
+    local dir="$HOME/projects/$name"
+
+    [ -e "$dir" ] && return 0
 
     mkdir -p "$dir" \
-	&& git clone git@github.com:gabrielmdeal/clever-cmd.git "$dir"
+	&& git clone "$github_url" "$dir"
 }
 
 setup_tinydesk() {
@@ -104,5 +112,5 @@ setup_emacs() {
     && check_dependencies \
     && setup_home_dir \
     && setup_tinydesk \
-    && setup_clever_cmd \
+    && setup_github_projects \
     && "$os_post_setup_command" \
