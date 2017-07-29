@@ -66,6 +66,7 @@ setup_home_dir() {
        && mkdir -p projects \
        && (test -d projects/personal-environment || git clone git@github.com:gabrielmdeal/personal-environment.git projects/personal-environment) \
        && for f in projects/personal-environment/.??* ; do rm -f "$(basename "$f")" && ln -vs "$f"; done \
+       && rm .git \
        && (mkdir -vp "$HOME/bin" \
 	   && cd "$HOME/bin" \
 	   && for f in "../projects/personal-environment/bin/"*; do ln -vsnf "$f"; done)
