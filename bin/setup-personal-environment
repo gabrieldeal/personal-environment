@@ -101,7 +101,7 @@ setup_tinydesk() {
 }
 
 setup_emacs() {
-    if emacs --version 2>/dev/null | grep -q "GNU Emacs 25.1"
+    if emacs --version 2>/dev/null | grep -q --regex "GNU Emacs 25.1" --regex "GNU Emacs 26"
     then
        return
     fi
