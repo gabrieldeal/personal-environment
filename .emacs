@@ -551,6 +551,10 @@ sub get_options {
 		      (setq web-mode-code-indent-offset 2)
 		      )))
 
+(add-hook 'autoit-mode-hook
+	  (lambda ()
+	    (setq indent-tabs-mode nil)))
+
 (setq web-mode-content-types-alist '(("javascript" . "\\.es6\\'")))
 (add-hook 'web-mode-hook
 	  (function (lambda()
