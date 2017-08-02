@@ -2,8 +2,12 @@
 
 # If not running interactively, don't do anything
 case $- in
-    *i*) ;;
-      *) return;;
+    *i*)
+	# We are interactive
+	;;
+    *)
+	return
+	;;
 esac
 
 HISTCONTROL=ignoredups
