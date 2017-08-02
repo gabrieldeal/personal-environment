@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+
+# Create an MP4 from one image and multiple audio files.
+
+image_file="$1"
+shift
+
+if [ -z "$1" ]
+then
+    echo "Usage: create-video-from-audio IMAGE_FILE AUDIO_FILE [ AUDIO_FILE [ ... ] ]" 1>&2
+    exit 1
+fi
+
+audio_files="/tmp/$USER-audio-files.txt"
+rm -f "$audio_files"
+for audio_file in "$@"
+do
+    echo "file '$audio_file'" >>"$audio_files"
+done
+
+audio_file="$(cygpath -w /tmp/$USER-audio-file.mp3)"
+rm -f "$audio_file"
+ffmpeg -f concat \
+       -safe 0 \
+       -i "$(cygpath -w $audio_files)" \
+       -c copy \
+       "$audio_file" || exit 1
+
+video_file="$(cygpath -w $USER-video.mp4)"
+rm -f "$video_file"
+ffmpeg -loop 1 \
+       -i "$image_file" \
+       -i "$audio_file" \
+       -shortest \
+       -c:v libx264 \
+       -c:a copy \
+       "$video_file" || exit 1
+
+echo
+echo "Created $video_file"
+exit 0
+
+
+
