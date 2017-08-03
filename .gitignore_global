@@ -9,3 +9,4 @@ TAGS
 *.ignore-this-git
 piv
 .bazaar
+.local/share/Trash
