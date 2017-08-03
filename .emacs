@@ -1244,4 +1244,12 @@ SWITCH-TO-BUFFER - whether to switch to the buffer if it is already running."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(magit-diff-added ((t (:background "#335533" :foreground "black"))))
+ '(magit-diff-added-highlight ((t (:background "#336633" :foreground "black"))))
+ '(magit-diff-base ((t (:background "red" :foreground "white"))))
+ '(magit-diff-base-highlight ((t (:background "red" :foreground "white"))))
+ '(magit-diff-context ((t (:foreground "black"))))
+ '(magit-diff-context-highlight ((t (:background "white" :foreground "black"))))
+ '(magit-diff-removed ((t (:background "red" :foreground "black"))))
+ '(magit-diff-removed-highlight ((t (:background "red" :foreground "black"))))
  '(magit-item-highlight ((t nil))))
