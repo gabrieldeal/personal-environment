@@ -63,6 +63,7 @@ check_dependencies() {
 
 setup_home_dir() {
     cd "$HOME" \
+       && mkdir -p tmp \
        && mkdir -p projects \
        && (test -d projects/personal-environment || git clone git@github.com:gabrielmdeal/personal-environment.git projects/personal-environment) \
        && for f in projects/personal-environment/.??* ; do ln -vsnf "$f"; done \
