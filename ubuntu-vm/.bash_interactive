@@ -6,5 +6,5 @@ case $- in
       *) return;;
 esac
 
-source ~/config/.bash_interactive
-source ~/config/bin/setup-ssh-agent
+source ~/projects/personal-environment/.bash_interactive
+source ~/projects/personal-environment/bin/setup-ssh-agent
