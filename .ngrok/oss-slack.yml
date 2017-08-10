@@ -1,0 +1,9 @@
+tunnels:
+  huddle:
+    proto: http
+    addr: 3000
+    subdomain: gabriel-huddle
+  middleware:
+    proto: http
+    addr: 4000
+    subdomain: gabriel-middleware
