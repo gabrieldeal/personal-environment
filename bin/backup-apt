@@ -1,0 +1,5 @@
+#!/bin/sh
+#-*-shell-script-*-
+
+date >>/tmp/$USER-cron.out 2>&1
+apt-clone clone ~/Backups/apt-clone-state-ubuntu-$(lsb_release -sr)-$(date +%F).tar.gz >>/tmp/$USER-cron.out 2>&1
