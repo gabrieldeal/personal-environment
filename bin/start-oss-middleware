@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+cd ~/projects/oss/oss_slack_middleware/ \
+   && bundle \
+   && bin/rake db:migrate RAILS_ENV=development \
+   || exit 1
+
+port=4000
+rails server -b 0.0.0.0 -p "$port" &
+
+while ! curl "http://0.0.0.0:$port" >/dev/null 2>&1
+do
+    sleep 1 || exit 1
+    echo Pinging the webserver...
+done
+
+ngrok start --all -config ~/.ngrok2/ngrok.yml -config ~/.ngrok2/oss-slack.yml
