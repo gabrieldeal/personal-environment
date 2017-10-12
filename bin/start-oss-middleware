@@ -1,17 +1,23 @@
 #!/usr/bin/env bash
 
-cd ~/projects/oss/oss_slack_middleware/ \
+cd ~/projects/oss/oss_slack_middleware/ || exit 1
+
+test -f tmp/pids/server.pid \
+    && kill -9 "$(cat tmp/pids/server.pid)" \
+    && sleep 1
+
+git pull \
    && bundle \
    && bin/rake db:migrate RAILS_ENV=development \
    || exit 1
 
 port=4000
-rails server -b 0.0.0.0 -p "$port" &
+rails server -b 0.0.0.0 -p "$port"
 
-while ! curl "http://0.0.0.0:$port" >/dev/null 2>&1
-do
-    sleep 1 || exit 1
-    echo Pinging the webserver...
-done
+# while ! curl "http://0.0.0.0:$port" >/dev/null 2>&1
+# do
+#     sleep 1 || exit 1
+#     echo Pinging the webserver...
+# done
 
-ngrok start --all -config ~/.ngrok2/ngrok.yml -config ~/.ngrok2/oss-slack.yml
+# echo "Run this: ngrok start --all -config ~/.ngrok2/ngrok.yml -config ~/.ngrok2/oss-slack.yml"
