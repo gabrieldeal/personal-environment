@@ -24,7 +24,7 @@ then
 fi
 
 test -f tmp/pids/server.pid \
-    && kill "$(cat tmp/pids/server.pid)" \
+    && kill -9 "$(cat tmp/pids/server.pid)" \
     && sleep 1
 
 if ! test -f $development_file
