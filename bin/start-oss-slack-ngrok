@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+#-*-shell-script-*-
+
+exec xterm -T "ngrok OSS Huddle" \
+	   -e ngrok start huddle middleware -config .ngrok2/ngrok.yml -config .ngrok2/oss-slack.yml
