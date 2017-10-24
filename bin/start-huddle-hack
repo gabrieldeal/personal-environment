@@ -14,9 +14,6 @@ fail() {
     exit 1
 }
 
-development_file=config/environments/development.rb
-temp_development_file=/tmp/$USER-development.rb
-
 ping_app=curl
 if ! which $ping_app >/dev/null 2>&1
 then
@@ -27,17 +24,10 @@ test -f tmp/pids/server.pid \
     && kill -9 "$(cat tmp/pids/server.pid)" \
     && sleep 1
 
-if ! test -f $development_file
-then
-   fail "Missing $development_file"
-fi
-
 # Turn on job control for 'fg':
 set -m
 
-cp "$development_file" "$temp_development_file" \
-    && sed 's/Bullet.raise = true/Bullet.raise = false/;' "$temp_development_file" >"$development_file" \
-    && bundle install \
+bundle install \
     && for n in test development ; do bin/rake db:migrate RAILS_ENV=$n ; done
 if [ "$?" -ne 0 ]
 then
@@ -52,8 +42,5 @@ do
     sleep 1 || exit 1
     echo Pinging the webserver...
 done
-
-cp "$temp_development_file" "$development_file" \
-    && rm "$temp_development_file"
 
 fg
