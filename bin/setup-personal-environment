@@ -45,7 +45,7 @@ cygwin_pre_setup() {
     do
 	test -f "$setup_app" && break
     done
-    "$setup_app" -q -P emacs,wget,git
+    "$setup_app" -q -P "emacs,wget,git,make,gcc-core,libexpat-devel,libcrypt-devel,gcc-g++"
 }
 
 cygwin_post_setup() {
