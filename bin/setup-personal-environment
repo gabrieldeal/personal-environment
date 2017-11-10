@@ -37,9 +37,7 @@ cygwin_pre_setup() {
     HOME="$(cygpath "$USERPROFILE")"
     export HOME
 
-    setup_app="$HOME/Downloads/setup-x86_64.exe"
-    test -f "$setup_app" || fail "Missing the Cygwin setup app in the Downloads directory"
-    "$setup_app" -q -P "emacs,wget,git,make,gcc-core,libexpat-devel,libcrypt-devel,gcc-g++,ruby,curl"
+    "setup-x86_64.exe" -q -P "emacs,wget,git,make,gcc-core,libexpat-devel,libcrypt-devel,gcc-g++,ruby,curl,libiconv-devel"
 }
 
 cygwin_post_setup() {
