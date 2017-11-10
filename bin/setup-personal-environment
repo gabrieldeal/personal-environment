@@ -30,10 +30,6 @@ case "$os_type" in
 	;;
 esac
 
-fail_missing_cygwin_setup() {
-    fail "Missing the Cygwin setup app in the Downloads directory"
-}
-
 cygwin_pre_setup() {
     PATH="$PATH:/usr/bin"
     export PATH
@@ -41,11 +37,9 @@ cygwin_pre_setup() {
     HOME="$(cygpath "$USERPROFILE")"
     export HOME
 
-    for setup_app in "$HOME/Downloads/setup-x86_64.exe" "$HOME/Downloads/setup-x86.exe" fail_missing_cygwin_setup
-    do
-	test -f "$setup_app" && break
-    done
     "$setup_app" -q -P "emacs,wget,git,make,gcc-core,libexpat-devel,libcrypt-devel,gcc-g++"
+    setup_app="$HOME/Downloads/setup-x86_64.exe"
+    test -f "$setup_app" || fail "Missing the Cygwin setup app in the Downloads directory"
 }
 
 cygwin_post_setup() {
