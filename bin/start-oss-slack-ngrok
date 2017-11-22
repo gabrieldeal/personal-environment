@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 #-*-shell-script-*-
 
-exec xterm -T "ngrok OSS Huddle" \
-	   -e ngrok start huddle middleware -config .ngrok2/ngrok.yml -config .ngrok2/oss-slack.yml
+# Because PATH does not get set from my RC files when ran via Unity startup:
+export PATH="$PATH:$HOME/local/bin"
+
+set-xterm-title "ngrok"
+
+~/local/bin/ngrok start huddle middleware \
+		  -config .ngrok2/ngrok.yml \
+		  -config .ngrok2/oss-slack.yml
