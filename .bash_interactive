@@ -1,6 +1,6 @@
 #-*-shell-script-*-
 
-export PATH=$PATH:$HOME/local/bin
+export PATH="$PATH:$HOME/local/bin"
 
 # If not running interactively, then short-circuit
 case $- in
