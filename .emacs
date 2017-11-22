@@ -1165,10 +1165,6 @@ SWITCH-TO-BUFFER - whether to switch to the buffer if it is already running."
 (defun gmd-start-slack-environment ()
   "Start Rails/React processes for OSS Slack environment."
   (interactive)
-  (gmd-start-interactive-shell-with-command "*npm run build*"
-					    "start-webpack-dev-server")
-  (gmd-start-interactive-shell-with-command "*rails server*"
-					    "start-huddle-hack")
   (gmd-start-interactive-shell-with-command "*rails middleware server*"
 					    "start-oss-middleware"))
 
