@@ -3,9 +3,9 @@
 # Because 'nvm' is a shell function:
 . "$HOME/.nvm/nvm.sh"
 
-ip="$1"
+host="$1"
 
-if [ -z "$ip" ]
+if [ -z "$host" ]
 then
     ips="$(hostname -I)"
     ip_count="$(echo "$ips" | wc -w)"
@@ -15,10 +15,10 @@ then
 	exit 1
     fi
 
-    ip="$(echo "$ips" | tr -d '[:space:]')"
+    host="$(echo "$ips" | tr -d '[:space:]')"
 fi
 
 rm -rf node_modules vendor/node_modules \
     && nvm install stable \
     && yarn install \
-    && bin/webpack-dev-server --host "$ip"
+    && bin/webpack-dev-server --host "$host"
