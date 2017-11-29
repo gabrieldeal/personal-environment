@@ -6,50 +6,50 @@
             "date_added": "13111194038526800",
             "id": "61",
             "meta_info": {
-               "last_visited_desktop": "13155763815069147"
+               "last_visited_desktop": "13155867760035713"
             },
             "name": "",
-            "sync_transaction_version": "6333",
+            "sync_transaction_version": "6422",
             "type": "url",
             "url": "http://gabriel-huddle-dicksonlabs.ngrok.io/visual-directory/floors"
          }, {
             "date_added": "13154129124494634",
             "id": "280",
             "meta_info": {
-               "last_visited_desktop": "13155762858293263"
+               "last_visited_desktop": "13156390382885718"
             },
             "name": "",
-            "sync_transaction_version": "6327",
+            "sync_transaction_version": "6499",
             "type": "url",
             "url": "https://app.codeship.com/projects/47455"
          }, {
             "date_added": "13118434410095656",
             "id": "151",
             "meta_info": {
-               "last_visited_desktop": "13155772728981240"
+               "last_visited_desktop": "13156381750730774"
             },
             "name": "h",
-            "sync_transaction_version": "6343",
+            "sync_transaction_version": "6492",
             "type": "url",
             "url": "https://github.com/officespacesoftware/huddle"
          }, {
             "date_added": "13142619553982886",
             "id": "188",
             "meta_info": {
-               "last_visited_desktop": "13155782220110901"
+               "last_visited_desktop": "13156391381943180"
             },
             "name": "PR",
-            "sync_transaction_version": "6346",
+            "sync_transaction_version": "6504",
             "type": "url",
             "url": "https://tinyurl.com/y9olb9zj"
          }, {
             "date_added": "13129862991517539",
             "id": "183",
             "meta_info": {
-               "last_visited_desktop": "13155708696383633"
+               "last_visited_desktop": "13155854110789646"
             },
             "name": "",
-            "sync_transaction_version": "6212",
+            "sync_transaction_version": "6400",
             "type": "url",
             "url": "https://www.pivotaltracker.com/n/projects/957060"
          }, {
@@ -68,20 +68,20 @@
                   "date_added": "13108843792000000",
                   "id": "14",
                   "meta_info": {
-                     "last_visited_desktop": "13155747804082382"
+                     "last_visited_desktop": "13156380583422584"
                   },
                   "name": "timesheet",
-                  "sync_transaction_version": "6269",
+                  "sync_transaction_version": "6486",
                   "type": "url",
                   "url": "https://docs.google.com/spreadsheets/d/1mQBZI5ZRhE4CIjET-iEiYynOSaolXbc6gfWjkTd8LCg/edit#gid=0"
                }, {
                   "date_added": "13109353655053212",
                   "id": "30",
                   "meta_info": {
-                     "last_visited_desktop": "13155781655165949"
+                     "last_visited_desktop": "13156376009476221"
                   },
                   "name": "Gmail - dicksonlabs",
-                  "sync_transaction_version": "6345",
+                  "sync_transaction_version": "6481",
                   "type": "url",
                   "url": "https://mail.google.com/mail/u/0/#inbox"
                }, {
@@ -183,20 +183,20 @@
                   "date_added": "13110508366618003",
                   "id": "48",
                   "meta_info": {
-                     "last_visited_desktop": "13155787422245556"
+                     "last_visited_desktop": "13155861589520634"
                   },
                   "name": "API: Immutable.js List",
-                  "sync_transaction_version": "6349",
+                  "sync_transaction_version": "6411",
                   "type": "url",
                   "url": "https://facebook.github.io/immutable-js/docs/#/List"
                }, {
                   "date_added": "13110508405974297",
                   "id": "49",
                   "meta_info": {
-                     "last_visited_desktop": "13155787425543349"
+                     "last_visited_desktop": "13156384866615573"
                   },
                   "name": "API: Immutable.js Map",
-                  "sync_transaction_version": "6350",
+                  "sync_transaction_version": "6495",
                   "type": "url",
                   "url": "https://facebook.github.io/immutable-js/docs/#/Map"
                }, {
@@ -374,10 +374,10 @@
                "date_added": "13150324357721426",
                "id": "273",
                "meta_info": {
-                  "last_visited_desktop": "13155260072601513"
+                  "last_visited_desktop": "13156375071339236"
                },
                "name": "slack - my dev team",
-               "sync_transaction_version": "6020",
+               "sync_transaction_version": "6472",
                "type": "url",
                "url": "https://gabroyle.slack.com/messages/D76EG3TBQ/"
             }, {
@@ -500,20 +500,20 @@
                "date_added": "13108843758000000",
                "id": "20",
                "meta_info": {
-                  "last_visited_desktop": "13155265755075008"
+                  "last_visited_desktop": "13155867348116907"
                },
                "name": "Spotify",
-               "sync_transaction_version": "6022",
+               "sync_transaction_version": "6421",
                "type": "url",
                "url": "https://play.spotify.com/collection/albums"
             }, {
                "date_added": "13145585696699411",
                "id": "202",
                "meta_info": {
-                  "last_visited_desktop": "13155785674905392"
+                  "last_visited_desktop": "13156362388603906"
                },
                "name": "Pandora",
-               "sync_transaction_version": "6347",
+               "sync_transaction_version": "6440",
                "type": "url",
                "url": "https://www.pandora.com/stations"
             }, {
@@ -530,10 +530,10 @@
                "date_added": "13109379486566789",
                "id": "31",
                "meta_info": {
-                  "last_visited_desktop": "13155346840313617"
+                  "last_visited_desktop": "13156383968124775"
                },
                "name": "7 Minute Workout",
-               "sync_transaction_version": "6068",
+               "sync_transaction_version": "6494",
                "type": "url",
                "url": "http://well.blogs.nytimes.com/projects/workouts/"
             }, {
@@ -550,10 +550,10 @@
                "date_added": "13145585304226403",
                "id": "200",
                "meta_info": {
-                  "last_visited_desktop": "13155237220329705"
+                  "last_visited_desktop": "13155857001368503"
                },
                "name": "Gmail - formerly.gabriel",
-               "sync_transaction_version": "5982",
+               "sync_transaction_version": "6404",
                "type": "url",
                "url": "https://mail.google.com/mail/u/1/#inbox"
             }, {
@@ -605,7 +605,7 @@
             "type": "folder"
          } ],
          "date_added": "13099617023729630",
-         "date_modified": "13154676066945070",
+         "date_modified": "13155856565791327",
          "id": "1",
          "name": "Bookmarks bar",
          "sync_transaction_version": "3",
@@ -630,7 +630,7 @@
          "sync_transaction_version": "3",
          "type": "folder"
       },
-      "sync_transaction_version": "6360",
+      "sync_transaction_version": "6504",
       "synced": {
          "children": [  ],
          "date_added": "13099617023729636",
