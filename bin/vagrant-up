@@ -7,7 +7,7 @@
 # The PATH is not set correctly when started via a Windows shortcut.
 which ssh-add >/dev/null 2>&1 || PATH=/usr/bin:$PATH
 
-cd ~/config/vagrant/"$1"
+cd ~/projects/personal-environment/vagrant/"$1"
 
 vagrant up \
     && exec vagrant ssh
