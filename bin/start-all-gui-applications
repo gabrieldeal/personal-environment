@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+
+# Used in Unity's "Startup Applications".
+
+# ~$ wmctrl -d
+# 0  * DG: 5760x3696  VP: 0,0  WA: 0,24 1920x1824  N/A
+
+width=5760
+num_workspaces=3
+workspace_width=$(expr $width / $num_workspaces)
+
+switch_workspace() {
+    local workspace="$1"
+    local is_first="$2"
+
+    # Give previously opened windows time to start on the right workspace:
+    [ is_first = "true" ] || sleep 5
+
+    local coordinate=$(expr $workspace_width \* \( $workspace - 1 \))
+    wmctrl -o "$coordinate,0"
+}
+
+switch_workspace 1 true
+/opt/google/chrome/chrome &
+/usr/local/bin/keepassx &
+gnome-terminal --title NGrok -e /home/gabrielx/local/bin/start-oss-slack-ngrok &
+/home/gabrielx/local/bin/start-pomodoro-bash &
+
+switch_workspace 2
+/home/gabrielx/local/bin/emacs-huddle &
+/usr/bin/gnome-terminal &
+
+switch_workspace 3
+/usr/bin/gnome-system-monitor &
+/usr/bin/VirtualBox &
+
+switch_workspace 1
