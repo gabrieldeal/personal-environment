@@ -539,7 +539,9 @@ sub get_options {
      (setq-default flycheck-disabled-checkers
 		   (append flycheck-disabled-checkers '(javascript-jshint)))
      (flycheck-add-mode 'javascript-eslint 'web-mode)
-     (setq flycheck-eslintrc (concat (clever-cmd-ec--vc-root-dir) ".eslintrc"))))
+     (setq flycheck-javascript-eslint-executable
+	   (concat (clever-cmd-ec--vc-root-dir) "node_modules/eslint/bin/eslint.js"))
+     (setq flycheck-eslintrc (concat (clever-cmd-ec--vc-root-dir) ".eslintrc.js"))))
 
 ;; This variable must be defined before web-mode is autoloaded in
 ;; order for the first file to be recognized correctly.
