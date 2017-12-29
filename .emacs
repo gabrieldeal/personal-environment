@@ -934,6 +934,7 @@ sub get_options {
 (define-key esc-map "i" 'gmd-ucase-first-character)
 (define-key esc-map "s" 'isearch-forward-regexp)
 (define-key esc-map "\C-h" 'backward-kill-word)
+(define-key esc-map "z" 'zap-up-to-char)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; compilation-mode filter for Ruby's byebug:
