@@ -1,65 +1,65 @@
 {
-   "checksum": "fb2398b695ceee58a1e7a148aa17343a",
+   "checksum": "9e646dee9b1b6911ce219685633fab90",
    "roots": {
       "bookmark_bar": {
          "children": [ {
             "date_added": "13111194038526800",
             "id": "61",
             "meta_info": {
-               "last_visited_desktop": "13158870796941997"
+               "last_visited_desktop": "13159413039413883"
             },
             "name": "",
-            "sync_transaction_version": "7740",
+            "sync_transaction_version": "7853",
             "type": "url",
             "url": "http://gabriel-huddle-dicksonlabs.ngrok.io/visual-directory/floors"
          }, {
             "date_added": "13154129124494634",
             "id": "280",
             "meta_info": {
-               "last_visited_desktop": "13158867518041370"
+               "last_visited_desktop": "13158905691271359"
             },
             "name": "",
-            "sync_transaction_version": "7737",
+            "sync_transaction_version": "7758",
             "type": "url",
             "url": "https://app.codeship.com/projects/47455"
          }, {
             "date_added": "13118434410095656",
             "id": "151",
             "meta_info": {
-               "last_visited_desktop": "13158886635345508"
+               "last_visited_desktop": "13159412266693881"
             },
             "name": "h",
-            "sync_transaction_version": "7746",
+            "sync_transaction_version": "7851",
             "type": "url",
             "url": "https://github.com/officespacesoftware/huddle"
          }, {
             "date_added": "13142619553982886",
             "id": "188",
             "meta_info": {
-               "last_visited_desktop": "13158897163341274"
+               "last_visited_desktop": "13159407271682594"
             },
             "name": "PR",
-            "sync_transaction_version": "7747",
+            "sync_transaction_version": "7835",
             "type": "url",
             "url": "https://github.com/pulls?utf8=%E2%9C%93&q=is%3Apr+is%3Aopen+org%3Aofficespacesoftware+involves%3Ajnamkung+involves%3Agabrielmdeal+involves%3Aipd+involves%3Achrismealy"
          }, {
             "date_added": "13129862991517539",
             "id": "183",
             "meta_info": {
-               "last_visited_desktop": "13158865732950942"
+               "last_visited_desktop": "13158952611595703"
             },
             "name": "",
-            "sync_transaction_version": "7727",
+            "sync_transaction_version": "7765",
             "type": "url",
             "url": "https://www.pivotaltracker.com/n/projects/957060"
          }, {
             "date_added": "13129259883309318",
             "id": "180",
             "meta_info": {
-               "last_visited_desktop": "13158793027194835"
+               "last_visited_desktop": "13159390903155319"
             },
             "name": "",
-            "sync_transaction_version": "7625",
+            "sync_transaction_version": "7819",
             "type": "url",
             "url": "https://projects.invisionapp.com/d/main#/projects"
          }, {
@@ -68,30 +68,30 @@
                   "date_added": "13108843792000000",
                   "id": "14",
                   "meta_info": {
-                     "last_visited_desktop": "13158879383949978"
+                     "last_visited_desktop": "13159391002337306"
                   },
                   "name": "timesheet",
-                  "sync_transaction_version": "7744",
+                  "sync_transaction_version": "7826",
                   "type": "url",
                   "url": "https://docs.google.com/spreadsheets/d/1mQBZI5ZRhE4CIjET-iEiYynOSaolXbc6gfWjkTd8LCg/edit#gid=0"
                }, {
                   "date_added": "13109353655053212",
                   "id": "30",
                   "meta_info": {
-                     "last_visited_desktop": "13158867696143930"
+                     "last_visited_desktop": "13159398112899099"
                   },
                   "name": "Gmail - dicksonlabs",
-                  "sync_transaction_version": "7739",
+                  "sync_transaction_version": "7831",
                   "type": "url",
                   "url": "https://mail.google.com/mail/u/0/#inbox"
                }, {
                   "date_added": "13108843735000000",
                   "id": "17",
                   "meta_info": {
-                     "last_visited_desktop": "13158197884651641"
+                     "last_visited_desktop": "13158981586045369"
                   },
                   "name": "Google Calendar - dicksonlabs",
-                  "sync_transaction_version": "7292",
+                  "sync_transaction_version": "7791",
                   "type": "url",
                   "url": "https://calendar.google.com/calendar/b/0/render#main_7%7Cweek"
                }, {
@@ -300,10 +300,10 @@
                   "date_added": "13119407654625859",
                   "id": "152",
                   "meta_info": {
-                     "last_visited_desktop": "13158286222723189"
+                     "last_visited_desktop": "13158962787530493"
                   },
                   "name": "API: SVG",
-                  "sync_transaction_version": "7499",
+                  "sync_transaction_version": "7771",
                   "type": "url",
                   "url": "https://developer.mozilla.org/en-US/docs/Web/SVG"
                } ],
@@ -316,18 +316,21 @@
             }, {
                "date_added": "13157755822128710",
                "id": "291",
+               "meta_info": {
+                  "last_visited_desktop": "13159391428172116"
+               },
                "name": "Zoom - my room",
-               "sync_transaction_version": "7166",
+               "sync_transaction_version": "7827",
                "type": "url",
                "url": "https://zoom.us/j/8180119961"
             }, {
                "date_added": "13142457381385717",
                "id": "186",
                "meta_info": {
-                  "last_visited_desktop": "13157072996779931"
+                  "last_visited_desktop": "13159411915502688"
                },
                "name": "VD - kiosk (localhost cloned from huddle)",
-               "sync_transaction_version": "7734",
+               "sync_transaction_version": "7847",
                "type": "url",
                "url": "http://gabriel-huddle-dicksonlabs.ngrok.io/visual-directory?key=ec81c073188d1a1815c98f2f3501ff59&kiosk_id=14"
             }, {
@@ -381,10 +384,10 @@
                "date_added": "13150324357721426",
                "id": "273",
                "meta_info": {
-                  "last_visited_desktop": "13158355402117698"
+                  "last_visited_desktop": "13158982203005535"
                },
                "name": "slack - my dev team",
-               "sync_transaction_version": "7535",
+               "sync_transaction_version": "7797",
                "type": "url",
                "url": "https://gabroyle.slack.com/messages/D76EG3TBQ/"
             }, {
@@ -461,10 +464,10 @@
                "date_added": "13110516954357148",
                "id": "51",
                "meta_info": {
-                  "last_visited_desktop": "13154220625043243"
+                  "last_visited_desktop": "13158969792615719"
                },
                "name": "Karma DEBUG RUNNER",
-               "sync_transaction_version": "5454",
+               "sync_transaction_version": "7780",
                "type": "url",
                "url": "http://localhost:9876/debug.html"
             }, {
@@ -499,28 +502,28 @@
             "date_added": "13109913180212489",
             "date_modified": "13157755835542915",
             "id": "40",
-            "name": "work",
-            "sync_transaction_version": "1",
+            "name": "W",
+            "sync_transaction_version": "7841",
             "type": "folder"
          }, {
             "children": [ {
                "date_added": "13108843758000000",
                "id": "20",
                "meta_info": {
-                  "last_visited_desktop": "13158351804948856"
+                  "last_visited_desktop": "13158971027628092"
                },
                "name": "Spotify",
-               "sync_transaction_version": "7522",
+               "sync_transaction_version": "7783",
                "type": "url",
                "url": "https://play.spotify.com/collection/albums"
             }, {
                "date_added": "13145585696699411",
                "id": "202",
                "meta_info": {
-                  "last_visited_desktop": "13158880201810928"
+                  "last_visited_desktop": "13159413384141531"
                },
                "name": "Pandora",
-               "sync_transaction_version": "7745",
+               "sync_transaction_version": "7854",
                "type": "url",
                "url": "https://www.pandora.com/stations"
             }, {
@@ -537,10 +540,10 @@
                "date_added": "13109379486566789",
                "id": "31",
                "meta_info": {
-                  "last_visited_desktop": "13158198840056632"
+                  "last_visited_desktop": "13159407688794550"
                },
                "name": "7 Minute Workout",
-               "sync_transaction_version": "7319",
+               "sync_transaction_version": "7836",
                "type": "url",
                "url": "http://well.blogs.nytimes.com/projects/workouts/"
             }, {
@@ -567,10 +570,10 @@
                "date_added": "13145645254138846",
                "id": "205",
                "meta_info": {
-                  "last_visited_desktop": "13158875465337665"
+                  "last_visited_desktop": "13158981614407564"
                },
                "name": "Google Calendar - formerly.gabriel",
-               "sync_transaction_version": "7742",
+               "sync_transaction_version": "7792",
                "type": "url",
                "url": "https://calendar.google.com/calendar/b/1/render#main_7"
             }, {
@@ -607,12 +610,12 @@
             "date_added": "13126847463431993",
             "date_modified": "13150936361520003",
             "id": "165",
-            "name": "break",
-            "sync_transaction_version": "1",
+            "name": "B",
+            "sync_transaction_version": "7842",
             "type": "folder"
          } ],
          "date_added": "13099617023729630",
-         "date_modified": "13158809818307665",
+         "date_modified": "13159411056209983",
          "id": "1",
          "name": "Bookmarks bar",
          "sync_transaction_version": "3",
@@ -637,7 +640,7 @@
          "sync_transaction_version": "3",
          "type": "folder"
       },
-      "sync_transaction_version": "7747",
+      "sync_transaction_version": "7854",
       "synced": {
          "children": [  ],
          "date_added": "13099617023729636",
