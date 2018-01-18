@@ -11,3 +11,4 @@ piv
 .bazaar
 .local/share/Trash
 .ngrok2/ngrok.yml
+config/database.yml.bak
