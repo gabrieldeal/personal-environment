@@ -1,0 +1,29 @@
+#!/usr/bin/env sh
+
+# I am keeping this simple and not trying to make it configurable via
+# the command line.  Just edit the source to make it do what you want.
+
+# You will need to update the curl command. To get the right command:
+# 1. go to Chrome's network inspector
+# 2. click the "download as PDF" link
+# 3. right click on the URL in the network inspector
+# 4. select "Copy -> Copy as cURL"
+
+directory="/tmp/inkscape/icons"
+mkdir -p "$directory"
+
+host=localhost
+port=3000
+protocol=http
+format=png
+
+for floor_id in 863 2 892 1126 3 1128 751 1148 951 1155 983 1151 947 1044 996 960 961 962 1149 1045 965 1050 1154
+do
+    filename="${directory}/${floor_id}.${format}"
+    url="${protocol}://${host}:${port}/visual-directory-api/floors/${floor_id}/printouts.${format}"
+    query="fontSize=5&headerHeight=512&headerWidth=1024&headerX=30&headerY=20&legendHeight=77.4239&legendWidth=399.841&legendX=1.99691&legendY=374.371&paperHeight=8.5in&paperWidth=11in&showLegend=true&showOccupantNames=true&showRoomLabels=true&showSeatIcons=true&showSeatLabels=true&showSeats=true&showUtilityIcons=true&showVacantLabels=true&viewBoxHeight=794.7368421052633&viewBoxMinX=26.258513931888274&viewBoxMinY=-149.86842105263162&viewBoxWidth=1028.4829721362232"
+
+    echo "Getting ${filename}..."
+
+    curl "${url}?${query}" >"$filename"
+done
