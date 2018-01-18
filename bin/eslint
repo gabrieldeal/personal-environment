@@ -15,5 +15,5 @@ cd "$NODE_MODULES_ROOT/.." || exit 1
 
 . "$HOME/.nvm/nvm.sh"
 nvm  use --silent 5
-"$NODE_MODULES_ROOT/eslint/bin/eslint.js" -c "$ESLINT_RC" "$@"
+yarn run eslint -c "$ESLINT_RC" "$@"
 exit $?
