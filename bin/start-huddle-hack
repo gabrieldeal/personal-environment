@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 #-*-shell-script-*-
 
-# Because I am a bad person.
-
 port=3000
 if [ -n "$1" ]
 then
@@ -14,18 +12,12 @@ fail() {
     exit 1
 }
 
-ping_app=curl
-if ! which $ping_app >/dev/null 2>&1
+pid_file="tmp/pids/server.pid"
+if [ -f tmp/pids/server.pid ]
 then
-   fail "ERROR: Missing $ping_app"
+    kill -9 "$(cat "$pid_file")" || fail "Error killing PID in '$pid_file'"
+    sleep 1
 fi
-
-test -f tmp/pids/server.pid \
-    && kill -9 "$(cat tmp/pids/server.pid)" \
-    && sleep 1
-
-# Turn on job control for 'fg':
-set -m
 
 bundle install \
     && for n in test development ; do bin/rake db:migrate RAILS_ENV=$n ; done
@@ -34,13 +26,4 @@ then
     fail "Error setting up rails env"
 fi
 
-rails s -b 0.0.0.0 -p "$port" &
-
-# Wait for the webserver to start before undoing the development.rb changes:
-while ! $ping_app "http://0.0.0.0:$port" >/dev/null 2>&1
-do
-    sleep 1 || exit 1
-    echo Pinging the webserver...
-done
-
-fg
+rails s -b 0.0.0.0 -p "$port"
