@@ -23,12 +23,20 @@ switch_workspace() {
 switch_workspace 1 true
 /opt/google/chrome/chrome &
 /usr/local/bin/keepassx &
-gnome-terminal --title NGrok -e /home/gabrielx/local/bin/start-oss-slack-ngrok &
+gnome-terminal \
+    --profile Tool \
+    -e /home/gabrielx/local/bin/start-oss-slack-ngrok &
 /home/gabrielx/local/bin/start-pomodoro-bash &
 
 switch_workspace 2
 /home/gabrielx/local/bin/emacs-huddle &
 /usr/bin/gnome-terminal &
+
+# I stopped using this in Emacs because it takes too much CPU for
+# emacs to parse the copious output.
+/usr/bin/gnome-terminal \
+    --profile Tool \
+    -x /home/gabrielx/local/bin/start-webpack-dev-server &
 
 switch_workspace 3
 /usr/bin/gnome-system-monitor &

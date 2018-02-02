@@ -18,7 +18,8 @@ then
     host="$(echo "$ips" | tr -d '[:space:]')"
 fi
 
-rm -rf node_modules vendor/node_modules \
+cd ~/projects/oss/huddle \
+    && rm -rf node_modules vendor/node_modules \
     && nvm install stable \
     && yarn install \
     && bin/webpack-dev-server --host "$host"
