@@ -566,17 +566,6 @@ sub get_options {
 	  (lambda ()
 	    (setq indent-tabs-mode nil)))
 
-(setq web-mode-content-types-alist '(("javascript" . "\\.es6\\'")))
-(add-hook 'web-mode-hook
-	  (function (lambda()
-		      (setq web-mode-enable-auto-quoting nil)
-		      (setq web-mode-markup-indent-offset 2)
-		      (setq web-mode-attr-indent-offset 2)
-		      (setq web-mode-css-indent-offset 2)
-		      (setq indent-tabs-mode nil)
-		      (setq web-mode-code-indent-offset 2)
-		      )))
-
 (add-hook 'buffer-menu-mode-hook
 	  (function (lambda()
 		      (font-lock-mode -1))))
