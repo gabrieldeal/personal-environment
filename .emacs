@@ -383,6 +383,11 @@
 ;; Misc functions
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(defun sort-lines-nocase ()
+  "Case-insensitive line sorting."
+  (interactive)
+  (let ((sort-fold-case t))
+    (call-interactively 'sort-lines)))
 
 ;; I thought join-lines was a built in??? Anyway it dissappeared.  I
 ;; wish emacs lisp had a good namespacing system.
