@@ -560,6 +560,7 @@ sub get_options {
 		      (setq web-mode-css-indent-offset 2)
 		      (setq indent-tabs-mode nil)
 		      (setq web-mode-code-indent-offset 2)
+		      (prettier-js-mode)
 		      )))
 
 (add-hook 'autoit-mode-hook
@@ -1245,7 +1246,9 @@ SWITCH-TO-BUFFER - whether to switch to the buffer if it is already running."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (rjsx-mode ws-trim web-mode rubocop robe puppet-mode paredit nxml-mode markdown-mode magit json-mode flycheck clever-cmd cider))))
+    (prettier-js rjsx-mode ws-trim web-mode rubocop robe puppet-mode paredit nxml-mode markdown-mode magit json-mode flycheck clever-cmd cider)))
+ '(prettier-js-args (quote ("--silent" "prettier" "--config" ".prettierrc")))
+ '(prettier-js-command "yarn"))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
