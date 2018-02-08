@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set-xterm-title "OSS middleware rails server"
+
 cd ~/projects/oss/oss_slack_middleware/ || exit 1
 
 test -f tmp/pids/server.pid \

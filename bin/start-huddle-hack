@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 #-*-shell-script-*-
 
+set-xterm-title "OSS huddle rails server"
+
 port=3000
 if [ -n "$1" ]
 then
