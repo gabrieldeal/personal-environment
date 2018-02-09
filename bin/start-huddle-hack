@@ -21,8 +21,14 @@ then
     sleep 1
 fi
 
-bundle install \
-    && for n in test development ; do bin/rake db:migrate RAILS_ENV=$n ; done
+rvm get stable \
+    && rvm use `cat .ruby-version`@`cat .ruby-gemset` --create \
+    && rvm install `cat .ruby-version` \
+    && gem install mailcatcher \
+    && gem install bundle \
+    && bundle install \
+    && echo "Migrating test..." && bin/rake db:migrate RAILS_ENV=test \
+    && echo "Migrating development..." && bin/rake db:migrate RAILS_ENV=development
 if [ "$?" -ne 0 ]
 then
     fail "Error setting up rails env"
