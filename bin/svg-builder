@@ -9,13 +9,13 @@
 # 3. right click on the URL in the network inspector
 # 4. select "Copy -> Copy as cURL"
 
-directory="/tmp/inkscape/icons"
-mkdir -p "$directory"
+host=huddle.ossd.co
+port=443
+protocol=https
+format=pdf
 
-host=localhost
-port=3000
-protocol=http
-format=png
+directory="/tmp/$host"
+mkdir -p "$directory"
 
 for floor_id in 863 2 892 1126 3 1128 751 1148 951 1155 983 1151 947 1044 996 960 961 962 1149 1045 965 1050 1154
 do
@@ -25,5 +25,6 @@ do
 
     echo "Getting ${filename}..."
 
-    curl "${url}?${query}" >"$filename"
+    curl "${url}?${query}" \
+	 >"$filename"
 done
