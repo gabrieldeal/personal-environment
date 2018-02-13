@@ -1,0 +1,66 @@
+#!/usr/bin/env ruby
+
+require 'nokogiri'
+require 'uri'
+require 'pp'
+
+# https://stackoverflow.com/questions/15888491/replace-relative-path-urls-with-absolute-path-urls
+
+site = ARGV[0] or fail 'Missing site'
+file = ARGV[1].dup or fail 'Missing file'
+
+file.gsub!(/^\.\//, '')
+
+html = File.read(file)
+html or fail "failed to read '#{file}'"
+
+doc = Nokogiri::HTML(html)
+warn "\t" + doc.errors.join("\n\t") unless doc.errors.empty?
+
+tags = {
+  'table' => 'background',
+  'img' => 'src',
+  'script' => 'src',
+  'a' => 'href'
+}
+doc.search(tags.keys.join(',')).each do |node|
+  url_param = tags[node.name]
+
+  uri_str = node[url_param]
+  next if uri_str.nil? || uri_str.empty?
+
+  uri = URI.parse(uri_str)
+
+  if uri.host && uri.host == "sites.google.com"
+    STDERR.puts "    sites: " + uri.to_s
+    uri.host = site
+    uri.scheme = 'http'
+    uri.path.gsub!(/^\/a\/stephabegg.com\/website/, '')
+  end
+next
+
+  next unless uri.scheme.nil? || uri.scheme == 'http' || uri.scheme == 'https' # skip mailto
+  next unless uri.host.nil? || uri.host == site || uri.host == "www.#{site}" # skip links to other sites
+  next if uri.host.nil? && uri.path.empty? # skip fragments like #top
+
+  current_uri = URI("http://#{site}/#{file}")
+
+  # Need to create a new URI or else route_to will not work as expected.
+  full_uri = URI("http://#{site}#{uri.path}?#{uri.query}##{uri.fragment}")
+  relative_path = current_uri.route_to(full_uri).path
+
+  # STDERR.puts "    page URI: " + current_uri.to_s
+  # STDERR.puts "    orig: " + uri.to_s
+  # STDERR.puts "    to convert: " + full_uri.to_s
+
+  uri.scheme = nil
+  uri.host = nil
+  uri.port = nil
+  uri.path = relative_path
+
+  # STDERR.puts "    converted: " + uri.to_s
+
+  node[url_param] = uri.to_s
+end
+
+puts doc.to_html

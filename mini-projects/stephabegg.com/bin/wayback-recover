@@ -1,0 +1,31 @@
+#!/usr/bin/env sh
+
+site="stephabegg.com"
+input_dir="websites/$site"
+output_dir="modified"
+
+(command -v wayback_machine_downloader || gem install wayback_machine_downloader) \
+    && (test -d "$input_dir" || wayback_machine_downloader -d "$output_dir" "http://$site") \
+    && (test -d "$output_dir" || cp -av "$input_dir" "$output_dir") \
+    || exit 1
+
+for file in $(cd "$input_dir" && find . -name \*.html -o -name \*.htm)
+do
+    echo "Processing $file"
+    (cd "$input_dir" \
+	 && ../../bin/convert-to-relative-urls "$site" "$file")
+    #>"$output_dir/$file" \
+	#|| echo "Failed to convert $file"
+done
+
+# for n in $(cat sites-urls.txt); do wayback_machine_downloader -e $n ; done
+# sort sites-urls.txt |uniq |cut -d: -f2- | sed 's/^ //' >sites
+# for n in $(cd websites/sites.google.com/a/stephabegg.com/website && find . -type f); do (test -e "modified/$n" || echo "$n"); done >files.txt
+# cd websites/sites.google.com/a/stephabegg.com/website
+# tar cvf /tmp/x.tar --files-from ../../../../../files.txt
+# cd modified
+# tar xvf /tmp/x.tar
+# rsync          --size-only  -e ssh -avz --rsync-path=/home/gabrielx1/bin/rsync . gabrielx1@192.186.234.160:~/public_html/stephabegg
+
+
+exit 0
