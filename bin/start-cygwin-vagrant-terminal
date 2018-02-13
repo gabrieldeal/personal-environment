@@ -1,0 +1,11 @@
+Cygwin Terminal - Vagrant
+C:\cygwin\bin\mintty.exe --hold error -i /Cygwin-Terminal.ico -t Vagrant -e /usr/bin/bash -i ~/bin/setup-ssh-agent  /usr/bin/ssh -Y -p 2222 -l vagrant localhost
+
+Vagrant Up (start)
+C:\cygwin\bin\mintty.exe --hold error -i /Cygwin-Terminal.ico -e C:\Users\Gabriel\bin\vagrant-up ubuntu-16.04
+
+Vagrant Up (password)
+"C:\Program Files\Oracle\VirtualBox\VBoxManage.exe" controlvm "oss-ubuntu-1604_default_1476749648554_15582" addencpassword "oss-ubuntu-1604_default_1476749648554_15582" -
+
+Pomodoro Bash
+C:\cygwin\bin\mintty.exe -C /usr/share/pomodoro-bash/config/pomodoro-bash.minttyrc -e /usr/bin/bash -il pomodoro-bash -m
