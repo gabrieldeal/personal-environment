@@ -7,18 +7,36 @@ then
     DIR="$1"
 fi
 
+#    && sudo apt-get install mysql-server \
+#    && mysql_secure_installation \
+
 mkdir -p $DIR \
     && cd $DIR \
+    && sudo apt-get install librsvg2-bin \
+    && sudo apt-get install libmysqlclient-dev-dev \
+    && sudo apt-get install libgeos-dev \
+    && sudo apt-get install libcurl4-openssl \
     && (test -d .git || git clone git@github.com:officespacesoftware/huddle.git .) \
-    && . /usr/local/rvm/scripts/rvm \
+    && (test -d "$HOME/.nvm" || curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.8/install.sh | bash) \
+    && source "$HOME/.nvm/nvm.sh" \
+    && nvm install stable \
+    && command -v yarn || (curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add - \
+			   && echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list \
+			   && sudo apt-get update \
+			   && sudo apt-get install yarn) \
+    && yarn install \
+    && (test -d "$HOME/.rvm" || (gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB \
+				 && curl -sSL https://get.rvm.io | bash)) \
+    && source ~/.rvm/scripts/rvm \
     && rvm alias create huddle `cat .ruby-version`@`cat .ruby-gemset` --create \
     && rvm install `cat .ruby-version` \
     && rvm huddle do gem install bundle \
     && rvm huddle do bundle install \
     && rvm huddle do gem install mailcatcher \
-    && sed 's/root/vagrant/; s/officespace$/officespace_development/; s/password:/password: ""/' config/database.yml.example >config/database.yml \
+    && sed 's/officespace$/officespace_development/; s/password:/password: ""/' config/database.yml.example >config/database.yml \
     && cp config/application.yml.example config/application.yml \
-    && sed -i -e 's/`root`/`vagrant`/g' db/structure.sql \
-    && for n in test development ; do mysql officespace_$n < db/structure.sql && rvm huddle do rake db:migrate RAILS_ENV=$n; done \
-    && npm install \
+    && RAILS_ENV=development rvm huddle do ./bin/rails db:setup \
+    && RAILS_ENV=development rvm huddle do ./bin/rails db:migrate \
+    && RAILS_ENV=test rvm huddle do ./bin/rails db:setup \
+    && RAILS_ENV=test rvm huddle do ./bin/rails db:migrate \
     && echo -e "\nSuccess!"
