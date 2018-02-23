@@ -1,65 +1,65 @@
 {
-   "checksum": "44379db2508e60f637799adb3c251db2",
+   "checksum": "d308e47f1fd2c8c6a28ce6e6df64d28a",
    "roots": {
       "bookmark_bar": {
          "children": [ {
             "date_added": "13111194038526800",
             "id": "61",
             "meta_info": {
-               "last_visited_desktop": "13162601279046945"
+               "last_visited_desktop": "13163818778437210"
             },
             "name": "",
-            "sync_transaction_version": "11593",
+            "sync_transaction_version": "12711",
             "type": "url",
-            "url": "http://gabriel-huddle-dicksonlabs.ngrok.io/visual-directory/print/863"
+            "url": "http://gabriel-huddle-dicksonlabs.ngrok.io/visual-directory/"
          }, {
             "date_added": "13154129124494634",
             "id": "280",
             "meta_info": {
-               "last_visited_desktop": "13162590814986401"
+               "last_visited_desktop": "13163821333996274"
             },
             "name": "",
-            "sync_transaction_version": "11570",
+            "sync_transaction_version": "12774",
             "type": "url",
             "url": "https://app.codeship.com/projects/47455"
          }, {
             "date_added": "13118434410095656",
             "id": "151",
             "meta_info": {
-               "last_visited_desktop": "13162585514902567"
+               "last_visited_desktop": "13163814999160847"
             },
             "name": "h",
-            "sync_transaction_version": "11524",
+            "sync_transaction_version": "12701",
             "type": "url",
             "url": "https://github.com/officespacesoftware/huddle"
          }, {
             "date_added": "13142619553982886",
             "id": "188",
             "meta_info": {
-               "last_visited_desktop": "13162592217471247"
+               "last_visited_desktop": "13163821340931217"
             },
             "name": "PR",
-            "sync_transaction_version": "11572",
+            "sync_transaction_version": "12775",
             "type": "url",
             "url": "https://github.com/pulls?utf8=%E2%9C%93&q=is%3Apr+is%3Aopen+org%3Aofficespacesoftware+involves%3Ajnamkung+involves%3Agabrielmdeal+involves%3Aipd+involves%3Achrismealy"
          }, {
             "date_added": "13129862991517539",
             "id": "183",
             "meta_info": {
-               "last_visited_desktop": "13162592247376755"
+               "last_visited_desktop": "13163744743049058"
             },
             "name": "",
-            "sync_transaction_version": "11573",
+            "sync_transaction_version": "12537",
             "type": "url",
             "url": "https://www.pivotaltracker.com/n/projects/957060"
          }, {
             "date_added": "13129259883309318",
             "id": "180",
             "meta_info": {
-               "last_visited_desktop": "13161991757759148"
+               "last_visited_desktop": "13163636453636613"
             },
             "name": "",
-            "sync_transaction_version": "11154",
+            "sync_transaction_version": "12116",
             "type": "url",
             "url": "https://projects.invisionapp.com/d/main#/projects"
          }, {
@@ -68,30 +68,30 @@
                   "date_added": "13108843792000000",
                   "id": "14",
                   "meta_info": {
-                     "last_visited_desktop": "13162581684836246"
+                     "last_visited_desktop": "13163820964148762"
                   },
                   "name": "timesheet",
-                  "sync_transaction_version": "11506",
+                  "sync_transaction_version": "12773",
                   "type": "url",
                   "url": "https://docs.google.com/spreadsheets/d/1mQBZI5ZRhE4CIjET-iEiYynOSaolXbc6gfWjkTd8LCg/edit#gid=0"
                }, {
                   "date_added": "13109353655053212",
                   "id": "30",
                   "meta_info": {
-                     "last_visited_desktop": "13162589326999095"
+                     "last_visited_desktop": "13163818709168585"
                   },
                   "name": "Gmail - dicksonlabs",
-                  "sync_transaction_version": "11553",
+                  "sync_transaction_version": "12709",
                   "type": "url",
                   "url": "https://mail.google.com/mail/u/0/#inbox"
                }, {
                   "date_added": "13108843735000000",
                   "id": "17",
                   "meta_info": {
-                     "last_visited_desktop": "13161910896737939"
+                     "last_visited_desktop": "13163650395793064"
                   },
                   "name": "Google Calendar - dicksonlabs",
-                  "sync_transaction_version": "10985",
+                  "sync_transaction_version": "12143",
                   "type": "url",
                   "url": "https://calendar.google.com/calendar/b/0/render#main_7%7Cweek"
                }, {
@@ -106,7 +106,7 @@
                   "url": "https://officespace-team.slack.com/messages/G7YE3UX2B/details/"
                } ],
                "date_added": "13145585581801714",
-               "date_modified": "13155693231184188",
+               "date_modified": "13162632095252363",
                "id": "201",
                "name": "pinned",
                "sync_transaction_version": "179",
@@ -203,10 +203,10 @@
                   "date_added": "13113102721063114",
                   "id": "88",
                   "meta_info": {
-                     "last_visited_desktop": "13161734234176717"
+                     "last_visited_desktop": "13163046733860567"
                   },
                   "name": "API: Jasmine",
-                  "sync_transaction_version": "10507",
+                  "sync_transaction_version": "11702",
                   "type": "url",
                   "url": "http://jasmine.github.io/2.0/introduction.html"
                }, {
@@ -290,10 +290,10 @@
                   "date_added": "13119407654625859",
                   "id": "152",
                   "meta_info": {
-                     "last_visited_desktop": "13162604446864016"
+                     "last_visited_desktop": "13163742390443160"
                   },
                   "name": "API: SVG",
-                  "sync_transaction_version": "11594",
+                  "sync_transaction_version": "12533",
                   "type": "url",
                   "url": "https://developer.mozilla.org/en-US/docs/Web/SVG"
                } ],
@@ -307,10 +307,10 @@
                "date_added": "13157755822128710",
                "id": "291",
                "meta_info": {
-                  "last_visited_desktop": "13162500132961982"
+                  "last_visited_desktop": "13163792080563527"
                },
                "name": "Zoom - my room",
-               "sync_transaction_version": "11467",
+               "sync_transaction_version": "12552",
                "type": "url",
                "url": "https://zoom.us/j/8180119961"
             }, {
@@ -364,40 +364,40 @@
                "date_added": "13155693231184188",
                "id": "285",
                "meta_info": {
-                  "last_visited_desktop": "13162509055713181"
+                  "last_visited_desktop": "13163808659685746"
                },
                "name": "sidekiq console",
-               "sync_transaction_version": "11491",
+               "sync_transaction_version": "12591",
                "type": "url",
                "url": "http://gabriel-huddle-dicksonlabs.ngrok.io/sidekiq/queues"
             }, {
                "date_added": "13150324357721426",
                "id": "273",
                "meta_info": {
-                  "last_visited_desktop": "13162421671252954"
+                  "last_visited_desktop": "13163200152633739"
                },
                "name": "slack - my dev team",
-               "sync_transaction_version": "11349",
+               "sync_transaction_version": "12004",
                "type": "url",
                "url": "https://gabroyle.slack.com/messages/D76EG3TBQ/"
             }, {
                "date_added": "13149906395468949",
                "id": "269",
                "meta_info": {
-                  "last_visited_desktop": "13162589656650909"
+                  "last_visited_desktop": "13163114323627891"
                },
                "name": "slack - huddle.ossd.co",
-               "sync_transaction_version": "11568",
+               "sync_transaction_version": "11863",
                "type": "url",
                "url": "https://osshuddle.slack.com/"
             }, {
                "date_added": "13149905469505624",
                "id": "268",
                "meta_info": {
-                  "last_visited_desktop": "13155170406112579"
+                  "last_visited_desktop": "13163114328659165"
                },
                "name": "slack - qa.ossd.co",
-               "sync_transaction_version": "5944",
+               "sync_transaction_version": "11863",
                "type": "url",
                "url": "https://ossqa.slack.com/messages/C5UHS8R40/"
             }, {
@@ -437,7 +437,7 @@
                   "last_visited_desktop": "13154588722253077"
                },
                "name": "chrome - cookies",
-               "sync_transaction_version": "10050",
+               "sync_transaction_version": "11863",
                "type": "url",
                "url": "chrome://settings/content/cookies"
             }, {
@@ -454,10 +454,10 @@
                "date_added": "13110516954357148",
                "id": "51",
                "meta_info": {
-                  "last_visited_desktop": "13161734053923395"
+                  "last_visited_desktop": "13163112246411862"
                },
                "name": "Karma DEBUG RUNNER",
-               "sync_transaction_version": "10505",
+               "sync_transaction_version": "11829",
                "type": "url",
                "url": "http://localhost:9876/debug.html"
             }, {
@@ -490,7 +490,7 @@
                "url": "https://webpack.github.io/docs/configuration.html"
             } ],
             "date_added": "13109913180212489",
-            "date_modified": "13157755835542915",
+            "date_modified": "13163115861721738",
             "id": "40",
             "name": "W",
             "sync_transaction_version": "7841",
@@ -500,42 +500,42 @@
                "date_added": "13108843758000000",
                "id": "20",
                "meta_info": {
-                  "last_visited_desktop": "13161760233939291"
+                  "last_visited_desktop": "13163721105716483"
                },
                "name": "Spotify",
-               "sync_transaction_version": "10769",
+               "sync_transaction_version": "12190",
                "type": "url",
                "url": "https://play.spotify.com/collection/albums"
             }, {
                "date_added": "13145585696699411",
                "id": "202",
                "meta_info": {
-                  "last_visited_desktop": "13162609896215920"
+                  "last_visited_desktop": "13163123236653805"
                },
                "name": "Pandora",
-               "sync_transaction_version": "11596",
+               "sync_transaction_version": "11907",
                "type": "url",
                "url": "https://www.pandora.com/stations"
             }, {
                "date_added": "13126847562390273",
                "id": "172",
                "meta_info": {
-                  "last_visited_desktop": "13155240819344004"
+                  "last_visited_desktop": "13163810994356649"
                },
                "name": "Amazon Cloud Player",
-               "sync_transaction_version": "5990",
+               "sync_transaction_version": "12596",
                "type": "url",
                "url": "https://music.amazon.com/my/albums"
             }, {
                "date_added": "13109379486566789",
                "id": "31",
                "meta_info": {
-                  "last_visited_desktop": "13162606620985829"
+                  "last_visited_desktop": "13163730890794457"
                },
                "name": "7 Minute Workout",
-               "sync_transaction_version": "11595",
+               "sync_transaction_version": "12296",
                "type": "url",
-               "url": "http://well.blogs.nytimes.com/projects/workouts/"
+               "url": "https://www.nytimes.com/interactive/projects/well/workouts/"
             }, {
                "date_added": "13150935395403149",
                "id": "276",
@@ -550,10 +550,10 @@
                "date_added": "13145585304226403",
                "id": "200",
                "meta_info": {
-                  "last_visited_desktop": "13161985683087937"
+                  "last_visited_desktop": "13163647709287048"
                },
                "name": "Gmail - formerly.gabriel",
-               "sync_transaction_version": "11085",
+               "sync_transaction_version": "12136",
                "type": "url",
                "url": "https://mail.google.com/mail/u/1/#inbox"
             }, {
@@ -605,7 +605,7 @@
             "type": "folder"
          } ],
          "date_added": "13099617023729630",
-         "date_modified": "13162592827921057",
+         "date_modified": "13163816729608848",
          "id": "1",
          "name": "Bookmarks bar",
          "sync_transaction_version": "3",
@@ -630,7 +630,7 @@
          "sync_transaction_version": "3",
          "type": "folder"
       },
-      "sync_transaction_version": "11596",
+      "sync_transaction_version": "12775",
       "synced": {
          "children": [  ],
          "date_added": "13099617023729636",
