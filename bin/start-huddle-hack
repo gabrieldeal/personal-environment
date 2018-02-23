@@ -34,4 +34,5 @@ then
     fail "Error setting up rails env"
 fi
 
-rails s -b 0.0.0.0 -p "$port"
+source "$(dirname "$0")/export-webpack-dev-server-settings" \
+    && rails s -b 0.0.0.0 -p "$port"

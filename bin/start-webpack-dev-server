@@ -5,23 +5,9 @@ set-xterm-title "OSS webpack dev server"
 # Because 'nvm' is a shell function:
 . "$HOME/.nvm/nvm.sh"
 
-host="$1"
-
-if [ -z "$host" ]
-then
-    ips="$(hostname -I)"
-    ip_count="$(echo "$ips" | wc -w)"
-    if [ "$ip_count" -ne 1 ]
-    then
-	echo "Got $ip_count IPs: '$ips'" 1>&2
-	exit 1
-    fi
-
-    host="$(echo "$ips" | tr -d '[:space:]')"
-fi
-
 cd ~/projects/oss/huddle \
     && rm -rf node_modules vendor/node_modules \
     && nvm install stable \
     && yarn install \
-    && bin/webpack-dev-server --host "$host"
+    && source "$(dirname "$0")/export-webpack-dev-server-settings" \
+    && bin/webpack-dev-server --inline --host "$WEBPACKER_DEV_SERVER_HOST"
