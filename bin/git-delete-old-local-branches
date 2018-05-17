@@ -1,5 +1,8 @@
 #!/usr/bin/env sh
 
-git branch --merged \
-    | egrep -v "(^\*|master)" \
-    | xargs git branch -v -d
+git fetch -p \
+    && git checkout master \
+    && git pull \
+    && git branch --merged \
+	| egrep -v "(^\*|master)" \
+	| xargs --no-run-if-empty git branch -v -d
