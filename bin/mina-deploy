@@ -12,10 +12,13 @@ test -z "$branch" && fail "$usage"
 server="$2"
 test -z "$server" && fail "$usage"
 
-git fetch -p \
+cd ~/projects/oss/huddle2 \
+    && git fetch -p \
     && git checkout "$branch" \
     && git pull origin "$branch" \
-    && rm -rf node_modules \
+    || fail "Might need to do: cd ~/projects/oss/huddle && git merge --abort && git checkout master && git branch -D '$branch'"
+
+rm -rf node_modules \
     && yarn install \
     && bundle exec mina full_deploy HOST="$server.ossd.co" BRANCH="$branch"
 exit $?
