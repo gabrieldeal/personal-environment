@@ -27,8 +27,8 @@ rvm get stable \
     && gem install mailcatcher \
     && gem install bundle \
     && bundle install \
-    && echo "Migrating test..." && bin/rake db:migrate RAILS_ENV=test \
-    && echo "Migrating development..." && bin/rake db:migrate RAILS_ENV=development
+    && echo "Migrating development..." && bin/rake db:migrate RAILS_ENV=development \
+    && echo "Migrating test..." && bin/rake db:migrate RAILS_ENV=test
 if [ "$?" -ne 0 ]
 then
     fail "Error setting up rails env"
