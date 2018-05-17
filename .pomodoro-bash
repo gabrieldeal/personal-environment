@@ -3,7 +3,7 @@
 ### Things that can be set:
 #
 # UPDATE_INTERVAL_SECONDS=
-# WORK_SECONDS=
+POMO_WORK_SECONDS=$(( 30 * 60 ))
 # BREAK_SECONDS=
 # PROMPT_TO_START=
 #
