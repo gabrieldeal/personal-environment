@@ -1157,8 +1157,9 @@ SWITCH-TO-BUFFER - whether to switch to the buffer if it is already running."
   ;; 					    "start-webpack-dev-server")
   (gmd-start-interactive-shell-with-command "*mailcatcher*"
 					    "kill `ps -fwwwHe | grep bin/mailcatche[r] | awk '{print $2}'`; mailcatcher --foreground")
-  (gmd-start-interactive-shell-with-command "*rails server*"
-					    "start-huddle-hack"))
+;;  (gmd-start-interactive-shell-with-command "*rails server*"
+;;					    "start-huddle-hack")
+)
 
 (defun gmd-start-slack-environment ()
   "Start Rails/React processes for OSS Slack environment."
