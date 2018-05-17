@@ -38,6 +38,10 @@ switch_workspace 2
     --profile Tool \
     -x /home/gabrielx/local/bin/start-webpack-dev-server &
 
+/usr/bin/gnome-terminal \
+    --profile Tool \
+    -x /home/gabrielx/local/bin/start-huddle-hack &
+
 switch_workspace 3
 /usr/bin/gnome-system-monitor &
 /usr/bin/VirtualBox &
