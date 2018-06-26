@@ -44,6 +44,6 @@ switch_workspace 2
 
 switch_workspace 3
 /usr/bin/gnome-system-monitor &
-/usr/bin/VirtualBox &
+# /usr/bin/VirtualBox &
 
 switch_workspace 1
