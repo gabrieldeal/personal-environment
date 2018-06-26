@@ -1,10 +1,4 @@
 #!/bin/sh
 #-*-shell-script-*-
 
-DIR="$1"
-if [ -z "$DIR" ]
-then
-    DIR=.
-fi
-
-list-editable-files "$DIR" | etags -
+list-editable-files "$@" | etags -
