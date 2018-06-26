@@ -21,7 +21,8 @@ then
     sleep 1
 fi
 
-rvm get stable \
+cd ~/projects/oss/huddle \
+    && rvm get stable \
     && rvm use `cat .ruby-version`@`cat .ruby-gemset` --create \
     && rvm install `cat .ruby-version` \
     && gem install mailcatcher \
