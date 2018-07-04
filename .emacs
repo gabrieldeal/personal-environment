@@ -552,7 +552,7 @@ sub get_options {
 
 ;; This variable must be defined before web-mode is autoloaded in
 ;; order for the first file to be recognized correctly.
-(setq web-mode-content-types-alist '(("javascript" . "\\.es6\\'")))
+(setq web-mode-content-types-alist '(("jsx" . "\\.js\\'")))
 (add-hook 'web-mode-hook
 	  (function (lambda()
 		      (setq web-mode-enable-auto-quoting nil)
