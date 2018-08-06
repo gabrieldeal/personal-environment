@@ -1,6 +1,6 @@
 # C:\cygwin64\bin\mintty.exe -C /cygdrive/c/Users/Gabriel/.minttyrc-guest-vm --hold error -i /Cygwin-Terminal.ico -t Vagrant -e /usr/bin/bash -i ~/bin/setup-ssh-agent  /usr/bin/ssh -Y -p 2222 -l vagrant localhost
 
-BackgroundColour=255,255,240
+BackgroundColour=255,255,250
 ForegroundColour=0,0,0
 CursorColour=0,0,0
 Black=11,11,11
