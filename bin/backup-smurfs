@@ -6,6 +6,7 @@ dir="/cygdrive/e"
 mkdir -p "$dir" \
     && rsync \
 	   --delete-before \
+	   --exclude '*/AppData/*' \
 	   -avh \
 	   "/cygdrive/c/Users" \
 	   "$dir" \
