@@ -1,0 +1,6 @@
+#!/usr/bin/env perl
+
+use Date::Manip
+
+print Date::Manip::Date_ConvTZ($ARGV[0], "UTC", "America/Los_Angeles");
+print "\n";
