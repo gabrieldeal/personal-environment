@@ -9,6 +9,8 @@ fi
 
 find $dir \
     -name node_modules -prune -o \
+    -name .cache -prune -o \
+    -name public -prune -o \
     -name generated -prune -o \
     \( \
 	-name Makefile \
