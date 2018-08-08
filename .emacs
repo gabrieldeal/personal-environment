@@ -151,8 +151,9 @@
 
 ; Making some aliases to make tab completion easier:
 (defalias 'gmd-tinydesk-save-state 'tinydesk-save-state)
+(defalias 'gmd-tinydesk-recover-state 'tinydesk-recover-state)
 
-(defun gmd-tinydesk-recover-state (name)
+(defun gmd-tinydesk-recover-state-by-name (name)
   "Load state from NAME then kill the Tinydesk buffer with all the files."
   (tinydesk-recover-state (format "~/tmp/emacs-tinydesk/%s" name))
   (switch-to-buffer name)
@@ -162,12 +163,12 @@
 (defun gmd-tinydesk-recover-state-all ()
   "For use with -f FUNCTION-NAME."
   (interactive)
-  (gmd-tinydesk-recover-state "all"))
+  (gmd-tinydesk-recover-state-by-name "all"))
 
 (defun gmd-tinydesk-recover-state-yellowleaf-trips ()
   "For use with -f FUNCTION-NAME."
   (interactive)
-  (gmd-tinydesk-recover-state "yellowleaf-trips"))
+  (gmd-tinydesk-recover-state-by-name "yellowleaf-trips"))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; WS mode
