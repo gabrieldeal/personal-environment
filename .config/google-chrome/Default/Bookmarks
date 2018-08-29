@@ -1,65 +1,75 @@
 {
-   "checksum": "a2619fbbbb2ddafb6ef08dcefa171db8",
+   "checksum": "c76061987a6d719a9755e3ea6c006e9a",
    "roots": {
       "bookmark_bar": {
          "children": [ {
             "date_added": "13111194038526800",
             "id": "61",
             "meta_info": {
-               "last_visited_desktop": "13178831899644436"
+               "last_visited_desktop": "13179532761562963"
             },
-            "name": "",
-            "sync_transaction_version": "19891",
+            "name": "vd",
+            "sync_transaction_version": "20245",
             "type": "url",
             "url": "http://192.168.1.111:3000/visual-directory/"
+         }, {
+            "date_added": "13179459640538683",
+            "id": "314",
+            "meta_info": {
+               "last_visited_desktop": "13179543172766573"
+            },
+            "name": "m",
+            "sync_transaction_version": "20272",
+            "type": "url",
+            "url": "http://192.168.1.111:3000/manager-beta/"
          }, {
             "date_added": "13154129124494634",
             "id": "280",
             "meta_info": {
-               "last_visited_desktop": "13178823189262977"
+               "last_visited_desktop": "13179520638244258"
             },
             "name": "",
-            "sync_transaction_version": "19879",
+            "sync_transaction_version": "20234",
             "type": "url",
             "url": "https://app.codeship.com/projects/47455"
          }, {
             "date_added": "13118434410095656",
             "id": "151",
             "meta_info": {
-               "last_visited_desktop": "13178851035011301"
+               "last_visited_desktop": "13179519034135023"
             },
             "name": "h",
-            "sync_transaction_version": "19899",
+            "sync_transaction_version": "20230",
             "type": "url",
             "url": "https://github.com/officespacesoftware/huddle"
          }, {
             "date_added": "13142619553982886",
             "id": "188",
             "meta_info": {
-               "last_visited_desktop": "13178841369760015"
+               "last_visited_desktop": "13179528761630120"
             },
             "name": "PR",
-            "sync_transaction_version": "19894",
+            "sync_transaction_version": "20242",
             "type": "url",
             "url": "https://github.com/pulls?utf8=%E2%9C%93&q=is%3Apr+is%3Aopen+org%3Aofficespacesoftware+involves%3Ajnamkung+involves%3Agabrielmdeal+involves%3Aipd+involves%3Achrismealy"
          }, {
             "date_added": "13129862991517539",
             "id": "183",
             "meta_info": {
-               "last_visited_desktop": "13178829923613636"
+               "last_visited_desktop": "13179348956508015"
             },
             "name": "",
-            "sync_transaction_version": "19886",
+            "sync_transaction_version": "20074",
             "type": "url",
             "url": "https://www.pivotaltracker.com/n/projects/957060"
          }, {
             "date_added": "13129259883309318",
             "id": "180",
             "meta_info": {
-               "last_visited_desktop": "13175889003070184"
+               "last_visited_desktop": "13179522321418545"
             },
             "name": "",
-            "sync_transaction_version": "18609",
+            "sync_transaction_version": "20239",
             "type": "url",
             "url": "https://projects.invisionapp.com/d/main#/projects"
          }, {
@@ -68,20 +78,20 @@
                   "date_added": "13164920464587900",
                   "id": "296",
                   "meta_info": {
-                     "last_visited_desktop": "13178822839323430"
+                     "last_visited_desktop": "13179512889528121"
                   },
                   "name": "",
-                  "sync_transaction_version": "19878",
+                  "sync_transaction_version": "20211",
                   "type": "url",
                   "url": "https://docs.google.com/spreadsheets/d/1mQBZI5ZRhE4CIjET-iEiYynOSaolXbc6gfWjkTd8LCg/edit#gid=0"
                }, {
                   "date_added": "13109353655053212",
                   "id": "30",
                   "meta_info": {
-                     "last_visited_desktop": "13178843368412152"
+                     "last_visited_desktop": "13179513955438492"
                   },
                   "name": "Gmail - dicksonlabs",
-                  "sync_transaction_version": "19897",
+                  "sync_transaction_version": "20217",
                   "type": "url",
                   "url": "https://mail.google.com/mail/u/0/#inbox"
                }, {
@@ -118,10 +128,10 @@
                   "date_added": "13175897756569650",
                   "id": "308",
                   "meta_info": {
-                     "last_visited_desktop": "13178821808105728"
+                     "last_visited_desktop": "13178913758572803"
                   },
                   "name": "Knowledge - Google Docs",
-                  "sync_transaction_version": "19876",
+                  "sync_transaction_version": "19937",
                   "type": "url",
                   "url": "https://docs.google.com/document/d/1zwyJcEefkKNvvTef-A5q5n_Q5NgqLuJGSyGMHzOMz0o/edit#heading=h.23457xfn9fm6"
                } ],
@@ -223,20 +233,20 @@
                   "date_added": "13110508366618003",
                   "id": "48",
                   "meta_info": {
-                     "last_visited_desktop": "13171664172768473"
+                     "last_visited_desktop": "13179443324939687"
                   },
                   "name": "API: Immutable.js List",
-                  "sync_transaction_version": "16025",
+                  "sync_transaction_version": "20145",
                   "type": "url",
                   "url": "https://facebook.github.io/immutable-js/docs/#/List"
                }, {
                   "date_added": "13110508405974297",
                   "id": "49",
                   "meta_info": {
-                     "last_visited_desktop": "13178843051606586"
+                     "last_visited_desktop": "13179443318130934"
                   },
                   "name": "API: Immutable.js Map",
-                  "sync_transaction_version": "19895",
+                  "sync_transaction_version": "20144",
                   "type": "url",
                   "url": "https://facebook.github.io/immutable-js/docs/#/Map"
                }, {
@@ -285,18 +295,18 @@
                   "meta_info": {
                      "last_visited_desktop": "13177555909556506"
                   },
-                  "name": "API: Material UI",
-                  "sync_transaction_version": "18895",
+                  "name": "API: Material UI v0",
+                  "sync_transaction_version": "20189",
                   "type": "url",
                   "url": "http://www.material-ui.com/#/components/app-bar"
                }, {
                   "date_added": "13155789610165484",
                   "id": "289",
                   "meta_info": {
-                     "last_visited_desktop": "13177648866284719"
+                     "last_visited_desktop": "13179520882761845"
                   },
                   "name": "API: Material UI v1",
-                  "sync_transaction_version": "19168",
+                  "sync_transaction_version": "20237",
                   "type": "url",
                   "url": "https://material-ui-next.com/api/app-bar/"
                }, {
@@ -327,6 +337,16 @@
                   "type": "url",
                   "url": "https://pixijs.github.io/docs/index.html"
                }, {
+                  "date_added": "13178923111153217",
+                  "id": "312",
+                  "meta_info": {
+                     "last_visited_desktop": "13179362888899226"
+                  },
+                  "name": "API - React Apollo",
+                  "sync_transaction_version": "20092",
+                  "type": "url",
+                  "url": "https://www.apollographql.com/docs/react/api/react-apollo.html#graphql"
+               }, {
                   "date_added": "13116474574267857",
                   "id": "146",
                   "meta_info": {
@@ -342,10 +362,20 @@
                   "meta_info": {
                      "last_visited_desktop": "13149736080886801"
                   },
-                  "name": "API - searchkick",
-                  "sync_transaction_version": "6307",
+                  "name": "API: searchkick",
+                  "sync_transaction_version": "20188",
                   "type": "url",
                   "url": "http://www.rubydoc.info/gems/searchkick/2.3.1"
+               }, {
+                  "date_added": "13178247552427499",
+                  "id": "310",
+                  "meta_info": {
+                     "last_visited_desktop": "13178302917373013"
+                  },
+                  "name": "API: SQL - joins",
+                  "sync_transaction_version": "20187",
+                  "type": "url",
+                  "url": "https://www.codeproject.com/KB/database/Visual_SQL_Joins/Visual_SQL_JOINS_orig.jpg"
                }, {
                   "date_added": "13119407654625859",
                   "id": "152",
@@ -358,7 +388,7 @@
                   "url": "https://developer.mozilla.org/en-US/docs/Web/SVG"
                } ],
                "date_added": "13155753709961518",
-               "date_modified": "13175897756569650",
+               "date_modified": "13179461210709894",
                "id": "288",
                "name": "APIs",
                "sync_transaction_version": "6334",
@@ -546,10 +576,10 @@
                "date_added": "13108843758000000",
                "id": "20",
                "meta_info": {
-                  "last_visited_desktop": "13172888641782398"
+                  "last_visited_desktop": "13179430750367882"
                },
                "name": "Spotify",
-               "sync_transaction_version": "16586",
+               "sync_transaction_version": "20132",
                "type": "url",
                "url": "https://play.spotify.com/collection/albums"
             }, {
@@ -606,30 +636,30 @@
                "date_added": "13145585304226403",
                "id": "200",
                "meta_info": {
-                  "last_visited_desktop": "13178821084167854"
+                  "last_visited_desktop": "13179520494579226"
                },
                "name": "Gmail - formerly.gabriel",
-               "sync_transaction_version": "19820",
+               "sync_transaction_version": "20232",
                "type": "url",
                "url": "https://mail.google.com/mail/u/1/#inbox"
             }, {
                "date_added": "13145645254138846",
                "id": "205",
                "meta_info": {
-                  "last_visited_desktop": "13178771317695276"
+                  "last_visited_desktop": "13179461902297190"
                },
                "name": "Google Calendar - formerly.gabriel",
-               "sync_transaction_version": "19809",
+               "sync_transaction_version": "20202",
                "type": "url",
                "url": "https://calendar.google.com/calendar/b/1/render#main_7"
             }, {
                "date_added": "13145678972491710",
                "id": "206",
                "meta_info": {
-                  "last_visited_desktop": "13177559236981584"
+                  "last_visited_desktop": "13179516264785295"
                },
                "name": "Google Drive - formerly.gabriel",
-               "sync_transaction_version": "18906",
+               "sync_transaction_version": "20225",
                "type": "url",
                "url": "https://drive.google.com/drive/u/1/my-drive"
             }, {
@@ -666,36 +696,16 @@
             "name": "B",
             "sync_transaction_version": "7842",
             "type": "folder"
-         }, {
-            "date_added": "13178247552427499",
-            "id": "310",
-            "meta_info": {
-               "last_visited_desktop": "13178302917373013"
-            },
-            "name": "Visual_SQL_JOINS_orig.jpg (966×760)",
-            "sync_transaction_version": "19639",
-            "type": "url",
-            "url": "https://www.codeproject.com/KB/database/Visual_SQL_Joins/Visual_SQL_JOINS_orig.jpg"
          } ],
          "date_added": "13099617023729630",
-         "date_modified": "13178247552427499",
+         "date_modified": "13179459646123502",
          "id": "1",
          "name": "Bookmarks bar",
          "sync_transaction_version": "3",
          "type": "folder"
       },
       "other": {
-         "children": [ {
-            "date_added": "13143862615407799",
-            "id": "192",
-            "meta_info": {
-               "last_visited_desktop": "13143862665495474"
-            },
-            "name": "Google Contacts",
-            "sync_transaction_version": "1",
-            "type": "url",
-            "url": "https://contacts.google.com/u/1/search/sarah"
-         } ],
+         "children": [  ],
          "date_added": "13099617023729636",
          "date_modified": "13148615346724837",
          "id": "2",
@@ -703,7 +713,7 @@
          "sync_transaction_version": "3",
          "type": "folder"
       },
-      "sync_transaction_version": "19899",
+      "sync_transaction_version": "20272",
       "synced": {
          "children": [  ],
          "date_added": "13099617023729636",
