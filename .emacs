@@ -262,9 +262,9 @@
 (autoload 'web-mode "web-mode") ; https://github.com/fxbois/web-mode
 (setq auto-mode-alist (cons '("\\.php$" . web-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.erb$" . web-mode) auto-mode-alist))
-(setq auto-mode-alist (cons '("\\.es6$" . rjsx-mode) auto-mode-alist))
-(setq auto-mode-alist (cons '("\\.jsx$" . rjsx-mode) auto-mode-alist))
-(setq auto-mode-alist (cons '("\\.js$" . rjsx-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '("\\.es6$" . web-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '("\\.jsx$" . web-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '("\\.js$" . web-mode) auto-mode-alist))
 
 (setq auto-mode-alist (cons '("\\.au3$" . autoit-mode) auto-mode-alist))
 
@@ -565,23 +565,6 @@ sub get_options {
 		      (setq web-mode-code-indent-offset 2)
 		      (prettier-js-mode)
 		      )))
-
-(add-hook 'rjsx-mode-hook
-	  (lambda()
-	    (setq indent-tabs-mode nil)
-	    (prettier-js-mode)
-	    (js2-imenu-extras-mode)
-	    ))
-
-(add-hook 'js2-mode-hook
-	  (lambda ()
-	    (setq js2-strict-trailing-comma-warning nil)
-	    (define-key js-mode-map (kbd "M-.") nil)
-
-	    (js2-refactor-mode)
-	    (js2r-add-keybindings-with-prefix "C-c C-r")
-
-	    (add-hook 'xref-backend-functions #'xref-js2-xref-backend nil t)))
 
 (add-hook 'autoit-mode-hook
 	  (lambda ()
@@ -1267,7 +1250,7 @@ SWITCH-TO-BUFFER - whether to switch to the buffer if it is already running."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (xref-js2 js2-refactor graphql-mode prettier-js rjsx-mode ws-trim web-mode rubocop robe puppet-mode paredit nxml-mode markdown-mode magit json-mode flycheck clever-cmd cider)))
+    (graphql-mode prettier-js rjsx-mode ws-trim web-mode rubocop robe puppet-mode paredit nxml-mode markdown-mode magit json-mode flycheck clever-cmd cider)))
  '(prettier-js-args (quote ("--silent" "prettier" "--config" ".prettierrc")))
  '(prettier-js-command "yarn"))
 (custom-set-faces
