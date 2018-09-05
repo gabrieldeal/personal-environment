@@ -344,6 +344,11 @@
 ;; Misc settings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; Buffers that should be opened in the current window:
+(add-to-list 'same-window-regexps "*Buffer List*")
+(add-to-list 'same-window-regexps "*magit: ")
+(add-to-list 'same-window-regexps "*rails console*")
+
 ;; Because I can't get Karma to ignore .#*Spec.es6 files.  :(
 (setq create-lockfiles nil)
 
