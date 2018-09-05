@@ -12,11 +12,12 @@ test -z "$branch" && fail "$usage"
 server="$2"
 test -z "$server" && fail "$usage"
 
-cd ~/projects/oss/huddle2 \
+dir=~/projects/oss/huddle2
+cd "$dir" \
     && git fetch -p \
     && git checkout "$branch" \
     && git pull origin "$branch" \
-    || fail "Might need to do: cd ~/projects/oss/huddle && git merge --abort && git checkout master && git branch -D '$branch'"
+    || fail "Might need to do: cd $dir && git merge --abort && git checkout master && git branch -D '$branch'"
 
 rm -rf node_modules \
     && yarn install \
