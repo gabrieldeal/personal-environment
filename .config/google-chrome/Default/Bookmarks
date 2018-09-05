@@ -1,65 +1,65 @@
 {
-   "checksum": "c76061987a6d719a9755e3ea6c006e9a",
+   "checksum": "20dae8aec1dd33fb6034b19fe36002c9",
    "roots": {
       "bookmark_bar": {
          "children": [ {
             "date_added": "13111194038526800",
             "id": "61",
             "meta_info": {
-               "last_visited_desktop": "13179532761562963"
+               "last_visited_desktop": "13180139846079179"
             },
             "name": "vd",
-            "sync_transaction_version": "20245",
+            "sync_transaction_version": "20683",
             "type": "url",
             "url": "http://192.168.1.111:3000/visual-directory/"
          }, {
             "date_added": "13179459640538683",
             "id": "314",
             "meta_info": {
-               "last_visited_desktop": "13179543172766573"
+               "last_visited_desktop": "13180567545863501"
             },
             "name": "m",
-            "sync_transaction_version": "20272",
+            "sync_transaction_version": "20729",
             "type": "url",
             "url": "http://192.168.1.111:3000/manager-beta/"
          }, {
             "date_added": "13154129124494634",
             "id": "280",
             "meta_info": {
-               "last_visited_desktop": "13179520638244258"
+               "last_visited_desktop": "13180554097217681"
             },
             "name": "",
-            "sync_transaction_version": "20234",
+            "sync_transaction_version": "20710",
             "type": "url",
             "url": "https://app.codeship.com/projects/47455"
          }, {
             "date_added": "13118434410095656",
             "id": "151",
             "meta_info": {
-               "last_visited_desktop": "13179519034135023"
+               "last_visited_desktop": "13180566038202614"
             },
             "name": "h",
-            "sync_transaction_version": "20230",
+            "sync_transaction_version": "20728",
             "type": "url",
             "url": "https://github.com/officespacesoftware/huddle"
          }, {
             "date_added": "13142619553982886",
             "id": "188",
             "meta_info": {
-               "last_visited_desktop": "13179528761630120"
+               "last_visited_desktop": "13180579401747846"
             },
             "name": "PR",
-            "sync_transaction_version": "20242",
+            "sync_transaction_version": "20738",
             "type": "url",
             "url": "https://github.com/pulls?utf8=%E2%9C%93&q=is%3Apr+is%3Aopen+org%3Aofficespacesoftware+involves%3Ajnamkung+involves%3Agabrielmdeal+involves%3Aipd+involves%3Achrismealy"
          }, {
             "date_added": "13129862991517539",
             "id": "183",
             "meta_info": {
-               "last_visited_desktop": "13179348956508015"
+               "last_visited_desktop": "13180030457052675"
             },
             "name": "",
-            "sync_transaction_version": "20074",
+            "sync_transaction_version": "20382",
             "type": "url",
             "url": "https://www.pivotaltracker.com/n/projects/957060"
          }, {
@@ -78,30 +78,30 @@
                   "date_added": "13164920464587900",
                   "id": "296",
                   "meta_info": {
-                     "last_visited_desktop": "13179512889528121"
+                     "last_visited_desktop": "13180550621751398"
                   },
                   "name": "",
-                  "sync_transaction_version": "20211",
+                  "sync_transaction_version": "20698",
                   "type": "url",
                   "url": "https://docs.google.com/spreadsheets/d/1mQBZI5ZRhE4CIjET-iEiYynOSaolXbc6gfWjkTd8LCg/edit#gid=0"
                }, {
                   "date_added": "13109353655053212",
                   "id": "30",
                   "meta_info": {
-                     "last_visited_desktop": "13179513955438492"
+                     "last_visited_desktop": "13180575509794530"
                   },
                   "name": "Gmail - dicksonlabs",
-                  "sync_transaction_version": "20217",
+                  "sync_transaction_version": "20737",
                   "type": "url",
                   "url": "https://mail.google.com/mail/u/0/#inbox"
                }, {
                   "date_added": "13108843735000000",
                   "id": "17",
                   "meta_info": {
-                     "last_visited_desktop": "13177558746760464"
+                     "last_visited_desktop": "13180574400804147"
                   },
                   "name": "Google Calendar - dicksonlabs",
-                  "sync_transaction_version": "18903",
+                  "sync_transaction_version": "20734",
                   "type": "url",
                   "url": "https://calendar.google.com/calendar/b/0/render#main_7%7Cweek"
                }, {
@@ -128,10 +128,10 @@
                   "date_added": "13175897756569650",
                   "id": "308",
                   "meta_info": {
-                     "last_visited_desktop": "13178913758572803"
+                     "last_visited_desktop": "13180562456555116"
                   },
                   "name": "Knowledge - Google Docs",
-                  "sync_transaction_version": "19937",
+                  "sync_transaction_version": "20725",
                   "type": "url",
                   "url": "https://docs.google.com/document/d/1zwyJcEefkKNvvTef-A5q5n_Q5NgqLuJGSyGMHzOMz0o/edit#heading=h.23457xfn9fm6"
                } ],
@@ -303,10 +303,10 @@
                   "date_added": "13155789610165484",
                   "id": "289",
                   "meta_info": {
-                     "last_visited_desktop": "13179520882761845"
+                     "last_visited_desktop": "13180119592850976"
                   },
                   "name": "API: Material UI v1",
-                  "sync_transaction_version": "20237",
+                  "sync_transaction_version": "20615",
                   "type": "url",
                   "url": "https://material-ui-next.com/api/app-bar/"
                }, {
@@ -340,10 +340,10 @@
                   "date_added": "13178923111153217",
                   "id": "312",
                   "meta_info": {
-                     "last_visited_desktop": "13179362888899226"
+                     "last_visited_desktop": "13180038874718623"
                   },
                   "name": "API - React Apollo",
-                  "sync_transaction_version": "20092",
+                  "sync_transaction_version": "20471",
                   "type": "url",
                   "url": "https://www.apollographql.com/docs/react/api/react-apollo.html#graphql"
                }, {
@@ -388,7 +388,7 @@
                   "url": "https://developer.mozilla.org/en-US/docs/Web/SVG"
                } ],
                "date_added": "13155753709961518",
-               "date_modified": "13179461210709894",
+               "date_modified": "13180137482509714",
                "id": "288",
                "name": "APIs",
                "sync_transaction_version": "6334",
@@ -566,7 +566,7 @@
                "url": "https://webpack.github.io/docs/configuration.html"
             } ],
             "date_added": "13109913180212489",
-            "date_modified": "13175756493938085",
+            "date_modified": "13180137496498757",
             "id": "40",
             "name": "W",
             "sync_transaction_version": "7841",
@@ -586,10 +586,10 @@
                "date_added": "13145585696699411",
                "id": "202",
                "meta_info": {
-                  "last_visited_desktop": "13172888641790503"
+                  "last_visited_desktop": "13180124267575874"
                },
                "name": "Pandora",
-               "sync_transaction_version": "16587",
+               "sync_transaction_version": "20619",
                "type": "url",
                "url": "https://www.pandora.com/stations"
             }, {
@@ -636,20 +636,20 @@
                "date_added": "13145585304226403",
                "id": "200",
                "meta_info": {
-                  "last_visited_desktop": "13179520494579226"
+                  "last_visited_desktop": "13180551758532936"
                },
                "name": "Gmail - formerly.gabriel",
-               "sync_transaction_version": "20232",
+               "sync_transaction_version": "20704",
                "type": "url",
                "url": "https://mail.google.com/mail/u/1/#inbox"
             }, {
                "date_added": "13145645254138846",
                "id": "205",
                "meta_info": {
-                  "last_visited_desktop": "13179461902297190"
+                  "last_visited_desktop": "13180068814992261"
                },
                "name": "Google Calendar - formerly.gabriel",
-               "sync_transaction_version": "20202",
+               "sync_transaction_version": "20594",
                "type": "url",
                "url": "https://calendar.google.com/calendar/b/1/render#main_7"
             }, {
@@ -683,6 +683,16 @@
                "type": "url",
                "url": "https://www.autoitscript.com/autoit3/docs/functions.htm"
             }, {
+               "date_added": "13180137482509714",
+               "id": "316",
+               "meta_info": {
+                  "last_visited_desktop": "13180137482510788"
+               },
+               "name": "Aeropress instructions",
+               "sync_transaction_version": "20660",
+               "type": "url",
+               "url": "https://aeropressinc.com/wp-content/uploads/2018/08/80INST-Ver.F-ENG.pdf"
+            }, {
                "date_added": "13170393112509521",
                "id": "302",
                "name": "Strava to GPX",
@@ -691,7 +701,7 @@
                "url": "javascript:(function()%7Bfunction%20callback()%7B(function(%24)%7Bvar%20jQuery%3D%24%3Bfunction%20callback()%7BgetGpx()%7Dvar%20s%3Ddocument.createElement(%22script%22)%3Bs.src%3D%22https%3A%2F%2Fmapstogpx.com%2Fstrava%2Fmapstogpxstrava.js%22%3Bif(s.addEventListener)%7Bs.addEventListener(%22load%22%2Ccallback%2Cfalse)%7Delse%20if(s.readyState)%7Bs.onreadystatechange%3Dcallback%7Ddocument.body.appendChild(s)%3B%7D)(jQuery.noConflict(true))%7Dvar%20s%3Ddocument.createElement(%22script%22)%3Bs.src%3D%22https%3A%2F%2Fmapstogpx.com%2Fstrava%2Fjquery.min.js%22%3Bif(s.addEventListener)%7Bs.addEventListener(%22load%22%2Ccallback%2Cfalse)%7Delse%20if(s.readyState)%7Bs.onreadystatechange%3Dcallback%7Ddocument.body.appendChild(s)%3B%7D)()"
             } ],
             "date_added": "13126847463431993",
-            "date_modified": "13171765566241366",
+            "date_modified": "13180137502573756",
             "id": "165",
             "name": "B",
             "sync_transaction_version": "7842",
@@ -713,7 +723,7 @@
          "sync_transaction_version": "3",
          "type": "folder"
       },
-      "sync_transaction_version": "20272",
+      "sync_transaction_version": "20738",
       "synced": {
          "children": [  ],
          "date_added": "13099617023729636",
