@@ -19,7 +19,7 @@ cd "$dir" \
     && git pull origin "$branch" \
     || fail "Might need to do: cd $dir && git merge --abort && git checkout master && git branch -D '$branch'"
 
-rm -rf node_modules \
+rm -rfv node_modules \
     && yarn install \
     && bundle exec mina full_deploy HOST="$server.ossd.co" BRANCH="$branch"
 exit $?
