@@ -1,0 +1,46 @@
+#!/usr/bin/env bash
+
+keep_dir="$1"
+delete_dir="$2"
+
+keep_paths="/tmp/$USER-$$-all-keep.txt"
+
+find_images() {
+    find "$1" \
+	 -name \*.ARW -o \
+	 -name \*.AVI -o \
+	 -name \*.DNG -o \
+	 -name \*.dng -o \
+	 -name \*.gif -o \
+	 -name \*.jpeg -o \
+	 -name \*.JPG -o \
+	 -name \*.jpg -o \
+	 -name \*.MOV -o \
+	 -name \*.mov -o \
+	 -name \*.mp4 -o \
+	 -name \*.MP4 -o \
+	 -name \*.ORF -o \
+	 -name \*.png -o \
+	 -name \*.RW2 -o \
+	 -name \*.tiff
+}
+
+get_checksum() {
+    cksum "$1" | cut -d' ' -f1
+}
+
+find_images "$keep_dir" >"$keep_paths"
+
+find_images "$delete_dir" | while read delete_path
+do
+    delete_file="$(basename "$delete_path")"
+    grep "$delete_file" "$keep_paths" | while read keep_path
+    do
+	if [ $(get_checksum "$delete_path") = $(get_checksum "$keep_path") ]
+	then
+	    echo "$keep_path === $delete_path"
+	fi
+    done
+done
+
+exit 0
