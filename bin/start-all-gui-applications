@@ -5,7 +5,7 @@
 # ~$ wmctrl -d
 # 0  * DG: 5760x3696  VP: 0,0  WA: 0,24 1920x1824  N/A
 
-width=5760
+width=13440
 num_workspaces=3
 workspace_width=$(expr $width / $num_workspaces)
 
