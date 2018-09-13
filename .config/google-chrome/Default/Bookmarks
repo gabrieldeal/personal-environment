@@ -1,75 +1,75 @@
 {
-   "checksum": "20dae8aec1dd33fb6034b19fe36002c9",
+   "checksum": "4f01d37d693fd80163084f6db06e1574",
    "roots": {
       "bookmark_bar": {
          "children": [ {
             "date_added": "13111194038526800",
             "id": "61",
             "meta_info": {
-               "last_visited_desktop": "13180139846079179"
+               "last_visited_desktop": "13181265500113273"
             },
             "name": "vd",
-            "sync_transaction_version": "20683",
+            "sync_transaction_version": "21951",
             "type": "url",
             "url": "http://192.168.1.111:3000/visual-directory/"
          }, {
             "date_added": "13179459640538683",
             "id": "314",
             "meta_info": {
-               "last_visited_desktop": "13180567545863501"
+               "last_visited_desktop": "13181271044677466"
             },
             "name": "m",
-            "sync_transaction_version": "20729",
+            "sync_transaction_version": "21967",
             "type": "url",
             "url": "http://192.168.1.111:3000/manager-beta/"
          }, {
             "date_added": "13154129124494634",
             "id": "280",
             "meta_info": {
-               "last_visited_desktop": "13180554097217681"
+               "last_visited_desktop": "13181270859960824"
             },
             "name": "",
-            "sync_transaction_version": "20710",
+            "sync_transaction_version": "21962",
             "type": "url",
             "url": "https://app.codeship.com/projects/47455"
          }, {
             "date_added": "13118434410095656",
             "id": "151",
             "meta_info": {
-               "last_visited_desktop": "13180566038202614"
+               "last_visited_desktop": "13181261074816046"
             },
             "name": "h",
-            "sync_transaction_version": "20728",
+            "sync_transaction_version": "21909",
             "type": "url",
             "url": "https://github.com/officespacesoftware/huddle"
          }, {
             "date_added": "13142619553982886",
             "id": "188",
             "meta_info": {
-               "last_visited_desktop": "13180579401747846"
+               "last_visited_desktop": "13181269706525438"
             },
             "name": "PR",
-            "sync_transaction_version": "20738",
+            "sync_transaction_version": "21958",
             "type": "url",
             "url": "https://github.com/pulls?utf8=%E2%9C%93&q=is%3Apr+is%3Aopen+org%3Aofficespacesoftware+involves%3Ajnamkung+involves%3Agabrielmdeal+involves%3Aipd+involves%3Achrismealy"
          }, {
             "date_added": "13129862991517539",
             "id": "183",
             "meta_info": {
-               "last_visited_desktop": "13180030457052675"
+               "last_visited_desktop": "13181243036468013"
             },
             "name": "",
-            "sync_transaction_version": "20382",
+            "sync_transaction_version": "21761",
             "type": "url",
             "url": "https://www.pivotaltracker.com/n/projects/957060"
          }, {
             "date_added": "13129259883309318",
             "id": "180",
             "meta_info": {
-               "last_visited_desktop": "13179522321418545"
+               "last_visited_desktop": "13181258625713100"
             },
             "name": "",
-            "sync_transaction_version": "20239",
+            "sync_transaction_version": "21893",
             "type": "url",
             "url": "https://projects.invisionapp.com/d/main#/projects"
          }, {
@@ -78,60 +78,60 @@
                   "date_added": "13164920464587900",
                   "id": "296",
                   "meta_info": {
-                     "last_visited_desktop": "13180550621751398"
+                     "last_visited_desktop": "13181243095926278"
                   },
                   "name": "",
-                  "sync_transaction_version": "20698",
+                  "sync_transaction_version": "21814",
                   "type": "url",
                   "url": "https://docs.google.com/spreadsheets/d/1mQBZI5ZRhE4CIjET-iEiYynOSaolXbc6gfWjkTd8LCg/edit#gid=0"
                }, {
                   "date_added": "13109353655053212",
                   "id": "30",
                   "meta_info": {
-                     "last_visited_desktop": "13180575509794530"
+                     "last_visited_desktop": "13181268297841423"
                   },
                   "name": "Gmail - dicksonlabs",
-                  "sync_transaction_version": "20737",
+                  "sync_transaction_version": "21957",
                   "type": "url",
                   "url": "https://mail.google.com/mail/u/0/#inbox"
                }, {
                   "date_added": "13108843735000000",
                   "id": "17",
                   "meta_info": {
-                     "last_visited_desktop": "13180574400804147"
+                     "last_visited_desktop": "13180818191824381"
                   },
                   "name": "Google Calendar - dicksonlabs",
-                  "sync_transaction_version": "20734",
+                  "sync_transaction_version": "21297",
                   "type": "url",
                   "url": "https://calendar.google.com/calendar/b/0/render#main_7%7Cweek"
                }, {
                   "date_added": "13154676066945070",
                   "id": "284",
                   "meta_info": {
-                     "last_visited_desktop": "13164915726883049"
+                     "last_visited_desktop": "13181178328257284"
                   },
                   "name": "Slack",
-                  "sync_transaction_version": "13363",
+                  "sync_transaction_version": "21634",
                   "type": "url",
                   "url": "https://officespace-team.slack.com/messages/G7YE3UX2B/details/"
                }, {
                   "date_added": "13168047687398408",
                   "id": "299",
                   "meta_info": {
-                     "last_visited_desktop": "13172879204106996"
+                     "last_visited_desktop": "13180818191852702"
                   },
                   "name": "",
-                  "sync_transaction_version": "16551",
+                  "sync_transaction_version": "21293",
                   "type": "url",
                   "url": "https://web.skype.com/en/"
                }, {
                   "date_added": "13175897756569650",
                   "id": "308",
                   "meta_info": {
-                     "last_visited_desktop": "13180562456555116"
+                     "last_visited_desktop": "13180818206063761"
                   },
                   "name": "Knowledge - Google Docs",
-                  "sync_transaction_version": "20725",
+                  "sync_transaction_version": "21347",
                   "type": "url",
                   "url": "https://docs.google.com/document/d/1zwyJcEefkKNvvTef-A5q5n_Q5NgqLuJGSyGMHzOMz0o/edit#heading=h.23457xfn9fm6"
                } ],
@@ -233,20 +233,20 @@
                   "date_added": "13110508366618003",
                   "id": "48",
                   "meta_info": {
-                     "last_visited_desktop": "13179443324939687"
+                     "last_visited_desktop": "13180827299628401"
                   },
                   "name": "API: Immutable.js List",
-                  "sync_transaction_version": "20145",
+                  "sync_transaction_version": "21496",
                   "type": "url",
                   "url": "https://facebook.github.io/immutable-js/docs/#/List"
                }, {
                   "date_added": "13110508405974297",
                   "id": "49",
                   "meta_info": {
-                     "last_visited_desktop": "13179443318130934"
+                     "last_visited_desktop": "13181173983893303"
                   },
                   "name": "API: Immutable.js Map",
-                  "sync_transaction_version": "20144",
+                  "sync_transaction_version": "21619",
                   "type": "url",
                   "url": "https://facebook.github.io/immutable-js/docs/#/Map"
                }, {
@@ -283,10 +283,10 @@
                   "date_added": "13110508339375933",
                   "id": "47",
                   "meta_info": {
-                     "last_visited_desktop": "13177477271128372"
+                     "last_visited_desktop": "13181175277685493"
                   },
                   "name": "API: lodash documentation",
-                  "sync_transaction_version": "18807",
+                  "sync_transaction_version": "21621",
                   "type": "url",
                   "url": "https://lodash.com/docs"
                }, {
@@ -386,6 +386,16 @@
                   "sync_transaction_version": "17922",
                   "type": "url",
                   "url": "https://developer.mozilla.org/en-US/docs/Web/SVG"
+               }, {
+                  "date_added": "13178247552427499",
+                  "id": "318",
+                  "meta_info": {
+                     "last_visited_desktop": "13178302917373013"
+                  },
+                  "name": "API: SQL joins",
+                  "sync_transaction_version": "20938",
+                  "type": "url",
+                  "url": "https://www.codeproject.com/KB/database/Visual_SQL_Joins/Visual_SQL_JOINS_orig.jpg"
                } ],
                "date_added": "13155753709961518",
                "date_modified": "13180137482509714",
@@ -437,20 +447,20 @@
                "date_added": "13155693231184188",
                "id": "285",
                "meta_info": {
-                  "last_visited_desktop": "13178301607511277"
+                  "last_visited_desktop": "13180843176581346"
                },
                "name": "sidekiq console",
-               "sync_transaction_version": "19605",
+               "sync_transaction_version": "21532",
                "type": "url",
-               "url": "http://192.168.1.111:3000/sidekiq/queues"
+               "url": "http://192.168.1.111:3000/sidekiq/queues?poll=true"
             }, {
                "date_added": "13150324357721426",
                "id": "273",
                "meta_info": {
-                  "last_visited_desktop": "13177628536978317"
+                  "last_visited_desktop": "13181270881780426"
                },
                "name": "slack - my dev team",
-               "sync_transaction_version": "19082",
+               "sync_transaction_version": "21966",
                "type": "url",
                "url": "https://gabroyle.slack.com/messages/D76EG3TBQ/"
             }, {
@@ -636,30 +646,30 @@
                "date_added": "13145585304226403",
                "id": "200",
                "meta_info": {
-                  "last_visited_desktop": "13180551758532936"
+                  "last_visited_desktop": "13181261324387807"
                },
                "name": "Gmail - formerly.gabriel",
-               "sync_transaction_version": "20704",
+               "sync_transaction_version": "21913",
                "type": "url",
                "url": "https://mail.google.com/mail/u/1/#inbox"
             }, {
                "date_added": "13145645254138846",
                "id": "205",
                "meta_info": {
-                  "last_visited_desktop": "13180068814992261"
+                  "last_visited_desktop": "13181244537577827"
                },
                "name": "Google Calendar - formerly.gabriel",
-               "sync_transaction_version": "20594",
+               "sync_transaction_version": "21824",
                "type": "url",
                "url": "https://calendar.google.com/calendar/b/1/render#main_7"
             }, {
                "date_added": "13145678972491710",
                "id": "206",
                "meta_info": {
-                  "last_visited_desktop": "13179516264785295"
+                  "last_visited_desktop": "13181162927381013"
                },
                "name": "Google Drive - formerly.gabriel",
-               "sync_transaction_version": "20225",
+               "sync_transaction_version": "21582",
                "type": "url",
                "url": "https://drive.google.com/drive/u/1/my-drive"
             }, {
@@ -706,9 +716,19 @@
             "name": "B",
             "sync_transaction_version": "7842",
             "type": "folder"
+         }, {
+            "date_added": "13180809531448311",
+            "id": "319",
+            "meta_info": {
+               "last_visited_desktop": "13180811422525394"
+            },
+            "name": "PDF setting",
+            "sync_transaction_version": "21214",
+            "type": "url",
+            "url": "chrome://settings/content/pdfDocuments?search=PDF"
          } ],
          "date_added": "13099617023729630",
-         "date_modified": "13179459646123502",
+         "date_modified": "13180809531448311",
          "id": "1",
          "name": "Bookmarks bar",
          "sync_transaction_version": "3",
@@ -723,7 +743,7 @@
          "sync_transaction_version": "3",
          "type": "folder"
       },
-      "sync_transaction_version": "20738",
+      "sync_transaction_version": "21967",
       "synced": {
          "children": [  ],
          "date_added": "13099617023729636",
