@@ -8,6 +8,8 @@ directory="$1"
 shift
 cd "$directory" || exit 1
 
+. "$HOME/.bash_interactive"
+
 # Without this, Ruby syntax highlighting doesn't work in emacs.
 source "$HOME/.nvm/nvm.sh"
 source "$HOME/.rvm/scripts/rvm"

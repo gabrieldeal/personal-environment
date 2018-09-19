@@ -544,7 +544,7 @@ sub get_options {
 				    (interactive)
 				    (scroll-up-command 1)))))
 
-;; Hack note: I had to create ~/local/bin/eslint to get flycheck to
+;; Hack note: I had to create ~/local/bin/eslint-hack to get flycheck to
 ;; use the eslint from package.json.
 (add-hook 'after-init-hook #'global-flycheck-mode)
 (eval-after-load "flycheck"
@@ -552,8 +552,7 @@ sub get_options {
      (setq-default flycheck-disabled-checkers
 		   (append flycheck-disabled-checkers '(javascript-jshint)))
      (flycheck-add-mode 'javascript-eslint 'web-mode)
-     (setq flycheck-javascript-eslint-executable
-	   (concat (clever-cmd-ec--vc-root-dir) "node_modules/eslint/bin/eslint.js"))
+     (setq flycheck-javascript-eslint-executable "eslint-hack")
      (setq flycheck-eslintrc (concat (clever-cmd-ec--vc-root-dir) ".eslintrc.js"))))
 
 ;; This variable must be defined before web-mode is autoloaded in
