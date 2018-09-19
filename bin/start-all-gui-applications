@@ -28,6 +28,8 @@ gnome-terminal \
     -e /home/gabrielx/local/bin/start-oss-slack-ngrok &
 /home/gabrielx/local/bin/start-pomodoro-bash &
 
+sleep 5
+
 switch_workspace 2
 /home/gabrielx/local/bin/emacs-huddle &
 /usr/bin/gnome-terminal &
@@ -42,8 +44,12 @@ switch_workspace 2
     --profile Tool \
     -x /home/gabrielx/local/bin/start-huddle-hack &
 
+sleep 5
+
 switch_workspace 3
 /usr/bin/gnome-system-monitor &
 # /usr/bin/VirtualBox &
+
+sleep 5
 
 switch_workspace 1
