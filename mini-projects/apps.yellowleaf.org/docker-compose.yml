@@ -1,0 +1,32 @@
+version: '3'
+services:
+  elevation-service:
+    container_name: "elevation-service"
+    image: gggabrielx/elevation-service-hosted
+    ports:
+     - "8080:8080"
+    restart:
+      always
+    volumes:
+      - elevation-service-data:/app/data
+  letsencrypt-reverse-proxy:
+    container_name: "letsencrypt-reverse-proxy"
+    depends_on:
+      - "elevation-service"
+    environment:
+      - PGID=1000
+      - PUID=1000
+      - EMAIL=formerly.gabriel@gmail.com
+      - URL=apps.yellowleaf.org
+      - TZ=America/Los_Angeles
+    image: "linuxserver/letsencrypt"
+    ports:
+      - "80:80"
+      - "443:443"
+    restart:
+      always
+    volumes:
+      - letsencrypt-config:/config
+volumes:
+  letsencrypt-config:
+  elevation-service-data:
