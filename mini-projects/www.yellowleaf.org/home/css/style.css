@@ -429,7 +429,7 @@ input[type="button"],
     -o-transition: background-color 0.35s ease-in-out;
     -ms-transition: background-color 0.35s ease-in-out;
     transition: background-color 0.35s ease-in-out;
-    background: #03A903;
+    background: #4d94ff;
     border-radius: 6px;
     border: 0;
     color: white;
@@ -457,7 +457,7 @@ input[type="reset"].alt,
 input[type="button"].alt,
 .button.alt {
     border: 1px solid #FFF;
-    color: #0f1116;
+    color: #4d94ff;
 }
 
 input[type="submit"].fit,
