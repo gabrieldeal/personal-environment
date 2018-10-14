@@ -6,7 +6,10 @@ dir="/cygdrive/e"
 mkdir -p "$dir" \
     && rsync \
 	   --delete-before \
+	   --delete-excluded \
 	   --exclude '*/AppData/*' \
+	   --exclude '/node_modules/' \
+	   --exclude '*/tmp/*' \
 	   -avh \
 	   "/cygdrive/c/Users" \
 	   "$dir" \
