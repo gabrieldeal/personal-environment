@@ -260,7 +260,7 @@
 (setq auto-mode-alist (cons '("\\.bash[^/]*" . sh-mode) auto-mode-alist))
 
 (autoload 'web-mode "web-mode") ; https://github.com/fxbois/web-mode
-(setq auto-mode-alist (cons '("\\.php$" . web-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '("\\.php$" . php-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.erb$" . web-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.es6$" . web-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.jsx$" . web-mode) auto-mode-alist))
@@ -1254,7 +1254,7 @@ SWITCH-TO-BUFFER - whether to switch to the buffer if it is already running."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (graphql-mode prettier-js rjsx-mode ws-trim web-mode rubocop robe puppet-mode paredit nxml-mode markdown-mode magit json-mode flycheck clever-cmd cider)))
+    (yaml-mode php-mode graphql-mode prettier-js rjsx-mode ws-trim web-mode rubocop robe puppet-mode paredit nxml-mode markdown-mode magit json-mode flycheck clever-cmd cider)))
  '(prettier-js-args (quote ("--silent" "prettier" "--config" ".prettierrc")))
  '(prettier-js-command "yarn"))
 (custom-set-faces
