@@ -165,7 +165,7 @@ input[type="submit"]:hover,
 input[type="reset"]:hover,
 input[type="button"]:hover,
 .button:hover {
-    background: #c72e6a;
+    background: #0000FF;
 }
 
 input[type="submit"].alt,
