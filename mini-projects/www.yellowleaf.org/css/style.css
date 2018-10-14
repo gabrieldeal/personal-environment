@@ -426,7 +426,7 @@ input[type="button"],
     -o-transition: background-color 0.35s ease-in-out;
     -ms-transition: background-color 0.35s ease-in-out;
     transition: background-color 0.35s ease-in-out;
-    background: #d84780;
+    background: #03A903;
     border-radius: 6px;
     border: 0;
     color: white;
@@ -446,7 +446,7 @@ input[type="submit"]:hover,
 input[type="reset"]:hover,
 input[type="button"]:hover,
 .button:hover {
-    background: #e1719d;
+    background: #0000FF;
 }
 
 input[type="submit"].alt,
@@ -626,4 +626,10 @@ input[type="button"].medium,
     background: #FFF;
     text-align: center;
     border-radius: 0px 0px 6px 6px;
+}
+
+/* Misc */
+
+.turned-off {
+    display: none;
 }
