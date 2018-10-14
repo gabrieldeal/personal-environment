@@ -7,5 +7,5 @@
 /* Wrapper */
 
 	.wrapper.style1 {
-		-ms-behavior: url("css/ie/backgroundsize.min.htc");
+		-ms-behavior: url("home/css/ie/backgroundsize.min.htc");
 	}
