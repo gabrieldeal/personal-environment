@@ -7,7 +7,7 @@
 			wide:		{ range: '-1680', href: 'home/css/style-wide.css', containers: 1200, grid: { gutters: 40 } },
 			normal:		{ range: '-1280', href: 'home/css/style-normal.css', containers: 960, lockViewport: true },
 			narrow:		{ range: '-980', href: 'home/css/style-narrow.css', containers: '95%', grid: { gutters: 30 } },
-			narrower:	{ range: '-840', href: 'home/css/style-narrower.css', grid: { gutters: 20, collapse: 1 } },
+			narrower:	{ range: '-840', href: 'home/css/style-narrower.css', grid: { gutters: 15, collapse: 2 } },
 			mobile:		{ range: '-640', href: 'home/css/style-mobile.css', grid: { gutters: 15, collapse: 2 } }
 		}
 	}, {
