@@ -41,3 +41,8 @@ fi
 #source "$(dirname "$0")/export-webpack-dev-server-settings" \
 #    &&
     rails s -b 0.0.0.0 -p "$port"
+
+# Disabled SSL because it messes with Webpack Dev Server's auto-reloading.
+#
+# Setting up SSL https://gist.github.com/tadast/9932075
+#rails s -b "ssl://0.0.0.0:$port?key=$HOME/.ssh/server.key&cert=$HOME/.ssh/server.crt"
