@@ -44,6 +44,11 @@ switch_workspace 2
     --profile Tool \
     -x /home/gabrielx/local/bin/start-huddle-hack &
 
+/usr/bin/gnome-terminal \
+    --profile Tool \
+    -x /home/gabrielx/local/bin/run-in /home/gabrielx/projects/oss/huddle \
+    mailcatcher --foreground &
+
 sleep 5
 
 switch_workspace 3

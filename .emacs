@@ -1149,31 +1149,6 @@ SWITCH-TO-BUFFER - whether to switch to the buffer if it is already running."
       (let ((kill-buffer-query-functions (delq 'process-kill-buffer-query-function kill-buffer-query-functions)))
 	(kill-buffer buffer-name))))
 
-(defun gmd-restart-ui-environment ()
-  "Kill UI processes and then start them again."
-  (interactive)
-  (gmd-kill-buffer-unconditionally "*npm run build*")
-  (gmd-kill-buffer-unconditionally "*mailcatcher*")
-  (gmd-kill-buffer-unconditionally "*rails server*")
-  (gmd-start-ui-environment))
-
-(defun gmd-start-ui-environment ()
-  "Start Rails/React processes for OSS."
-  (interactive)
-  ;; (gmd-start-interactive-shell-with-command "*npm run build*"
-  ;; 					    "start-webpack-dev-server")
-  (gmd-start-interactive-shell-with-command "*mailcatcher*"
-					    "kill `ps -fwwwHe | grep bin/mailcatche[r] | awk '{print $2}'`; mailcatcher --foreground")
-;;  (gmd-start-interactive-shell-with-command "*rails server*"
-;;					    "start-huddle-hack")
-)
-
-(defun gmd-start-slack-environment ()
-  "Start Rails/React processes for OSS Slack environment."
-  (interactive)
-  (gmd-start-interactive-shell-with-command "*rails middleware server*"
-					    "start-oss-middleware"))
-
 ;; This requires customization of comint-output-filter-functions to
 ;; eliminate some escape sequences that ansi-color-for-comint-mode-on
 ;; doesn't handle.

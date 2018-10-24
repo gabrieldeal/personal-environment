@@ -3,5 +3,4 @@
 /home/gabrielx/local/bin/run-in \
     /home/gabrielx/projects/oss/huddle \
     emacs -f magit-status \
-          -f gmd-start-ui-environment \
           -f gmd-tinydesk-recover-state-all 2>&1 | tee /tmp/emacs-huddle.log
