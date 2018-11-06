@@ -21,5 +21,6 @@ cd "$dir" \
 
 rm -rfv node_modules \
     && yarn install \
+    && bundle install \
     && bundle exec mina full_deploy HOST="$server.ossd.co" BRANCH="$branch"
 exit $?
