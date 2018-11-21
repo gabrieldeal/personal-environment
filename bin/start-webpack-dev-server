@@ -19,5 +19,5 @@ then
 fi
 
 nvm install stable \
-    && yarn install \
     && bin/webpack-dev-server --inline --host "$WEBPACKER_DEV_SERVER_HOST"
+    && (yarn check || yarn install) \
