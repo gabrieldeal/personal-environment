@@ -9,8 +9,6 @@ set-xterm-title "OSS webpack dev server"
 # Because 'nvm' is a shell function:
 . "$HOME/.nvm/nvm.sh"
 
-#    && source "$(dirname "$0")/export-webpack-dev-server-settings" \
-
 cd ~/projects/oss/huddle || exit 1
 
 if [ "$skip_reset" != "skip" ]
@@ -19,5 +17,5 @@ then
 fi
 
 nvm install stable \
-    && bin/webpack-dev-server --inline --host "$WEBPACKER_DEV_SERVER_HOST"
     && (yarn check || yarn install) \
+    && bin/webpack-dev-server --inline
