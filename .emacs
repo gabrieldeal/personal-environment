@@ -1238,6 +1238,8 @@ SWITCH-TO-BUFFER - whether to switch to the buffer if it is already running."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(font-lock-comment-face ((t (:foreground "magenta"))))
+ '(font-lock-variable-name-face ((t (:foreground "blue" :weight light))))
  '(magit-diff-added ((t (:background "green" :foreground "black"))))
  '(magit-diff-added-highlight ((t (:background "green" :foreground "black"))))
  '(magit-diff-base ((t (:background "red" :foreground "white"))))
