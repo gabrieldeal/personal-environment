@@ -1,0 +1,12 @@
+---
+- hosts: all
+  remote_user: gabrielx1
+  tasks:
+  - name: Home page
+    copy:
+      src: ../public_html/index.html
+      dest: ~/public_html/index.html
+  - name: Home page dependencies
+    synchronize:
+      src: ../public_html/home/
+      dest: ~/public_html/home
