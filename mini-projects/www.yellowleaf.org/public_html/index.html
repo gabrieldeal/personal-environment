@@ -1,195 +1,153 @@
 <!DOCTYPE HTML>
-<!--
-    Phase Shift by TEMPLATED
-    templated.co @templatedco
-    Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
-  -->
 <html lang="en">
-  <head  profile="http://www.w3.org/2005/10/profile">
+  <head>
+    <title>Yellowleaf</title>
+
     <link rel="icon"
 	  type="image/ico"
-	  href="home/images/leaf.ico?v2">
+          href="home/images/leaf.ico" />
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous" />
+    <link rel="stylesheet"
+          href="home/css/site.css" />
 
-    <title>Yellowleaf</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <meta name="description" content="" />
     <meta name="keywords" content="" />
-
-    <!--[if lte IE 8]><script src="home/css/ie/html5shiv.js"></script><![endif]-->
-    <script src="home/js/jquery.min.js"></script>
-    <script src="home/js/jquery.dropotron.min.js"></script>
-    <script src="home/js/skel.min.js"></script>
-    <script src="home/js/skel-layers.min.js"></script>
-    <script src="home/js/init.js"></script>
-
-    <noscript>
-      <link rel="stylesheet" href="home/css/skel.css" />
-      <link rel="stylesheet" href="home/css/style.css" />
-      <link rel="stylesheet" href="home/css/style-wide.css" />
-    </noscript>
-    <style>
-      .turned-off {
-	  display: none;
-      }
-    </style>
-    <!--[if lte IE 8]><link rel="stylesheet" href="home/css/ie/v8.css" /><![endif]-->
   </head>
   <body>
+    <script type="text/javascript">
+     function Gsitesearch(curobj){
+       curobj.q.value="site:www.yellowleaf.org "+curobj.qfront.value
+     }
+    </script>
+    <nav class="navbar navbar-expand-lg navbar-light custom-navbar"
+         style="background-color: #DFF2FD;">
+      <button class="navbar-toggler"
+              type="button"
+              data-toggle="collapse"
+              data-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent"
+              aria-expanded="false"
+              aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-    <!-- Wrapper -->
-    <div class="wrapper style1">
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto">
+          <a class="nav-link nav-item text-dark"
+             href="https://www.yellowleaf.org/raku">
+            Raku Pottery
+          </a>
+          <a class="nav-link nav-item text-dark"
+             href="https://www.yellowleaf.org/scramble/g/m/home.html">
+            Trips
+          </a>
+          <a class="nav-link nav-item text-dark"
+             href="https://www.yellowleaf.org/route-wizard">
+            Route Wizard
+          </a>
+          <a class="nav-link nav-item text-dark"
+             href="http://www.yellowleaf.org/routes">
+            Greenway Infinity Loop
+          </a>
+          <a class="nav-link nav-item text-dark"
+             href="mailto:scramble@yellowleaf.org">
+            Contact
+          </a>
+        </div>
 
-      <!-- Header -->
-      <div id="header" class="skel-panels-fixed">
-	<div id="logo">
-	  <h1>Yellowleaf<div class="sub">dot</div>org</h1>
-	  <span class="tag">Outside <div class="sup">&</div> about</span>
-	</div>
-	<nav class="turned-off" id="nav">
-	  <ul>
-	    <li class="active"><a href="index.html">Homepage</a></li>
-	    <li><a href="left-sidebar.html">Left Sidebar</a></li>
-	    <li><a href="right-sidebar.html">Right Sidebar</a></li>
-	    <li><a href="no-sidebar.html">No Sidebar</a></li>
-	  </ul>
-	</nav>
-      </div>
+        <form class="form-inline my-2 my-md-0"
+              id="navbar"
+              action="https://www.google.com/search"
+              method="get"
+              onSubmit="Gsitesearch(this)">
+          <input name="q" type="hidden" />
+          <input name="qfront"
+                 class="form-control mr-sm-2"
+                 type="search"
+                 placeholder="Search"
+                 aria-label="Search" />
+          <button class="btn btn-outline-success my-2 my-sm-0"
+                  type="submit">
+            Search
+          </button>
+        </form>
+    </nav>
 
-      <!-- Banner -->
-      <div id="banner" class="container turned-off">
-	<section>
-	  <p>This is <strong>Phase Shift</strong>, a responsive HTML5 site template freebie by <a href="http://templated.co">TEMPLATED</a>. Released for free under the <a href="http://templated.co/license">Creative Commons Attribution</a> license, so use it for whatever (personal or commercial) &ndash; just give us credit! Check out more of our stuff at <a href="http://templated.co">our site</a> or follow us on <a href="http://twitter.com/templatedco">Twitter</a>.</p>
-	  <a href="#" class="button medium">Read More</a>
-	</section>
-      </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 col-lg-3 col-12">
+          <div class="floating-card">
+            <a href="https://www.yellowleaf.org/raku/"
+               class="image featured">
+              <img src="https://res.cloudinary.com/yellowleaf/image/upload/f_auto,w_600/Home/treetriptych.jpg"
+                   alt="Raku tree triptych">
+            </a>
+            <div class="box">
+              <a href="https://www.yellowleaf.org/raku/">
+                Raku pottery by Dave & Boni Deal
+              </a>
+            </div>
+          </div>
+        </div>
 
-      <!-- Extra -->
-      <div id="extra">
-	<div class="container">
-	  <div class="row no-collapse-1">
-	    <section class="3u">
-	      <div class="floating-card">
-		<a href="https://www.yellowleaf.org/raku/" class="image featured"><img src="https://res.cloudinary.com/yellowleaf/image/upload/f_auto,w_600/Home/treetriptych.jpg" alt="Raku tree triptych"></a>
-		<div class="box">
-		  <p>Raku pottery by Dave & Boni Deal <br /> <br /> </p>
-		  <a href="https://www.yellowleaf.org/raku/" class="button">Go</a> </div>
-	      </div>
-	    </section>
+        <div class="col-md-6 col-lg-3 col-12">
+          <div class="floating-card">
+            <a href="https://www.yellowleaf.org/scramble/g/m/home.html"
+               class="image featured">
+              <img src="https://res.cloudinary.com/yellowleaf/image/upload/f_auto,w_600/Home/P1170781-enl.jpg"
+                   alt="Snow-bound tarn">
+            </a>
+            <div class="box">
+              <a href="https://www.yellowleaf.org/scramble/g/m/home.html">
+                Pictures from our backpacking & mountaineering trips.
+              </a>
+            </div>
+          </div>
+        </div>
 
-	    <section class="3u">
-	      <div class="floating-card">
-		<a href="https://www.yellowleaf.org/scramble/g/m/home.html" class="image featured"><img src="https://res.cloudinary.com/yellowleaf/image/upload/f_auto,w_600/Home/P1170781-enl.jpg" alt="Snow-bound tarn"></a>
-		<div class="box">
-		  <p>Pictures from our backpacking & mountaineering trips.</p>
-		  <a href="https://www.yellowleaf.org/scramble/g/m/home.html" class="button">Go</a> </div>
-	      </div>
-	    </section>
+        <div class="col-md-6 col-lg-3 col-12">
+          <div class="floating-card">
+            <a href="https://www.yellowleaf.org/route-wizard"
+               class="image featured">
+              <img src="https://res.cloudinary.com/yellowleaf/image/upload/f_auto,w_600/Home/route-wizard.jpg"
+                   alt="Map with a route drawn on it">
+            </a>
+            <div class="box">
+              <a href="https://www.yellowleaf.org/route-wizard">
+                Create a data book spreadsheet from a GPX, KML, or GeoJSON file.
+              </a>
+            </div>
+          </div>
+        </div>
 
-	    <section class="3u">
-	      <div class="floating-card">
-		<a href="https://www.yellowleaf.org/route-wizard" class="image featured"><img src="https://res.cloudinary.com/yellowleaf/image/upload/f_auto,w_600/Home/route-wizard.jpg" alt="Map with a route drawn on it"></a>
-		<div class="box">
-		  <p>Create a data book spreadsheet from a GPX, KML, or GeoJSON file.</p>
-		  <a href="https://www.yellowleaf.org/route-wizard" class="button">Go</a> </div>
-	      </div>
-	    </section>
-
-	    <section class="3u">
-	      <div class="floating-card">
-		<a href="http://www.yellowleaf.org/routes/" class="image featured"><img src="https://res.cloudinary.com/yellowleaf/image/upload/f_auto,w_600/v1539515537/Home/P1180043-enl.jpg" alt="Hiker and a great blue heron"></a>
-		<div class="box">
-		  <p>Route details for the Mountains to Sound Greenway Infinity Loop</p>
-		  <a href="http://www.yellowleaf.org/routes" class="button">Go</a> </div>
-	      </div>
-	    </section>
-	  </div>
-	</div>
-      </div>
-
-      <!-- Main -->
-      <div id="main" class="turned-off">
-	<div class="container">
-	  <div class="row"> 
-	    
-	    <!-- Content -->
-	    <div class="6u">
-	      <section>
-		<ul class="style">
-		  <li class="fa fa-wrench">
-		    <h3>Integer ultrices</h3>
-		    <span>In posuere eleifend odio. Quisque semper augue mattis wisi. Maecenas ligula. Pellentesque viverra vulputate enim. Aliquam erat volutpat. Maecenas condimentum enim tincidunt risus accumsan.</span> </li>
-		  <li class="fa fa-leaf">
-		    <h3>Aliquam luctus</h3>
-		    <span>In posuere eleifend odio. Quisque semper augue mattis wisi. Maecenas ligula. Pellentesque viverra vulputate enim. Aliquam erat volutpat. Maecenas condimentum enim tincidunt risus accumsan.</span> </li>
-		</ul>
-	      </section>
-	    </div>
-	    <div class="6u">
-	      <section>
-		<ul class="style">
-		  <li class="fa fa-cogs">
-		    <h3>Integer ultrices</h3>
-		    <span>In posuere eleifend odio. Quisque semper augue mattis wisi. Maecenas ligula. Pellentesque viverra vulputate enim. Aliquam erat volutpat. Maecenas condimentum enim tincidunt risus accumsan.</span> </li>
-		  <li class="fa fa-road">
-		    <h3>Aliquam luctus</h3>
-		    <span>In posuere eleifend odio. Quisque semper augue mattis wisi. Maecenas ligula. Pellentesque viverra vulputate enim. Aliquam erat volutpat. Maecenas condimentum enim tincidunt risus accumsan.</span> </li>
-		</ul>
-	      </section>
-	    </div>
-	  </div>
-	</div>
-      </div>
-
-    </div>
-
-    <!-- Footer -->
-    <div id="footer" class="wrapper style2 turned-off">
-      <div class="container">
-	<section>
-	  <header class="major">
-	    <h2>Mauris vulputate dolor</h2>
-	    <span class="byline">Integer sit amet pede vel arcu aliquet pretium</span>
-	  </header>
-	  <form method="post" action="#">
-	    <div class="row half">
-	      <div class="12u">
-		<input class="text" type="text" name="name" id="name" placeholder="Name" />
-	      </div>
-	    </div>
-	    <div class="row half">
-	      <div class="12u">
-		<input class="text" type="text" name="email" id="email" placeholder="Email" />
-	      </div>
-	    </div>
-	    <div class="row half">
-	      <div class="12u">
-		<textarea name="message" id="message" placeholder="Message"></textarea>
-	      </div>
-	    </div>
-	    <div class="row half">
-	      <div class="12u">
-		<ul class="actions">
-		  <li>
-		    <input type="submit" value="Send Message" class="button alt" />
-		  </li>
-		</ul>
-	      </div>
-	    </div>
-	  </form>
-	</section>
+        <div class="col-md-6 col-lg-3 col-12">
+          <div class="floating-card">
+            <a href="http://www.yellowleaf.org/routes/"
+               class="image featured">
+              <img src="https://res.cloudinary.com/yellowleaf/image/upload/f_auto,w_600/v1539515537/Home/P1180043-enl.jpg"
+                   alt="Hiker and a great blue heron">
+            </a>
+            <div class="box">
+              <a href="http://www.yellowleaf.org/routes">
+                Route details for the Mountains to Sound Greenway Infinity Loop
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
-    <!-- Copyright -->
-    <div id="copyright">
-	Contact: <a href="mailto:gabriel@yellowleaf.org">gabriel@yellowleaf.org</a>
-	<br />
-	  Design: <a href="http://templated.co/phaseshift">TEMPLATED</a>
-	  <ul class="icons turned-off">
-	    <li><a href="#" class="fa fa-facebook"><span>Facebook</span></a></li>
-	    <li><a href="#" class="fa fa-twitter"><span>Twitter</span></a></li>
-	    <li><a href="#" class="fa fa-google-plus"><span>Google+</span></a></li>
-	  </ul>
-    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+            integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+            crossorigin="anonymous"></script>
   </body>
 </html>
