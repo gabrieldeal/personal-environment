@@ -289,6 +289,8 @@
 
 (setq auto-mode-alist (cons '("\\.m$" . html-mode) auto-mode-alist))
 
+(setq auto-mode-alist (cons '("\\.html$" . web-mode) auto-mode-alist))
+
 (autoload 'clojure-mode "clojure-mode")
 (setq auto-mode-alist (cons '("\\.clj$" . clojure-mode) auto-mode-alist))
 
