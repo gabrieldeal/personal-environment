@@ -7,7 +7,12 @@
 .floating-card {
     border-radius: 6px;
     box-shadow: -4px 4px 14px 0px rgba(0,0,0,0.81);
+    height: 100%;
+}
+
+.floating-container {
     margin-top: 1em;
+    margin-bottom: 0.5em;
 }
 
 .box {
