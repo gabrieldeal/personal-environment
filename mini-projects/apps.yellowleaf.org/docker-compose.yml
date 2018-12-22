@@ -5,6 +5,8 @@ services:
   elevation-service:
     container_name: "elevation-service"
     image: gggabrielx/elevation-service-hosted
+    environment:
+     - MAX_POST_SIZE=5mb
     ports:
      - "8080:8080"
     restart:
