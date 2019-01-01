@@ -16,6 +16,7 @@ then
     rm -rf node_modules vendor/node_modules || exit 1
 fi
 
-nvm install stable \
+bundle install \
+    && nvm install stable \
     && (yarn check || yarn install) \
     && bin/webpack-dev-server --inline
