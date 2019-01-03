@@ -6,10 +6,10 @@
             "date_added": "13111194038526800",
             "id": "61",
             "meta_info": {
-               "last_visited_desktop": "13189749860092313"
+               "last_visited_desktop": "13190849031051976"
             },
             "name": "vd",
-            "sync_transaction_version": "172",
+            "sync_transaction_version": "551",
             "type": "url",
             "url": "http://192.168.1.111:3000/visual-directory/print/1126"
          }, {
@@ -26,20 +26,20 @@
             "date_added": "13154129124494634",
             "id": "280",
             "meta_info": {
-               "last_visited_desktop": "13189640932595531"
+               "last_visited_desktop": "13190864395754690"
             },
             "name": "",
-            "sync_transaction_version": "127",
+            "sync_transaction_version": "687",
             "type": "url",
             "url": "https://app.codeship.com/projects/47455"
          }, {
             "date_added": "13118434410095656",
             "id": "151",
             "meta_info": {
-               "last_visited_desktop": "13189826645554245"
+               "last_visited_desktop": "13190864447760277"
             },
             "name": "h",
-            "sync_transaction_version": "351",
+            "sync_transaction_version": "688",
             "type": "url",
             "url": "https://github.com/officespacesoftware/huddle"
          }, {
@@ -56,20 +56,20 @@
             "date_added": "13129862991517539",
             "id": "183",
             "meta_info": {
-               "last_visited_desktop": "13189805133770432"
+               "last_visited_desktop": "13190855741851373"
             },
             "name": "",
-            "sync_transaction_version": "237",
+            "sync_transaction_version": "594",
             "type": "url",
             "url": "https://www.pivotaltracker.com/n/projects/957060"
          }, {
             "date_added": "13129259883309318",
             "id": "180",
             "meta_info": {
-               "last_visited_desktop": "13189125420527867"
+               "last_visited_desktop": "13190855858990296"
             },
             "name": "",
-            "sync_transaction_version": "1",
+            "sync_transaction_version": "596",
             "type": "url",
             "url": "https://projects.invisionapp.com/d/main#/projects"
          }, {
@@ -78,20 +78,20 @@
                   "date_added": "13164920464587900",
                   "id": "296",
                   "meta_info": {
-                     "last_visited_desktop": "13189817439479091"
+                     "last_visited_desktop": "13190841562980942"
                   },
                   "name": "",
-                  "sync_transaction_version": "313",
+                  "sync_transaction_version": "529",
                   "type": "url",
                   "url": "https://docs.google.com/spreadsheets/d/1mQBZI5ZRhE4CIjET-iEiYynOSaolXbc6gfWjkTd8LCg/edit#gid=0"
                }, {
                   "date_added": "13109353655053212",
                   "id": "30",
                   "meta_info": {
-                     "last_visited_desktop": "13189804276256707"
+                     "last_visited_desktop": "13190843384067421"
                   },
                   "name": "Gmail - dicksonlabs",
-                  "sync_transaction_version": "222",
+                  "sync_transaction_version": "544",
                   "type": "url",
                   "url": "https://mail.google.com/mail/u/0/#inbox"
                }, {
@@ -544,10 +544,10 @@
                "date_added": "13150324357721426",
                "id": "273",
                "meta_info": {
-                  "last_visited_desktop": "13189804581320562"
+                  "last_visited_desktop": "13190840968560441"
                },
                "name": "slack - my dev team",
-               "sync_transaction_version": "369",
+               "sync_transaction_version": "686",
                "type": "url",
                "url": "https://gabroyle.slack.com/messages/D76EG3TBQ/"
             }, {
@@ -759,10 +759,10 @@
                "date_added": "13145585304226403",
                "id": "200",
                "meta_info": {
-                  "last_visited_desktop": "13189827353432373"
+                  "last_visited_desktop": "13190841436695708"
                },
                "name": "Gmail - formerly.gabriel",
-               "sync_transaction_version": "365",
+               "sync_transaction_version": "467",
                "type": "url",
                "url": "https://mail.google.com/mail/u/1/#inbox"
             }, {
@@ -856,7 +856,7 @@
          "sync_transaction_version": "3",
          "type": "folder"
       },
-      "sync_transaction_version": "369",
+      "sync_transaction_version": "688",
       "synced": {
          "children": [  ],
          "date_added": "13099617023729636",
