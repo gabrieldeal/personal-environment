@@ -514,6 +514,9 @@ sub get_options {
 
 (add-hook 'ruby-mode-hook 'robe-mode)
 (add-hook 'ruby-mode-hook 'rubocop-mode)
+(add-hook 'ruby-mode-hook
+	  (lambda ()
+	    (setq ruby-insert-encoding-magic-comment nil)))
 
 (autoload 'enable-paredit-mode "paredit" nil t)
 (add-hook 'clojure-mode-hook 'enable-paredit-mode)
