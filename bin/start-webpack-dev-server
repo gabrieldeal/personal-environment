@@ -6,6 +6,8 @@ export PATH="$PATH:~/bin"
 
 set-xterm-title "OSS webpack dev server"
 
+. "$HOME/.rvm/scripts/rvm"
+
 # Because 'nvm' is a shell function:
 . "$HOME/.nvm/nvm.sh"
 
