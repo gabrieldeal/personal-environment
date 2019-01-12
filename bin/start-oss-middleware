@@ -8,8 +8,9 @@ test -f tmp/pids/server.pid \
     && kill -9 "$(cat tmp/pids/server.pid)" \
     && sleep 1
 
-git pull \
-   && bundle \
+git pull # Ignore errors like "There is no tracking information for the current branch".
+
+bundle \
    && bin/rake db:migrate RAILS_ENV=development \
    || exit 1
 
