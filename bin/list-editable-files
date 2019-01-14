@@ -14,8 +14,12 @@ find $dir \
     -name public -prune -o \
     -name generated -prune -o \
     \( \
-	-name Makefile \
+      -path '*/bin/*[a-zA-Z0-9]' \
+	-o -name Makefile \
+	-o -name Makefile.PL \
+	-o -name MANIFEST \
 	-o -name \*.xml \
+	-o -name \*.html \
 	-o -name \*.pm \
 	-o -name \*.ln \
 	-o -name \*.erb \
