@@ -2,7 +2,6 @@
 
 rsync \
     --archive \
-    --size-only \
     --verbose \
     /cygdrive/d/Gabriel/Pictures/yellowleaf-trips/ \
     /cygdrive/e/Users/Gabriel/projects/yellowleaf-trips/data/gabrielx/reports/ \
