@@ -3,7 +3,7 @@
 rsync \
     --archive \
     --size-only \
-    --info=ALL \
+    --verbose \
     /cygdrive/d/Gabriel/Pictures/yellowleaf-trips/ \
     /cygdrive/e/Users/Gabriel/projects/yellowleaf-trips/data/gabrielx/reports/ \
     | grep -E '^deleting|[^/]$|^$'
