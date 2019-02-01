@@ -1,6 +1,6 @@
 ---
 - hosts: all
-  remote_user: gabrielx1
+  remote_user: "{{ lookup('env', 'REMOTE_USER') }}"
   tasks:
   - name: Home page
     copy:
