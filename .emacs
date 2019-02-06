@@ -346,8 +346,26 @@
 ;; Misc settings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; Buffers that should be opened in the current window:
-(add-to-list 'same-window-regexps "*Buffer List*")
+(defun query-replace-regexp-ruby (start end)
+  "Convert Ruby formatting between START and END."
+  (interactive "r")
+  (save-excursion
+    (message (format "%s" start))
+    (message (format "%s" end))
+    (if (= start end)
+	(message "Select a region")
+      (save-excursion
+	(query-replace-regexp "\"" "'"
+			      nil
+			      start
+			      end))
+      (query-replace-regexp ":\\([[:alnum:]]+\\)\\s-*=>\\s-*" "\\1: "
+			    nil
+			    start
+			    end))))
+
+  ;; Buffers that should be opened in the current window:
+  (add-to-list 'same-window-regexps "*Buffer List*"))
 (add-to-list 'same-window-regexps "*magit")
 (add-to-list 'same-window-regexps "*rails console*")
 
