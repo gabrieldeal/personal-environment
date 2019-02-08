@@ -364,8 +364,8 @@
 			    start
 			    end))))
 
-  ;; Buffers that should be opened in the current window:
-  (add-to-list 'same-window-regexps "*Buffer List*"))
+;; Buffers that should be opened in the current window:
+(add-to-list 'same-window-regexps "*Buffer List*")
 (add-to-list 'same-window-regexps "*magit")
 (add-to-list 'same-window-regexps "*rails console*")
 
