@@ -1,0 +1,6 @@
+[submodule "mini-projects/routes/themes/hero"]
+	path = mini-projects/routes/themes/hero
+	url = https://github.com/JugglerX/hugo-hero-theme
+[submodule "mini-projects/routes/themes/serif"]
+	path = mini-projects/routes/themes/serif
+	url = https://github.com/JugglerX/hugo-serif-theme
