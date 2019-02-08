@@ -1253,9 +1253,7 @@ SWITCH-TO-BUFFER - whether to switch to the buffer if it is already running."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (org yaml-mode php-mode graphql-mode prettier-js rjsx-mode ws-trim web-mode rubocop robe puppet-mode paredit nxml-mode markdown-mode magit json-mode flycheck clever-cmd cider)))
- '(prettier-js-args (quote ("--silent" "prettier" "--config" ".prettierrc")))
- '(prettier-js-command "yarn"))
+    (org yaml-mode php-mode graphql-mode prettier-js rjsx-mode ws-trim web-mode rubocop robe puppet-mode paredit nxml-mode markdown-mode magit json-mode flycheck clever-cmd cider))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
