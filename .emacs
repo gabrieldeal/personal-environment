@@ -359,7 +359,11 @@
 			      nil
 			      start
 			      end))
-      (query-replace-regexp ":\\([[:alnum:]]+\\)\\s-*=>\\s-*" "\\1: "
+      (query-replace-regexp ":\\([[:alnum:]_]+\\)\\s-*=>\\s-*" "\\1: "
+			    nil
+			    start
+			    end)
+      (query-replace-regexp "'\\([[:alnum:]_]+\\)'\\s-*=>\\s-*" "\\1: "
 			    nil
 			    start
 			    end))))
