@@ -7,7 +7,7 @@ Comment=Use the command line
 Keywords=qa-minus-one.ossd.co
 TryExec=gnome-terminal
 Path=/home/gabrielx
-Exec=gnome-terminal --window-with-profile="Staging host" --geometry 160x55++0 --execute ssh osadmin@qa-minus-one.ossd.co
+Exec=gnome-terminal --window-with-profile="Staging host" --geometry 160x55++0 --execute ssh -A osadmin@qa-minus-one.ossd.co
 Icon=utilities-terminal
 Type=Application
 X-GNOME-DocPath=gnome-terminal/index.html
