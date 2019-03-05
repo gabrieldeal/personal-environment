@@ -1,85 +1,85 @@
 {
-   "checksum": "784026969e80034e9a61cef7353d375f",
+   "checksum": "b24a406bc76d63de413f32699d99a3cd",
    "roots": {
       "bookmark_bar": {
          "children": [ {
             "date_added": "13111194038526800",
             "id": "61",
             "meta_info": {
-               "last_visited_desktop": "13193358197641158"
+               "last_visited_desktop": "13195792236319410"
             },
             "name": "vd",
-            "sync_transaction_version": "2710",
+            "sync_transaction_version": "4402",
             "type": "url",
             "url": "http://192.168.1.111:3000/visual-directory/"
          }, {
             "date_added": "13179459640538683",
             "id": "314",
             "meta_info": {
-               "last_visited_desktop": "13193354522490971"
+               "last_visited_desktop": "13195256919397187"
             },
             "name": "m",
-            "sync_transaction_version": "2699",
+            "sync_transaction_version": "4057",
             "type": "url",
             "url": "http://192.168.1.111:3000/manager-beta/"
          }, {
             "date_added": "13154129124494634",
             "id": "280",
             "meta_info": {
-               "last_visited_desktop": "13193456722702411"
+               "last_visited_desktop": "13195867176733685"
             },
             "name": "",
-            "sync_transaction_version": "2899",
+            "sync_transaction_version": "4546",
             "type": "url",
             "url": "https://app.codeship.com/projects/47455"
          }, {
             "date_added": "13118434410095656",
             "id": "151",
             "meta_info": {
-               "last_visited_desktop": "13193454212595842"
+               "last_visited_desktop": "13195857657360940"
             },
             "name": "h",
-            "sync_transaction_version": "2887",
+            "sync_transaction_version": "4534",
             "type": "url",
             "url": "https://github.com/officespacesoftware/huddle"
          }, {
             "date_added": "13191728493745601",
             "id": "347",
             "meta_info": {
-               "last_visited_desktop": "13192658292391790"
+               "last_visited_desktop": "13196200156182938"
             },
             "name": "m",
-            "sync_transaction_version": "2191",
+            "sync_transaction_version": "4555",
             "type": "url",
             "url": "https://github.com/officespacesoftware/oss_slack_middleware"
          }, {
             "date_added": "13142619553982886",
             "id": "188",
             "meta_info": {
-               "last_visited_desktop": "13193453390688016"
+               "last_visited_desktop": "13196202850758827"
             },
             "name": "PR",
-            "sync_transaction_version": "2886",
+            "sync_transaction_version": "4557",
             "type": "url",
             "url": "https://github.com/pulls?utf8=%E2%9C%93&q=is%3Apr+is%3Aopen+org%3Aofficespacesoftware+involves%3Ajnamkung+involves%3Agabrielmdeal+involves%3Aipd+involves%3Achrismealy"
          }, {
             "date_added": "13129862991517539",
             "id": "183",
             "meta_info": {
-               "last_visited_desktop": "13193347917671362"
+               "last_visited_desktop": "13196216261710642"
             },
             "name": "",
-            "sync_transaction_version": "2725",
+            "sync_transaction_version": "4568",
             "type": "url",
             "url": "https://www.pivotaltracker.com/n/projects/957060"
          }, {
             "date_added": "13129259883309318",
             "id": "180",
             "meta_info": {
-               "last_visited_desktop": "13193270388336734"
+               "last_visited_desktop": "13195169962635700"
             },
             "name": "",
-            "sync_transaction_version": "2569",
+            "sync_transaction_version": "3939",
             "type": "url",
             "url": "https://projects.invisionapp.com/d/main#/projects"
          }, {
@@ -88,40 +88,40 @@
                   "date_added": "13164920464587900",
                   "id": "296",
                   "meta_info": {
-                     "last_visited_desktop": "13193430119206679"
+                     "last_visited_desktop": "13196191465411793"
                   },
                   "name": "",
-                  "sync_transaction_version": "2727",
+                  "sync_transaction_version": "4553",
                   "type": "url",
                   "url": "https://docs.google.com/spreadsheets/d/1mQBZI5ZRhE4CIjET-iEiYynOSaolXbc6gfWjkTd8LCg/edit#gid=0"
                }, {
                   "date_added": "13109353655053212",
                   "id": "30",
                   "meta_info": {
-                     "last_visited_desktop": "13193450019625173"
+                     "last_visited_desktop": "13195625003543963"
                   },
                   "name": "Gmail - dicksonlabs",
-                  "sync_transaction_version": "2882",
+                  "sync_transaction_version": "4190",
                   "type": "url",
                   "url": "https://mail.google.com/mail/u/0/#inbox"
                }, {
                   "date_added": "13108843735000000",
                   "id": "17",
                   "meta_info": {
-                     "last_visited_desktop": "13193283614544231"
+                     "last_visited_desktop": "13195086486598333"
                   },
                   "name": "Google Calendar - dicksonlabs",
-                  "sync_transaction_version": "2584",
+                  "sync_transaction_version": "3869",
                   "type": "url",
                   "url": "https://calendar.google.com/calendar/b/0/render#main_7%7Cweek"
                }, {
                   "date_added": "13154676066945070",
                   "id": "284",
                   "meta_info": {
-                     "last_visited_desktop": "13191718323608195"
+                     "last_visited_desktop": "13193775295330182"
                   },
                   "name": "Slack",
-                  "sync_transaction_version": "1533",
+                  "sync_transaction_version": "2920",
                   "type": "url",
                   "url": "https://officespace-team.slack.com/messages/G7YE3UX2B/details/"
                }, {
@@ -138,15 +138,15 @@
                   "date_added": "13175897756569650",
                   "id": "308",
                   "meta_info": {
-                     "last_visited_desktop": "13193433454675682"
+                     "last_visited_desktop": "13194997564749111"
                   },
                   "name": "Knowledge - Google Docs",
-                  "sync_transaction_version": "2740",
+                  "sync_transaction_version": "3801",
                   "type": "url",
                   "url": "https://docs.google.com/document/d/1zwyJcEefkKNvvTef-A5q5n_Q5NgqLuJGSyGMHzOMz0o/edit#heading=h.23457xfn9fm6"
                } ],
                "date_added": "13145585581801714",
-               "date_modified": "13193258544516283",
+               "date_modified": "13195676446304297",
                "id": "201",
                "name": "pinned",
                "sync_transaction_version": "1",
@@ -179,7 +179,7 @@
                      "last_visited_desktop": "13193364226834428"
                   },
                   "name": " Capybara rspec matchers",
-                  "sync_transaction_version": "2712",
+                  "sync_transaction_version": "3950",
                   "type": "url",
                   "url": "https://www.rubydoc.info/github/jnicklas/capybara/Capybara/RSpecMatchers"
                }, {
@@ -206,7 +206,7 @@
                      "last_visited_desktop": "13184270719189547"
                   },
                   "name": "Elasticsearch",
-                  "sync_transaction_version": "1",
+                  "sync_transaction_version": "4220",
                   "type": "url",
                   "url": "https://www.elastic.co/guide/en/elasticsearch/reference/6.2//_list_all_indices.html"
                }, {
@@ -521,6 +521,16 @@
                "type": "url",
                "url": "https://huddle.ossd.co/vd/vd.jsp?key=8c2e544c28b89b31416adad7d57ad1ff"
             }, {
+               "date_added": "13195782517219600",
+               "id": "365",
+               "meta_info": {
+                  "last_visited_desktop": "13195848447903522"
+               },
+               "name": "REST API docs",
+               "sync_transaction_version": "4471",
+               "type": "url",
+               "url": "https://huddle.ossd.co/api/docs"
+            }, {
                "date_added": "13193436296594395",
                "id": "355",
                "meta_info": {
@@ -534,20 +544,20 @@
                "date_added": "13155693231184188",
                "id": "285",
                "meta_info": {
-                  "last_visited_desktop": "13193437734822466"
+                  "last_visited_desktop": "13196211520694246"
                },
                "name": "sidekiq console",
-               "sync_transaction_version": "2818",
+               "sync_transaction_version": "4563",
                "type": "url",
                "url": "http://192.168.1.111:3000/sidekiq/queues?poll=true"
             }, {
                "date_added": "13153969620314404",
                "id": "279",
                "meta_info": {
-                  "last_visited_desktop": "13193437806514999"
+                  "last_visited_desktop": "13193861163212496"
                },
                "name": "MailCatcher",
-               "sync_transaction_version": "2900",
+               "sync_transaction_version": "2993",
                "type": "url",
                "url": "http://127.0.0.1:1080/"
             }, {
@@ -584,60 +594,80 @@
                "date_added": "13149717823462949",
                "id": "265",
                "meta_info": {
-                  "last_visited_desktop": "13192768923781702"
+                  "last_visited_desktop": "13195860258075766"
                },
                "name": "slack API - my apps",
-               "sync_transaction_version": "2430",
+               "sync_transaction_version": "4538",
                "type": "url",
                "url": "https://api.slack.com/apps"
+            }, {
+               "date_added": "13194559132781137",
+               "id": "361",
+               "meta_info": {
+                  "last_visited_desktop": "13195262502090502"
+               },
+               "name": "Block Kit Builder",
+               "sync_transaction_version": "4086",
+               "type": "url",
+               "url": "https://api.slack.com/tools/block-kit-builder"
             }, {
                "date_added": "13193437589185078",
                "id": "356",
                "meta_info": {
-                  "last_visited_desktop": "13193447977154459"
+                  "last_visited_desktop": "13195262525265539"
                },
                "name": "Try it - interactive message builder",
-               "sync_transaction_version": "2877",
+               "sync_transaction_version": "4088",
                "type": "url",
                "url": "https://api.slack.com/docs/messages/builder?msg=%7B%22attachments%22%3A%5B%7B%22fallback%22%3A%22Required%20plain-text%20summary%20of%20the%20attachment.%22%2C%22pretext%22%3A%22You%20have%20a%20new%20%27XXX%27%20request%22%2C%22title%22%3A%22Request%20%23NNN%22%2C%22title_link%22%3A%22https%3A%2F%2Fxxx.com%2Frequest-manager%2Frequest%2F...%22%2C%22text%22%3A%22%40foo%20wrote%5Cn%5C%22subjectsubject%20subject%5C%22%22%2C%22thumb_url%22%3A%22https%3A%2F%2Fwww.yellowleaf.org%2Fscramble%2Fpics%2F2018-10-20-big-chiwaukum%2F_DSC9167-small.jpg%22%7D%5D%7D"
             }, {
                "date_added": "13150324357721426",
                "id": "273",
                "meta_info": {
-                  "last_visited_desktop": "13193373375909170"
+                  "last_visited_desktop": "13195260466069170"
                },
-               "name": "slack - my dev team",
-               "sync_transaction_version": "2719",
+               "name": "my desktop",
+               "sync_transaction_version": "4081",
                "type": "url",
                "url": "https://gabroyle.slack.com/messages/D76EG3TBQ/"
             }, {
                "date_added": "13149906395468949",
                "id": "269",
                "meta_info": {
-                  "last_visited_desktop": "13193355782712668"
+                  "last_visited_desktop": "13195782969063024"
                },
-               "name": "slack - huddle.ossd.co",
-               "sync_transaction_version": "2702",
+               "name": "huddle",
+               "sync_transaction_version": "4329",
                "type": "url",
                "url": "https://osshuddle.slack.com/"
             }, {
                "date_added": "13149905469505624",
                "id": "268",
                "meta_info": {
-                  "last_visited_desktop": "13192825882080981"
+                  "last_visited_desktop": "13195260468228783"
                },
-               "name": "slack - qa.ossd.co",
-               "sync_transaction_version": "2358",
+               "name": "qa",
+               "sync_transaction_version": "4079",
                "type": "url",
                "url": "https://ossqa.slack.com/messages/C5UHS8R40/"
+            }, {
+               "date_added": "13195260407776736",
+               "id": "363",
+               "meta_info": {
+                  "last_visited_desktop": "13195761144199770"
+               },
+               "name": "snoke",
+               "sync_transaction_version": "4272",
+               "type": "url",
+               "url": "https://osssnoke.slack.com/messages/CGDHD0D1S/"
             }, {
                "date_added": "13126847530739854",
                "id": "170",
                "meta_info": {
-                  "last_visited_desktop": "13192222374331706"
+                  "last_visited_desktop": "13195260461853571"
                },
                "name": "slack - officespace-team",
-               "sync_transaction_version": "2049",
+               "sync_transaction_version": "4080",
                "type": "url",
                "url": "https://officespace-team.slack.com/messages/general/team/gabrieldeal/"
             }, {
@@ -698,33 +728,53 @@
                "type": "url",
                "url": "https://separator.mayastudios.com/index.php?t=horz"
             }, {
+               "date_added": "13193954845583858",
+               "id": "359",
+               "meta_info": {
+                  "last_visited_desktop": "13195711949956865"
+               },
+               "name": "Code coverage for Huddle",
+               "sync_transaction_version": "4260",
+               "type": "url",
+               "url": "file:///home/gabrielx/projects/oss/huddle/coverage/index.html#_AllFiles"
+            }, {
+               "date_added": "13195181827160818",
+               "id": "362",
+               "meta_info": {
+                  "last_visited_desktop": "13195687080861664"
+               },
+               "name": "Code coverage for Oss slack middleware",
+               "sync_transaction_version": "4198",
+               "type": "url",
+               "url": "file:///home/gabrielx/projects/oss/oss_slack_middleware/coverage/index.html#_AllFiles"
+            }, {
                "date_added": "13157755822128710",
                "id": "291",
                "meta_info": {
-                  "last_visited_desktop": "13193440475910538"
+                  "last_visited_desktop": "13195082210582549"
                },
                "name": "Zoom - my room",
-               "sync_transaction_version": "2829",
+               "sync_transaction_version": "3863",
                "type": "url",
                "url": "https://zoom.us/j/8180119961"
             }, {
                "date_added": "13182548717876226",
                "id": "323",
                "meta_info": {
-                  "last_visited_desktop": "13192755978903935"
+                  "last_visited_desktop": "13195776282089336"
                },
                "name": "Bugsnag",
-               "sync_transaction_version": "2305",
+               "sync_transaction_version": "4307",
                "type": "url",
                "url": "https://app.bugsnag.com/officespace-software"
             }, {
                "date_added": "13193446034101555",
                "id": "357",
                "meta_info": {
-                  "last_visited_desktop": "13193446034101894"
+                  "last_visited_desktop": "13193457653355533"
                },
                "name": "Mailgun",
-               "sync_transaction_version": "2862",
+               "sync_transaction_version": "2906",
                "type": "url",
                "url": "https://app.mailgun.com/app/dashboard"
             }, {
@@ -741,15 +791,15 @@
                "date_added": "13191464243361275",
                "id": "344",
                "meta_info": {
-                  "last_visited_desktop": "13193354044537632"
+                  "last_visited_desktop": "13195268153941683"
                },
                "name": "TZ converter",
-               "sync_transaction_version": "2698",
+               "sync_transaction_version": "4100",
                "type": "url",
                "url": "https://www.timeanddate.com/worldclock/converter.html?iso=20190108T230000&p1=234&p2=tz_et&p3=225"
             } ],
             "date_added": "13109913180212489",
-            "date_modified": "13193446051403117",
+            "date_modified": "13195782531504106",
             "id": "40",
             "name": "W",
             "sync_transaction_version": "1",
@@ -779,20 +829,20 @@
                "date_added": "13145585696699411",
                "id": "202",
                "meta_info": {
-                  "last_visited_desktop": "13193455220231649"
+                  "last_visited_desktop": "13195863175829164"
                },
                "name": "Pandora",
-               "sync_transaction_version": "2894",
+               "sync_transaction_version": "4542",
                "type": "url",
                "url": "https://www.pandora.com/stations"
             }, {
                "date_added": "13126847562390273",
                "id": "172",
                "meta_info": {
-                  "last_visited_desktop": "13192825770460917"
+                  "last_visited_desktop": "13194486890341709"
                },
                "name": "Amazon Cloud Player",
-               "sync_transaction_version": "2352",
+               "sync_transaction_version": "3476",
                "type": "url",
                "url": "https://music.amazon.com/my/albums"
             }, {
@@ -829,30 +879,30 @@
                "date_added": "13145585304226403",
                "id": "200",
                "meta_info": {
-                  "last_visited_desktop": "13192839994137732"
+                  "last_visited_desktop": "13195773052747372"
                },
                "name": "Gmail - formerly.gabriel",
-               "sync_transaction_version": "2443",
+               "sync_transaction_version": "4292",
                "type": "url",
                "url": "https://mail.google.com/mail/u/1/#inbox"
             }, {
                "date_added": "13145645254138846",
                "id": "205",
                "meta_info": {
-                  "last_visited_desktop": "13193433297094395"
+                  "last_visited_desktop": "13195273427062459"
                },
                "name": "Google Calendar - formerly.gabriel",
-               "sync_transaction_version": "2737",
+               "sync_transaction_version": "4186",
                "type": "url",
                "url": "https://calendar.google.com/calendar/b/1/render#main_7"
             }, {
                "date_added": "13145678972491710",
                "id": "206",
                "meta_info": {
-                  "last_visited_desktop": "13192049064706969"
+                  "last_visited_desktop": "13196215258055322"
                },
                "name": "Google Drive - formerly.gabriel",
-               "sync_transaction_version": "1630",
+               "sync_transaction_version": "4565",
                "type": "url",
                "url": "https://drive.google.com/drive/u/1/my-drive"
             }, {
@@ -894,14 +944,24 @@
                "url": "javascript:(function()%7Bfunction%20callback()%7B(function(%24)%7Bvar%20jQuery%3D%24%3Bfunction%20callback()%7BgetGpx()%7Dvar%20s%3Ddocument.createElement(%22script%22)%3Bs.src%3D%22https%3A%2F%2Fmapstogpx.com%2Fstrava%2Fmapstogpxstrava.js%22%3Bif(s.addEventListener)%7Bs.addEventListener(%22load%22%2Ccallback%2Cfalse)%7Delse%20if(s.readyState)%7Bs.onreadystatechange%3Dcallback%7Ddocument.body.appendChild(s)%3B%7D)(jQuery.noConflict(true))%7Dvar%20s%3Ddocument.createElement(%22script%22)%3Bs.src%3D%22https%3A%2F%2Fmapstogpx.com%2Fstrava%2Fjquery.min.js%22%3Bif(s.addEventListener)%7Bs.addEventListener(%22load%22%2Ccallback%2Cfalse)%7Delse%20if(s.readyState)%7Bs.onreadystatechange%3Dcallback%7Ddocument.body.appendChild(s)%3B%7D)()"
             } ],
             "date_added": "13126847463431993",
-            "date_modified": "13189226673538051",
+            "date_modified": "13193860486776033",
             "id": "165",
             "name": "B",
             "sync_transaction_version": "1",
             "type": "folder"
+         }, {
+            "date_added": "13194470991464356",
+            "id": "360",
+            "meta_info": {
+               "last_visited_desktop": "13194470991467467"
+            },
+            "name": "Introducing Hooks – React",
+            "sync_transaction_version": "3432",
+            "type": "url",
+            "url": "https://reactjs.org/docs/hooks-intro.html"
          } ],
          "date_added": "13099617023729630",
-         "date_modified": "13193430117395397",
+         "date_modified": "13195782517219600",
          "id": "1",
          "name": "Bookmarks bar",
          "sync_transaction_version": "3",
@@ -916,7 +976,7 @@
          "sync_transaction_version": "3",
          "type": "folder"
       },
-      "sync_transaction_version": "2900",
+      "sync_transaction_version": "4568",
       "synced": {
          "children": [  ],
          "date_added": "13099617023729636",
