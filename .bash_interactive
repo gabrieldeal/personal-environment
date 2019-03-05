@@ -25,7 +25,7 @@ PS1='\w\$ '
 
 export PHANTOMJS_BIN=/usr/bin/phantomjs
 export EDITOR=emacs
-export DISABLE_SPRING=1
+export DISABLE_SPRING=0
 export LESS="-I -R"
 export CI_NAME="OSS-disable-simplecov"
 
