@@ -602,6 +602,10 @@ sub get_options {
 	  (lambda ()
 	    (setq indent-tabs-mode nil)))
 
+(add-hook 'markdown-mode-hook
+	  (lambda ()
+	    (setq indent-tabs-mode nil)))
+
 (add-hook 'buffer-menu-mode-hook
 	  (function (lambda()
 		      (font-lock-mode -1))))
