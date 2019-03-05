@@ -22,7 +22,7 @@ switch_workspace() {
 
 switch_workspace 1 true
 /opt/google/chrome/chrome &
-/usr/local/bin/keepassx &
+/usr/bin/keepassxc &
 gnome-terminal \
     --profile Tool \
     -e /home/gabrielx/local/bin/start-oss-slack-ngrok &
