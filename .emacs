@@ -346,6 +346,9 @@
 ;; Misc settings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; Disable emacs beeping
+(setq visible-bell t)
+
 (defun query-replace-regexp-ruby (start end)
   "Convert Ruby formatting between START and END."
   (interactive "r")
