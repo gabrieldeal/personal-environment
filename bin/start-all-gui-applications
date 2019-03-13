@@ -14,7 +14,7 @@ switch_workspace() {
     local is_first="$2"
 
     # Give previously opened windows time to start on the right workspace:
-    [ is_first = "true" ] || sleep 5
+    [ "$is_first" = "true" ] || sleep 5
 
     local coordinate=$(expr $workspace_width \* \( $workspace - 1 \))
     wmctrl -o "$coordinate,0"
