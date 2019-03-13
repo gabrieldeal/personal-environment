@@ -1285,6 +1285,7 @@ SWITCH-TO-BUFFER - whether to switch to the buffer if it is already running."
  '(magit-diff-removed ((t (:background "red" :foreground "black"))))
  '(magit-diff-removed-highlight ((t (:background "red" :foreground "black"))))
  '(magit-item-highlight ((t nil)))
+ '(region ((t (:background "gray" :distant-foreground "black"))))
  '(web-mode-doctype-face ((t (:foreground "magenta"))))
  '(web-mode-html-attr-name-face ((t (:foreground "black"))))
  '(web-mode-html-tag-bracket-face ((t (:foreground "blue"))))
