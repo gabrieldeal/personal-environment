@@ -1,75 +1,75 @@
 {
-   "checksum": "b24a406bc76d63de413f32699d99a3cd",
+   "checksum": "168bfc96912e308c95422f1653f4ff2b",
    "roots": {
       "bookmark_bar": {
          "children": [ {
             "date_added": "13111194038526800",
             "id": "61",
             "meta_info": {
-               "last_visited_desktop": "13195792236319410"
+               "last_visited_desktop": "13196900515780552"
             },
             "name": "vd",
-            "sync_transaction_version": "4402",
+            "sync_transaction_version": "5268",
             "type": "url",
             "url": "http://192.168.1.111:3000/visual-directory/"
          }, {
             "date_added": "13179459640538683",
             "id": "314",
             "meta_info": {
-               "last_visited_desktop": "13195256919397187"
+               "last_visited_desktop": "13196900574412326"
             },
             "name": "m",
-            "sync_transaction_version": "4057",
+            "sync_transaction_version": "5269",
             "type": "url",
             "url": "http://192.168.1.111:3000/manager-beta/"
          }, {
             "date_added": "13154129124494634",
             "id": "280",
             "meta_info": {
-               "last_visited_desktop": "13195867176733685"
+               "last_visited_desktop": "13196902293394571"
             },
             "name": "",
-            "sync_transaction_version": "4546",
+            "sync_transaction_version": "5271",
             "type": "url",
             "url": "https://app.codeship.com/projects/47455"
          }, {
             "date_added": "13118434410095656",
             "id": "151",
             "meta_info": {
-               "last_visited_desktop": "13195857657360940"
+               "last_visited_desktop": "13196890162363180"
             },
             "name": "h",
-            "sync_transaction_version": "4534",
+            "sync_transaction_version": "5253",
             "type": "url",
             "url": "https://github.com/officespacesoftware/huddle"
          }, {
             "date_added": "13191728493745601",
             "id": "347",
             "meta_info": {
-               "last_visited_desktop": "13196200156182938"
+               "last_visited_desktop": "13196224113966362"
             },
             "name": "m",
-            "sync_transaction_version": "4555",
+            "sync_transaction_version": "4581",
             "type": "url",
             "url": "https://github.com/officespacesoftware/oss_slack_middleware"
          }, {
             "date_added": "13142619553982886",
             "id": "188",
             "meta_info": {
-               "last_visited_desktop": "13196202850758827"
+               "last_visited_desktop": "13196904004571430"
             },
             "name": "PR",
-            "sync_transaction_version": "4557",
+            "sync_transaction_version": "5281",
             "type": "url",
             "url": "https://github.com/pulls?utf8=%E2%9C%93&q=is%3Apr+is%3Aopen+org%3Aofficespacesoftware+involves%3Ajnamkung+involves%3Agabrielmdeal+involves%3Aipd+involves%3Achrismealy"
          }, {
             "date_added": "13129862991517539",
             "id": "183",
             "meta_info": {
-               "last_visited_desktop": "13196216261710642"
+               "last_visited_desktop": "13196895777274612"
             },
             "name": "",
-            "sync_transaction_version": "4568",
+            "sync_transaction_version": "5260",
             "type": "url",
             "url": "https://www.pivotaltracker.com/n/projects/957060"
          }, {
@@ -88,20 +88,20 @@
                   "date_added": "13164920464587900",
                   "id": "296",
                   "meta_info": {
-                     "last_visited_desktop": "13196191465411793"
+                     "last_visited_desktop": "13196883323212803"
                   },
                   "name": "",
-                  "sync_transaction_version": "4553",
+                  "sync_transaction_version": "5246",
                   "type": "url",
                   "url": "https://docs.google.com/spreadsheets/d/1mQBZI5ZRhE4CIjET-iEiYynOSaolXbc6gfWjkTd8LCg/edit#gid=0"
                }, {
                   "date_added": "13109353655053212",
                   "id": "30",
                   "meta_info": {
-                     "last_visited_desktop": "13195625003543963"
+                     "last_visited_desktop": "13196544908683079"
                   },
                   "name": "Gmail - dicksonlabs",
-                  "sync_transaction_version": "4190",
+                  "sync_transaction_version": "5187",
                   "type": "url",
                   "url": "https://mail.google.com/mail/u/0/#inbox"
                }, {
@@ -138,15 +138,15 @@
                   "date_added": "13175897756569650",
                   "id": "308",
                   "meta_info": {
-                     "last_visited_desktop": "13194997564749111"
+                     "last_visited_desktop": "13196457834989370"
                   },
                   "name": "Knowledge - Google Docs",
-                  "sync_transaction_version": "3801",
+                  "sync_transaction_version": "5039",
                   "type": "url",
                   "url": "https://docs.google.com/document/d/1zwyJcEefkKNvvTef-A5q5n_Q5NgqLuJGSyGMHzOMz0o/edit#heading=h.23457xfn9fm6"
                } ],
                "date_added": "13145585581801714",
-               "date_modified": "13195676446304297",
+               "date_modified": "13196883087828057",
                "id": "201",
                "name": "pinned",
                "sync_transaction_version": "1",
@@ -253,10 +253,10 @@
                   "date_added": "13184888893302202",
                   "id": "327",
                   "meta_info": {
-                     "last_visited_desktop": "13186718653554524"
+                     "last_visited_desktop": "13196399681545716"
                   },
                   "name": "GraphQL - subscriptions",
-                  "sync_transaction_version": "1",
+                  "sync_transaction_version": "4694",
                   "type": "url",
                   "url": "http://graphql-ruby.org/guides#subscriptions-guides"
                }, {
@@ -604,10 +604,10 @@
                "date_added": "13194559132781137",
                "id": "361",
                "meta_info": {
-                  "last_visited_desktop": "13195262502090502"
+                  "last_visited_desktop": "13196224133786191"
                },
                "name": "Block Kit Builder",
-               "sync_transaction_version": "4086",
+               "sync_transaction_version": "4583",
                "type": "url",
                "url": "https://api.slack.com/tools/block-kit-builder"
             }, {
@@ -634,20 +634,20 @@
                "date_added": "13149906395468949",
                "id": "269",
                "meta_info": {
-                  "last_visited_desktop": "13195782969063024"
+                  "last_visited_desktop": "13196459682375938"
                },
                "name": "huddle",
-               "sync_transaction_version": "4329",
+               "sync_transaction_version": "5043",
                "type": "url",
                "url": "https://osshuddle.slack.com/"
             }, {
                "date_added": "13149905469505624",
                "id": "268",
                "meta_info": {
-                  "last_visited_desktop": "13195260468228783"
+                  "last_visited_desktop": "13196380510979953"
                },
                "name": "qa",
-               "sync_transaction_version": "4079",
+               "sync_transaction_version": "4659",
                "type": "url",
                "url": "https://ossqa.slack.com/messages/C5UHS8R40/"
             }, {
@@ -731,10 +731,10 @@
                "date_added": "13193954845583858",
                "id": "359",
                "meta_info": {
-                  "last_visited_desktop": "13195711949956865"
+                  "last_visited_desktop": "13196223579531413"
                },
                "name": "Code coverage for Huddle",
-               "sync_transaction_version": "4260",
+               "sync_transaction_version": "4580",
                "type": "url",
                "url": "file:///home/gabrielx/projects/oss/huddle/coverage/index.html#_AllFiles"
             }, {
@@ -751,10 +751,10 @@
                "date_added": "13157755822128710",
                "id": "291",
                "meta_info": {
-                  "last_visited_desktop": "13195082210582549"
+                  "last_visited_desktop": "13196892151209091"
                },
                "name": "Zoom - my room",
-               "sync_transaction_version": "3863",
+               "sync_transaction_version": "5255",
                "type": "url",
                "url": "https://zoom.us/j/8180119961"
             }, {
@@ -797,9 +797,19 @@
                "sync_transaction_version": "4100",
                "type": "url",
                "url": "https://www.timeanddate.com/worldclock/converter.html?iso=20190108T230000&p1=234&p2=tz_et&p3=225"
+            }, {
+               "date_added": "13196310780846491",
+               "id": "367",
+               "meta_info": {
+                  "last_visited_desktop": "13196311783353972"
+               },
+               "name": "Initial setup GraphQL using graphql-ruby 1.8 (c572b5fb) · Commits · GitLab.org / GitLab Community Edition · GitLab",
+               "sync_transaction_version": "4605",
+               "type": "url",
+               "url": "https://gitlab.com/gitlab-org/gitlab-ce/commit/c572b5fb0494e0e1950d8206d9cd27cdc85ec82b"
             } ],
             "date_added": "13109913180212489",
-            "date_modified": "13195782531504106",
+            "date_modified": "13196310780846491",
             "id": "40",
             "name": "W",
             "sync_transaction_version": "1",
@@ -829,10 +839,10 @@
                "date_added": "13145585696699411",
                "id": "202",
                "meta_info": {
-                  "last_visited_desktop": "13195863175829164"
+                  "last_visited_desktop": "13196903163794707"
                },
                "name": "Pandora",
-               "sync_transaction_version": "4542",
+               "sync_transaction_version": "5279",
                "type": "url",
                "url": "https://www.pandora.com/stations"
             }, {
@@ -879,20 +889,20 @@
                "date_added": "13145585304226403",
                "id": "200",
                "meta_info": {
-                  "last_visited_desktop": "13195773052747372"
+                  "last_visited_desktop": "13196408091041853"
                },
                "name": "Gmail - formerly.gabriel",
-               "sync_transaction_version": "4292",
+               "sync_transaction_version": "4794",
                "type": "url",
                "url": "https://mail.google.com/mail/u/1/#inbox"
             }, {
                "date_added": "13145645254138846",
                "id": "205",
                "meta_info": {
-                  "last_visited_desktop": "13195273427062459"
+                  "last_visited_desktop": "13196397026352000"
                },
                "name": "Google Calendar - formerly.gabriel",
-               "sync_transaction_version": "4186",
+               "sync_transaction_version": "4674",
                "type": "url",
                "url": "https://calendar.google.com/calendar/b/1/render#main_7"
             }, {
@@ -949,19 +959,9 @@
             "name": "B",
             "sync_transaction_version": "1",
             "type": "folder"
-         }, {
-            "date_added": "13194470991464356",
-            "id": "360",
-            "meta_info": {
-               "last_visited_desktop": "13194470991467467"
-            },
-            "name": "Introducing Hooks – React",
-            "sync_transaction_version": "3432",
-            "type": "url",
-            "url": "https://reactjs.org/docs/hooks-intro.html"
          } ],
          "date_added": "13099617023729630",
-         "date_modified": "13195782517219600",
+         "date_modified": "13196883087828058",
          "id": "1",
          "name": "Bookmarks bar",
          "sync_transaction_version": "3",
@@ -976,7 +976,7 @@
          "sync_transaction_version": "3",
          "type": "folder"
       },
-      "sync_transaction_version": "4568",
+      "sync_transaction_version": "5281",
       "synced": {
          "children": [  ],
          "date_added": "13099617023729636",
