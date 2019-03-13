@@ -601,6 +601,10 @@ sub get_options {
 		      (prettier-js-mode)
 		      )))
 
+(add-hook 'graphql-mode-hook
+	  (lambda ()
+	    (prettier-js-mode)))
+
 (add-hook 'autoit-mode-hook
 	  (lambda ()
 	    (setq indent-tabs-mode nil)))
