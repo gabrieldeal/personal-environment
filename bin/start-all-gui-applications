@@ -15,16 +15,9 @@ switch_workspace() {
 switch_workspace 1 true
 /opt/google/chrome/chrome &
 /usr/bin/keepassxc &
-gnome-terminal \
-    --profile Tool \
-    -e /home/gabrielx/local/bin/start-oss-slack-ngrok &
 # /home/gabrielx/local/bin/start-pomodoro-bash &
 
-sleep 10
-
-switch_workspace 2
-/home/gabrielx/local/bin/emacs-huddle &
-/usr/bin/gnome-terminal &
+switch_workspace 5
 
 # I stopped using this in Emacs because it takes too much CPU for
 # emacs to parse the copious output.
@@ -34,12 +27,19 @@ switch_workspace 2
 
 /usr/bin/gnome-terminal \
     --profile Tool \
-    -x /home/gabrielx/local/bin/start-huddle-hack &
-
-/usr/bin/gnome-terminal \
-    --profile Tool \
     -x /home/gabrielx/local/bin/run-in /home/gabrielx/projects/oss/huddle \
     mailcatcher --foreground &
+
+gnome-terminal \
+    --profile Tool \
+    -e /home/gabrielx/local/bin/start-oss-slack-ngrok &
+
+switch_workspace 2
+/home/gabrielx/local/bin/emacs-huddle &
+/usr/bin/gnome-terminal &
+/usr/bin/gnome-terminal \
+    --profile Tool \
+    -x /home/gabrielx/local/bin/start-huddle-hack &
 
 # sleep 10
 #
