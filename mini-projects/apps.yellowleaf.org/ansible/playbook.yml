@@ -1,0 +1,16 @@
+---
+- hosts: all
+  remote_user: "{{ lookup('env', 'REMOTE_USER') }}"
+  tasks:
+  - name: Copy Nginx config
+    copy:
+      src: "{{ item }}"
+      dest: /var/lib/docker/volumes/dogabrielx_letsencrypt-config/_data/nginx/
+    with_fileglob:
+      - ../*.subfolder.conf
+  - name: Copy docker compose config
+    copy:
+      src: ../docker-compose.yml
+      dest: ~/
+  - name: Restart Docker containers
+    command: docker-compose -f ./docker-compose.yml  restart
