@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+function new_version() {
+    version=$(git describe --tags --abbrev=0)
+    if [ -z "$version" ]
+    then
+	echo 'v1.0.0'
+	return
+    fi
+
+    version="${version#v}" # Remove leading "v".
+    IFS='.' read -r -a version_array <<< "$version"
+    major="${version_array[0]}"
+    minor="${version_array[1]}"
+    patch="${version_array[2]}"
+
+    minor=$(( minor + 1 ))
+
+    echo "v$major.$minor.$patch"
+}
+
+git tag -a "$(new_version)"
