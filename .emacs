@@ -316,13 +316,7 @@
 
 (setq mouse-yank-at-point t)
 
-; Disable the mouse
-(dolist (k '([mouse-1] [down-mouse-1] [drag-mouse-1] [double-mouse-1] [triple-mouse-1]
-	     [mouse-2] [down-mouse-2] [drag-mouse-2] [double-mouse-2] [triple-mouse-2]
-	     [mouse-3] [down-mouse-3] [drag-mouse-3] [double-mouse-3] [triple-mouse-3]
-	     [mouse-4] [down-mouse-4] [drag-mouse-4] [double-mouse-4] [triple-mouse-4]
-	     [mouse-5] [down-mouse-5] [drag-mouse-5] [double-mouse-5] [triple-mouse-5]))
-  (global-unset-key k))
+(global-disable-mouse-mode)
 
 ;;(set-specifier menubar-visible-p nil)
 (if (string-match "XEmacs" emacs-version)
@@ -1268,7 +1262,7 @@ SWITCH-TO-BUFFER - whether to switch to the buffer if it is already running."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (org yaml-mode php-mode graphql-mode prettier-js rjsx-mode ws-trim web-mode rubocop robe puppet-mode paredit nxml-mode markdown-mode magit json-mode flycheck clever-cmd cider))))
+    (disable-mouse org yaml-mode php-mode graphql-mode prettier-js rjsx-mode ws-trim web-mode rubocop robe puppet-mode paredit nxml-mode markdown-mode magit json-mode flycheck clever-cmd cider))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
