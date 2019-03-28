@@ -1,0 +1,22 @@
+# To validate:
+# desktop-file-validate ~/.local/share/applications/*.desktop
+
+[Desktop Entry]
+Name=ssh snoke-dispatch.ossd.co
+Comment=Use the command line
+Keywords=snoke-dispatch.ossd.co;
+TryExec=gnome-terminal
+Path=/home/gabrielx
+Exec=gnome-terminal --window-with-profile="Staging host" --geometry 160x55++0 --execute ssh -A osadmin@snoke-dispatch.ossd.co
+Icon=utilities-terminal
+Type=Application
+X-GNOME-DocPath=gnome-terminal/index.html
+X-GNOME-Bugzilla-Bugzilla=GNOME
+X-GNOME-Bugzilla-Product=gnome-terminal
+X-GNOME-Bugzilla-Component=BugBuddyBugs
+X-GNOME-Bugzilla-Version=3.12.3
+Categories=GNOME;GTK;System;TerminalEmulator;
+StartupNotify=true
+OnlyShowIn=GNOME;Unity;
+X-Ubuntu-Gettext-Domain=gnome-terminal
+
