@@ -2,7 +2,7 @@
 # desktop-file-validate ~/.local/share/applications/*.desktop
 
 [Desktop Entry]
-Name=ssh osadmin@elastic.ossd.co
+Name=ssh elastic.ossd.co
 Comment=Use the command line
 Keywords=elastic.ossd.co
 TryExec=gnome-terminal

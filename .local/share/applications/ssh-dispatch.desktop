@@ -2,7 +2,7 @@
 # desktop-file-validate ~/.local/share/applications/*.desktop
 
 [Desktop Entry]
-Name=ssh osadmin@dispatch.ossd.co
+Name=ssh dispatch.ossd.co
 Comment=Use the command line
 Keywords=dispatch.ossd.co
 TryExec=gnome-terminal

@@ -2,7 +2,7 @@
 # desktop-file-validate ~/.local/share/applications/*.desktop
 
 [Desktop Entry]
-Name=ssh osadmin@qa-minus-one.ossd.co
+Name=ssh qa-minus-one.ossd.co
 Comment=Use the command line
 Keywords=qa-minus-one.ossd.co
 TryExec=gnome-terminal

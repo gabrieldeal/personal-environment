@@ -2,7 +2,7 @@
 # desktop-file-validate ~/.local/share/applications/*.desktop
 
 [Desktop Entry]
-Name=ssh osadmin@yoda.ossd.co
+Name=ssh yoda.ossd.co
 Comment=Use the command line
 Keywords=yoda.ossd.co
 TryExec=gnome-terminal
