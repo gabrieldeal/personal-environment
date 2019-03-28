@@ -17,7 +17,7 @@ cd "$dir" \
     && git fetch -p \
     && git checkout "$branch" \
     && git pull origin "$branch" \
-    || fail "Might need to do: cd $dir && git merge --abort && git checkout master && git branch -D '$branch'"
+    || fail "Might need to do: (cd $dir && git merge --abort && git checkout master && git branch -D '$branch')"
 
 bundle install && \
     bundle exec mina full_deploy HOST="$server.ossd.co" BRANCH="$branch"
