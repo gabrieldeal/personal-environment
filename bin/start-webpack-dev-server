@@ -18,7 +18,9 @@ then
     rm -rf node_modules vendor/node_modules || exit 1
 fi
 
+NVM_VERSION=8 # stable (10) was failing to build node-sass.
+
 bundle install \
-    && nvm install stable \
+    && nvm install "$NVM_VERSION" \
     && (yarn check || yarn install) \
     && bin/webpack-dev-server --inline
