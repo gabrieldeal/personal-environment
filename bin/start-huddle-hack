@@ -40,6 +40,9 @@ fi
 
 #source "$(dirname "$0")/export-webpack-dev-server-settings" \
 #    &&
+
+# Use Unicorn in hopes that it will freeze less than Puma.
+#gem install unicorn && unicorn -l "0.0.0.0:$port"
     rails s -b 0.0.0.0 -p "$port"
 
 # Disabled SSL because it messes with Webpack Dev Server's auto-reloading.
