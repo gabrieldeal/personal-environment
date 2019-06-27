@@ -1,6 +1,7 @@
 #-*-shell-script-*-
 
 export PATH="$PATH:$HOME/local/bin::$HOME/bin:$HOME/.yarn/bin"
+export DISABLE_SPRING=1
 
 # If not running interactively, then short-circuit
 case $- in
@@ -25,7 +26,6 @@ PS1='\w\$ '
 
 export PHANTOMJS_BIN=/usr/bin/phantomjs
 export EDITOR=emacs
-export DISABLE_SPRING=0
 export LESS="-I -R"
 export CI_NAME="OSS-disable-simplecov"
 
