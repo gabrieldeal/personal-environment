@@ -26,8 +26,8 @@ source "$HOME/.rvm/scripts/rvm"
 
 cd ~/projects/oss/huddle \
     && rvm get stable \
-    && rvm use `cat .ruby-version`@`cat .ruby-gemset` --create \
     && rvm install `cat .ruby-version` \
+    && rvm use `cat .ruby-version`@`cat .ruby-gemset` --create \
     && gem install mailcatcher \
     && gem install bundle \
     && bundle install \
