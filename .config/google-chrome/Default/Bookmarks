@@ -1,5 +1,5 @@
 {
-   "checksum": "042f9cb6320bfd4630bde373c6260a3a",
+   "checksum": "be8efd482444fee391dd4611b99663be",
    "roots": {
       "bookmark_bar": {
          "children": [ {
@@ -9,9 +9,9 @@
                "last_visited_desktop": "13204756122692001"
             },
             "name": "",
-            "sync_transaction_version": "12639",
+            "sync_transaction_version": "12922",
             "type": "url",
-            "url": "http://192.168.1.111:3000/visual-directory/"
+            "url": "https://gabriel-huddle-dicksonlabs.ngrok.io/visual-directory/"
          }, {
             "date_added": "13179459640538683",
             "id": "374",
@@ -19,9 +19,9 @@
                "last_visited_desktop": "13204413700743983"
             },
             "name": "m",
-            "sync_transaction_version": "11756",
+            "sync_transaction_version": "12904",
             "type": "url",
-            "url": "http://192.168.1.111:3000/manager-beta/"
+            "url": "https://gabriel-huddle-dicksonlabs.ngrok.io/manager?version=html"
          }, {
             "date_added": "13154129124494634",
             "id": "280",
@@ -59,7 +59,7 @@
                "last_visited_desktop": "13204868526118151"
             },
             "name": "PR",
-            "sync_transaction_version": "12147",
+            "sync_transaction_version": "12828",
             "type": "url",
             "url": "https://github.com/pulls?utf8=%E2%9C%93&q=is%3Apr+is%3Aopen+org%3Aofficespacesoftware+org%3Adicksonlabs+involves%3Agabrielmdeal+involves%3Aipd+"
          }, {
@@ -69,7 +69,7 @@
                "last_visited_desktop": "13204840331691865"
             },
             "name": "",
-            "sync_transaction_version": "12668",
+            "sync_transaction_version": "12971",
             "type": "url",
             "url": "https://www.pivotaltracker.com/n/projects/957060"
          }, {
@@ -79,7 +79,7 @@
                "last_visited_desktop": "13203121983348176"
             },
             "name": "",
-            "sync_transaction_version": "10318",
+            "sync_transaction_version": "12974",
             "type": "url",
             "url": "https://projects.invisionapp.com/d/main#/projects"
          }, {
@@ -101,7 +101,7 @@
                      "last_visited_desktop": "13204868787800249"
                   },
                   "name": "Gmail - dicksonlabs",
-                  "sync_transaction_version": "12673",
+                  "sync_transaction_version": "12997",
                   "type": "url",
                   "url": "https://mail.google.com/mail/u/0/#inbox"
                }, {
@@ -111,7 +111,7 @@
                      "last_visited_desktop": "13202444391665718"
                   },
                   "name": "Google Calendar - dicksonlabs",
-                  "sync_transaction_version": "9856",
+                  "sync_transaction_version": "12915",
                   "type": "url",
                   "url": "https://calendar.google.com/calendar/b/0/render#main_7%7Cweek"
                }, {
@@ -230,6 +230,13 @@
                   "type": "url",
                   "url": "https://www.saltycrane.com/blog/2016/06/flow-type-cheat-sheet/"
                }, {
+                  "date_added": "13207367948890305",
+                  "id": "397",
+                  "name": "Ghostscript",
+                  "sync_transaction_version": "12952",
+                  "type": "url",
+                  "url": "https://www.ghostscript.com/doc/current/Use.htm"
+               }, {
                   "date_added": "13184888893302202",
                   "id": "327",
                   "meta_info": {
@@ -239,6 +246,13 @@
                   "sync_transaction_version": "4694",
                   "type": "url",
                   "url": "http://graphql-ruby.org/guides#subscriptions-guides"
+               }, {
+                  "date_added": "13206509602331505",
+                  "id": "393",
+                  "name": "ImageMagick - Command-line Options",
+                  "sync_transaction_version": "12791",
+                  "type": "url",
+                  "url": "https://imagemagick.org/script/command-line-options.php"
                }, {
                   "date_added": "13110508366618003",
                   "id": "48",
@@ -265,8 +279,8 @@
                   "meta_info": {
                      "last_visited_desktop": "13182402759763091"
                   },
-                  "name": "API: Immutable.js Record",
-                  "sync_transaction_version": "1",
+                  "name": "Immutable.js Record",
+                  "sync_transaction_version": "12792",
                   "type": "url",
                   "url": "https://facebook.github.io/immutable-js/docs/#/Record"
                }, {
@@ -453,9 +467,23 @@
                   "sync_transaction_version": "1",
                   "type": "url",
                   "url": "https://webpack.github.io/docs/configuration.html"
+               }, {
+                  "date_added": "13207087786206351",
+                  "id": "395",
+                  "name": "Gabriel Deal | OfficeSpace Slack",
+                  "sync_transaction_version": "12964",
+                  "type": "url",
+                  "url": "https://officespace-team.slack.com/messages/D3HQ33P0T/"
+               }, {
+                  "date_added": "13207184261946463",
+                  "id": "396",
+                  "name": "My Collection - All - Pandora",
+                  "sync_transaction_version": "12910",
+                  "type": "url",
+                  "url": "https://www.pandora.com/collection"
                } ],
                "date_added": "13155753709961518",
-               "date_modified": "13186720319455458",
+               "date_modified": "13207706535745960",
                "id": "288",
                "name": "APIs",
                "sync_transaction_version": "1",
@@ -527,7 +555,7 @@
                   "last_visited_desktop": "13204865938331249"
                },
                "name": "sidekiq console",
-               "sync_transaction_version": "12672",
+               "sync_transaction_version": "12979",
                "type": "url",
                "url": "http://192.168.1.111:3000/sidekiq/queues?poll=true"
             }, {
@@ -647,7 +675,7 @@
                   "last_visited_desktop": "13204839134464306"
                },
                "name": "my desktop (2)",
-               "sync_transaction_version": "12664",
+               "sync_transaction_version": "12805",
                "type": "url",
                "url": "https://gabroyle.slack.com/messages/D76EG3TBQ/"
             }, {
@@ -657,7 +685,7 @@
                   "last_visited_desktop": "13204865617923013"
                },
                "name": "huddle",
-               "sync_transaction_version": "12137",
+               "sync_transaction_version": "12696",
                "type": "url",
                "url": "https://osshuddle.slack.com/"
             }, {
@@ -687,7 +715,7 @@
                   "last_visited_desktop": "13204760347554007"
                },
                "name": "qa",
-               "sync_transaction_version": "12412",
+               "sync_transaction_version": "12691",
                "type": "url",
                "url": "https://ossqa.slack.com/messages/C5UHS8R40/"
             }, {
@@ -834,79 +862,9 @@
                   "last_visited_desktop": "13203726877275715"
                },
                "name": "TZ converter",
-               "sync_transaction_version": "11031",
+               "sync_transaction_version": "12838",
                "type": "url",
                "url": "https://www.timeanddate.com/worldclock/converter.html?p1=234&p2=tz_et&p3=225&p4=1440"
-            }, {
-               "date_added": "13196310780846491",
-               "id": "367",
-               "meta_info": {
-                  "last_visited_desktop": "13196311783353972"
-               },
-               "name": "Initial setup GraphQL using graphql-ruby 1.8 (c572b5fb) · Commits · GitLab.org / GitLab Community Edition · GitLab",
-               "sync_transaction_version": "4605",
-               "type": "url",
-               "url": "https://gitlab.com/gitlab-org/gitlab-ce/commit/c572b5fb0494e0e1950d8206d9cd27cdc85ec82b"
-            }, {
-               "date_added": "13197757956011933",
-               "id": "370",
-               "meta_info": {
-                  "last_visited_desktop": "13197757956012243"
-               },
-               "name": "Sign in to GitHub · GitHub",
-               "sync_transaction_version": "6649",
-               "type": "url",
-               "url": "https://github.com/login?return_to=%2Fpulls%3Futf8%3D%25E2%259C%2593%26q%3Dis%253Apr%2Bis%253Aopen%2Borg%253Aofficespacesoftware%2Binvolves%253Ajnamkung%2Binvolves%253Agabrielmdeal%2Binvolves%253Aipd%2Binvolves%253Achrismealy"
-            }, {
-               "date_added": "13200622289441806",
-               "id": "378",
-               "meta_info": {
-                  "last_visited_desktop": "13201240046714661"
-               },
-               "name": "m",
-               "sync_transaction_version": "9037",
-               "type": "url",
-               "url": "https://www.pandora.com/playlist/PL:1407374937897591:143222817"
-            }, {
-               "date_added": "13203114290457502",
-               "id": "386",
-               "meta_info": {
-                  "last_visited_desktop": "13203114290459235"
-               },
-               "name": "image (331×331)",
-               "sync_transaction_version": "10273",
-               "type": "url",
-               "url": "https://gabriel-huddle-dicksonlabs.ngrok.io/third_party_integration/slack/employees/image?payload=eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1NTkyNDU0ODgsImRhdGEiOnsiZW1wbG95ZWVfaWQiOjR9fQ.1wCVLDqT-LZaTPAcumDsBBDRKdUG0Mvlr6KOPh4q_eY"
-            }, {
-               "date_added": "13203114475622387",
-               "id": "387",
-               "meta_info": {
-                  "last_visited_desktop": "13203114475622707"
-               },
-               "name": "image (75×75)",
-               "sync_transaction_version": "10277",
-               "type": "url",
-               "url": "https://gabriel-huddle-dicksonlabs.ngrok.io/third_party_integration/slack/employees/image?payload=eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1NTkyNDU2NzMsImRhdGEiOnsiZW1wbG95ZWVfaWQiOjV9fQ.4gXUFvoAlwv9mDElKM2tVch2P9TlQMeIw4J-SV-ySLI"
-            }, {
-               "date_added": "13203114573369193",
-               "id": "388",
-               "meta_info": {
-                  "last_visited_desktop": "13203114573369529"
-               },
-               "name": "image (75×75)",
-               "sync_transaction_version": "10281",
-               "type": "url",
-               "url": "https://gabriel-huddle-dicksonlabs.ngrok.io/third_party_integration/slack/employees/image?payload=eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1NTkyNDU3NzEsImRhdGEiOnsiZW1wbG95ZWVfaWQiOjE3fX0.EvQ6EyTPyW7cGZbnH5m2sFps6Ci_yZav55u4lHELqeE"
-            }, {
-               "date_added": "13203115285486387",
-               "id": "389",
-               "meta_info": {
-                  "last_visited_desktop": "13203115285486813"
-               },
-               "name": "image (75×75)",
-               "sync_transaction_version": "10285",
-               "type": "url",
-               "url": "https://gabriel-huddle-dicksonlabs.ngrok.io/third_party_integration/slack/employees/image?payload=eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1NTkyNDY0ODIsImRhdGEiOnsiZW1wbG95ZWVfaWQiOjR9fQ.muIoKhn07cXWk4rSey6SZNjXmWuf9NDqWw-KzVKknKQ"
             }, {
                "date_added": "13204143413137785",
                "id": "391",
@@ -919,7 +877,7 @@
                "url": "https://orgmode.org/org.html#Tables"
             } ],
             "date_added": "13109913180212489",
-            "date_modified": "13206049741866143",
+            "date_modified": "13206509602331505",
             "id": "40",
             "name": "w",
             "sync_transaction_version": "7055",
@@ -931,10 +889,31 @@
                "meta_info": {
                   "last_visited_desktop": "13204778260040239"
                },
-               "name": "Billboard Hot 100",
-               "sync_transaction_version": "12552",
+               "name": "Hot 100",
+               "sync_transaction_version": "12986",
                "type": "url",
                "url": "https://www.billboard.com/charts/hot-100"
+            }, {
+               "date_added": "13207706535745960",
+               "id": "398",
+               "name": "Top Alternative Songs",
+               "sync_transaction_version": "12987",
+               "type": "url",
+               "url": "https://www.billboard.com/charts/alternative-songs"
+            }, {
+               "date_added": "13207706583950347",
+               "id": "399",
+               "name": "Independent Albums",
+               "sync_transaction_version": "12992",
+               "type": "url",
+               "url": "https://www.billboard.com/charts/independent-albums"
+            }, {
+               "date_added": "13207706620187893",
+               "id": "400",
+               "name": "Charts",
+               "sync_transaction_version": "12996",
+               "type": "url",
+               "url": "https://kexp.org/charts/"
             }, {
                "date_added": "13200697281154112",
                "id": "379",
@@ -952,7 +931,7 @@
                   "last_visited_desktop": "13202008563135288"
                },
                "name": "Spotify",
-               "sync_transaction_version": "9609",
+               "sync_transaction_version": "12816",
                "type": "url",
                "url": "https://play.spotify.com/collection/albums"
             }, {
@@ -1012,7 +991,7 @@
                   "last_visited_desktop": "13204255323164665"
                },
                "name": "Google Calendar - formerly.gabriel",
-               "sync_transaction_version": "12553",
+               "sync_transaction_version": "12798",
                "type": "url",
                "url": "https://calendar.google.com/calendar/b/1/render#main_7"
             }, {
@@ -1074,7 +1053,7 @@
                "url": "javascript:(function()%7Bfunction%20callback()%7B(function(%24)%7Bvar%20jQuery%3D%24%3Bfunction%20callback()%7BgetGpx()%7Dvar%20s%3Ddocument.createElement(%22script%22)%3Bs.src%3D%22https%3A%2F%2Fmapstogpx.com%2Fstrava%2Fmapstogpxstrava.js%22%3Bif(s.addEventListener)%7Bs.addEventListener(%22load%22%2Ccallback%2Cfalse)%7Delse%20if(s.readyState)%7Bs.onreadystatechange%3Dcallback%7Ddocument.body.appendChild(s)%3B%7D)(jQuery.noConflict(true))%7Dvar%20s%3Ddocument.createElement(%22script%22)%3Bs.src%3D%22https%3A%2F%2Fmapstogpx.com%2Fstrava%2Fjquery.min.js%22%3Bif(s.addEventListener)%7Bs.addEventListener(%22load%22%2Ccallback%2Cfalse)%7Delse%20if(s.readyState)%7Bs.onreadystatechange%3Dcallback%7Ddocument.body.appendChild(s)%3B%7D)()"
             } ],
             "date_added": "13126847463431993",
-            "date_modified": "13202505248922457",
+            "date_modified": "13207706626106933",
             "id": "165",
             "name": "b",
             "sync_transaction_version": "7054",
@@ -1106,7 +1085,7 @@
          "sync_transaction_version": "3",
          "type": "folder"
       },
-      "sync_transaction_version": "12673",
+      "sync_transaction_version": "12997",
       "synced": {
          "children": [  ],
          "date_added": "13099617023729636",
