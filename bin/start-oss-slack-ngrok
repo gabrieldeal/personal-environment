@@ -6,6 +6,6 @@ export PATH="$PATH:$HOME/local/bin"
 
 set-xterm-title "ngrok"
 
-~/local/bin/ngrok start huddle middleware \
+~/local/bin/ngrok start huddle middleware webpack-dev-server \
 		  -config .ngrok2/ngrok.yml \
 		  -config .ngrok2/oss-slack.yml

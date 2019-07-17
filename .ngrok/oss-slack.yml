@@ -3,6 +3,10 @@ tunnels:
     proto: http
     addr: 3000
     subdomain: gabriel-huddle-dicksonlabs
+  webpack-dev-server:
+    proto: http
+    addr: 3035
+    subdomain: gabriel-webpack-dev-server-dicksonlabs
   middleware:
     proto: http
     addr: 4000
