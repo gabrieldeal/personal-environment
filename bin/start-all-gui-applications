@@ -40,6 +40,9 @@ switch_workspace 2
 /usr/bin/gnome-terminal \
     --profile Tool \
     -x /home/gabrielx/local/bin/start-huddle-hack &
+/usr/bin/gnome-terminal \
+    --profile Tool \
+    -x /home/gabrielx/local/bin/start-guard &
 
 # sleep 10
 #
