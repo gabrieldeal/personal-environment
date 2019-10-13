@@ -30,4 +30,6 @@ export LESS="-I -R"
 # Disable constantly changing the terminal title.
 export PROMPT_COMMAND=
 
+alias cdp="cd /cygdrive/d/Gabriel/Pictures"
+
 . ~/bin/setup-ssh-agent
