@@ -19,4 +19,6 @@ function new_version() {
     echo "v$major.$minor.$patch"
 }
 
-git tag -a "$(new_version)"
+
+version="$(new_version)"
+git tag -a "$version" && git push origin "$version"
