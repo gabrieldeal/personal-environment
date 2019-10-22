@@ -1,36 +1,65 @@
 #!/usr/bin/env bash
 
-dest="/cygdrive/e"
+base_dest="/cygdrive/e"
 if [ -n "$1" ]
 then
-    dest="$1"
+    base_dest="$1"
 fi
 
+dest="$base_dest/Users/Gabriel/Pictures/yellowleaf-trips/"
+mkdir -p "$dest"
 rsync \
     --archive \
     --delete-before \
     --verbose \
     /cygdrive/d/Gabriel/Pictures/yellowleaf-trips/ \
-    "$dest/Users/Gabriel/projects/yellowleaf-trips/data/gabrielx/reports/" \
+    "$dest" \
     | grep -E '^deleting|[^/]$|^$'
 
-echo -n "Ready to rsync Lindsay's files?"
+echo -n "Ready to rsync user files?"
 read pause
 
+dest="$base_dest/Users/Lindsay/c"
+mkdir -p "$dest"
 rsync \
     --archive \
     --delete-before \
     --verbose \
     /cygdrive/c/Users/Lindsay/ \
-    "$dest/Users/LindsayMalone/c" \
+    "$dest" \
     | grep -E '^deleting|[^/]$|^$'
 
+dest="$base_dest/Users/Lindsay/d"
+mkdir -p "$dest"
 rsync \
     --archive \
     --delete-before \
     --verbose \
     /cygdrive/d/Lindsay/ \
-    "$dest/Users/LindsayMalone/d" \
+    "$dest" \
+    | grep -E '^deleting|[^/]$|^$'
+
+echo -n "Ready to rsync Gabriel's files?"
+read pause
+
+dest="$base_dest/Users/Gabriel/c"
+mkdir -p "$dest"
+rsync \
+    --archive \
+    --delete-before \
+    --verbose \
+    /cygdrive/c/Users/Gabriel/ \
+    "$dest" \
+    | grep -E '^deleting|[^/]$|^$'
+
+dest="$base_dest/Users/Gabriel/d"
+mkdir -p "$dest"
+rsync \
+    --archive \
+    --delete-before \
+    --verbose \
+    /cygdrive/d/Gabriel/ \
+    "$dest" \
     | grep -E '^deleting|[^/]$|^$'
 
 
