@@ -6,7 +6,7 @@ then
     base_dest="$1"
 fi
 
-dest="$base_dest/Users/Gabriel/Pictures/yellowleaf-trips/"
+dest="$base_dest/Users/Gabriel/d/Pictures/yellowleaf-trips/"
 mkdir -p "$dest"
 rsync \
     --archive \
