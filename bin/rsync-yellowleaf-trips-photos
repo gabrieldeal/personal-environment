@@ -25,6 +25,7 @@ rsync \
     --archive \
     --delete-before \
     --verbose \
+    --exclude AppData \
     /cygdrive/c/Users/Lindsay/ \
     "$dest" \
     | grep -E '^deleting|[^/]$|^$'
@@ -35,6 +36,7 @@ rsync \
     --archive \
     --delete-before \
     --verbose \
+    --exclude AppData \
     /cygdrive/d/Lindsay/ \
     "$dest" \
     | grep -E '^deleting|[^/]$|^$'
@@ -48,6 +50,7 @@ rsync \
     --archive \
     --delete-before \
     --verbose \
+    --exclude AppData \
     /cygdrive/c/Users/Gabriel/ \
     "$dest" \
     | grep -E '^deleting|[^/]$|^$'
@@ -58,6 +61,7 @@ rsync \
     --archive \
     --delete-before \
     --verbose \
+    --exclude AppData \
     /cygdrive/d/Gabriel/ \
     "$dest" \
     | grep -E '^deleting|[^/]$|^$'
