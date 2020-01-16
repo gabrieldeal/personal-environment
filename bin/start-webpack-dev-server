@@ -19,6 +19,7 @@ then
 fi
 
 NVM_VERSION=8 # stable (10) was failing to build node-sass.
+export NODE_OPTIONS='--max-old-space-size=5120'
 
 bundle install \
     && nvm install "$NVM_VERSION" \
