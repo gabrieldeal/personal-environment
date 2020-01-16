@@ -265,6 +265,7 @@
 (setq auto-mode-alist (cons '("\\.es6$" . web-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.jsx$" . web-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.js$" . web-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '("\\.tsx$" . web-mode) auto-mode-alist))
 
 (setq auto-mode-alist (cons '("\\.au3$" . autoit-mode) auto-mode-alist))
 
@@ -597,6 +598,8 @@ sub get_options {
 
 (add-hook 'typescript-mode-hook
 	  (lambda ()
+	    (setq indent-tabs-mode nil)
+	    (setq typescript-indent-level 2)
 	    (prettier-js-mode)))
 
 (add-hook 'graphql-mode-hook
