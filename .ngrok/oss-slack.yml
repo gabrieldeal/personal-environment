@@ -1,4 +1,8 @@
 tunnels:
+  ms-teams:
+    proto: http
+    addr: 3333
+    subdomain: gabriel-msteams-dicksonlabs
   huddle:
     proto: http
     addr: 3000
