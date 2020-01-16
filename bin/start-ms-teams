@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+set-xterm-title "MS Teams"
+
+cd ~/projects/oss/oss_ms_teams \
+    && . "$HOME/.ssh/ms-teams.sh" \
+    && . "$HOME/.nvm/nvm.sh" \
+    && echo "Checking if the webserver is already running..." \
+    && ! (lsof | grep 'TCP localhost:9229') \
+    && nvm install 10 \
+    && yarn install \
+    && yarn debug
