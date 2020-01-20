@@ -577,6 +577,7 @@ sub get_options {
      (setq-default flycheck-disabled-checkers
 		   (append flycheck-disabled-checkers '(javascript-jshint)))
      (flycheck-add-mode 'javascript-eslint 'web-mode)
+     (setq flycheck-shellcheck-follow-sources nil)
      (setq flycheck-javascript-eslint-executable
 	   (concat (clever-cmd-ec--vc-root-dir) "node_modules/eslint/bin/eslint.js"))
      (setq flycheck-eslintrc (concat (clever-cmd-ec--vc-root-dir) ".eslintrc.js"))))
