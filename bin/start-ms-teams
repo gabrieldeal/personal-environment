@@ -20,5 +20,5 @@ cd ~/projects/oss/oss_ms_teams \
     && . "$HOME/.nvm/nvm.sh" \
     && check_if_webserver_is_already_running \
     && nvm install 10 \
-    && yarn install \
+    && (yarn check || yarn install) \
     && yarn debug
