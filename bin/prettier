@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+command=/home/gabrielx/.yarn/bin/prettier
+
+repo_root_dir="$(git rev-parse --show-toplevel)"
+repo_prettier="$repo_root_dir/node_modules/prettier/bin-prettier.js"
+if [ -e "$repo_prettier" ]
+then
+    command="$repo_prettier"
+fi
+
+$command "$@"
