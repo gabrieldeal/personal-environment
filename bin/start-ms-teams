@@ -2,11 +2,23 @@
 
 set-xterm-title "MS Teams"
 
+function check_if_webserver_is_already_running() {
+    port=9229
+    curl --silent "http://localhost:$port"
+    if [ $? -ne 7 ]
+    then
+       echo "The webserver is already running on port $port:" 1>&2
+       lsof | grep -w localhost:9229
+       return 1
+    fi
+
+    return 0
+}
+
 cd ~/projects/oss/oss_ms_teams \
     && . "$HOME/.ssh/ms-teams.sh" \
     && . "$HOME/.nvm/nvm.sh" \
-    && echo "Checking if the webserver is already running..." \
-    && ! (lsof | grep 'TCP localhost:9229') \
+    && check_if_webserver_is_already_running \
     && nvm install 10 \
     && yarn install \
     && yarn debug
