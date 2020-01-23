@@ -64,17 +64,19 @@
 	(list 'clever-cmd gmd-clever-cmd-package-source-directory)
 	(list 'clever-cmd-example-config gmd-clever-cmd-package-source-directory)))
 (defvar gmd-remote-packages
-  '(cider
-    clojure-mode
+  '(
+    disable-mouse
     flycheck
+    graphql-mode
     json-mode
     magit
     markdown-mode
     nxml-mode
     paredit
-    puppet-mode
+    prettier-js
     robe
     rubocop
+    typescript-mode
     web-mode
     ws-trim))
 
@@ -253,9 +255,6 @@
 (autoload 'markdown-mode "markdown-mode")
 (setq auto-mode-alist (cons '("\\.md$" . markdown-mode) auto-mode-alist))
 
-(autoload 'puppet-mode "puppet-mode")
-(setq auto-mode-alist (cons '("\\.pp$" . puppet-mode) auto-mode-alist))
-
 (setq auto-mode-alist (cons '("\\.sh$" . sh-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.bash[^/]*" . sh-mode) auto-mode-alist))
 
@@ -291,9 +290,6 @@
 (setq auto-mode-alist (cons '("\\.m$" . html-mode) auto-mode-alist))
 
 (setq auto-mode-alist (cons '("\\.html$" . web-mode) auto-mode-alist))
-
-(autoload 'clojure-mode "clojure-mode")
-(setq auto-mode-alist (cons '("\\.clj$" . clojure-mode) auto-mode-alist))
 
 (setq auto-mode-alist (cons '("\\.emacs$" . emacs-lisp-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.el$" . emacs-lisp-mode) auto-mode-alist))
@@ -539,12 +535,7 @@ sub get_options {
 	    (setq ruby-insert-encoding-magic-comment nil)))
 
 (autoload 'enable-paredit-mode "paredit" nil t)
-(add-hook 'clojure-mode-hook 'enable-paredit-mode)
 (add-hook 'emacs-lisp-mode-hook 'enable-paredit-mode)
-(add-hook 'cider-repl-mode-hook
-	  (lambda ()
-	    (enable-paredit-mode)
-	    (local-set-key (kbd "C-j") 'cider-repl-return)))
 
 (eval-after-load 'paredit
   (lambda ()
@@ -1274,7 +1265,7 @@ SWITCH-TO-BUFFER - whether to switch to the buffer if it is already running."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (typescript-mode disable-mouse org yaml-mode php-mode graphql-mode prettier-js rjsx-mode ws-trim web-mode rubocop robe puppet-mode paredit nxml-mode markdown-mode magit json-mode flycheck clever-cmd cider))))
+    (typescript-mode disable-mouse org yaml-mode php-mode graphql-mode prettier-js rjsx-mode ws-trim web-mode rubocop robe paredit nxml-mode markdown-mode magit json-mode flycheck clever-cmd))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
