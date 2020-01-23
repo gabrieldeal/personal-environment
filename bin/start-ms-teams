@@ -21,4 +21,4 @@ cd ~/projects/oss/oss_ms_teams \
     && check_if_webserver_is_already_running \
     && nvm install 10 \
     && (yarn check || yarn install) \
-    && yarn debug
+    && yarn run debug --max_old_space_size=4096
