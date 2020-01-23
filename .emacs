@@ -607,6 +607,10 @@ sub get_options {
 	  (lambda ()
 	    (prettier-js-mode)))
 
+(add-hook 'json-mode-hook
+	  (lambda ()
+	    (prettier-js-mode)))
+
 (add-hook 'autoit-mode-hook
 	  (lambda ()
 	    (setq indent-tabs-mode nil)))
