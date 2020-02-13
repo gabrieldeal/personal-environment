@@ -535,6 +535,12 @@ sub get_options {
 (add-hook 'ruby-mode-hook 'rubocop-mode)
 (add-hook 'ruby-mode-hook
 	  (lambda ()
+	    ;; Nice idea, but it is too slow even with the Rubocop daemon.
+	    ;; gem install rubocop-daemon
+	    ;; rubocop-daemon start
+	    ;; (setq rubocop-autocorrect-command "rubocop-daemon exec -- -a --format emacs")
+	    ;; (setq rubocop-prefer-system-executable 't)
+	    ;; (setq rubocop-autocorrect-on-save 't)
 	    (setq ruby-insert-encoding-magic-comment nil)))
 
 (autoload 'enable-paredit-mode "paredit" nil t)
