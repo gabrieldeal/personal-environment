@@ -719,6 +719,7 @@ sub get_options {
 	  (function (lambda ()
 		      (hs-minor-mode)
 		      (font-lock-mode)
+		      (cwarn-mode)
 		      (setq indent-tabs-mode nil
 			    c-default-style "user"
 			    c-basic-offset 4)
