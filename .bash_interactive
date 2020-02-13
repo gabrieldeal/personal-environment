@@ -1,7 +1,7 @@
 #-*-shell-script-*-
 
 export PATH="$PATH:$HOME/local/bin::$HOME/bin:$HOME/.yarn/bin"
-export DISABLE_SPRING=1
+export DISABLE_SPRING=
 
 # If not running interactively, then short-circuit
 case $- in
