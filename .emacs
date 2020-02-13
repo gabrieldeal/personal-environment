@@ -588,7 +588,6 @@ sub get_options {
 		      (setq web-mode-css-indent-offset 2)
 		      (setq indent-tabs-mode nil)
 		      (setq web-mode-code-indent-offset 2)
-		      (prettier-js-mode)
 		      )))
 
 (add-hook 'typescript-mode-hook
