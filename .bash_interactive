@@ -12,7 +12,6 @@ esac
 source "$HOME/.nvm/nvm.sh"
 source "$HOME/.rvm/scripts/rvm"
 source "/usr/share/bash-completion/bash_completion"
-[[ -s "$HOME/.avn/bin/avn.sh" ]] && source "$HOME/.avn/bin/avn.sh" # npm install -g avn avn-nvm
 
 HISTCONTROL=ignoredups
 HISTSIZE=10000
