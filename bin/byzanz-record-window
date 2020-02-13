@@ -4,16 +4,13 @@
 # From http://askubuntu.com/questions/107726/how-to-create-animated-gif-images-of-a-screencast
 
 DELAY=$1
-DURATION=$2
-OUTPUT=$3
+OUTPUT=$2
 
 if [ -z "$OUTPUT" ]
 then
-    echo "Usage: $0 DELAY DURATION OUTPUT" 2>&1
+    echo "Usage: $0 DELAY OUTPUT" 2>&1
     exit 1
 fi
-
-ARGS="--duration=$DURATION $OUTPUT"
 
 echo "Click on the window to record"
 XWININFO=$(xwininfo)
@@ -28,6 +25,7 @@ for (( i=$DELAY; i>0; --i )) ; do
     sleep 1
 done
 
-byzanz-record --verbose --delay=0 --x=$X --y=$Y --width=$W --height=$H $ARGS
+echo -n "Press Ctrl-D when done..."
+byzanz-record --verbose --delay=0 --x=$X --y=$Y --width=$W --height=$H --exec=byzanz-pause "$OUTPUT" &
 
 echo "Output written to $OUTPUT"

@@ -1,0 +1,12 @@
+#!/bin/bash
+# -*-shell-script-*-
+
+TEMP_FILE="/tmp/byzanz-pause.lock"
+touch "$TEMP_FILE"
+
+echo "When done: rm $TEMP_FILE"
+
+while true
+do
+    test -e "$TEMP_FILE" || exit 0
+done
