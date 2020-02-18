@@ -4,7 +4,8 @@
 TEMP_FILE="/tmp/byzanz-pause.lock"
 touch "$TEMP_FILE"
 
-echo "When done: rm $TEMP_FILE"
+echo "Run this when done:"
+echo "rm $TEMP_FILE"
 
 while true
 do
