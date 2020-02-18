@@ -124,9 +124,6 @@
   (interactive)
   (gmd-around-magit-diff 'magit-diff "HEAD" "-w"))
 
-(add-to-list 'magit-no-confirm 'stage-all-changes)
-(add-to-list 'magit-no-confirm 'unstage-all-changes)
-
 (add-hook 'magit-diff-mode-hook
 	  (lambda()
 	    (setq git-commit-fill-column 9999)
@@ -139,6 +136,8 @@
 
 (add-hook 'magit-status-mode-hook
 	  (lambda()
+	    (add-to-list 'magit-no-confirm 'stage-all-changes)
+	    (add-to-list 'magit-no-confirm 'unstage-all-changes)
 	    (local-set-key "\M-p" (lambda()
 				    (interactive)
 				    (scroll-down-command 1)))
