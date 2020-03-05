@@ -534,6 +534,11 @@ sub get_options {
 	    ;; robe overrides M-,
 	    (define-key robe-mode-map (kbd "M-,") 'tags-loop-continue)))
 
+(add-hook 'web-mode-hook
+	  (lambda()
+	    (if (string-match "\\.\\(js\\|jsx\\|tsx\\)$" (buffer-file-name))
+		(prettier-js-mode))))
+
 (add-hook 'ruby-mode-hook 'robe-mode)
 (add-hook 'ruby-mode-hook 'rubocop-mode)
 (add-hook 'ruby-mode-hook
