@@ -367,6 +367,25 @@
 			    start
 			    end))))
 
+(defun query-replace-regexp-json-to-ruby (start end)
+  "Convert JSON to Ruby between START and END."
+  (interactive "r")
+  (save-excursion
+    (if (= start end)
+	(message "Select a region")
+      (save-excursion
+	(replace-regexp "\"\\([[:alnum:]_]+\\)\":" "\\1:"
+			nil
+			start
+			end)
+	(replace-regexp "\"" "'"
+			nil
+			start
+			end)
+	(indent-region start end)
+	(untabify start end)
+      ))))
+
 ;; Buffers that should be opened in the current window:
 (add-to-list 'same-window-regexps "*Buffer List*")
 (add-to-list 'same-window-regexps "*magit")
