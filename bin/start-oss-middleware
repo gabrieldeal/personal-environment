@@ -4,6 +4,8 @@ set-xterm-title "OSS middleware rails server"
 
 cd ~/projects/oss/oss_slack_middleware/ || exit 1
 
+export DISABLE_SPRING=1
+
 test -f tmp/pids/server.pid \
     && kill -9 "$(cat tmp/pids/server.pid)" \
     && sleep 1
