@@ -212,10 +212,10 @@
   "Format SQL queries"
   (interactive)
   (save-excursion
-    (while (re-search-forward "\\\(\\<left\\>\\\|\\<from\\>\\\|\\<where\\>\\\|\\<values\\>\\\|\\<group by\\>\\\|\\<values\\>\\\|\\<order by\\>\\\|\<left outer join\\\)" nil t)
+    (while (re-search-forward "\\\(\\<left\\>\\\|\\<from\\>\\\|\\<where\\>\\\|\\<values\\>\\\|\\<group by\\>\\\|\\<values\\>\\\|\\<order by\\>\\\|\\<inner join\\>\\\|\<left outer join\\\)" nil t)
       (replace-match "\n\\1")))
   (save-excursion
-    (while (re-search-forward "\\\(\\<and\\>\\\)" nil t)
+    (while (re-search-forward "\\\(\\<and\\>\\\|\\<on\\>\\\)" nil t)
       (replace-match "\n\t\\1"))))
 
 (defun eat-sqlplus-junk(str)
