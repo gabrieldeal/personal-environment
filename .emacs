@@ -345,28 +345,6 @@
 ;; Disable emacs beeping
 (setq visible-bell t)
 
-(defun query-replace-regexp-ruby (start end)
-  "Convert Ruby formatting between START and END."
-  (interactive "r")
-  (save-excursion
-    (message (format "%s" start))
-    (message (format "%s" end))
-    (if (= start end)
-	(message "Select a region")
-      (save-excursion
-	(query-replace-regexp "\"" "'"
-			      nil
-			      start
-			      end))
-      (query-replace-regexp ":\\([[:alnum:]_]+\\)\\s-*=>\\s-*" "\\1: "
-			    nil
-			    start
-			    end)
-      (query-replace-regexp "'\\([[:alnum:]_]+\\)'\\s-*=>\\s-*" "\\1: "
-			    nil
-			    start
-			    end))))
-
 (defun query-replace-regexp-json-to-ruby (start end)
   "Convert JSON to Ruby between START and END."
   (interactive "r")
