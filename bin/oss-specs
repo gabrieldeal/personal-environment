@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+function all_slack_specs() {
+    find spec/ -name \*_spec.rb | grep slack
+}
+
+fail() {
+    echo "$@" 1>&2
+    exit 1
+}
+
+type="$1"
+case "$type" in
+    slack-short)
+	all_slack_specs | grep -v -e find_controller_spec -e employee_slack_search_spec
+	;;
+    slack)
+	all_slack_specs
+	;;
+    *)
+	fail "Usage: $0 TYPE"
+	;;
+esac
