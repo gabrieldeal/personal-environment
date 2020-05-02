@@ -1,0 +1,40 @@
+<Html>
+<Head>
+<Title>Cache Conscious Static Search</Title>
+</Head>
+<BODY bgcolor="#ffffff" TEXT="#000000">
+<H1>Cache Conscious Static Search</H1>
+<Blockquote>
+	<A Href="ccss.tar.gz">ccss.tar.gz</A> (3KB)
+	<Blockquote>
+		Source code to the CCSS functions.
+	</Blockquote>
+	<A Href="ccss_all.tar.gz">ccss_all.tar.gz</A> (23KB)
+	<Blockquote>
+		Source code to the CCSS functions, binary search functions, Atom
+		instrumentation code, driver code, and other miscellaneous
+		functions.   Plus shell scripts to generate, 
+		manipulate, and display the data written by the driver code.
+		All barely documented.
+	</Blockquote>
+	<A Href="paper.ps">paper.ps</A> (542KB)
+	<Blockquote>
+		10-page paper discussing the CCSS versus the binary search.
+		<H2>Abstract</H2>
+		<Blockquote>
+			A cache conscious static search data 	structure is
+			presented.  The advantages and disadvantages of this 	data
+			structure over traditional binary search are
+			investigated. Cache simulations and execution timings
+			demonstrate the performance gains in using this cache
+			conscious design. 
+		</Blockquote>
+	</Blockquote> 
+	<A Href="extras.ps">extras.ps</A> (114KB)
+	<Blockquote>
+		Possibly interesting graphs that did not make it into the paper.
+	</Blockquote>
+</Blockquote>
+<Address>gmd@yellowleaf.org</Address>
+</Body>
+</Html>

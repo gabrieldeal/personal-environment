@@ -1,0 +1,225 @@
+<HTML>
+<HEAD>
+<TITLE>caldis -- Calendar entries:  display, maintain, email reminders about.</TITLE>
+<LINK REV="made" HREF="mailto:root@localhost">
+</HEAD>
+
+<BODY>
+
+<!-- INDEX BEGIN -->
+
+<UL>
+
+	<LI><A HREF="#NAME">NAME</A>
+	<LI><A HREF="#SYNOPSIS">SYNOPSIS</A>
+	<LI><A HREF="#DESCRIPTION">DESCRIPTION</A>
+	<LI><A HREF="#OPTIONS">OPTIONS</A>
+	<LI><A HREF="#The_RC_file">The RC file</A>
+	<LI><A HREF="#_Calendar_Files">~/Calendar Files</A>
+	<LI><A HREF="#Reminders_By_Mail">Reminders By Mail</A>
+	<LI><A HREF="#The_built_in_calendar_editor_pro">The built-in calendar editor program</A>
+	<LI><A HREF="#AUTHOR">AUTHOR</A>
+</UL>
+<!-- INDEX END -->
+
+<HR>
+<P>
+<H1><A NAME="NAME">NAME</A></H1>
+<P>
+caldis -- Calendar entries: display, maintain, email reminders about.
+
+<P>
+<HR>
+<H1><A NAME="SYNOPSIS">SYNOPSIS</A></H1>
+<P>
+<PRE> caldis --ascii-output-size=WIDTHxHEIGHT --begin-date=DATE 
+      --calendar-dir=DIRECTORY --date-format=STRING --end-date=DATE 
+      --graphic-output-size=WIDTHxHEIGHT --help --line-split={true,false} 
+      --mail-reminder[=EMAIL_ADDRESS] --number-days=INTEGER 
+      --output-type={ascii,gif} --output-file=FILE 
+      --output-size=WIDTHxHEIGHT --run-calendar[=COMMAND] 
+      --run-calendar-program=COMMAND --run-builtin-calendar[=EDITOR] 
+      --run-builtin-calendar-program=EDITOR --write-to-root[=COMMAND] 
+      --write-to-root-program[=COMMAND] --verbose[=INTEGER]
+</PRE>
+<P>
+<HR>
+<H1><A NAME="DESCRIPTION">DESCRIPTION</A></H1>
+<P>
+<STRONG>caldis</STRONG> reads calendar entries in <STRONG>xcalendar</STRONG> file format and writes them out as ASCII text or as a GIF. It allows you to
+specify the range of days to display and the dimensions of the output. It
+can also mail reminders about certain calendar entries if desired. I like
+to run it from <STRONG>cron</STRONG> at midnight each day and have it write its output to my root window, so I
+always have a current calendar in my background, it also mails me about
+those important birthdays that I dare not forget.
+
+<P>
+<HR>
+<H1><A NAME="OPTIONS">OPTIONS</A></H1>
+<UL>
+<LI><STRONG><A NAME="item__ascii_output_size_WIDTHxHEIGHT">--ascii-output-size=WIDTHxHEIGHT</A></STRONG>
+<P>
+The size of the output in characters for the width and lines for the
+height. Only used for --output-type=ascii.
+
+<LI><STRONG><A NAME="item__begin_date_DATE">--begin-date=DATE</A></STRONG>
+<P>
+The day to start the calendar at.
+
+<LI><STRONG><A NAME="item__calendar_dir_DIRECTORY">--calendar-dir=DIRECTORY</A></STRONG>
+<P>
+The directory to read the xcalendar calendar entries from.
+
+<LI><STRONG><A NAME="item__date_format_STRING">--date-format=STRING</A></STRONG>
+<P>
+The format to write the date for each day in the calendar. See POD
+documentation for Date::Manip for more information.
+
+<LI><STRONG><A NAME="item__end_date_DATE">--end-date=DATE</A></STRONG>
+<P>
+The day to end the calendar at (can not use along with --number-days).
+
+<LI><STRONG><A NAME="item__graphic_output_size_WIDTHxHEIG">--graphic-output-size=WIDTHxHEIGHT</A></STRONG>
+<P>
+The size of the output in pixels. Used for any graphic --output-type, just
+GIF right now.
+
+<LI><STRONG><A NAME="item__help">--help</A></STRONG>
+<P>
+This message.
+
+<LI><STRONG><A NAME="item__line_split_true_false_">--line-split={true,false}</A></STRONG>
+<P>
+If set to true, fit as much text as possible into the available space. If
+false, display each seperate line up to N characters (N depends on the
+--output-size options) and then cut it off after that, this way a long line
+won't push all other lines out of the limited window space.
+
+<LI><STRONG><A NAME="item__mail_reminder_EMAIL_ADDRESS_">--mail-reminder[=EMAIL_ADDRESS]</A></STRONG>
+<P>
+Mail reminders. If EMAIL_ADDRESS is not specified, it defaults to
+--mail-reminder-to, and if that is not specified it falls back to the
+LOGNAME environment variable. See <A HREF="#Reminders_By_Mail">Reminders By Mail</A> for more.
+
+<LI><STRONG><A NAME="item__mail_reminder_to_EMAIL_ADDRESS">--mail-reminder-to=EMAIL_ADDRESS</A></STRONG>
+<P>
+Who to mail a reminder to if --mail-reminder is specified. Mainly for use
+in the RC file to provide a default if --mail-reminder doesn't specify an
+email address.
+
+<LI><STRONG><A NAME="item__number_days_INTEGER">--number-days=INTEGER</A></STRONG>
+<P>
+The number of days to display in the calendar (can not use along with
+--end-date).
+
+<LI><STRONG><A NAME="item__output_type_ASCII_GIF_">--output-type={ASCII,GIF}</A></STRONG>
+<P>
+What kind of output <STRONG>caldis</STRONG> will give. Defaults to GIF if --write-to-root is given.
+
+<LI><STRONG><A NAME="item__output_file_FILE">--output-file=FILE</A></STRONG>
+<P>
+Where to print <STRONG>caldis</STRONG>'s output (standard output is default).
+
+<LI><STRONG><A NAME="item__output_size_WIDTHxHEIGHT">--output-size=WIDTHxHEIGHT</A></STRONG>
+<P>
+The size of <STRONG>caldis</STRONG>'s output. If the output is ascii, this is interpreted in terms of
+characters, and for GIF's it is interpreted as pixels.
+
+<LI><STRONG><A NAME="item__run_calendar_COMMAND_">--run-calendar[=COMMAND]</A></STRONG>
+<P>
+Run xcalendar before doing anything else, allows you to update your
+calendar entries and then generate new output, if an argument is given,
+then it will be used in place of the default xcalendar program. You
+probably don't want to use this in the RC file, use --run-calendar-program
+instead.
+
+<LI><STRONG><A NAME="item__run_calendar_program_COMMAND">--run-calendar-program=COMMAND</A></STRONG>
+<P>
+This is mainly for use in the RC file to provide a default if
+--run-calendar is given without the optional =COMMAND.
+
+<LI><STRONG><A NAME="item__run_builtin_calendar_EDITOR_">--run-builtin-calendar[=EDITOR]</A></STRONG>
+<P>
+Use the built-in calendar editor, this gives you a command line interface
+to modifying calendar entries. EDITOR is the name of the editor to use to
+edit the files, if not given then the EDITOR environment variable is used.
+
+<LI><STRONG><A NAME="item__run_builtin_calendar_program_E">--run-builtin-calendar-program=EDITOR</A></STRONG>
+<P>
+This is mainly for use in the RC file to provide a default if
+--run-builtin-alendar-program is given without the optional =EDITOR.
+
+<LI><STRONG><A NAME="item__write_to_root_COMMAND_">--write-to-root[=COMMAND]</A></STRONG>
+<P>
+Write the output to the root window, valid only for GIF output. If the
+optional argument is given, then that argument will be used as the command
+to write to root with. You probably don't want to use this in the RC file,
+use --write-to-root-program instead.
+
+<LI><STRONG><A NAME="item__write_to_root_program_COMMAND">--write-to-root-program[=COMMAND]</A></STRONG>
+<P>
+This is mainly for use in the RC file to provide a default if
+--write-to-root is given without the optional =COMMAND.
+
+<LI><STRONG><A NAME="item__verbose_INTEGER_">--verbose[=INTEGER]</A></STRONG>
+<P>
+Give extra output. -1 is no extra output, 0 is some output, and 1 gives it
+all.
+
+</UL>
+<P>
+<HR>
+<H1><A NAME="The_RC_file">The RC file</A></H1>
+<P>
+If <EM>.caldisrc</EM> exists, it is read each time <STRONG>caldis</STRONG> is run. Its contents are the command line options, each option on it's own
+line. Blank lines and lines whose first non-whitespace character are a #
+will be ignored. 
+
+<P>
+<HR>
+<H1><A NAME="_Calendar_Files">~/Calendar Files</A></H1>
+<P>
+In addition to the xcDDMonYYYY daily files, <STRONG>caldis</STRONG> also reads etDDMon files which are ``eternal'' files that will span years.
+Useful for remembering those important birthdays and anniversaries.
+
+<P>
+<HR>
+<H1><A NAME="Reminders_By_Mail">Reminders By Mail</A></H1>
+<P>
+<STRONG>caldis</STRONG> will mail a calendar entry if the first line of the entry starts with a
+string of the form {mail DAYS}. DAYS is a comma or space seperated list of
+positive integers, additionally N-M will be interpreted as the integers N,
+N+1, N+2, .., M-1, M. So 4-8 is short for 4,5,6,7. If the number of days
+from today to the date of a calendar entry is K and K is in the DAYS list,
+then <STRONG>caldis</STRONG> mails that calendar entry.
+
+<P>
+<HR>
+<H1><A NAME="The_built_in_calendar_editor_pro">The built-in calendar editor program</A></H1>
+<P>
+<PRE> Commands:
+  ?
+  help
+  ll [FILE [FILE [...]]]
+  ls [-l] [FILE [FILE [...]]]
+  rm FILE [FILE [...]]
+  vi FILE [FILE [...]]
+  emacs FILE [FILE [...]]
+  edit FILE [FILE [...]]
+  quit
+  exit
+</PRE>
+<P>
+FILE can be a perl regex and you can use tab filename completion.
+
+<P>
+<HR>
+<H1><A NAME="AUTHOR">AUTHOR</A></H1>
+<P>
+gabriel m deal, <A
+HREF="mailto:gmd@yellowleaf.org,">gmd@yellowleaf.org,</A> <A
+HREF="http://www.yellowleaf.org/gmd/">http://www.yellowleaf.org/gmd/</A>
+
+</BODY>
+
+</HTML>

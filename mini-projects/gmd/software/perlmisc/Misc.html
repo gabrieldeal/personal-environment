@@ -1,0 +1,113 @@
+<HTML>
+<HEAD>
+<TITLE>Misc.pm - miscellaneous functions I find useful</TITLE>
+<LINK REV="made" HREF="mailto:root@localhost">
+</HEAD>
+
+<BODY>
+
+<!-- INDEX BEGIN -->
+
+<UL>
+
+	<LI><A HREF="Misc.html#NAME">NAME</A>
+	<LI><A HREF="Misc.html#sub_debug_start_">sub debug_start($;@)</A>
+	<LI><A HREF="Misc.html#sub_debug_end_">sub debug_end($;$)</A>
+	<LI><A HREF="Misc.html#stack_trace_">stack_trace()</A>
+	<LI><A HREF="Misc.html#xdie_">xdie(;@)</A>
+	<LI><A HREF="Misc.html#xsprintf_string_string">xsprintf($string) : $string</A>
+	<LI><A HREF="Misc.html#bad_args_">bad_args($$)</A>
+</UL>
+<!-- INDEX END -->
+
+<HR>
+<P>
+<H1><A NAME="NAME">NAME</A></H1>
+<P>
+Misc.pm - miscellaneous functions I find useful
+
+<P>
+<HR>
+<H1><A NAME="sub_debug_start_">sub debug_start($;@)</A></H1>
+<P>
+Prints out useful diagnostic information when entering a function. The
+first argument is the filehandle to print to, the second is the arguments
+to the function it is called from.
+
+<P>
+Try calling it like this from class methods: Misc::debug_start($debug_fh,
+@_[ 1 .. $#_ ]) if defined <CODE>$debug</CODE> and $debug;
+
+<P>
+<HR>
+<H1><A NAME="sub_debug_end_">sub debug_end($;$)</A></H1>
+<P>
+Prints out useful diagnostic information right before exiting a function.
+Assumes that the function will exit on the next line. Pass it the
+filehandle to print to, and the return value of the function.
+
+<P>
+<HR>
+<H1><A NAME="stack_trace_">stack_trace()</A></H1>
+<P>
+Return an array containing filename, function, and line information about
+each function currently on the stack.
+
+<P>
+<HR>
+<H1><A NAME="xdie_">xdie(;@)</A></H1>
+<P>
+Exit by passing the elements of the passed array to <CODE>die(),</CODE> if
+the last element in the passed array does not end with a newline (or no
+arguments are passed), also print out a stack trace after printing the
+other passed arguments.
+
+<P>
+<HR>
+<H1><A NAME="xsprintf_string_string">xsprintf($string) : $string</A></H1>
+<P>
+Takes a format string in which the following strings are treated specially:
+
+<DL>
+<DT><STRONG><A NAME="item__p">%p</A></STRONG><DD>
+<P>
+the package name
+
+<DT><STRONG><A NAME="item__f">%f</A></STRONG><DD>
+<P>
+the filename name 
+
+<DT><STRONG><A NAME="item__l">%l</A></STRONG><DD>
+<P>
+the line 
+
+<DT><STRONG><A NAME="item__s">%s</A></STRONG><DD>
+<P>
+the subroutine name
+
+<DT><STRONG><A NAME="item__S">%S</A></STRONG><DD>
+<P>
+the package name and the subroutine name (package::subroutine)
+
+</DL>
+<P>
+You can escape a <CODE>%C</CODE> string by %%C.
+
+<P>
+Returns the string with the <CODE>%C</CODE> sequences transformed.
+
+<P>
+<HR>
+<H1><A NAME="bad_args_">bad_args($$)</A></H1>
+<P>
+I often use this to at the start of my functions like this:
+
+<P>
+<PRE> @_ == 1 or @_ == 2 Misc::bad_args(&quot;1 or 2&quot;, scalar @_);
+</PRE>
+<P>
+to perform a small sanity check on the number of arguments passed.
+
+</BODY>
+
+</HTML>

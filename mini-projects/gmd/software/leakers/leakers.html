@@ -1,0 +1,155 @@
+<HTML>
+<HEAD>
+<TITLE>leakers - Detect memory allocation errors.</TITLE>
+<LINK REV="made" HREF="mailto:root@localhost">
+</HEAD>
+
+<BODY>
+
+<!-- INDEX BEGIN -->
+
+<UL>
+
+	<LI><A HREF="leakers.html#NAME">NAME</A>
+	<LI><A HREF="leakers.html#SYNOPSIS">SYNOPSIS</A>
+	<LI><A HREF="leakers.html#DESCRIPTION">DESCRIPTION</A>
+	<LI><A HREF="leakers.html#OPTIONS">OPTIONS</A>
+	<LI><A HREF="leakers.html#OUTPUT">OUTPUT</A>
+	<LI><A HREF="leakers.html#EXAMPLE">EXAMPLE</A>
+	<LI><A HREF="leakers.html#AUTHOR">AUTHOR</A>
+</UL>
+<!-- INDEX END -->
+
+<HR>
+<P>
+<H1><A NAME="NAME">NAME</A></H1>
+<P>
+leakers - Detect memory allocation errors.
+
+<P>
+<HR>
+<H1><A NAME="SYNOPSIS">SYNOPSIS</A></H1>
+<P>
+<STRONG>leakers</STRONG> [<STRONG>--columns=NUM</STRONG>] [<STRONG>--help</STRONG>] [<STRONG>--logfile=FILE</STRONG>] [--type=TYPE] -- [COMMAND [ARG1 [ARG2 [...]]]]
+
+<P>
+<HR>
+<H1><A NAME="DESCRIPTION">DESCRIPTION</A></H1>
+<P>
+<STRONG>leakers</STRONG> runs an executable specified by <EM>COMMAND</EM> which has been linked against <STRONG>libleakers.a</STRONG>, then examines the resulting log for memory leaks and for attempts to free
+memory multiple times. If <EM>COMMAND</EM> is not given, then <STRONG>leakers</STRONG> will only examine the log file. For each potential error <STRONG>leakers</STRONG> finds, one sentence will be printed, the sentence will start with a short
+description of the error (see
+<A HREF="leakers.html#OUTPUT">OUTPUT</A> for more), then the filename and line number the error occurred, and then
+the memory address of the pointer being being operated on is printed in
+parenthesis. Becuase <STRONG>libleakers</STRONG> is not sophisticated (an understatement!), there is always the chance that
+some memory was sneakily allocated or deallocated behind its back, thus
+causing a erroneous error message.
+
+<P>
+<HR>
+<H1><A NAME="OPTIONS">OPTIONS</A></H1>
+<DL>
+<DT><STRONG><A NAME="item__columns_NUM">--columns=NUM</A></STRONG><DD>
+<P>
+<STRONG>leakers</STRONG> tries to make output more readable by wrapping lines. By default it uses
+the <EM>COLUMNS</EM> environment variable or 80 if that variable is not set. Use <STRONG>--columns=NUM</STRONG> to force leakers to try to display rows no wider than <EM>NUM</EM> characters. Use ``<STRONG>--columns=inf</STRONG>'' to disable wrapping.
+
+<DT><STRONG><A NAME="item__help">--help</A></STRONG><DD>
+<P>
+Print a short usage message.
+
+<DT><STRONG><A NAME="item__logfile_FILE">--logfile=FILE</A></STRONG><DD>
+<P>
+Write output to FILE. If <STRONG>--logfile</STRONG> is not used, then the environment variable <EM>LEAKER_LOG</EM> is used, <STRONG>leakers</STRONG> falls back to the filename ``LEAKER_LOG'' if neither environment variable
+of command line switch is available.
+
+<DT><STRONG><A NAME="item__type_TYPE">--type=TYPE</A></STRONG><DD>
+<P>
+Controls what is output.   <EM>TYPE</EM> can be any of: twiceseen, unknownfree, freestream, unknownclose, closeheap,
+memoryleak, fileleak, error. See <A HREF="leakers.html#OUTPUT">OUTPUT</A> for descriptions of these. The default is to output warnings for all. If
+more than one <STRONG>--type</STRONG> argument is given, then the union of all arguments is used. Can give
+multiple types with one <STRONG>--type</STRONG> switch if they are comma-seperated (for example: <CODE>--type=memoryleak,fileleak,error</CODE>).
+
+<DT><STRONG><A NAME="item_COMMAND">COMMAND</A></STRONG><DD>
+<P>
+The C program linked against <STRONG>libleakers.a</STRONG> to run, including command line arguments to the program.   <EM>COMMAND</EM> is passed all arguments <EM>ARG1</EM>,
+<EM>ARG2</EM>, etc.
+
+<P>
+The <STRONG>--</STRONG> preceding <EM>COMMAND</EM> is only needed if any of the arguments to
+<EM>COMMAND</EM> are preceded by a dash. There must be whitespace between <STRONG>--</STRONG>
+and <EM>COMMAND</EM>.
+
+</DL>
+<P>
+<HR>
+<H1><A NAME="OUTPUT">OUTPUT</A></H1>
+<P>
+These are all the different possible errors that <STRONG>leakers</STRONG> prints out, this also describes what the different arguments to <STRONG>--type</STRONG>
+mean. 
+
+<DL>
+<DT><STRONG><A NAME="item_Close">Close heap</A></STRONG><DD>
+<P>
+<CODE>fclose()</CODE> was called on memory allocated by
+malloc/alloc/realloc().
+
+<DT><STRONG><A NAME="item_ERROR">ERROR</A></STRONG><DD>
+<P>
+Indicates a function returned an error indication.
+
+<DT><STRONG><A NAME="item_Free">Free stream</A></STRONG><DD>
+<P>
+<CODE>free()</CODE> was called on a file stream.
+
+<DT><STRONG><A NAME="item_Memory">Memory leak</A></STRONG><DD>
+<P>
+A piece of memory returned by an allocation function was never passed to a
+free function.
+
+<DT><STRONG><A NAME="item_File">File leak</A></STRONG><DD>
+<P>
+A file stream was opened but not closed.
+
+<DT><STRONG><A NAME="item_Twice">Twice seen</A></STRONG><DD>
+<P>
+A neurotic one. Probably means that <CODE>lkr_register()</CODE> and
+<CODE>lkr_free()</CODE> are not being used correctly. Or <STRONG>libleakers</STRONG> could be broken.
+
+<DT><STRONG><A NAME="item_Unknown">Unknown close</A></STRONG><DD>
+<P>
+Possibly trying to <CODE>fclose()</CODE> a NULL value? or it could be that
+you forgot to call <CODE>lkr_register()</CODE> and then called
+<CODE>fclose()</CODE> or <CODE>lkr_free().</CODE>
+
+<DT><STRONG>Unknown free</STRONG><DD>
+<P>
+Same as ``Unknown close'', but with <CODE>free()</CODE> instead.
+
+</DL>
+<P>
+<HR>
+<H1><A NAME="EXAMPLE">EXAMPLE</A></H1>
+<P>
+Supposing <EM>leaker.h</EM> and <EM>libleaker.a</EM> are installed in
+<EM>/usr/local/include</EM> and <EM>/usr/local/lib</EM> respectively, this links <EM>test.c</EM> against libleakers, makes the <EM>COLUMNS</EM> environment variable accessible to <STRONG>leakers</STRONG>, and runs <STRONG>leakers</STRONG>.   <STRONG>leakers</STRONG>
+will first run <STRONG>test</STRONG> with the arguments <CODE>-hi mom</CODE>, and then
+<STRONG>leakers</STRONG> will examine the log which was written to
+<EM>/tmp/leakers.out</EM>.
+
+<P>
+<PRE> $ gcc -I/usr/local/include -L/usr/local/lib -o test test.c -lleakers
+ $ export COLUMNS
+ $ leakers --logfile=/tmp/leakers.out --type=memoryleak,fileleak \
+   -- ./test -hi mom
+</PRE>
+<P>
+<HR>
+<H1><A NAME="AUTHOR">AUTHOR</A></H1>
+<P>
+gabriel m deal &lt;<A
+HREF="mailto:gmd@yellowleaf.org">gmd@yellowleaf.org</A>&gt;
+
+</BODY>
+
+</HTML>

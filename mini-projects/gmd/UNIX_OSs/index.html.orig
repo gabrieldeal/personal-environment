@@ -1,0 +1,328 @@
+<Html>
+<Head>
+   <Title>UNIX Operating Systems for PC's</Title>
+<Meta Name="description" Content="List of UNIX operating systems for PC's.">
+<META NAME="keywords" CONTENT="UNIX, operating system, x86, intel, bsd, linux, free, PC">
+</Head>
+<Body Bgcolor="#FFFFFF">
+<Center>
+	<H2>UNIX (and UNIX-like) OS's for the x86</H2>
+	<HR WIDTH="80%" SIZE="1" COLOR="#000000">
+</Center>
+Since I love UNIX and only own PC's, I've compiled this list.
+It's certainly not definitive and my descriptions are far from
+authorative.   Please mail me at
+<A Href="mailto:gmd@yellowleaf.org">gmd@yellowleaf.org</A>
+with comments or any additions I could make.
+<P>
+
+<A Href="mac680x0.html">UNIX's for 680x0 Macintoshes and Power PC's</A>,
+YeeeHaw!
+<Br>
+Links to some great
+<A Href="resources.html">operating system info pages</A>.
+<P>
+<Table>
+	<Tr>
+		<Td>
+			<A HREF="http://www.am.cs.vu.nl/">Amoeba</A>
+			<Br>
+			<SMALL>(limited license, UNIX'ish)</SMALL>
+		</Td>
+		<Td>
+			A distributed OS, needs multiple machines to run
+			<BR>
+		</Td>
+	</Tr>
+	<Tr>
+		<Td>
+			<A HREF="http://www.bsdi.com/">BSDI</A><Sup>*</Sup>
+		</Td>
+		<Td>
+			I've worked for two ISP's that ran this, at least one of
+			them is still using BSDI (the other switched to RH linux).   (X11)
+		</Td>
+	</Tr>
+	<Tr>
+		<Td>
+			<A HREF="http://www.uni-giessen.de/faq/archiv/coherent-faq.general/msg00000.html">Coherent</A>
+		</Td>
+		<Td>
+			The manufacturer is out of business now, may be able to pick up a used copy from 
+			<A Href="news:comp.os.coherent">comp.os.coherent</A>.   
+			80286 and up.   (compatible with V7, no X11 support)
+		</Td>
+	</Tr>
+	<Tr>
+		<Td>
+			<A HREF="http://www.uk.linux.org/ELKS-Home/index.html">ELKS</A>
+		</Td>
+		<Td>
+			The Embeddable Linux Kernel Subset.   Requires as little as
+			120K RAM, on an 8088 and up.   Networking, swapping and other
+important things are still under development (as of 5/23/98).
+		</Td>
+	</Tr>
+	<Tr>
+		<Td>
+			<A HREF="http://www.esix.com/">ESIX</A><Sup>*</Sup>
+		</Td>
+		<Td>
+			Used to run this as news server on a 486DX66, crashed a
+			lot, but then the disk filled up a lot and the traffic was
+			high.   (Pure SVR4, X11)
+		</Td>
+	</Tr>
+	<Tr>
+		<Td>
+			<A HREF="http://www.freebsd.org/">FreeBSD</A><Sup>*</Sup>
+			<SMALL>(free)</SMALL>
+		</Td>
+		<Td>
+			A great choice, the support for this is good (as in USENET and mailing lists).
+			x86 only (as of 2/98), 
+			<A Href="http://www.freebsd.org/FAQ/FAQ11.html#11">Alpha port</A> in the works.
+			(from 386BSD 0.1, X11R6)
+			<BR>
+		</Td>
+	</Tr>
+	<Tr>
+		<Td>
+			<A	HREF="http://www.gnu.ai.mit.edu/software/hurd/hurd.html">GNU Hurd</A>
+			<SMALL>(free)</SMALL>
+		</Td>
+		<Td>
+			Gnu's OS.   Still very beta at the moment (the moment is 9/97).
+			(Mach3 kernel, no X so far)
+			<BR>
+		</Td>
+	</Tr>
+	<Tr>
+		<Td>
+			<A HREF="http://www.sun.com/software/ius/">Interactive UNIX</A>
+		</Td>
+		<Td>
+			"The INTERACTIVE UNIX System is targeted primarily to small-
+			to medium-size organizations as a low-cost, resource-sharing,
+			multiuser system." -- Sun.   (SVR3.2, X11)
+ 			<BR>
+		</Td>
+	</Tr>
+	<Tr>
+		<Td>
+			<A HREF="http://www.linux.org">Linux</A><Sup>*</Sup>
+			<SMALL>(free)</SMALL>
+		</Td>
+		<Td>
+			Probably the most well-known of the free UNIX's.
+			Everybody and their kid sister runs it.
+			(POSIX compliant, X11R6)
+			<BR>
+		</Td>
+	</Tr>
+	<Tr>
+		<Td>
+			<A HREF="http://WWW.Lynx.COM/index.html">LynxOS</A>
+		</Td>
+		<Td>
+			A real-time UNIX-like system (runs on half a dozen architectures).   (POSIX compliant, X11R5)
+			<BR>
+		</Td>
+	</Tr>
+	<Tr>
+		<Td>
+			<A HREF="http://www.mport.com/sales/products.html#mpunix">Microport</A>
+		</Td>
+		<Td>
+			(Pure SVR4, X11)
+			<BR>
+		</Td>
+	</Tr>
+	<Tr>
+		<Td>
+			<A Href="http://www.cs.utah.edu/projects/flexmach/mach4/html/Mach4-proj.html">Mach 4</A>
+			<Br>
+			<A Href="http://www.cs.hut.fi/~jvh/lites.html">4.4 BSD Lite Server</A>
+			<Br>
+		</Td>
+		<Td>
+			The Mach microkernel from Carnegie Mellon, runs on some of the
+			*BSD's, Linux, and the GNU HURD.
+			<BR>
+		</Td>
+	</Tr>
+	<Tr>
+		<Td>
+			<A HREF="http://www.cs.vu.nl/~ast/minix.html">Minix</A><Sup>*</Sup>
+			<Br>
+			<SMALL>(free, limited license)</SMALL>
+		</Td>
+		<Td>
+			Great for that 8088 with 640K RAM in your closet.
+			Runs on Intel, Macintosh, Amiga, Atari, SPARC.
+			Easy install.   (V7, no X11 support)
+			<BR>
+		</Td>
+	</Tr>
+	<Tr>
+		<Td>
+			<A HREF="http://Minix-vmd.cs.vu.nl/">Minix-vmd</A>
+			<Br>
+			<SMALL>(free, limited license)</SMALL>
+		</Td>
+		<Td>
+			Minix + virtual memory &amp; X-Windows.   (V7, X11, working on POSIX compliance)
+			<BR>
+		</Td>
+	</Tr>
+	<Tr>
+		<Td>
+			<A HREF="http://www.NetBSD.ORG/">NetBSD</A>
+			<SMALL>(free)</SMALL>
+		</Td>
+		<Td>
+			Supports many many different architectures.   (from 386BSD, X11R6)
+			<BR>
+		</Td>
+	</Tr>
+
+	<Tr>
+		<Td>
+			<A HREF="http://www.next.com/">NEXTSTEP</A>
+		</Td>
+		<Td>
+			The ever-hip NeXT has been bought by Apple but hopefully will live on, runs on SPARC, x86, PA-RISC, mk68k.   (X11R5, BSD on Mach kernel)
+			<Br>
+		</Td>
+	</Tr>
+
+	<Tr>
+		<Td>
+			<A HREF="http://www.openbsd.org/">OpenBSD</A><Sup>*</Sup>
+			<SMALL>(free)</SMALL>
+		</Td>
+		<Td>
+			Runs on over a dozen hardware platforms.   Very security conscious.   My choice of
+			the *BSD's, but not as user-friendly as FreeBSD. 
+			(originated from NetBSD, X11R6)
+			<Br>
+		</Td>
+	</Tr>
+	<Tr>
+		<Td>
+			<A HREF="http://www.ecf.toronto.edu/plan9/">Plan 9</A>
+			<Br>
+			<SMALL>(UNIX'ish, free trial)</SMALL>
+		</Td>
+		<Td>
+			From AT&T, sounds neat.
+			<BR>
+		</Td>
+	</Tr>
+	<Tr>
+		<Td>
+			<A HREF="http://www.qnx.com/">QNX</A>
+			<Br>
+		</Td>
+		<Td>
+			Realtime UNIX-like OS based on a microkernel architecture.
+			<BR>
+		</Td>
+	</Tr>
+	<Tr>
+		<Td>
+			<A HREF="http://www.sco.com/">SCO</A> 
+			<Br>
+			<SMALL>($19, limited license)</SMALL>
+		</Td>
+		<Td>
+			$19 for UnixWare (SVR4.2) or OpenServer (X11) CD, complete system.   (X11R5)
+			<BR>
+		</Td>
+	</Tr>
+	<Tr>
+		<Td>
+			<A HREF="http://www.mastaler.com/jason/solaris/index.html">Solaris</A><Sup>*</Sup>
+			<Br>
+			<SMALL>(free)</SMALL>
+		</Td>
+		<Td>
+			<A Href="http://sun.com/solaris/freesolaris.html">Free</A> for non-commercial use!   386 and up.   (SVR5, X11R6)
+			<BR>
+		</Td>
+	</Tr>
+	<Tr>
+		<Td>
+			<A HREF="http://ccadfa.cc.adfa.oz.au/CS/jjh/386bsd.html">386BSD</A>
+			<SMALL>(free)</SMALL>
+		</Td>
+		<Td>
+			The mother of the *BSD's, no longer supported.   (from Berkeley Net/2 release)
+			<BR>
+		</Td>
+	</Tr>
+	<Tr>
+		<Td>
+			<A HREF="http://www.sandh.com/">TSX</A>
+			<Br>
+			<Small>(sharware trial)</Share>
+		</Td>
+		<Td>
+			An odd sounding UNIX system.   A 2-user shareware version without networking support available to download.
+			<BR>
+		</Td>
+	</Tr>
+<!--
+	!-Tr-!
+		!-Td-!
+			!-A HREF="http://www.vci.com/prod_serv/1_2/"-!Venix!-/A-! 
+		!-/Td-!
+		!-Td-!
+			A real-time OS from VentureCom, Inc.   (SVR3.2, X11)
+		!-/Td-!
+	!-/Tr-!
+-->
+	<Tr>
+		<Td>
+			<A HREF="http://www.faqs.org/faqs/sco/xenix/preamble.html">Xenix</A> 
+		</Td>
+		<Td>
+			The oldest Intel-based UNIX, from Microsoft.   Dead ages ago.   (SVR2)
+		</Td>
+	</Tr>
+	<Tr>
+		<Td>
+			<A HREF="http://willow.canberra.edu.au/~chrisc/xinu.html">Xinu</A> 
+		</Td>
+		<Td>
+			What is this?
+		</Td>
+	</Tr>
+</Table>
+<Sup>*</Sup>Means I've used this OS, so the description may be a little less BS than the non-starred ones.
+
+<P>
+In my "check this out" list:
+<Br>
+<Blockquote>
+	<Pre>
+http://world.std.com/~mikep/rtx-page.html  RTX (Real-Time Operating System)
+Eurix (80?86) SVR3.2 (Germany) 
+Generics UNIX (80386) SVR4.03 (Germany) 
+PC-IX (IBM 8086)SV 
+UHC (80x86) pure SVR4, X11, Motif 
+http://www.modcomp.com/
+http://www.realtime-info.be/encyc/market/rtos/rtos/rtos71.htm
+http://www.rtmx.com/
+http://www.realtime-info.be/encyc/market/rtos/rtos/rtos102.htm
+http://www.realtime-info.be/encyc/market/rtos/rtos/rtos78.htm
+	</Pre>
+</Blockquote>
+
+<Center>
+
+<HR WIDTH="80%" SIZE="1" COLOR="#000000">
+<Address><A Href="mailto:gmd@yellowleaf.org">gmd@yellowleaf.org</A></Address>
+</Center>
+</Body>
+</Html>

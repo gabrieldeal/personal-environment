@@ -1,0 +1,23 @@
+<HTML>
+<HEAD>
+<TITLE>Internet Racquetball Ladder</TITLE>
+</HEAD>
+<BODY bgcolor="#ffffff" TEXT="#000000">
+	<H1>Internet Racquetball Ladder Software</H1>
+<Blockquote>
+        This ancient thing shouldn't be used.
+        <p/>
+	<A Href="rball-0.02.tar.gz">rball-0.02.tar.gz</A>
+	(152KB).
+	<Br>
+	The rball
+	<A Href="README-0.02">README</A>.
+	<Br>
+	This software at the UW right now,
+	so to get an idea of what it does just 
+	<A Href="http://www.atmos.washington.edu/~ovens/rball">browse around</A>.
+
+</Blockquote>
+<Address>gmd@yellowleaf.org</Address>
+</Body>
+</Html>

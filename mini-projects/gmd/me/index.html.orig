@@ -1,0 +1,83 @@
+<Html>
+<Head>
+<Title>me</Title>
+</Head>
+<BODY bgcolor="#ffffff" TEXT="#000000">
+<Center>
+	<H1>me</H1>
+	<HR WIDTH="80%" NOSHADE SIZE="1">
+	<Table Width="75%"><Tr><Td>
+		All about me.   Hmmmm, well here is something that my friend Laura once
+		told me:
+		<Pre>
+		you know, you could be considered a nerd. you don't look like one, but
+		you have a computer and math major, you get excited about the new TeX,
+		etc. why don't you get out more?</Pre>
+		She's always awfully nice to me.
+		<P>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+	   So I have a BS, double major in math and computer science, from the
+		University of 
+		Washington (1999).   The UW's a wonderful school, particulary the 
+		Computer Science Department, which I feel very lucky to have been
+		a part of.   Currently, I'm working in Seattle as a programmer at
+		an e-commerce business (<a href="2001-01-25-PacMed-floor5-Seattle.jpg">the view from my window</a>).
+		<P>
+		WHAT DO YOU ENJOY DOING GABRIEL?
+		<Br>
+		hmmmmm...
+		<Br>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		I love a
+		good book, there are few things better, a short list of my favorites is: <U>The
+		Lord of the Rings</U>, Tad William's <U>Memory, Sorrow, and Thorn</U>
+		trilogy, Adam's <U>Hitchiker's Guide to the Galaxy</U>, Dumas' <U>The Count of Monte
+		Cristo</U>, Pirsig's <U>Zen and the Art of Motorcycle Maintenence</U>,
+		James Hilton's <U>Random Harvest</U>, and anything by Charles de Lint.
+		<Br>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		And what would
+		life be without music? again a few of my fav's are:  Suzanne Vega,
+		The Beastie Boys, Sky Cries Mary, The Creatures, David Bowie, 311,
+		Squirrel Nut Zippers, Steeleye Span, Combustible Edison, Plastilina Mosh, and so much
+		more.
+		<Br>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		I'm a down-hill skier (when I can afford it), and I play racquetball and tennis, and ride my bicycle a lot (mostly to work).
+		And I love juggling and flower sticks!   I'm working on my 5-ball right now, I can't
+		keep them up for long.   I also juggle clubs and can do a good number
+		of different patterns with them, and with 3 and 4 balls.   I'm even
+		semi-professional! -- to kill
+		time while waiting for my bus at the Greyhound station, I sat in line
+		and did 3-ball patterns.   I made $3.53, I totally wasn't expecting
+		it, it was pretty fun I thought.
+		<Br>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+	   One more thing I enjoy a lot is sleeping.   I think sleep is a
+	real great idea and I'm working on fitting more of it into my
+	schedule. 
+	
+		<P>
+		So what do I look like?   My mom I'm told, but I don't see the
+		resemblance.   I'm 6 foot 3 with long
+		brown hair.   And now I even have a
+		<A Href="AIgroup2.jpg">picture</A>
+		of myself, I'm the one in the middle, we were trying
+		to smirk for the camera, I'm not sure if that explains all 
+		our expressions.
+		
+		<P>
+	</Td></Tr></Table>
+	<HR WIDTH="80%" NOSHADE SIZE="1">
+	<A HREF="mailto:gmd@yellowleaf.org"><ADDRESS>gmd@yellowleaf.org</ADDRESS></A>
+	<Small>
+		<Script>
+			//<!--
+				document.write("Last modified: " + document.lastModified);
+			//-->
+		</Script>
+	</Small>
+
+</Center>
+</Body>
+</Html>

@@ -1,0 +1,142 @@
+<HTML>
+<HEAD>
+<TITLE>liblkrs - Detect memory allocation errors.</TITLE>
+<LINK REV="made" HREF="mailto:root@localhost">
+</HEAD>
+
+<BODY>
+
+<!-- INDEX BEGIN -->
+
+<UL>
+
+	<LI><A HREF="liblkrs.html#NAME">NAME</A>
+	<LI><A HREF="liblkrs.html#SYNOPSIS">SYNOPSIS</A>
+	<LI><A HREF="liblkrs.html#DESCRIPTION">DESCRIPTION</A>
+	<LI><A HREF="liblkrs.html#FUNCTIONS">FUNCTIONS</A>
+	<UL>
+
+		<LI><A HREF="liblkrs.html#void_lkr_register_void_ptr_ch">void *lkr_register(void *ptr, char *filename, unsigned long linenum)</A>
+		<LI><A HREF="liblkrs.html#void_lkr_unregister_void_ptr_">void *lkr_unregister(void *ptr, char *fname, unsigned long lineno)</A>
+		<LI><A HREF="liblkrs.html#void_lkr_setflags_unsigned_int_f">void lkr_setflags(unsigned int flags)</A>
+		<LI><A HREF="liblkrs.html#void_lkr_setlogfile_const_char_">void lkr_setlogfile(const char *fname)</A>
+	</UL>
+
+	<LI><A HREF="liblkrs.html#AUTHOR">AUTHOR</A>
+</UL>
+<!-- INDEX END -->
+
+<HR>
+<P>
+<H1><A NAME="NAME">NAME</A></H1>
+<P>
+liblkrs - Detect memory allocation errors.
+
+<P>
+<HR>
+<H1><A NAME="SYNOPSIS">SYNOPSIS</A></H1>
+<P>
+#include &lt;lkr.h&gt;
+
+<P>
+void *<STRONG>lkr_malloc</STRONG>(size_t size, char *fname, unsigned long lineno)
+
+<P>
+void *<STRONG>lkr_calloc</STRONG>(size_t nmemb, size_t size, char *fname, unsigned long lineno)
+
+<P>
+void *<STRONG>lkr_realloc</STRONG>(void *ptr, size_t size, char *fname, unsigned long lineno)
+
+<P>
+char *<STRONG>lkr_strdup</STRONG>(const char *src, char *fname, unsigned long lineno)
+
+<P>
+void <STRONG>lkr_free</STRONG>(void *ptr, char *fname, unsigned long lineno)
+
+<P>
+FILE *<STRONG>lkr_fopen</STRONG>(char *path, char *mode, char *fname, unsigned long lineno)
+
+<P>
+FILE *<STRONG>lkr_fdopen</STRONG>(int filedes, char *mode, char *fname, unsigned long lineno)
+
+<P>
+int <STRONG>lkr_fclose</STRONG>(FILE *stream, char *fname, unsigned long lineno)
+
+<P>
+<HR>
+<H1><A NAME="DESCRIPTION">DESCRIPTION</A></H1>
+<P>
+To use <STRONG>liblkrs</STRONG>, include <EM>lkr.h</EM> in any C source file you wish to debug.   <STRONG>liblkrs</STRONG> works by using macros to replace calls in your code with calls to one of
+the <STRONG>lkr_*()</STRONG> functions listed above, so including <EM>lkr.h</EM> may be all you need to do. If you are using functions that <STRONG>liblkrs</STRONG> doesn't know about, you may want to write your own macros to wrap calls to
+those functions, for instance if you're using GNU readline, this might be
+useful:
+
+<P>
+<PRE> #define readline(a) lkr_register(readline(a), __FILE__, __LINE__)
+</PRE>
+<P>
+Once you've recompiled your code, run it as usual, and use <STRONG>leakers</STRONG>
+to examine the trace file <STRONG>liblkrs</STRONG> wrote.
+
+<P>
+<HR>
+<H1><A NAME="FUNCTIONS">FUNCTIONS</A></H1>
+<P>
+<HR>
+<H2><A NAME="void_lkr_register_void_ptr_ch">void *lkr_register(void *ptr, char *filename, unsigned long linenum)</A></H2>
+<P>
+Register memory as allocated and return it. Useful when libraries you are
+linking against such as Readline allocates memory for you.   
+
+<P>
+<EM>ptr</EM>: the newly allocated memory.   <EM>filename</EM>: name of file where <CODE>lkr_register()</CODE> memory was allocated
+(__FILE__).   <EM>linenum</EM>: line number where memory was allocated (__LINE__).
+
+<P>
+Returns: the return value is <EM>ptr</EM>.
+
+<P>
+<HR>
+<H2><A NAME="void_lkr_unregister_void_ptr_">void *lkr_unregister(void *ptr, char *fname, unsigned long lineno)</A></H2>
+<P>
+Unregister memory. Useful when you are passing memory you have registered
+(using malloc/calloc/realloc or lkr_register) off to another library to
+deallocate for you.
+
+<P>
+<EM>ptr</EM>: pointer to the memory you are about to deallocate.
+<EM>fname</EM>: filename where memory is being deallocated.   <EM>lineno</EM>: line number where memory is being deallocated.
+
+<P>
+Returns: the return value is <EM>ptr</EM>.
+
+<P>
+<HR>
+<H2><A NAME="void_lkr_setflags_unsigned_int_f">void lkr_setflags(unsigned int flags)</A></H2>
+<P>
+Set the error handling flags. Use this to cause <STRONG>liblkrs</STRONG> to print a warning message to standard error or to dump core when an error
+is detected. Default is LKR_IGNORE.
+
+<P>
+<EM>flags</EM>: one of LKR_IGNORE, LKR_CROAK, or LKR_WARN
+
+<P>
+<HR>
+<H2><A NAME="void_lkr_setlogfile_const_char_">void lkr_setlogfile(const char *fname)</A></H2>
+<P>
+Use this function to change the log file name from the default filename:
+LEAKER_LOG. The environment variable LEAKER_LOG can be used to set this
+also.
+
+<P>
+<HR>
+<H1><A NAME="AUTHOR">AUTHOR</A></H1>
+<P>
+gabriel m. deal, <A
+HREF="mailto:gmd@yellowleaf.org,">gmd@yellowleaf.org,</A> <A
+HREF="index.html">http://www.yellowleaf.org/gmd/software/leakers/</A>
+
+
+</BODY>
+
+</HTML>

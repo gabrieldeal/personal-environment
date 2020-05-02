@@ -1,0 +1,57 @@
+Copyright (c) 1999 Gabriel Deal. All rights reserved.
+This program is free software; you can redistribute it and/or
+modify it under the same terms as Perl itself.
+
+
+   This is the product of a hurried 12 hour evening of programming and
+a few debugging sessions.   It's not particularly pretty and bugs
+exist I am sure.   Use at your own risk.   That said, it's been
+running fine for me for a couple months or so.
+
+
+lib/CGI*
+lib/Date/*
+lib/AsciiDB/*
+	These are all modules written by others.   The CGI and DateManip
+packages are unmodified.   I have modified AsciiDB and made notes
+regarding the changes in each .pm file.   They are all available at
+your nearest CPAN site (see http://www.perl.com/).
+
+DB/description/
+	An entry for whenever a user joins or leaves the ladder, and also
+	an entry for each match reported. 
+DB/users/
+	The user records, win/loss, passwords, names, etc.
+DB/save/
+	When a user leaves the ladder using the delete_user.cgi program
+	their entry from DB/users/ is moved here.
+
+cgi/
+	This directory contains the CGI programs that the players use to
+	create and update their accounts.
+
+lib/Globals.pm
+	This is a configuration file.
+lib/Rball.pm
+	The heart of the ladder, this class is called by all the CGI's to
+	update the ladder.
+lib/Misc.pm
+	Miscellaneous helpful functions I use all over the place.
+
+
+   This code requires perl 5.004 or later (available at
+http://www.perl.com/).
+
+   To install, edit the Rball.pm config file.   Change the
+#!/usr/local/bin/perl lines in the CGI files in cgi/ to wherever Perl
+is at your site.  Fire up a browser, point it to disthtml/index.html,
+and try creating a user.
+
+
+   If you use this it'd be cool if you let me know.   Feel free to
+email me if you run into problems and I would really like to know if
+you make any improvements.   I don't promise to answer questions
+quickly or even at all, but I'll do my best.
+
+gmd@yellowleaf.org
+http://www.yellowleaf.org/gmd/software/rball/

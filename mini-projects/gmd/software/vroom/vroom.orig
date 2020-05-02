@@ -1,0 +1,91 @@
+<HTML>
+<HEAD>
+<TITLE>vroom - a Perl/Tk program for practicing your typing</TITLE>
+<LINK REV="made" HREF="mailto:root@localhost">
+</HEAD>
+
+<BODY>
+
+<!-- INDEX BEGIN -->
+
+<UL>
+
+	<LI><A HREF="#NAME">NAME</A>
+	<LI><A HREF="#SYNOPSIS">SYNOPSIS</A>
+	<LI><A HREF="#DESCRIPTION">DESCRIPTION</A>
+	<LI><A HREF="#OPTIONS">OPTIONS</A>
+	<LI><A HREF="#AUTHOR">AUTHOR</A>
+</UL>
+<!-- INDEX END -->
+
+<HR>
+<P>
+<H1><A NAME="NAME">NAME</A></H1>
+<P>
+vroom - a Perl/Tk program for practicing your typing
+
+<P>
+<HR>
+<H1><A NAME="SYNOPSIS">SYNOPSIS</A></H1>
+<P>
+vroom [--characters=N] [--competitive] [--help] [--nocompetitive]
+[--speed=INTEGER] [FILE]
+
+<P>
+<HR>
+<H1><A NAME="DESCRIPTION">DESCRIPTION</A></H1>
+<P>
+<STRONG>vroom</STRONG> displays text to type, when you finish typing the text, it displays your
+typing speed. There are two modes: competitive and non-competitive. In
+competitive mode you must keep up with the speed that <STRONG>vroom</STRONG> is displaying text at, but if you type faster than that speed, then, like
+cruise control in cars, it will temporarily speed up to accomodate you. The
+speed at which it presents you with new text and the mode it runs in are
+both configurable on the command line and at runtime. 
+
+<P>
+<STRONG>vroom</STRONG> uses a normal ASCII file to get the text it displays. Any sequence of
+whitespace (tab, space, or newline) is converted to a single space because
+otherwise it is difficult to tell the difference between the three kinds of
+whitespace. 
+
+<P>
+<HR>
+<H1><A NAME="OPTIONS">OPTIONS</A></H1>
+<UL>
+<LI><STRONG><A NAME="item__characters_N">--characters=N</A></STRONG>
+<P>
+the number of characters that will be displayed at once (default is 50).
+
+<LI><STRONG><A NAME="item__competitive">--competitive</A></STRONG>
+<P>
+run in competitive mode (default).
+
+<LI><STRONG><A NAME="item__help">--help</A></STRONG>
+<P>
+display a short usage message.
+
+<LI><STRONG><A NAME="item__nocompetitive">--nocompetitive</A></STRONG>
+<P>
+run in non-competitive mode.
+
+<LI><STRONG><A NAME="item__speed_INTEGER">--speed=INTEGER</A></STRONG>
+<P>
+set the speed (in characters per minute) that new characters are displayed
+at to INTEGER, only used in competitive mode (default is 60).
+
+<LI><STRONG><A NAME="item_FILE">FILE</A></STRONG>
+<P>
+the data file to load initially.
+
+</UL>
+<P>
+<HR>
+<H1><A NAME="AUTHOR">AUTHOR</A></H1>
+<P>
+gabriel m. deal &lt;<A
+HREF="mailto:gmd@yellowleaf.org">gmd@yellowleaf.org</A>&gt; <A
+HREF="http://www.yellowleaf.org/gmd/">http://www.yellowleaf.org/gmd/</A>
+
+</BODY>
+
+</HTML>

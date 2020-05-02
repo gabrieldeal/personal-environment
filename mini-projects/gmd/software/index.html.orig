@@ -1,0 +1,29 @@
+<Html>
+<Head>
+<Title>Software Projects</Title>
+</Head>
+<Body bgcolor="#ffffff" TEXT="#000000">
+<H1>Various small software projects of mine</H1>
+I just rediscovered this old page.  The contents of this page date back to the 90s.  It's only of archeological interest.
+<Blockquote>
+	<Ul>
+		<Li><A Href="ccss/">Cache Conscious Static Search</A>
+			- research paper and code
+		<Li><A Href="fishspear/">Fishspear Priority Queue</A>
+			- implementation of the Fishspear data structure
+		<Li><A Href="rball/">UW Internet Racquetball Ladder</A>
+			- web-based tournament system
+		<Li><A Href="perlmisc/">Misc Perl Routines</A> 
+			- various possibly useful functions
+		<Li><A Href="caldis/">Calendar Display</A>
+			- manage and display calendar entries
+		<Li><A Href="leakers/">Leakers</A>
+			- detect memory leaks in C programs
+		<Li><A Href="vroom/">Vroom</A>
+			- a Perl/Tk program for practicing your typing
+	</Ul>
+</Blockquote>
+<Address>gmd@yellowleaf.org</Address>
+</Body>
+</Html>
+

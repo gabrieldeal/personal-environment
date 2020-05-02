@@ -1,0 +1,594 @@
+<HTML>
+<HEAD>
+   <TITLE>gmd bookmarks</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+
+<Center><H1>bookmarks</H1></Center>
+<HR WIDTH="80%" SIZE="1" COLOR="#000000">
+
+<A Href="#graphic programs">graphic programs</A>
+--
+<A Href="#www">www</A>
+--
+<A Href="#entertainment">entertainment</A>
+--
+<A Href="#TeX">TeX</A>
+--
+<A Href="#mathematica">Mathemathica</A>
+--
+<A Href="#security">security</A>
+--
+<A Href="#programming">programming</A>
+--
+<A Href="#data structures">data structures</A>
+--
+<A Href="#weather">weather</A>
+--
+<A Href="#info">info</A>
+--
+<A Href="#UNIX OS's">UNIX OS's for x86's</A>
+--
+<A Href="#UNIX info">UNIX info</A>
+--
+<A Href="#ftp">ftp</A>
+--
+<A Href="#fonts">fonts</A>
+--
+<!--
+	A Href="#asian"Asian paintings/A 
+	Br
+-->
+<A Href="#UofW">UofW</A>
+--
+<A Href="#search">search engines</A>
+<Br>
+
+<!--  NEWS LINKS
+http://www.cnn.com/
+http://www.yahoo.com/News_and_Media/Daily/General_News/
+http://www.newscurrent.com/
+http://www.washingtonpost.com/
+http://www.usatoday.com/
+http://weBreview.com/
+
+-->
+
+<A Name="graphic programs"></A>
+<H2>graphic programs</H2>
+<Blockquote>
+	<A Href="http://www.gimp.org/">www.gimp.org</A> Photoshop-like for UNIX	
+	<Br>
+	<A Href="http://www.wizards.dupont.com/cristy/ImageMagick.html">imagemagick</A>  graphics package for UNIX
+</Blockquote>
+
+
+<A NAME="www"></A>
+<H2>www</H2>
+<Blockquote>
+	<A Href="http://www.ucc.ie/xml/">XML FAQ</A>
+	<Br>
+	<A Href="http://www.apache.org/docs/directives.html">Apache httpd server runtime configurations</A>
+	<Br>
+	<A Href="http://hoohoo.ncsa.uiuc.edu/">NCSA httpd Home Page</A>
+	<Br>
+	<A Href="http://www.carleton.ca/~dmcfet/html/ssi.html">server side includes</A>
+	<Br>
+	<A Href="http://www.ncsa.uiuc.edu/SDG/Software/Mosaic/Docs/fill-out-forms/overview.html">forms</A>
+	<Br>
+	<A Href="http://hoohoo.ncsa.uiuc.edu/cgi/">common gateway interface (CGI)</A>
+	<Br>
+	<A Href="http://www.ncsa.uiuc.edu/General/Internet/WWW/HTMLPrimer.html">beginner's guide to HTML</A>
+	<Br>
+	<A Href="http://www.cc.ukans.edu/~acs/docs/other/HTML_quick.shtml">HTML quick reference</A>
+	<Br>
+	<A Href="http://www.htmlgoodies.com/html_ref.html">HTML quick reference</A> (gone?)
+	<Br>
+	<A Href="http://hoohoo.ncsa.uiuc.edu/docs/tutorials/imagemapping.html">imagemap tutorial</A>
+	<Br>
+	<A Href="http://www.hway.com/ihip/clientside.html">client-side imagemaps</A>
+	<Br>
+	<A Href="http://members.aol.com/royalef/gifanim.htm">animated gif's</A>
+	<Br>
+	<A Href="http://www.w3.org/hypertext/WWW/Protocols/HTTP/HTTP2.html">http protocol</A>
+</Blockquote>
+	
+<A NAME="realaudio"></A>
+<H2>RealAudio</H2>
+<Blockquote>
+	<A Href="http://www.liveconcerts.com/">www.liveconcerts.com</A>
+	<Br>
+	<A Href="http://www.rollingstone.com/">www.rollingstone.com</A>
+</Blockquote>
+
+<A NAME="entertainment"></A>
+<H2>entertainment</H2>
+<Blockquote>
+	<A Href="http://www.vega.net">music, Suzanne Vega</A>
+	<Br>
+	<A Href="http://www.skycriesmary.com/">music, Sky Cries Mary</A>
+	<Br>
+	<A Href="http://www.wcug.wwu.edu/~cames/scm/">music, unofficial Sky Cries Mary page</A>
+	<Br>
+	<A Href="http://www.netpoint.be/abc/nico/index.html">music, nico</A>
+	<Br>
+	<A Href="http://www.teleport.com/~bwill/colorifics/index.htm">music, The Colorifics</A>
+	<Br>
+	<A Href="http://www.subpop.com/bands/combustible/comed/index.html">music, Combustible Edison</A>
+	<Br>
+	<A Href="http://www.icorp.net/dada/">music, dada</A>
+	<Br>
+	<A Href="http://www.amherst.edu/~bgjohnso/space/spacer.cgi?frames=true&page=frames.html">music, Space</A>
+	<Br>
+	<A Href="http://www.juggling.org/">sports, juggling information service</A>
+	<Br>
+	<A Href="http://www.teleport.com/~timlodge/">sports, Timberline ski area</A>
+	<Br>
+	<A Href="http://skihood.com/">sports, Mt Hood Meadows ski area</A>
+	<Br>
+	<A Href="http://www.skibowl.com/">sports, Ski Bowl</A>
+	<Br>
+	<A Href="http://www.racquetball.org/pub&ref/97rules.htm">sports, Racquetball rules</A>
+	<Br>
+	<A Href="http://www.tiac.net/users/eldred/nh/hawthorne.html">author, Nathaniel Hawthorne</A>
+	<Br>
+	<A Href="http://www.gothic.net/poe/">author, Edgar Allan Poe</A>
+	<Br>
+	<A Href="http://ocala.cs.miami.edu/~nosaj/">author, Kahlil Gibran</A>
+	<Br>
+	<A Href="http://www.promo.net/pg/">Project Gutenberg, a large collection of online-literature</A>
+	<Br>
+	<A Href="http://www.digiserve.com/er/erdex.html">TV, ER homepage</A>
+	<Br>
+	<A Href="http://comedy.clari.net/rhf/">funny, rec.humor.funny home page and archives</A>
+	<Br>
+	<A Href="http://www.kingfeatures.com/comics/sforth/index.htm">funny, Sally Forth comics</A>
+	<Br>
+	<A Href="http://www.unitedmedia.com/comics/roseisrose/index.html">funny, Rose is Rose comics</A>
+	<Br>
+	<A Href="http://www.snoot.com/factory/knowledge.shtml">The Infinite Book of Knowledge</A>
+	<Br>
+	<A Href="http://sagan.earthspace.net/~esr/ecsl/">Eric Conspiracy home page</A>
+	<Br>
+	<A Href="http://www.best.com/~pvdl/">Peter Van Linden</A>
+</Blockquote>
+	
+<A NAME="programming"></A>
+<H2>programming(ish)</H2>
+<Blockquote>
+		<A Href="http://www.perl.com/perl/">Perl info</A>
+		<Br>
+		<A Href="http://www.panix.com/~clay/perl/">Perl reference material</A>
+		<Br>
+		<A Href="http://www.metronet.com/perlinfo/perl5.html">Perl5 info</A>
+		<Br>
+		<A Href="http://www.sco.com/Technology/tcl/Tcl.html">TCL WWW info</A>
+		<Br>
+		<A Href="http://www.cs.indiana.edu/docproject/programming/postscript/postscript.html"> PostScript, A First Guide to</A>
+		<Br>
+		<A Href="http://yoyo.cc.monash.edu.au/~wigs/postscript/">Postscript Resources</A>
+		<Br>
+		<A Href="http://java.sun.com/doc/tutorial.html">Java tutorial</A>
+		<Br>
+		<A Href="http://java.sun.com/products/jdk/1.1/docs/api/packages.html">Java v1.1 API</A>
+		<Br>
+		<A Href="http://www.mindwell.com/elm-filters/elm-filters.html">Elm Filter Guide</A>
+		<Br>
+		<A Href="http://www.lysator.liu.se/c/bwk-tutor.html">C tutorial by Brian W. Kernighan</A>
+		<Br>
+		<A Href="http://globus.isi.edu/ccpp/">C++ resources</A>
+		<Br>
+		<A Href="http://home.netscape.com/eng/mozilla/Gold/handbook/javascript/index.html">Netscapes JavaScript Reference and Tutorial</A>
+		<Br>
+		<A Href="http://w3.one.net/~jhoffman/sqltut.htm">SQL tutorial</A>
+		<Br>
+		<A Href="http://www-swiss.ai.mit.edu/~jaffer/r4rs_toc.html">Scheme reference</A>
+		<Br>
+		<A Href="http://www-swiss.ai.mit.edu/scheme-home.html">Scheme resources</A>
+		<Br>
+		<A Href="http://www.dcs.napier.ac.uk/course-notes/sml/manual.html">Intro to ML</A>
+		<Br>
+		<A Href="http://www.dina.kvl.dk/%7Esestoft/sml/sml-std-basis.html">The Standard ML Basis LiBrary</A>
+		<A Href=""></A>
+</Blockquote>
+
+<A NAME="data structures"></A>
+<H2>data structures</H2>
+<Blockquote>
+		<A Href="http://www.ee.uwa.edu.au/~plsd210/ds/">Various data structures and algorithms</A>
+		<Br>
+		<A Href="http://hissa.ncsl.nist.gov/~black/CRCDict/">Data structure and algorithm dictionary</A>
+		<Br>
+		<A Href="http://www.cs.sunysb.edu/~algorith/">Combinatorial Algorithms</A>
+		<Br>
+		<A Href="http://www.dcc.uchile.cl/~oalonso/handbook/hbook.html">Handbook of Algorithms and Data Structures source code</A>
+		<Br>
+		<A Href="http://members.xoom.com/thomasn/s_man.htm">Sorting cookbook</A>
+		<Br>
+		<A Href="http://www.ddj.com/ddj/1998/1998_04/lead/lead.htm">Ternary search trees</A>
+
+</Blockquote>
+	
+
+<A NAME="TeX"></A>
+<H2>TeX</H2>
+<Blockquote>
+	<A Href="http://www.cogs.susx.ac.uk/cgi-bin/texfaq2html?introduction=yes">TeX FAQ</A>
+	<Br>
+	<A Href="http://www.tug.org/">TeX User Group (TUG)</A>
+	<Br>
+	<A Href="http://sunland.gsfc.nasa.gov/info/eplain/Top.html">Extended Plain TeX (eplain)</A> (add columns to your TeX documents among other things)
+	<Br>
+	<A Href="http://www-mpy.desy.de/LaTeX/ug/ug.html">Psfig info</A> (include PostScript files in your TeX documents)
+	<Br>
+	<A Href="http://www.math.Brown.edu/~jhs/">TeX quick reference card</A> (useful)
+	<Br>
+	<A Href="http://www.lehigh.edu/~dlj0/LyriX.html">LyX</A> WYSIWYG word-processor that uses LaTeX as its typesetter
+	<Br>
+	<A Href="http://www.mathpro.com/math/cookbook/cookbook.html">TeX cookbook</A>
+	<Br>
+	<A Href="http://www.stat.ucla.edu/develop/tex/tex/gentle.ps.gz">Gentle intro to TeX</A> (gzipped PostScript file)
+</Blockquote>
+
+<A NAME="mathematica"></A>
+<H2>Mathematica</H2>
+<Blockquote>
+	<A Href="http://saaz.lanl.gov/math/Math_Home.html">Los Alamos Lab's Mathematica Tutorial</A> <SMALL>(i like this one)</SMALL>
+	<Br>
+	<A Href="http://www.wolfram.com/">Wolfram Research:  Makers of Mathematica</A>
+	<Br>
+	<A Href="http://www.wolfram.com/cgi-bin/MathSource/General/Tutorials">Wolfram has a number of Mathematica tutorials</A>
+	<Br>
+	<A Href="http://www.merriam.uiuc.edu/Mathematica/mmain.htm">Merriam Lab's Mathematica Tutorial</A>
+	<Br>
+	<A Href="http://eeunix.ee.usm.maine.edu/ee/faculty/mjkcc/docs/tutorials/tutorial1.html">Intro and Quick Tour</A>
+	<Br>
+	<A Href="http://eeunix.ee.usm.maine.edu/ee/faculty/mjkcc/docs/tutorials/tutorial2.html">Programming in Mathematica</A>
+	<Br>
+	<A Href="http://eeunix.ee.usm.maine.edu/ee/faculty/mjkcc/docs/tutorials/tutorial3.html">Rewrite and Transformation Rules</A>
+	<Br>
+	<A Href="http://darkwing.uoregon.edu/~math/gradstudent/Mathematica/mathem.html">UofOregon Mathematica info</A> (they have a nice tutorial notebook here)
+</Blockquote>
+
+<A Name="security"></A>
+<H2>Security</H2>
+<Blockquote>
+	<A Href="http://www.lib.ox.ac.uk/internet/news/faq/comp.security.unix.htm">comp.unix.security FAQs</A>
+	<Br>
+	<A Href="http://www.phrack.com/">Phrack Magazine</A>
+	<Br>
+	<A Href="http://www.geek-girl.com/bugtraq/index.html">Bugtraq mailing list archives</A	>
+	<Br>
+	<A Href="http://www.rootshell.com/">Rootshell</A>
+	<Br>
+	<A Href="http://www.antionline.com/">AntiOnline</A>
+	<Br>
+	<A Href="http://www.secnet.com/nav1.html">security advisories from Secure Networks</A>
+	<Br>
+	<A Href="http://www.xos.nl/linux/ipfwadm/">ipfwadm</A> Linux firewalling software
+	<Br>
+	<A Href="http://cheops.anu.edu.au/~avalon/">IP Filter</A> packet filter, mostly for the BSD's
+</Blockquote>
+
+<!--
+	!#A NAME="asian"#!!#/A#!
+	!#H2#!Asian Paintings, Woodblocks, etc!#/H2#!
+	!#Blockquote#!
+		!#A Href="http://www.altech.ab.ca/gliu/gerald.htm?"#!The Art of Gerald Liu!#/A#!
+		!#Br#!
+		!#A Href="http://www.castlefinearts.com/online.html"#!Castle Fine Arts!#/A#!
+		!#Br#!
+		!#A Href="http://www.artsanddesignsjapan.com/"#!Arts and Designs of Japan!#/A#!
+		!#Br#!
+		!#A Href="http://www.artindex.com/Hara/index.htm"#!Hara Shobo Japanese prints!#/A#!
+		!#Br#!
+		!#A Href="http://www.artculture.ch/degener/"#!RM Degener gallery for Japanese prints!#/A#!
+		!#Br#!
+		!#A Href="http://www.chinaarts.com/index.htm"#!China Arts!#/A#!
+		!#Br#!
+		!#A Href="http://www.npm.gov.tw/"#!National Palace Museum, Taiwan!#/A#!
+	!#/Blockquote#!
+-->
+
+<A NAME="weather"></A>
+<H2>weather</H2>
+<Blockquote>
+	<A Href="http://www.atmos.washington.edu/">UofW Atmospheric Sciences home pages</A>
+	<Br>
+	<A Href="http://cnn.com/WEATHER/html/SeattleWA.html">CNN's 4-day Seattle forcast</A>
+	<Br>
+	<A Href="http://www.weather.com/weather/us/cities/WA_Seattle.html">The Weather Channel's 5-day Seattle forcast</A>
+	<Br>
+	<A Href="http://www.intellicast.com/weather/sea/">Intellicast's Seattle 4-day forcast</A>
+	<Br>
+	<A Href="http://cnn.com/WEATHER/html/PortlandOR.html">CNN's 4-day Portland forcast</A>
+	<Br>
+	<A Href="http://www.weather.com/weather/us/cities/OR_Portland.html">The Weather Channel's 5-day Portland forcast</A>
+	<Br>
+	<A Href="http://www.intellicast.com/weather/pdx/">Intellicast's Portland 4-day forcast</A>
+	<Br>
+	<A Href="http://www.usatoday.com/weather/basemaps/wcity1.htm">USA Today's city weather list</A>
+</Blockquote>
+
+<A NAME="info"></A>
+<H2>info</H2>
+<Blockquote>
+	<A Href="http://www.valuevillage.com/corp/usstores.htm">US locations of Value Villages</A>
+	<Br>
+	<A Href="http://wombat.doc.ic.ac.uk/foldoc/index.html">Computing Dictionary</A>
+	<Br>
+	<A Href="http://www.mtnds.com/af/">Acronym finder</A>
+	<Br>
+	<A Href="http://www.thelist.com">huge world-wide list of ISP's</A>
+	<Br>
+	<A Href="http://www.lib.utexas.edu/Libs/PCL/Map_collection/Map_collection.html">PCL Map Collection</A>
+	<Br>
+	<A Href="http://www.mapblast.com/mapblast/locator.html">Mapblast, wow! find any spot on the map</A>
+	<Br>
+	<A Href="http://pubweb.parc.xerox.com/map/">Xerox world map server</A>
+	<Br>
+	<A Href="http://ds.internic.net/ds/rfc-index.html">RFC index</A>, 
+	<A Href="http://info.internet.isi.edu/1s/in-notes/rfc/files">alternate site</A>
+	<Br>
+	<A Href="http://pubweb.nexor.co.uk/public/rfc/index/rfc.html">RFC's searchable</A>
+	<Br>
+	<A Href="http://www.nova.edu/Inter-Links/reference.html">reference shelf</A>
+	<Br>
+	<A Href="http://www.m-w.com/netdict.htm">WWWebster Dictionary</A>
+	<Br>
+	<A Href="http://c.gp.cs.cmu.edu:5103/prog/webster?">hypertext webster dictionary interface</A> 
+	<Br>
+	<A Href="http://www.wg.omron.co.jp/cgi-bin/j-e/">japanese/american dictionary</A>
+	<Br>
+	<A Href="http://www.itc.omron.com/cgi-bin/j-e/tty/fg=bl/dict">alternate japanese/american dictionary</A>
+	<Br>
+	<A Href="http://english-www.hss.cmu.edu/recipes/measures.html">British to metric conversion</A>
+	<Br>
+	<A Href="http://www.mplik.ru/~sg/transl/">javascript measurement converter</A>
+	<Br>
+	<A Href="http://www.four11.com">locate people</A>
+</Blockquote>
+
+<H2><A NAME="UNIX OS's">UNIX OS's for the x86</A></H2>
+<Blockquote>
+	i've moved my PC UNIX OS list 
+	<A Href="../UNIX_OSs/">here</A>
+</Blockquote>
+
+<H2><A NAME="UNIX info">UNIX info</A></H2>
+<Blockquote>
+	<A Href="http://www.edu.stockholm.se/siag/">Siag Office</A>, free office package for UNIX
+	<Br>
+	<A Href="http://www.lehigh.edu/~dlj0/LyriX.html">LyX</A> WYSIWYG word-processor that uses LaTeX as its typesetter
+	<Br>
+	<A Href="http://www.eeyore-mule.demon.co.uk/">Maxwell word processor for UNIX</A>
+	<Br>
+	<A Href="http://www.stardivision.com/">StarOffice</A>, office suite that runs under Linux, Solaris, and Java among others.
+	<Br>
+	<A Href="http://www.cs.cmu.edu/People/AUIS/andrew-home.html">Andrew User Interface System</A> -- an office suite of sorts for UNIX</A>
+	<Br>
+	<A Href="http://cm.bell-labs.com/cm/cs/who/dmr/">Origins of UNIX and other cool stuff -- Dennis Ritchie's home page</A>
+	<Br>
+	<A Href="http://sagan.earthspace.net/esr/">Eric Raymond's home page</A>
+	<Br>
+	<A Href="http://cesdis.gsfc.nasa.gov/linux/beowulf/beowulf.html">Clustering using Linux</A>
+	<Br>
+	My collection 
+	<A Href="../BSDinfo/">BSD info</A>.
+	<Br>
+	<A Href="http://www.prz.tu-berlin.de/~wolf/os-bs.html">OS-BS</A>
+	boot manager
+	<Br>
+	<A Href="http://ipmasq.home.ml.org">Linux IP Masquerading</A>.
+	<A Href="http://www.hwy401.com/achau/ipmasq/">(alternate site)</A>
+	<Br>
+	<A Href="http://www.cheapbytes.com/">cheap linux stuff</A>
+	(i'm not advocating this)
+	<Br>
+	<A Href="http://www.debian.org">Debian/GNU Linux</A>
+	<Br>
+	<A Href="ftp://tsx-11.mit.edu/pub/linux/">linux, tsx-11.mit.edu</A>
+	<Br>
+	<A Href="ftp://sunsite.unc.edu/pub/Linux/">ftp.sunsite.unc.edu</A>	
+	<Br>
+	<A Href="http://www.uworld.com/uworld/index.html">UnixWorld Online Mag</A>
+	<Br>
+	<A Href="http://www.pricewatch.com/">Price Watch -- hardware prices</A>
+	<Br>
+	<A Href="http://www.cs.cmu.edu/People/AUIS/andrew-home.html">The Andrew Consortium (UNIX office suite)</A>
+</Blockquote>
+<A NAME="ftp"></A>
+<H2>ftp</H2>
+<Blockquote>
+	<P>
+	<A Href="http://www.boutell.com/lsm/">Linux Software Map</A>
+	<Br>
+	<A Href="ftp://ftp.digex.net/pub/gnu/">main GNU ftp site</A>
+	<Br>
+	<A Href="ftp://ftp.digex.net/pub/gnu/">mirror GNU ftp site</A>
+	<Br>
+	<A Href="http://www.freebsd.org/ports/">FreeBSD ports collection</A>
+	<Br>
+	<A Href="ftp://ftp3.freebsd.org/">FreeBSD ftp site</A> (supports on-the-fly tarring of directories)
+	<Br>
+	<A Href="ftp://openbsd.eecs.umich.edu:/pub/OpenBSD">OpenBSD ftp mirror</A> (supports on-the-fly tarring of directories)
+	<Br>
+	<A Href="http://smc.vnet.net/solaris_2.5.html">Solaris 2.5 packages for Sparc's</A> 
+	(for x86's
+	<A Href="http://smc.vnet.net/solaris_2.5_x86.html">here</A>)
+	<Br>
+	<A Href="http://hpux.cae.wisc.edu/">directory of ported HP-UX software</A>
+	<Br>
+	<A Href="http://www.delorie.com/djgpp/">DJGPP, free DOS C/C++ compiler</A>
+</Blockquote>
+
+<A NAME="fonts"></A>
+<H2>fonts</H2>
+<Blockquote>
+   <A Href="http://goblet.anu.edu.au/~m9305357/type1inst.html">type1inst</A>,
+	install those Type 1 fonts in UNIX
+	<Br>
+	<A Href="http://www.ora.com/homepages/comp.fonts/ifa/index.htm">the internet font archives</A>
+	<Br>
+	<A Href="http://muff.cs.mcgill.ca/~luc/freefonts.html">list of sites with free fonts</A> (no longer around?)
+	<Br>
+   <A Href="http://www.itis.com/~wonko/kiwi/wonkofonts.html">Kiwi fonts, wow!</A>
+   <Br>
+	<A Href="http://www.psrg.cs.usyd.edu.au/~matty/Spif/">UNIX font editor (not available yet)</A>
+	<H3>Type 1</H3>
+	<Blockquote>
+	   <A Href="http://www.jumbo.com/graph/win/fonts/">Jumbo! - Words & Graphics: Windows: Fonts</A>
+		<Br>
+   	<A Href="http://www.netaxs.com/~tgi/hellbox/hellbox.html">hellbox type foundry</A>
+		<Br>
+	   <A Href="http://www.teleport.com/~wamozart/fontware.html#publicdomain">Marty's Font Warehouse</A>
+		<Br>
+	   <A Href="http://www.surrface.com/typehtml/index2.html">Surface Type</A>
+		<Br>
+	   <A Href="http://members.aol.com/MatchSoft/Pages/welcome_fairy.html">Match Software Fonts & Scripts</A>
+		<Br>
+	   <A Href="http://www.knownet.net/users/plillie/Free.html"">Free Stuff!</A>
+		<Br>
+	   <A Href="http://WWW.VINTAGETYPE.COM/">Welcome to Vintage Type</A>
+	</Blockquote>
+
+
+<!--
+	!#H3#!True Type!#/H3#!
+	!#Blockquote#!
+	   !#A Href="http://www.typeart.com/"#!DIGITeyes MultimediaTypeArt LiBrary!#/A#!
+	   !#Br#!
+	   !#A Href="http://www.fonthead.com"#!Fonthead Design, nice!#/A#!
+	   !#Br#!
+	   !#A Href="http://www.fontsource.com/"#!Font Source!#/A#!
+	   !#Br#!
+   	!#A Href="http://ourworld.compuserve.com/homepages/bigtlittlet/coolfont.htm"#!Cool Fonts Online, some nice ones!#/A#!
+	   !#Br#!
+	   !#A Href="http://www.serif.com/"#!Serif, Inc, fonts and software!#/A#!
+	   !#Br#!
+	   !#A Href="http://www.microsoft.com/truetype/free.htm"#!Microsoft fonts!#/A#!
+	   !#Br#!
+	   !#A Href="http://home.earthlink.net/~castlesys/"#!Castle sys fonts!#/A#!
+		!#Br#!
+	   !#A Href="http://fonts.eyecandy.com/"#!Fonts Unlimited!#/A#!
+		!#Br#!
+	   !#A Href="http://members.aol.com/chichix/index.html"#!Chi International - HOME!#/A#!
+		!#Br#!
+	   !#A Href="http://wabakimi.carleton.ca/~mgauthie/"#!Fonts for Free!#/A#!
+		!#Br#!
+	   !#A Href="http://www.chank.com/"#!Chankstore: Hipsterfontheaven.!#/A#!
+		!#Br#!
+	   !#A Href="http://www.comptechdev.com/cavop/aoe/"#!Astigmatic One Eye Foundry!#/A#!
+	!#/Blockquote#!      
+-->
+</Blockquote>
+
+
+<A NAME="UofW"></A>
+<H2>UofW</H2>
+<Blockquote>
+	<A Href="http://www.washington.edu/tech_home/software/sun.html">ScholarPAC III info</A>
+	<Br>
+	<A Href="http://www2.cac.washington.edu/tech_home/software/">Software resources</A>
+	<Br>
+	<A Href="http://transit.metrokc.gov/bus/bus.html">Seattle Metro info</A>
+	<Br>
+	<A Href="http://flint.ivhs.washington.edu/sst/">Seattle Smart Traveler - Rideshare</A>
+	<Br>
+	<A Href="http://www.washington.edu/upass/">U-Pass info</A>
+	<Br>
+	<A Href="http://www.cs.washington.edu/education/computer-science/computer-science.html">u-dub CS homepage</A>
+	<Br>
+	<A Href="http://www.cs.washington.edu/">Univ. of Washington Computer Science &amp; Engineering</A>
+	<Br>
+	<A Href="http://www.washington.edu/students/reg/calendar.html">academic calendar</A>
+	<Br>
+	<A Href="http://www.cs.washington.edu/education/courses/">CSE courses</A>
+	<Br>
+	<A Href="http://www4.biostr.washington.edu/UWIRL/">University of Washington Internet Racquetball Ladder</A>
+	<Br>
+	<A Href="http://www.washington.edu/students/staronline/">Star Online</A>
+	<Br>
+	<A Href="http://www.cs.washington.edu/htbin-post/affiliates/form.cgi/www/affiliates/config/uresume.inc?action=entry">CS resume databank</A>
+	<Br>
+	<A Href="http://www.cs.washington.edu/education/time-sched/">CS timeschedules</A>
+	<Br>
+	<A Href="http://www.math.washington.edu/~sheetz/officehrs.txt">Math Profs' office hours</A>
+</Blockquote>
+
+<A NAME="search"></A>
+<H2>search</H2>
+<Blockquote>
+	<A Href="http://www.calafia.com/webmasters/">All about search engines</A>
+	<Br>
+	<A Href="http://www.yahoo.com">Yahoo</A>
+	<Br>
+	<A Href="http://www.hotbot.com/">hotbot (formely inktomi)</A>
+	<Br>
+	<A Href="http://www.lycos.com">lycos</A>
+	<Br>
+	<A Href="http://www.altavista.com">alta vista</A>
+	<Br>
+	<A Href="http://www.stpt.com/">starting point</A>
+	<Br>
+	<A Href="http://www.infoseek.com/">Infoseek Guide</A>
+	<Br>
+	<A Href="http://www.dejanews.com/forms/dnquery.html">de ja news</A>
+	<Br>
+	<A Href="http://www.vanusa.net/">vancouver WA yahooish site</A>
+	<Br>
+	<A Href="http://index.opentext.net/">opentext</A>
+	<Br>
+	<A Href="http://webcrawler.com">webcrawler</A>
+	<Br>
+	<A Href="http://www.excite.com/">exite</A>
+	<Br>
+	<A Href="http://apollo.co.uk/">apollo</A>
+	<Br>
+	<A Href="http://newtoo.manifest.com/">what's new too?</A>
+	<Br>
+	<A Href="http://www.stpt.com/">starting point</A>
+	<Br>
+	<A Href="http://www.intbc.com/sleuth/">internet sleuth</A>
+	<Br>
+	<A Href="http://galaxy.einet.net/">galaxy</A>
+	<Br>
+	<A Href="http://www.linkstar.com/">linkstar</A>
+	<Br>
+	<A Href="http://metroscope.com/">metroscope</A>
+	<Br>
+	<A Href="http://www.tribal.com/search.htm">tribal voice</A>
+	<Br>
+	<A Href="http://www.snoopie.com/">snoopie</A>
+	<Br>
+	<A Href="http://guano.cs.colorado.edu/home/mcBryan/wwww.html">the www worm</A>
+	<Br>
+	<A Href="http://www.ez2.net/search.htm">list of more search engines</A>
+	<Br>
+	<A Href="http://www.angelfire.com/pg0/searchlink/index.html">and more search engines</A>
+	<Br>
+	<A Href="http://www.yahoo.com/Computers_and_Internet/Internet/World_Wide_Web/Searching_the_Web/Search_Engines/">yahoo's list of search engines</A>
+</Blockquote>
+
+<A NAME="graduate"></A>
+<H2>places i might like to go to graduate school at</H2>
+<Blockquote>
+	<A Href="http://www.berkeley.edu/">Berkeley</A>
+	<Br>
+	<A Href="http://www.washington.edu/">U of W</A>
+	<Br>
+	<A Href="http://www.ogi.edu/">Oregon Graduate Institute</A>
+	<Br>
+	<A Href="http://www.cmu.edu/">Carnegie Mellon</A>
+	<Br>
+	<A Href="http://www.mit.edu/">MIT</A>
+	<Br>
+	<A Href="http://www.uiuc.edu/">University of Illinois</A>
+</Blockquote>
+
+<HR WIDTH="80%" SIZE="1" COLOR="#000000">
+<Center><ADDRESS><A Href="mailto:gmd@yellowleaf.org">gmd@yellowleaf.org</A></ADDRESS></Center>
+
+</BODY>
+</HTML>
+

@@ -1,0 +1,17 @@
+<HTML>
+<HEAD>
+<TITLE>Miscellaneous Perl Functions</TITLE>
+</HEAD>
+<BODY bgcolor="#ffffff" TEXT="#000000">
+	<H1>Miscellaneous Perl Functions</H1>
+<Blockquote>
+	<A Href="Misc.pm">Misc.pm</A>
+	(27KB).
+	<Br>
+	pod2text
+	<A Href="Misc.html">output</A>
+	from the code.
+</Blockquote>
+<Address>gmd@yellowleaf.org</Address>
+</Body>
+</Html>
