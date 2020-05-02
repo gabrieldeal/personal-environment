@@ -23,7 +23,7 @@ switch_workspace 5
 # emacs to parse the copious output.
 /usr/bin/gnome-terminal \
     --profile Tool \
-    -x /home/gabrielx/local/bin/start-webpack-dev-server &
+    -x /home/gabrielx/local/bin/run-oss-huddle-webpack &
 
 /usr/bin/gnome-terminal \
     --profile Tool \
@@ -40,9 +40,6 @@ switch_workspace 2
 /usr/bin/gnome-terminal \
     --profile Tool \
     -x /home/gabrielx/local/bin/start-huddle-hack &
-/usr/bin/gnome-terminal \
-    --profile Tool \
-    -x /home/gabrielx/local/bin/start-guard &
 
 # sleep 10
 #
