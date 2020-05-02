@@ -13,6 +13,8 @@ find $dir \
     -name blib -prune -o \
     -name public -prune -o \
     -name generated -prune -o \
+    -name coverage -prune -o\
+    -name dist -prune -o \
     \( \
       -path '*/bin/*[a-zA-Z0-9]' \
 	-o -name Makefile \
@@ -29,6 +31,7 @@ find $dir \
 	-o -name \*.js \
 	-o -name \*.jsx \
 	-o -name \*.es6 \
+	-o -name \*.ts \
 	-o -name Procfile \
 	-o -name package.json \
 	-o -name Rakefile \
