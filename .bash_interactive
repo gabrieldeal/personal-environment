@@ -28,8 +28,6 @@ export PHANTOMJS_BIN=/usr/bin/phantomjs
 export EDITOR=emacs
 export LESS="-I -R"
 
-export DEBUG="app:error" # oss_ms_teams
-
 # For Debian packaging tools:
 export DEBFULLNAME="Gabriel M. Deal"
 export DEBEMAIL="gabriel.m.deal@gmail.com"
