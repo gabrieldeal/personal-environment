@@ -5,8 +5,8 @@
   - name: Home page
     copy:
       src: ../public_html/index.html
-      dest: ~/public_html/index.html
+      dest: /var/lib/docker/volumes/dogabrielx_letsencrypt-config/_data/www/index.html
   - name: Home page dependencies
     synchronize:
       src: ../public_html/home/
-      dest: ~/public_html/home
+      dest: /var/lib/docker/volumes/dogabrielx_letsencrypt-config/_data/www/home

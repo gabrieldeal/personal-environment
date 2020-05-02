@@ -22,7 +22,8 @@ services:
       - PGID=1000
       - PUID=1000
       - EMAIL=formerly.gabriel@gmail.com
-      - URL=apps.yellowleaf.org
+      - SUBDOMAINS=www,apps
+      - URL=yellowleaf.org
       - TZ=America/Los_Angeles
     image: "linuxserver/letsencrypt"
     ports:
