@@ -23,5 +23,5 @@ export NODE_OPTIONS='--max-old-space-size=5120'
 
 bundle install \
     && nvm install "$NVM_VERSION" \
-    && (yarn check || yarn install) \
+    && (yarn install --check-files --frozen-lockfile --ignore-optional) \
     && bin/webpack-dev-server --inline
