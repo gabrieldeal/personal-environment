@@ -585,7 +585,10 @@ sub get_options {
      (setq-default flycheck-disabled-checkers
 		   (append flycheck-disabled-checkers '(javascript-jshint)))
      (flycheck-add-mode 'javascript-eslint 'web-mode)
+     (flycheck-add-mode 'typescript-tslint 'web-mode)
      (setq flycheck-shellcheck-follow-sources nil)
+     (setq flycheck-typescript-tslint-executable
+	   (concat (clever-cmd-ec--vc-root-dir) "node_modules/tslint/bin/tslint"))
      (setq flycheck-javascript-eslint-executable
 	   (concat (clever-cmd-ec--vc-root-dir) "node_modules/eslint/bin/eslint.js"))
      (setq flycheck-eslintrc (concat (clever-cmd-ec--vc-root-dir) ".eslintrc.js"))))
@@ -606,6 +609,11 @@ sub get_options {
 
 (add-hook 'typescript-mode-hook
 	  (lambda ()
+	    (tide-setup)
+	    (flycheck-mode +1)
+	    (setq flycheck-check-syntax-automatically '(save mode-enabled))
+	    (eldoc-mode +1)
+	    (tide-hl-identifier-mode +1)
 	    (setq indent-tabs-mode nil)
 	    (setq typescript-indent-level 2)
 	    (prettier-js-mode)))
@@ -1282,7 +1290,7 @@ SWITCH-TO-BUFFER - whether to switch to the buffer if it is already running."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (typescript-mode disable-mouse org yaml-mode php-mode graphql-mode prettier-js rjsx-mode ws-trim web-mode rubocop robe paredit nxml-mode markdown-mode magit json-mode flycheck clever-cmd))))
+    (tide typescript-mode disable-mouse org yaml-mode php-mode graphql-mode prettier-js rjsx-mode ws-trim web-mode rubocop robe paredit nxml-mode markdown-mode magit json-mode flycheck clever-cmd))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
