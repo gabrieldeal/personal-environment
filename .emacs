@@ -286,6 +286,9 @@
 (setq auto-mode-alist (cons '("\\.xs$" . c++-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("typemap" . c++-mode) auto-mode-alist))
 
+(setq auto-mode-alist (cons '("\\.yml$" . yaml-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '("\\.yaml$" . yaml-mode) auto-mode-alist))
+
 (setq auto-mode-alist (cons '("\\.java$" . java-mode) auto-mode-alist))
 
 (setq auto-mode-alist (cons '("\\.json$" . json-mode) auto-mode-alist))
