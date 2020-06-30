@@ -4,6 +4,10 @@ function all_slack_specs() {
     find spec/ -name \*_spec.rb | grep slack
 }
 
+function all_printing_specs() {
+    find spec/ -name \*_spec.rb | grep -e print -e svg
+}
+
 fail() {
     echo "$@" 1>&2
     exit 1
@@ -11,6 +15,9 @@ fail() {
 
 type="$1"
 case "$type" in
+    print*)
+	all_printing_specs
+	;;
     slack-short)
 	all_slack_specs | grep -v -e find_controller_spec -e employee_slack_search_spec
 	;;
