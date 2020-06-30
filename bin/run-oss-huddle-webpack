@@ -2,7 +2,9 @@
 
 . "$HOME/.nvm/nvm.sh"
 
-cd ~/projects/oss/huddle && \
-    nvm install 8 && \
-    (yarn check || yarn install) && \
-    RAILS_ENV=development bin/webpack --progress
+cd ~/projects/oss/huddle \
+    && bundle install \
+    && nvm install "$(cat .node-version)" \
+    && nvm use "$(cat .node-version)" \
+    && (yarn --check-files --frozen-lockfile --ignore-optional install) \
+    && RAILS_ENV=development bin/webpack --progress
