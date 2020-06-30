@@ -18,10 +18,9 @@ then
     rm -rf node_modules vendor/node_modules || exit 1
 fi
 
-NVM_VERSION=8 # stable (10) was failing to build node-sass.
-export NODE_OPTIONS='--max-old-space-size=5120'
+export NODE_OPTIONS='--max-old-space-size=8120'
 
 bundle install \
-    && nvm install "$NVM_VERSION" \
+    && nvm install "$(cat .node-version)" \
     && (yarn install --check-files --frozen-lockfile --ignore-optional) \
     && bin/webpack-dev-server --inline
