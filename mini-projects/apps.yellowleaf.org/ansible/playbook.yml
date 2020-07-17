@@ -2,12 +2,18 @@
 - hosts: all
   remote_user: "{{ lookup('env', 'REMOTE_USER') }}"
   tasks:
-  - name: Copy Nginx config
+  - name: Copy Nginx proxy config
     copy:
       src: "{{ item }}"
-      dest: /var/lib/docker/volumes/dogabrielx_letsencrypt-config/_data/nginx/
+      dest: /var/lib/docker/volumes/dogabrielx_letsencrypt-config/_data/nginx/proxy-confs/
     with_fileglob:
-      - ../*.subfolder.conf
+      - "../*.subfolder.conf"
+  - name: Copy Nginx site config
+    copy:
+      src: "{{ item }}"
+      dest: /var/lib/docker/volumes/dogabrielx_letsencrypt-config/_data/nginx/site-confs/
+    with_fileglob:
+      - "../site.conf"
   - name: Copy docker compose config
     copy:
       src: ../docker-compose.yml
