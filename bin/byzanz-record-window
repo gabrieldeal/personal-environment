@@ -12,6 +12,9 @@ then
     exit 1
 fi
 
+echo "Prepare this command to stop recording: rm /tmp/byzanz-pause.lock"
+read pauseme
+
 echo "Click on the window to record"
 XWININFO=$(xwininfo)
 read X <<< $(awk -F: '/Absolute upper-left X/{print $2}' <<< "$XWININFO")
