@@ -14,5 +14,6 @@ cd "$directory" || exit 1
 source "$HOME/.nvm/nvm.sh"
 source "$HOME/.rvm/scripts/rvm"
 source $(rvm "$(cat .ruby-version)@$(cat .ruby-gemset)" do rvm env --path)
+nvm use 10
 
 exec "$@"
