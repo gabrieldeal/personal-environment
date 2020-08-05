@@ -1,10 +1,14 @@
 #!/usr/bin/env bash
 
-function all_slack_specs() {
+function slack_desk_booking_specs() {
+    find spec/ -name \*_spec.rb | grep slack | grep desk_booking
+}
+
+function slack_specs() {
     find spec/ -name \*_spec.rb | grep slack
 }
 
-function all_printing_specs() {
+function printing_specs() {
     find spec/ -name \*_spec.rb | grep -e print -e svg
 }
 
@@ -16,13 +20,16 @@ fail() {
 type="$1"
 case "$type" in
     print*)
-	all_printing_specs
+	printing_specs
 	;;
     slack-short)
-	all_slack_specs | grep -v -e find_controller_spec -e employee_slack_search_spec
+	slack_specs | grep -v -e find_controller_spec -e employee_slack_search_spec
 	;;
     slack)
-	all_slack_specs
+	slack_specs
+	;;
+    slack-desk-booking)
+	slack_desk_booking_specs
 	;;
     *)
 	fail "Usage: $0 TYPE"
