@@ -1136,6 +1136,7 @@ This makes it easy to figure out which prefix to pass to yank."
     (goto-char (point-min))
     (set-buffer-modified-p nil)
     (display-buffer buf)))
+(defalias 'gmd-show-kill-ring 'show-kill-ring)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
