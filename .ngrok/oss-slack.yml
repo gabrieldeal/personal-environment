@@ -15,3 +15,7 @@ tunnels:
     proto: http
     addr: 4000
     subdomain: gabriel-middleware-dicksonlabs
+  oauth_dispatch:
+    proto: http
+    addr: 5000
+    subdomain: gabriel-oauth-dispatch-dicksonlabs
