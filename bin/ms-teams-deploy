@@ -1,0 +1,15 @@
+#!/usr/bin/env sh
+
+project="$1"
+if [ -z "$project" ]
+then
+    echo "Usage: $0 PROJECT" 1>&2
+    exit 1
+fi
+
+. "$HOME/.nvm/nvm.sh"
+
+nvm use 10 \
+    && yarn install \
+    && yarn run build \
+    && gcloud app deploy --project "$project"  app-"$project".yaml
