@@ -1,0 +1,51 @@
+#!/usr/bin/env bash
+#-*-shell-script-*-
+
+set-xterm-title "oss_dispatch"
+
+port=5000
+if [ -n "$1" ]
+then
+    port=$1
+fi
+
+fail() {
+    echo "$@" 1>&2
+    exit 1
+}
+
+pid_file="tmp/pids/server.pid"
+if [ -f tmp/pids/server.pid ]
+then
+    kill -9 "$(cat "$pid_file")" || fail "Error killing PID in '$pid_file'"
+    sleep 1
+fi
+
+# In case we are not ran via an interactive shell:
+source "$HOME/.rvm/scripts/rvm"
+
+cd ~/projects/oss/oauth_dispatch \
+    && rvm get stable \
+    && rvm install `cat .ruby-version` \
+    && rvm use `cat .ruby-version`@`cat .ruby-gemset` --create \
+    && gem install mailcatcher \
+    && gem install bundle \
+    && bundle install \
+    && echo "Migrating development..." && bin/rake db:migrate RAILS_ENV=development \
+    && echo "Migrating test..." && bin/rake db:migrate RAILS_ENV=test
+if [ "$?" -ne 0 ]
+then
+    fail "Error setting up rails env"
+fi
+
+#source "$(dirname "$0")/export-webpack-dev-server-settings" \
+#    &&
+
+# Use Unicorn in hopes that it will freeze less than Puma.
+#gem install unicorn && unicorn -l "0.0.0.0:$port"
+RAILS_ENV=development bin/rails s -b 0.0.0.0 -p "$port"
+
+# Disabled SSL because it messes with Webpack Dev Server's auto-reloading.
+#
+# Setting up SSL https://gist.github.com/tadast/9932075
+#rails s -b "ssl://0.0.0.0:$port?key=$HOME/.ssh/server.key&cert=$HOME/.ssh/server.crt"
