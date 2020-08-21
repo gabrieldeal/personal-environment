@@ -31,8 +31,8 @@ cd ~/projects/oss/huddle \
     && gem install mailcatcher \
     && gem install bundle \
     && bundle install \
-    && echo "Migrating development..." && rake db:migrate RAILS_ENV=development \
-    && echo "Migrating test..." && rake db:migrate RAILS_ENV=test
+    && echo "Migrating development..." && bin/rake db:migrate RAILS_ENV=development \
+    && echo "Migrating test..." && bin/rake db:migrate RAILS_ENV=test
 if [ "$?" -ne 0 ]
 then
     fail "Error setting up rails env"
@@ -43,7 +43,7 @@ fi
 
 # Use Unicorn in hopes that it will freeze less than Puma.
 #gem install unicorn && unicorn -l "0.0.0.0:$port"
-    bin/rails s -b 0.0.0.0 -p "$port"
+RAILS_ENV=development bin/rails s -b 0.0.0.0 -p "$port"
 
 # Disabled SSL because it messes with Webpack Dev Server's auto-reloading.
 #
