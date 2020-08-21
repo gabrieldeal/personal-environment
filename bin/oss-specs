@@ -1,11 +1,7 @@
 #!/usr/bin/env bash
 
-function slack_desk_booking_specs() {
-    find spec/ -name \*_spec.rb | grep slack | grep desk_booking
-}
-
 function slack_specs() {
-    find spec/ -name \*_spec.rb | grep slack
+    find spec/ -name \*_spec.rb | grep --regex slack --regex find_controller_spec
 }
 
 function printing_specs() {
@@ -29,7 +25,7 @@ case "$type" in
 	slack_specs
 	;;
     slack-desk-booking)
-	slack_desk_booking_specs
+	slack_specs | grep desk_booking
 	;;
     *)
 	fail "Usage: $0 TYPE"
