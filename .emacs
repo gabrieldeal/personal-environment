@@ -549,6 +549,8 @@ sub get_options {
 	    ;; (setq rubocop-autocorrect-command "rubocop-daemon exec -- -a --format emacs")
 	    ;; (setq rubocop-prefer-system-executable 't)
 	    ;; (setq rubocop-autocorrect-on-save 't)
+	    (setq rubocop-autocorrect-command "bin/rubocop -a --format emacs")
+	    (setq rubocop-prefer-system-executable 't)
 	    (setq ruby-insert-encoding-magic-comment nil)))
 
 (autoload 'enable-paredit-mode "paredit" nil t)
