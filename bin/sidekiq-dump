@@ -1,0 +1,19 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+def dump_scheduled(scheduled)
+  scheduled_dump = scheduled.item.slice('created_at', 'class', 'args')
+  scheduled_dump['created_at'] = Time.at(scheduled_dump['created_at']).utc.iso8601
+  scheduled_dump
+end
+
+dump = {
+  busy: Sidekiq::Workers.new.map do |_pid, _tid, work|
+    [work['payload']['class'], work['payload']['args']]
+  end,
+  scheduled: Sidekiq::ScheduledSet.new.map { |scheduled| dump_scheduled(scheduled) },
+  retries: Sidekiq::RetrySet.new.map { |scheduled| dump_scheduled(scheduled) },
+  queues: Sidekiq::Queue.all.map { |queue| [queue.name, queue.size] },
+}
+
+pp dump
