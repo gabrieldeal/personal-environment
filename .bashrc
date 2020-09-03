@@ -2,9 +2,6 @@
 
 source "$HOME/.bash_interactive"
 
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
-
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/home/gabrielx/local/google-cloud-sdk/path.bash.inc' ]; then . '/home/gabrielx/local/google-cloud-sdk/path.bash.inc'; fi
 
