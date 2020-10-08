@@ -3,12 +3,18 @@
 . "$HOME/.nvm/nvm.sh"
 . "$HOME/.rvm/scripts/rvm"
 
+if [ -z "$RAILS_ENV" ]
+then
+    echo "Set RAILS_ENV" 1>&2
+    exit 1
+fi
+
 cd ~/projects/oss/huddle \
     && rvm get stable \
-    && rvm install `cat .ruby-version` \
-    && rvm use `cat .ruby-version`@`cat .ruby-gemset` --create \
+    && rvm install "$(cat .ruby-version)" \
+    && rvm use "$(cat .ruby-version)@$(cat .ruby-gemset)" --create \
     && bundle install \
     && nvm install "$(cat .node-version)" \
     && nvm use "$(cat .node-version)" \
     && (yarn --check-files --frozen-lockfile --ignore-optional install) \
-    && RAILS_ENV=development bin/webpack --progress
+    && bin/webpack --progress

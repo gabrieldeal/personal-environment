@@ -1,26 +1,19 @@
 #!/usr/bin/env bash
 
-skip_reset="$1"
-
+export NODE_OPTIONS='--max-old-space-size=8120'
 export PATH="$PATH:~/bin"
 
 set-xterm-title "OSS webpack dev server"
 
 . "$HOME/.rvm/scripts/rvm"
-
-# Because 'nvm' is a shell function:
 . "$HOME/.nvm/nvm.sh"
 
-cd ~/projects/oss/huddle || exit 1
-
-if [ "$skip_reset" != "skip" ]
-then
-    rm -rf node_modules vendor/node_modules || exit 1
-fi
-
-export NODE_OPTIONS='--max-old-space-size=8120'
-
-bundle install \
+cd ~/projects/oss/huddle \
+    && rvm get stable \
+    && rvm install "$(cat .ruby-version)" \
+    && rvm use "$(cat .ruby-version)@$(cat .ruby-gemset)" --create \
+    && bundle install \
     && nvm install "$(cat .node-version)" \
+    && nvm use "$(cat .node-version)" \
     && (yarn install --check-files --frozen-lockfile --ignore-optional) \
-    && bin/webpack-dev-server --inline
+    && RAILS_ENV=development bin/webpack-dev-server --inline
