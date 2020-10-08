@@ -4,6 +4,15 @@ function slack_specs() {
     find spec/ -name \*_spec.rb | grep --regex slack --regex find_controller_spec
 }
 
+function search_specs() {
+    find spec/ -name \*_spec.rb | grep --regex search/v2 \
+				       --regex find_controller_spec \
+				       --regex searchkick \
+				       --regex bookings/search \
+				       --regex search/manager \
+				       --regex graphql/search
+}
+
 function printing_specs() {
     find spec/ -name \*_spec.rb | grep -e print -e svg
 }
@@ -26,6 +35,9 @@ case "$type" in
 	;;
     slack-desk-booking)
 	slack_specs | grep desk_booking
+	;;
+    search)
+	search_specs
 	;;
     *)
 	fail "Usage: $0 TYPE"
