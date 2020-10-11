@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+# Can't use rsync because some files names are too long for the filesystem.
+
+tar zcvf "$HOME/Kindle.tgz" "/media/gabrielx/Kindle/documents"
+
