@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+#-*-shell-script-*-
+
+function run_tests() {
+    yarn run test --watch
+    retval=$?
+    stty sane
+
+    return $retval
+}
+
+# Because it occasionally runs out of memory and crashes.
+function run_tests_and_restart() {
+    export DEBUG='app:*'
+
+    run_tests
+    while [ $? -ne 0 ]
+    do
+	run_tests
+    done
+}
+
+cd ~/projects/oss/oss_ms_teams/ \
+   && . "$HOME/.nvm/nvm.sh" \
+    && nvm use 10 \
+    && run_tests_and_restart

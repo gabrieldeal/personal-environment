@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+#-*-shell-script-*-
+
+set-xterm-title "oss_ms_teams"
+
+# Because gulp runs out of memory and crashes.
+function run_teams_server() {
+    while true
+    do
+	killmy node
+	killmy gulp
+	./bin/start-local-ms-teams --ignore-build-failures
+    done
+}
+
+cd ~/projects/oss/oss_ms_teams/ \
+   && . "$HOME/.nvm/nvm.sh" \
+    && . ~/.ssh/ms-teams.sh \
+    && nvm use 10 \
+    && run_teams_server
