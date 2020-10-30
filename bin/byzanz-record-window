@@ -3,12 +3,14 @@
 
 # From http://askubuntu.com/questions/107726/how-to-create-animated-gif-images-of-a-screencast
 
-DELAY=$1
-OUTPUT=$2
+DELAY="$1"
+OUTPUT_GIF="$2"
+OUTPUT_MP4="$OUTPUT_GIF.mp4"
+OUTPUT_MP4="${OUTPUT_MP4/.gif.mp4/.mp4}"
 
-if [ -z "$OUTPUT" ]
+if [ -z "$OUTPUT_GIF" ]
 then
-    echo "Usage: $0 DELAY OUTPUT" 2>&1
+    echo "Usage: $0 DELAY OUTPUT_GIF" 2>&1
     exit 1
 fi
 
@@ -28,6 +30,14 @@ for (( i=$DELAY; i>0; --i )) ; do
     sleep 1
 done
 
-byzanz-record --verbose --delay=0 --x=$X --y=$Y --width=$W --height=$H --exec=byzanz-pause "$OUTPUT"
+byzanz-record --verbose --delay=0 --x=$X --y=$Y --width=$W --height=$H --exec=byzanz-pause "$OUTPUT_GIF"
 
-echo "Output written to $OUTPUT"
+ffmpeg -i "$OUTPUT_GIF" \
+       -movflags faststart \
+       -pix_fmt yuv420p \
+       -vf "scale=trunc(iw/2)*2:trunc(ih/2)*2" \
+       -y \
+       "$OUTPUT_MP4"
+
+
+echo "Output written to $OUTPUT_GIF and $OUTPUT_MP4"
