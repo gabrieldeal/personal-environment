@@ -9,7 +9,7 @@ fi
 
 . "$HOME/.nvm/nvm.sh"
 
-nvm use 10 \
+nvm use 12 \
     && yarn install \
     && yarn run build \
     && gcloud app deploy --project "$project"  app-"$project".yaml

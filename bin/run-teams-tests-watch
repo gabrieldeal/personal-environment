@@ -22,5 +22,5 @@ function run_tests_and_restart() {
 
 cd ~/projects/oss/oss_ms_teams/ \
    && . "$HOME/.nvm/nvm.sh" \
-    && nvm use 10 \
+    && nvm use 12 \
     && run_tests_and_restart
