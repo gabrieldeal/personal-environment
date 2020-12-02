@@ -415,6 +415,12 @@
 ;; Misc functions
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(defun gmd-console-log-json ()
+  "Insert Javascript to log JSON"
+  (interactive)
+  (insert "console.log(JSON.stringify(, null, 2))")
+  (backward-char 11))
+
 (defun sort-lines-nocase ()
   "Case-insensitive line sorting."
   (interactive)
