@@ -78,7 +78,8 @@
     rubocop
     typescript-mode
     web-mode
-    ws-trim))
+    ws-trim
+    zenburn-theme))
 
 (package-initialize)
 (gmd-refresh-local-package-archive-contents gmd-local-packages)
@@ -344,6 +345,8 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Misc settings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(load-theme `zenburn t)
 
 ;; Disable emacs beeping
 (setq visible-bell t)
