@@ -17,16 +17,16 @@
 ;; For M-x package-install
 
 (defun gmd-refresh-local-package-archive-contents(package-infos)
+  "Load local packages (PACKAGE-INFOS) if they are not available in ELPA."
   (let ((should-refresh (or (not (boundp 'package-archive-contents))
 			    (not package-archive-contents))))
     (dolist (package-info package-infos)
       (let ((package (nth 0 package-info))
 	    (package-source-directory (nth 1 package-info)))
+	(message (format "Checking if local package %s is available in ELPA."
+			 package))
 	(unless (assoc package package-archive-contents)
 	  (progn
-(message (format "%s/%s.el"
-					 package-source-directory
-					 package))
 	    (package-upload-file (format "%s/%s.el"
 					 package-source-directory
 					 package))
