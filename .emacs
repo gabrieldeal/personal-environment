@@ -1311,18 +1311,9 @@ SWITCH-TO-BUFFER - whether to switch to the buffer if it is already running."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(font-lock-comment-face ((t (:foreground "magenta"))))
- '(font-lock-variable-name-face ((t (:foreground "blue" :weight light))))
- '(magit-diff-added ((t (:background "green" :foreground "black"))))
- '(magit-diff-added-highlight ((t (:background "green" :foreground "black"))))
- '(magit-diff-base ((t (:background "red" :foreground "white"))))
- '(magit-diff-base-highlight ((t (:background "red" :foreground "white"))))
- '(magit-diff-context ((t (:foreground "black"))))
- '(magit-diff-context-highlight ((t (:background "white" :foreground "black"))))
- '(magit-diff-removed ((t (:background "red" :foreground "black"))))
- '(magit-diff-removed-highlight ((t (:background "red" :foreground "black"))))
- '(magit-item-highlight ((t nil)))
+ '(flycheck-error ((t (:underline (:color "orange red" :style wave)))))
  '(region ((t (:background "gray" :distant-foreground "black"))))
+ '(show-paren-match ((t (:foreground "#8be9fd" :inverse-video t :weight bold))))
  '(web-mode-doctype-face ((t (:foreground "magenta"))))
  '(web-mode-html-attr-name-face ((t (:foreground "black"))))
  '(web-mode-html-tag-bracket-face ((t (:foreground "blue"))))
