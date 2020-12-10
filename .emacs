@@ -419,10 +419,10 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (defun gmd-console-log-json ()
-  "Insert Javascript to log JSON"
+  "Insert Javascript to log JSON."
   (interactive)
-  (insert "console.log(JSON.stringify(, null, 2))")
-  (backward-char 11))
+  (insert "console.log(JSON.stringify(, null, 2));")
+  (backward-char 12))
 
 (defun sort-lines-nocase ()
   "Case-insensitive line sorting."
