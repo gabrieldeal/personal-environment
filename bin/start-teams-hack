@@ -7,6 +7,7 @@ set-xterm-title "oss_ms_teams"
 function run_teams_server() {
     while true
     do
+	rm -f report.*.json
 	killmy node
 	killmy gulp
 	./bin/start-local-ms-teams --ignore-build-failures

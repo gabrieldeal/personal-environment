@@ -2,6 +2,7 @@
 #-*-shell-script-*-
 
 function run_tests() {
+    rm -f report.*.json
     yarn run jest --clearCache
     yarn run test --watch
     retval=$?
