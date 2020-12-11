@@ -1312,6 +1312,7 @@ SWITCH-TO-BUFFER - whether to switch to the buffer if it is already running."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(flycheck-error ((t (:underline (:color "orange red" :style wave)))))
+ '(lazy-highlight ((t (:background "#383838" :foreground "#D0BF8F" :box (:line-width 2 :color "grey75" :style released-button) :weight bold))))
  '(region ((t (:background "gray" :distant-foreground "black"))))
  '(show-paren-match ((t (:foreground "#8be9fd" :inverse-video t :weight bold))))
  '(web-mode-doctype-face ((t (:foreground "magenta"))))
