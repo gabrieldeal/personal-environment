@@ -5,7 +5,7 @@ tunnels:
     subdomain: gabriel-msteams-dicksonlabs
   huddle:
     proto: http
-    addr: 3000
+    addr: 443
     subdomain: gabriel-huddle-dicksonlabs
   webpack-dev-server:
     proto: http
