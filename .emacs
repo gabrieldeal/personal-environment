@@ -1303,9 +1303,12 @@ SWITCH-TO-BUFFER - whether to switch to the buffer if it is already running."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   (quote
+    ("0fffa9669425ff140ff2ae8568c7719705ef33b7a927a0ba7c5e2ffcfac09b75" "e6df46d5085fde0ad56a46ef69ebb388193080cc9819e2d6024c9c6e27388ba9" default)))
  '(package-selected-packages
    (quote
-    (company tide typescript-mode disable-mouse org yaml-mode php-mode graphql-mode prettier-js rjsx-mode ws-trim web-mode rubocop robe paredit nxml-mode markdown-mode magit json-mode flycheck clever-cmd))))
+    (ox-gfm js-import dracula-theme solarized-theme zenburn-theme anti-zenburn-theme company tide typescript-mode disable-mouse org yaml-mode php-mode graphql-mode prettier-js rjsx-mode ws-trim web-mode rubocop robe paredit nxml-mode markdown-mode magit json-mode flycheck clever-cmd))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
