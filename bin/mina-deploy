@@ -24,6 +24,6 @@ export NODE_OPTIONS='--max-old-space-size=5120'
 
 bundle install \
        && . "$HOME/.nvm/nvm.sh" \
-       && nvm use 10 \
+       && nvm use 12 \
        && bundle exec mina full_deploy HOST="$server.ossd.co" BRANCH="$branch"
 exit $?
