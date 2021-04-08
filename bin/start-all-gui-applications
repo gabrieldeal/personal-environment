@@ -21,24 +21,24 @@ switch_workspace 5
 
 # I stopped using this in Emacs because it takes too much CPU for
 # emacs to parse the copious output.
-/usr/bin/roxterm \
-    --color-scheme Tool \
+/usr/bin/gnome-terminal \
+    --profile Tool \
     --execute /home/gabrielx/local/bin/run-oss-huddle-webpack &
 
-/usr/bin/roxterm \
-    --color-scheme Tool \
+/usr/bin/gnome-terminal \
+    --profile Tool \
     --execute /home/gabrielx/local/bin/run-in /home/gabrielx/projects/oss/huddle \
     mailcatcher --foreground &
 
-roxterm \
-    --color-scheme Tool \
+/usr/bin/gnome-terminal \
+    --profile Tool \
     --execute /home/gabrielx/local/bin/start-oss-slack-ngrok &
 
 switch_workspace 2
 /home/gabrielx/local/bin/emacs-huddle &
-/usr/bin/roxterm &
-/usr/bin/roxterm \
-    --color-scheme Tool \
+/usr/bin/gnome-terminal &
+/usr/bin/gnome-terminal \
+    --profile Tool \
     --execute /home/gabrielx/local/bin/start-huddle-hack &
 
 # sleep 10
