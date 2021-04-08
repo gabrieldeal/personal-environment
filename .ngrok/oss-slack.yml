@@ -8,6 +8,11 @@ tunnels:
     addr: 443
     subdomain: gabriel-huddle-dicksonlabs
   webpack-dev-server:
+    # Set this in config/webpacker.yml:
+    # public: https://gabriel-webpack-dev-server-dicksonlabs.ngrok.io
+    #
+    # Or customize config/webpack/development.js like this:
+    # https://knowndecimal.com/blogs/points/expose-webpack-devserver-websockets-using-ngrok-tunnels
     proto: http
     addr: 3035
     subdomain: gabriel-webpack-dev-server-dicksonlabs
