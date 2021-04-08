@@ -351,6 +351,11 @@
 ;; Disable emacs beeping
 (setq visible-bell t)
 
+(defun gmd-prettify ()
+  "Run linter."
+  (interactive)
+  (rubocop-autocorrect-current-file))
+
 (defun query-replace-regexp-json-to-ruby (start end)
   "Convert JSON to Ruby between START and END."
   (interactive "r")
@@ -997,6 +1002,7 @@ sub get_options {
 (fset 'ctl-x-6-prefix ctl-x-6-map)
 (define-key ctl-x-6-map "r" 'recompile)
 (define-key ctl-x-6-map "c" 'compile)
+(define-key ctl-x-6-map "p" 'gmd-prettify)
 
 ;(define-key p4-prefix-map "r" 'gmd-p4-revert)
 ;(define-key p4-prefix-map "e" 'gmd-p4-edit)
