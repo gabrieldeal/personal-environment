@@ -2,5 +2,6 @@
 
 # Can't use rsync because some files names are too long for the filesystem.
 
-tar zcvf "$HOME/Kindle.tgz" "/media/gabrielx/Kindle/documents"
+tar zcvf "/tmp/Kindle.tgz" "/media/gabrielx/Kindle/documents" \
+    && mv "/tmp/Kindle.tgz" "$HOME/Kindle.tgz"
 
