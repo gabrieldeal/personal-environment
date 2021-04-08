@@ -4,6 +4,10 @@ function slack_specs() {
     find spec/ -name \*_spec.rb | grep --regex slack --regex find_controller_spec
 }
 
+function ms_teams_specs() {
+    find spec/ -name \*_spec.rb | grep --regex ms_teams
+}
+
 function search_specs() {
     find spec/ -name \*_spec.rb | grep --regex search/v2 \
 				       --regex find_controller_spec \
@@ -26,6 +30,9 @@ type="$1"
 case "$type" in
     print*)
 	printing_specs
+	;;
+    ms-teams|teams)
+	ms_teams_specs
 	;;
     slack-short)
 	slack_specs | grep -v -e find_controller_spec -e employee_slack_search_spec
