@@ -550,6 +550,8 @@ sub get_options {
 
 (add-hook 'web-mode-hook
 	  (lambda()
+	    (if (string-match "\\.\\(tsx\\)$" (buffer-file-name))
+		(tide-mode))
 	    (if (string-match "\\.\\(js\\|jsx\\|tsx\\)$" (buffer-file-name))
 		(prettier-js-mode))))
 
