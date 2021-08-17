@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 git fetch -p \
-    && git checkout main \
+    && git checkout develop \
     && git pull \
     && git branch --merged \
 	| egrep -v "(^\*|main)" \
