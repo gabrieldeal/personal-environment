@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 #-*-shell-script-*-
 
+export DEBUG_PRINT_LIMIT=999999999999
+
 function run_tests() {
     rm -f report.*.json
     yarn run jest --clearCache
