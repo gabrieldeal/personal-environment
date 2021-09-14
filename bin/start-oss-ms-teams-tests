@@ -6,7 +6,7 @@ export DEBUG_PRINT_LIMIT=999999999999
 function run_tests() {
     rm -f report.*.json
     yarn run jest --clearCache
-    yarn run test --watch
+    yarn run test --watch "$@"
     retval=$?
     stty sane
 
@@ -17,14 +17,14 @@ function run_tests() {
 function run_tests_and_restart() {
     export DEBUG='app:*'
 
-    run_tests
+    run_tests "$@"
     while [ $? -ne 0 ]
     do
-	run_tests
+	run_tests "$@"
     done
 }
 
 cd ~/projects/oss/oss_ms_teams/ \
    && . "$HOME/.nvm/nvm.sh" \
-    && nvm use 12 \
-    && run_tests_and_restart
+    && nvm use 14 \
+    && run_tests_and_restart "$@"
