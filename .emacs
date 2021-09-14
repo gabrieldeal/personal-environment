@@ -653,6 +653,7 @@ sub get_options {
 
 (add-hook 'markdown-mode-hook
 	  (lambda ()
+	    (prettier-js-mode)
 	    (setq indent-tabs-mode nil)))
 
 (add-hook 'buffer-menu-mode-hook
