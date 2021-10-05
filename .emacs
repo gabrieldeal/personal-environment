@@ -551,7 +551,7 @@ sub get_options {
 (add-hook 'web-mode-hook
 	  (lambda()
 	    (if (string-match "\\.\\(tsx\\)$" (buffer-file-name))
-		(tide-mode))
+		(gmd-setup-typescript))
 	    (if (string-match "\\.\\(js\\|jsx\\|tsx\\)$" (buffer-file-name))
 		(prettier-js-mode))))
 
@@ -625,19 +625,21 @@ sub get_options {
 		      (setq web-mode-code-indent-offset 2)
 		      )))
 
+(defun gmd-setup-typescript ()
+  (tide-setup)
+  (flycheck-mode +1)
+  (setq flycheck-check-syntax-automatically '(save mode-enabled))
+  (eldoc-mode +1)
+  (tide-hl-identifier-mode +1)
+  (setq tide-always-show-documentation 't)
+  (setq tide-server-max-response-length 2147483647)
+  (company-mode +1)
+  (setq indent-tabs-mode nil)
+  (setq typescript-indent-level 2)
+  (prettier-js-mode))
+
 (require 'company)
-(add-hook 'typescript-mode-hook
-	  (lambda ()
-	    (tide-setup)
-	    (flycheck-mode +1)
-	    (setq flycheck-check-syntax-automatically '(save mode-enabled))
-	    (eldoc-mode +1)
-	    (tide-hl-identifier-mode +1)
-	    (setq tide-always-show-documentation 't)
-	    (company-mode +1)
-	    (setq indent-tabs-mode nil)
-	    (setq typescript-indent-level 2)
-	    (prettier-js-mode)))
+(add-hook 'typescript-mode-hook 'gmd-setup-typescript)
 
 (add-hook 'graphql-mode-hook
 	  (lambda ()
@@ -1317,7 +1319,8 @@ SWITCH-TO-BUFFER - whether to switch to the buffer if it is already running."
     ("0fffa9669425ff140ff2ae8568c7719705ef33b7a927a0ba7c5e2ffcfac09b75" "e6df46d5085fde0ad56a46ef69ebb388193080cc9819e2d6024c9c6e27388ba9" default)))
  '(package-selected-packages
    (quote
-    (ox-gfm js-import dracula-theme solarized-theme zenburn-theme anti-zenburn-theme company tide typescript-mode disable-mouse org yaml-mode php-mode graphql-mode prettier-js rjsx-mode ws-trim web-mode rubocop robe paredit nxml-mode markdown-mode magit json-mode flycheck clever-cmd))))
+    (ox-gfm js-import dracula-theme solarized-theme zenburn-theme anti-zenburn-theme company tide typescript-mode disable-mouse org yaml-mode php-mode graphql-mode prettier-js rjsx-mode ws-trim web-mode rubocop robe paredit nxml-mode markdown-mode magit json-mode flycheck clever-cmd)))
+ '(tide-sync-request-timeout 10))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
