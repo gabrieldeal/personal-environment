@@ -603,10 +603,7 @@ sub get_options {
      (setq-default flycheck-disabled-checkers
 		   (append flycheck-disabled-checkers '(javascript-jshint)))
      (flycheck-add-mode 'javascript-eslint 'web-mode)
-     (flycheck-add-mode 'typescript-tslint 'web-mode)
      (setq flycheck-shellcheck-follow-sources nil)
-     (setq flycheck-typescript-tslint-executable
-	   (concat (clever-cmd-ec--vc-root-dir) "node_modules/tslint/bin/tslint"))
      (setq flycheck-javascript-eslint-executable
 	   (concat (clever-cmd-ec--vc-root-dir) "node_modules/eslint/bin/eslint.js"))
      (setq flycheck-eslintrc (concat (clever-cmd-ec--vc-root-dir) ".eslintrc.js"))))
@@ -629,6 +626,8 @@ sub get_options {
   (tide-setup)
   (flycheck-mode +1)
   (setq flycheck-check-syntax-automatically '(save mode-enabled))
+  (flycheck-add-next-checker 'javascript-eslint 'typescript-tide  'append)
+  (flycheck-select-checker 'javascript-eslint)
   (eldoc-mode +1)
   (tide-hl-identifier-mode +1)
   (setq tide-always-show-documentation 't)
