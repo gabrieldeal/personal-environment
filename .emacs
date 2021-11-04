@@ -604,9 +604,14 @@ sub get_options {
 		   (append flycheck-disabled-checkers '(javascript-jshint)))
      (flycheck-add-mode 'javascript-eslint 'web-mode)
      (setq flycheck-shellcheck-follow-sources nil)
+     (setq flycheck-check-syntax-automatically (quote (idle-change)))
      (setq flycheck-javascript-eslint-executable
 	   (concat (clever-cmd-ec--vc-root-dir) "node_modules/eslint/bin/eslint.js"))
      (setq flycheck-eslintrc (concat (clever-cmd-ec--vc-root-dir) ".eslintrc.js"))))
+
+(eval-after-load "tide"
+  '(progn
+     (flycheck-add-next-checker 'typescript-tide 'javascript-eslint 'append)))
 
 ;; This variable must be defined before web-mode is autoloaded in
 ;; order for the first file to be recognized correctly.
@@ -625,10 +630,8 @@ sub get_options {
 (defun gmd-setup-typescript ()
   (tide-setup)
   (flycheck-mode +1)
-  (setq flycheck-check-syntax-automatically '(save mode-enabled))
-  (flycheck-add-next-checker 'javascript-eslint 'typescript-tide  'append)
-  (flycheck-select-checker 'javascript-eslint)
   (eldoc-mode +1)
+  (flycheck-select-checker 'typescript-tide)
   (tide-hl-identifier-mode +1)
   (setq tide-always-show-documentation 't)
   (setq tide-server-max-response-length 2147483647)
