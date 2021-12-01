@@ -1,0 +1,40 @@
+#!/bin/bash
+
+DIFF_COMMAND="git diff --diff-filter=d --name-only origin/develop"
+
+function find_javascript() {
+    $DIFF_COMMAND | \
+	grep -e '\.ts$' -e '\.tsx$' -e '\.js$' -e '\.jsx$' | \
+	grep -v app/javascript/generated/graphql.ts
+}
+
+function find_ruby() {
+    $DIFF_COMMAND \
+	| grep '\.rb$' \
+	| grep -v schema.rb
+}
+
+function find_graphql() {
+    $DIFF_COMMAND | \
+	grep '\.graphql$'
+}
+
+fail() {
+    echo "$@" 1>&2
+    exit 1
+}
+
+type="$1"
+case "$type" in
+    rubocop)
+	find_ruby || exit 1
+	;;
+    eslint|prettier)
+	find_javascript || find_graphql || exit 1
+	;;
+    *)
+	fail "Usage: $0 TYPE"
+	;;
+esac
+
+exit 0
