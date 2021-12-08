@@ -24,3 +24,7 @@ tunnels:
     proto: http
     addr: 5000
     subdomain: gabriel-oauth-dispatch-dicksonlabs
+  sso_portal:
+    proto: http
+    addr: 5000
+    subdomain: gabriel-sso-portal-dicksonlabs
