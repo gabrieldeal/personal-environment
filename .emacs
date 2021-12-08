@@ -1322,7 +1322,8 @@ SWITCH-TO-BUFFER - whether to switch to the buffer if it is already running."
  '(package-selected-packages
    (quote
     (ox-gfm js-import dracula-theme solarized-theme zenburn-theme anti-zenburn-theme company tide typescript-mode disable-mouse org yaml-mode php-mode graphql-mode prettier-js rjsx-mode ws-trim web-mode rubocop robe paredit nxml-mode markdown-mode magit json-mode flycheck clever-cmd)))
- '(tide-sync-request-timeout 10))
+ '(tide-node-flags (quote ("--max-old-space-size=8120")))
+ '(tide-sync-request-timeout 30))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
