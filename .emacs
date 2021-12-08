@@ -611,6 +611,7 @@ sub get_options {
 
 (eval-after-load "tide"
   '(progn
+     (flycheck-add-mode 'typescript-tide 'web-mode)
      (flycheck-add-next-checker 'typescript-tide 'javascript-eslint 'append)))
 
 ;; This variable must be defined before web-mode is autoloaded in
