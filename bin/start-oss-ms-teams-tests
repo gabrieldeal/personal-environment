@@ -26,5 +26,5 @@ function run_tests_and_restart() {
 
 cd ~/projects/oss/oss_ms_teams/ \
    && . "$HOME/.nvm/nvm.sh" \
-    && nvm use 14 \
+    && nvm use "$(grep nodejs .tool-versions | cut -d' ' -f2)" \
     && run_tests_and_restart "$@"

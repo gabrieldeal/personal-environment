@@ -9,7 +9,7 @@ fi
 
 . "$HOME/.nvm/nvm.sh"
 
-nvm use 14 \
+nvm use "$(grep nodejs .tool-versions | cut -d' ' -f2)" \
     && yarn install \
     && yarn run build \
     && gcloud app deploy --project "$project"  app-"$project".yaml

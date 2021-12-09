@@ -17,5 +17,5 @@ function run_teams_server() {
 cd ~/projects/oss/oss_ms_teams/ \
     && . "$HOME/.nvm/nvm.sh" \
     && . ~/.ssh/ms-teams.sh \
-    && nvm use 14 \
+    && nvm use "$(grep nodejs .tool-versions | cut -d' ' -f2)" \
     && run_teams_server
