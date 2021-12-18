@@ -6,7 +6,6 @@
 ## Or if no git, then just cut-n-paste:
 # vi /tmp/setup && sh /tmp/setup
 
-EMACS_URL=http://ftp.gnu.org/gnu/emacs/emacs-25.1.tar.gz
 TINYDESK_URL=https://raw.githubusercontent.com/jaalto/project-emacs--tinydesk/master/tinydesk.el
 
 fail() {
@@ -67,20 +66,8 @@ setup_home_dir() {
 	   && for f in "../projects/personal-environment/bin/"*; do ln -vsnf "$f"; done)
 }
 
-setup_slack_cli() {
-    command -v slack >/dev/null && return
-
-    cd /tmp \
-       && wget "$jq_url" \
-       && mv jq-* "$HOME/bin/jq" \
-       && wget "https://raw.githubusercontent.com/rockymadden/slack-cli/master/src/slack" \
-       && mv slack "$HOME/bin" \
-       && chmod u+x "$HOME/bin/jq" "$HOME/bin/slack"
-}
-
 setup_github_projects() {
     setup_github_project "clever-cmd" "git@github.com:gabrielmdeal/clever-cmd.git"
-    setup_github_project "autoit-mode" "git@github.com:gabrielmdeal/autoit-mode.git" "add-comment-indent-hook"
 }
 
 setup_github_project() {
@@ -107,16 +94,14 @@ setup_tinydesk() {
 }
 
 setup_emacs() {
-    if emacs --version 2>/dev/null | grep -q --regex "GNU Emacs 25.1" --regex "GNU Emacs 26"
+    if emacs --version 2>/dev/null | grep -q --regex "GNU Emacs 27"
     then
        return
     fi
        
-    cd /tmp \
-       && (test -f emacs-25.1.tar.gz || wget $EMACS_URL) \
-       && (test -d emacs-25.1 || tar zxvf emacs-25.1.tar.gz) \
-       && (which emacs >/dev/null 2>&1 || sudo apt-get -y remove emacs24) \
-       && (cd emacs-25.1 && ./configure && make && sudo make install)
+    sudo add-apt-repository ppa:kelleyk/emacs \
+        && sudo apt-get update \
+        && sudo apt install emacs27
 }
 
 "$os_pre_setup_command" \
@@ -124,5 +109,4 @@ setup_emacs() {
     && setup_home_dir \
     && setup_tinydesk \
     && setup_github_projects \
-    && setup_slack_cli \
     && "$os_post_setup_command" \

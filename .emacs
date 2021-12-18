@@ -57,11 +57,8 @@
 	     (cons "gmd" gmd-package-archive-directory) t)
 
 (defvar gmd-clever-cmd-package-source-directory (expand-file-name "~/projects/clever-cmd"))
-(defvar gmd-autoit-mode-package-source-directory (expand-file-name "~/projects/autoit-mode"))
 (defvar gmd-local-packages
-  (list (list 'autoit-smie gmd-autoit-mode-package-source-directory)
-	(list 'autoit-mode gmd-autoit-mode-package-source-directory)
-	(list 'clever-cmd gmd-clever-cmd-package-source-directory)
+  (list (list 'clever-cmd gmd-clever-cmd-package-source-directory)
 	(list 'clever-cmd-example-config gmd-clever-cmd-package-source-directory)))
 (defvar gmd-remote-packages
   '(
@@ -78,7 +75,6 @@
     rubocop
     typescript-mode
     web-mode
-    ws-trim
     zenburn-theme))
 
 (package-initialize)
@@ -179,16 +175,6 @@
   (gmd-tinydesk-recover-state-by-name "yellowleaf-trips"))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; WS mode
-;; This strips trailing whitespace and converts tabs to spaces on
-;; lines that are modified.
-
-(require 'ws-trim)
-(global-ws-trim-mode t)
-(set-default 'ws-trim-level 0)
-(setq ws-trim-global-modes '(guess (not message-mode eshell-mode)))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; SQL
 
 ;; Rename the SQL buffer to include user and DB name -- even if it is
@@ -271,8 +257,6 @@
 (setq auto-mode-alist (cons '("\\.jsx$" . web-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.js$" . web-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.tsx$" . web-mode) auto-mode-alist))
-
-(setq auto-mode-alist (cons '("\\.au3$" . autoit-mode) auto-mode-alist))
 
 (setq auto-mode-alist (cons '("\\.graphql$" . graphql-mode) auto-mode-alist))
 
@@ -651,10 +635,6 @@ sub get_options {
 (add-hook 'json-mode-hook
 	  (lambda ()
 	    (prettier-js-mode)))
-
-(add-hook 'autoit-mode-hook
-	  (lambda ()
-	    (setq indent-tabs-mode nil)))
 
 (add-hook 'markdown-mode-hook
 	  (lambda ()
@@ -1322,7 +1302,7 @@ SWITCH-TO-BUFFER - whether to switch to the buffer if it is already running."
     ("0fffa9669425ff140ff2ae8568c7719705ef33b7a927a0ba7c5e2ffcfac09b75" "e6df46d5085fde0ad56a46ef69ebb388193080cc9819e2d6024c9c6e27388ba9" default)))
  '(package-selected-packages
    (quote
-    (ox-gfm js-import dracula-theme solarized-theme zenburn-theme anti-zenburn-theme company tide typescript-mode disable-mouse org yaml-mode php-mode graphql-mode prettier-js rjsx-mode ws-trim web-mode rubocop robe paredit nxml-mode markdown-mode magit json-mode flycheck clever-cmd)))
+    (ox-gfm js-import dracula-theme solarized-theme zenburn-theme anti-zenburn-theme company tide typescript-mode disable-mouse org yaml-mode php-mode graphql-mode prettier-js rjsx-mode web-mode rubocop robe paredit nxml-mode markdown-mode magit json-mode flycheck clever-cmd)))
  '(tide-node-flags (quote ("--max-old-space-size=8120")))
  '(tide-sync-request-timeout 30))
 (custom-set-faces
