@@ -86,6 +86,14 @@ setup_github_project() {
 	&& (cd "$dir" && git checkout "$branch")
 }
 
+setup_keyboard_shortcuts() {
+    # Install https://extensions.gnome.org/extension/1485/workspace-matrix/
+    gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-left "['<Control>Left']"
+    gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-right "['<Control>Right']"
+    gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-up "['<Control>Up']"
+    gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-down "['<Control>Down']"
+}
+
 setup_tinydesk() {
     (mkdir -vp "$HOME/.emacs.d/manual" \
 	 && cd "$HOME/.emacs.d/manual" \
@@ -109,4 +117,5 @@ setup_emacs() {
     && setup_home_dir \
     && setup_tinydesk \
     && setup_github_projects \
+    && setup_keyboard_shortcuts \
     && "$os_post_setup_command" \
