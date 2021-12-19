@@ -1,0 +1,57 @@
+#!/bin/sh
+
+have_package() {
+    dpkg -s "$1" >/dev/null
+}
+
+have_command() {
+    command -v "$1" >/dev/null
+}
+
+install_rvm() {
+    have_package rvm && return 0
+
+    sudo apt-add-repository -y ppa:rael-gc/rvm \
+	&& sudo apt-get update \
+	&& sudo apt-get -y install rvm \
+	&& sudo usermod -a -G rvm $USER
+}
+
+install_nvm() {
+    [ -e "$HOME/.nvm/nvm.sh" ] && return 0
+
+    sudo apt-get -y install curl \
+	&& (curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash)
+}
+
+install_yarn() {
+    have_package yarn && return 0
+
+    curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add - \
+	&& echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list \
+	&& sudo apt update \
+	&& sudo apt -y install yarn
+}
+
+# https://redis.io/download#from-the-official-debianubuntu-apt-repository-beta
+install_redis() {
+    have_package redis && return 0
+
+    sudo add-apt-repository ppa:redislabs/redis \
+	 && sudo apt-get update \
+	 && sudo apt-get -y install redis
+}
+
+# https://www.digitalocean.com/community/tutorials/how-to-install-mariadb-on-ubuntu-20-04
+install_mariadb() {
+    have_package mariadb-server && return 0
+
+    sudo apt-get -y install mariadb-server \
+	&& sudo mysql_secure_installation
+}
+
+install_nvm \
+    && install_rvm \
+    && install_yarn \
+    && install_redis \
+    && install_mariadb
