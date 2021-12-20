@@ -61,9 +61,9 @@ setup_home_dir() {
        && (test -d projects/personal-environment || git clone git@github.com:gabrielmdeal/personal-environment.git projects/personal-environment) \
        && for f in projects/personal-environment/.??* ; do ln -vsnf "$f"; done \
        && rm .git \
-       && (mkdir -vp "$HOME/bin" \
-	   && cd "$HOME/bin" \
-	   && for f in "../projects/personal-environment/bin/"*; do ln -vsnf "$f"; done)
+       && (mkdir -vp "$HOME/local/bin" \
+	   && cd "$HOME/local/bin" \
+	   && for f in "$HOME/projects/personal-environment/bin/"*; do ln -vsnf "$f"; done)
 }
 
 setup_github_projects() {
