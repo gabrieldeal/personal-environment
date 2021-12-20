@@ -151,7 +151,7 @@
 (autoload 'tinydesk-save-state "tinydesk" "doc" t)
 (autoload 'tinydesk-recover-state "tinydesk" "doc" t)
 
-(setq tinydesk--directory-location "~/tmp/emacs-tinydesk/")
+(setq tinydesk--directory-location "~/.emacs-tinydesk/")
 
 ; Making some aliases to make tab completion easier:
 (defalias 'gmd-tinydesk-save-state 'tinydesk-save-state)
@@ -159,7 +159,7 @@
 
 (defun gmd-tinydesk-recover-state-by-name (name)
   "Load state from NAME then kill the Tinydesk buffer with all the files."
-  (tinydesk-recover-state (format "~/tmp/emacs-tinydesk/%s" name))
+  (tinydesk-recover-state (format "~/.emacs-tinydesk/%s" name))
   (switch-to-buffer name)
   (set-buffer-modified-p nil)
   (kill-buffer))
