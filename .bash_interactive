@@ -10,6 +10,7 @@ case $- in
 esac
 
 source "$HOME/.nvm/nvm.sh"
+source "$HOME/.nvm/bash_completion"
 source "$HOME/.rvm/scripts/rvm"
 source "/usr/share/bash-completion/bash_completion"
 
