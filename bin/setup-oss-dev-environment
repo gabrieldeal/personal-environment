@@ -50,8 +50,22 @@ install_mariadb() {
 	&& sudo mysql_secure_installation
 }
 
+# https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-elasticsearch-on-ubuntu-20-04
+install_elasticsearch() {
+    have_package elasticsearch && return 0
+
+    curl -fsSL https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add - \
+	&& echo "deb https://artifacts.elastic.co/packages/7.x/apt stable main" | sudo tee -a /etc/apt/sources.list.d/elastic-7.x.list \
+	&& sudo apt update \
+	&& sudo apt install elasticsearch \
+	&& sudo systemctl enable elasticsearch
+}
+
+# https://www.linode.com/docs/guides/start-service-at-boot/
+
 install_nvm \
     && install_rvm \
     && install_yarn \
     && install_redis \
-    && install_mariadb
+    && install_mariadb \
+    && install_elasticsearch
