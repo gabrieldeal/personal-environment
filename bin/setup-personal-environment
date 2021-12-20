@@ -92,6 +92,9 @@ setup_keyboard_shortcuts() {
     gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-right "['<Control>Right']"
     gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-up "['<Control>Up']"
     gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-down "['<Control>Down']"
+
+    gsettings set org.gnome.desktop.wm.preferences mouse-button-modifier '<Ctrl>'
+
 }
 
 setup_tinydesk() {
