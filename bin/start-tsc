@@ -1,0 +1,6 @@
+#!/bin/env bash
+
+cd ~/projects/oss/huddle \
+   && source "$HOME/.nvm/nvm.sh" \
+   && nvm use "$(cat .node-version)" \
+   && yarn run tsc:watch --preserveWatchOutput

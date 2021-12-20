@@ -5,7 +5,7 @@ export PATH="$PATH:~/bin"
 
 set-xterm-title "OSS webpack watcher"
 
-. "$HOME/.rvm/scripts/rvm"
+source "/usr/share/rvm/scripts/rvm"
 . "$HOME/.nvm/nvm.sh"
 
 ## Commenting out due to Internet connectivity outage:
