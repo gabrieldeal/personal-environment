@@ -3,15 +3,25 @@
 
 set-xterm-title "OSS huddle rails server"
 
-port=443
+mode=full
 if [ -n "$1" ]
 then
-    port=$1
+    mode="$1"
+fi
+
+port=443
+if [ -n "$2" ]
+then
+    port="$2"
 fi
 
 fail() {
     echo "$@" 1>&2
     exit 1
+}
+
+rvm_use() {
+    rvm use "$(cat .ruby-version)@$(cat .ruby-gemset)" --create
 }
 
 pid_file="tmp/pids/server.pid"
@@ -24,20 +34,21 @@ fi
 # In case we are not ran via an interactive shell:
 source "/usr/share/rvm/scripts/rvm"
 
-## Can only run this as root:
-#    && rvm get stable \
+cd ~/projects/oss/huddle || fail "No huddle dir"
 
-cd ~/projects/oss/huddle \
-    && rvm install `cat .ruby-version` \
-    && rvm use `cat .ruby-version`@`cat .ruby-gemset` --create \
-    && gem install mailcatcher \
-    && gem install bundle \
-    && bundle install \
-    && echo "Migrating development..." && bin/rake db:migrate RAILS_ENV=development \
-    && echo "Migrating test..." && bin/rake db:migrate RAILS_ENV=test
-if [ "$?" -ne 0 ]
+if [ "$mode" = "full" ]
 then
-    fail "Error setting up rails env"
+    ## Can only run this as root:
+    #    && rvm get stable \
+
+    rvm install `cat .ruby-version` \
+	&& rvm_use \
+	&& gem install mailcatcher \
+	&& gem install bundle \
+	&& bundle install \
+	&& echo "Migrating development..." && bin/rake db:migrate RAILS_ENV=development \
+	&& echo "Migrating test..." && bin/rake db:migrate RAILS_ENV=test
+    [ "$?" -ne 0 ] && fail "Error setting up rails env"
 fi
 
 #source "$(dirname "$0")/export-webpack-dev-server-settings" \
@@ -53,4 +64,5 @@ fi
 #
 # sudo touch /etc/authbind/byport/443
 # sudo chmod 777 /etc/authbind/byport/443
-authbind --deep bin/rails s -b "ssl://0.0.0.0:$port?key=$HOME/.ssh/server.key&cert=$HOME/.ssh/server.crt"
+rvm_use \
+    && authbind --deep bin/rails s -b "ssl://0.0.0.0:$port?key=$HOME/.ssh/server.key&cert=$HOME/.ssh/server.crt"
