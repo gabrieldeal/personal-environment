@@ -1,6 +1,11 @@
 #!/bin/env bash
 
+export NODE_OPTIONS='--max_old_space_size=8192'
+
 cd ~/projects/oss/huddle \
-   && source "$HOME/.nvm/nvm.sh" \
-   && nvm use "$(cat .node-version)" \
-   && yarn run tsc:watch --preserveWatchOutput
+    && source "/usr/share/rvm/scripts/rvm" \
+    && rvm use `cat .ruby-version`@`cat .ruby-gemset` --create \
+    && bin/rake graphql:schema:generate \
+    && source "$HOME/.nvm/nvm.sh" \
+    && nvm use "$(cat .node-version)" \
+    && yarn run tsc:watch --preserveWatchOutput
