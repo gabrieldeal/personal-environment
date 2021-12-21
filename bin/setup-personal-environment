@@ -55,13 +55,18 @@ check_dependencies() {
 }
 
 setup_home_dir() {
-    cd "$HOME" \
-       && mkdir -p tmp \
-       && mkdir -p projects \
-       && (test -d projects/personal-environment || git clone git@github.com:gabrielmdeal/personal-environment.git projects/personal-environment) \
-       && for f in projects/personal-environment/.??* ; do ln -vsnf "$f"; done \
-       && rm .git \
-       && (mkdir -vp "$HOME/local/bin" \
+    apps_dir=".local/share/applications"
+
+    mkdir -p "$HOME/$apps_dir" \
+	&& cd "$HOME/$apps_dir" \
+	&& for f in "$HOME/projects/personal-environment/$apps_dir/"* ; do ln -vsnf "$f"; done \
+	&& cd "$HOME" \
+	&& mkdir -p tmp \
+	&& mkdir -p projects \
+	&& (test -d projects/personal-environment || git clone git@github.com:gabrielmdeal/personal-environment.git projects/personal-environment) \
+	&& for f in projects/personal-environment/.??* ; do ln -vsnf "$f"; done \
+	&& rm .git \
+	&& (mkdir -vp "$HOME/local/bin" \
 	   && cd "$HOME/local/bin" \
 	   && for f in "$HOME/projects/personal-environment/bin/"*; do ln -vsnf "$f"; done)
 }
@@ -86,7 +91,7 @@ setup_github_project() {
 	&& (cd "$dir" && git checkout "$branch")
 }
 
-setup_keyboard_shortcuts() {
+change_gnome_settings() {
     # Install https://extensions.gnome.org/extension/1485/workspace-matrix/
     gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-left "['<Control>Left']"
     gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-right "['<Control>Right']"
@@ -94,14 +99,15 @@ setup_keyboard_shortcuts() {
     gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-down "['<Control>Down']"
 
     gsettings set org.gnome.desktop.wm.preferences mouse-button-modifier '<Ctrl>'
-
+    gsettings set org.gnome.desktop.media-handling automount-open false
 }
 
 setup_tinydesk() {
     (mkdir -vp "$HOME/.emacs.d/manual" \
+	 && mkdir -p "~/.emacs-tinydesk" \
 	 && cd "$HOME/.emacs.d/manual" \
 	 && (test -f tinydesk.el \
-	     || wget "$TINYDESK_URL"))
+	     || wget "$TINYDESK_URL"))   
 }
 
 setup_emacs() {
@@ -115,10 +121,17 @@ setup_emacs() {
         && sudo apt install emacs27
 }
 
+install_zoom() {
+    command -v zoom && return 0
+
+    google-chrome https://zoom.us/download?os=linux
+}
+
 "$os_pre_setup_command" \
     && check_dependencies \
     && setup_home_dir \
     && setup_tinydesk \
     && setup_github_projects \
-    && setup_keyboard_shortcuts \
+    && install_zoom \
+    && change_gnome_settings \
     && "$os_post_setup_command" \
