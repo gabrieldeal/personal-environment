@@ -127,6 +127,12 @@ install_zoom() {
     google-chrome https://zoom.us/download?os=linux
 }
 
+setup_terminal_profiles() {
+    dconf dump /org/gnome/terminal/legacy/profiles:/ | grep -q 'Staging host' && return 0
+
+    google-chrome https://unix.stackexchange.com/a/456356
+}
+
 install_backups() {
     sudo apt-get -y install python3-pydrive \
 	 && deja-dup
@@ -136,6 +142,7 @@ install_backups() {
     && check_dependencies \
     && setup_home_dir \
     && setup_tinydesk \
+    && setup_terminal_profiles \
     && setup_github_projects \
     && install_zoom \
     && change_gnome_settings \
