@@ -127,6 +127,11 @@ install_zoom() {
     google-chrome https://zoom.us/download?os=linux
 }
 
+install_backups() {
+    sudo apt-get -y install python3-pydrive \
+	 && deja-dup
+}
+
 "$os_pre_setup_command" \
     && check_dependencies \
     && setup_home_dir \
@@ -134,4 +139,5 @@ install_zoom() {
     && setup_github_projects \
     && install_zoom \
     && change_gnome_settings \
+    && install_backups \
     && "$os_post_setup_command" \
