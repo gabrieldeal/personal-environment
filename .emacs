@@ -330,6 +330,8 @@
 ;; Misc settings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(ws-butler-global-mode)
+
 (load-theme `zenburn t)
 
 ;; Disable emacs beeping
@@ -1298,12 +1300,10 @@ SWITCH-TO-BUFFER - whether to switch to the buffer if it is already running."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
-   (quote
-    ("0fffa9669425ff140ff2ae8568c7719705ef33b7a927a0ba7c5e2ffcfac09b75" "e6df46d5085fde0ad56a46ef69ebb388193080cc9819e2d6024c9c6e27388ba9" default)))
+   '("0fffa9669425ff140ff2ae8568c7719705ef33b7a927a0ba7c5e2ffcfac09b75" "e6df46d5085fde0ad56a46ef69ebb388193080cc9819e2d6024c9c6e27388ba9" default))
  '(package-selected-packages
-   (quote
-    (ox-gfm js-import dracula-theme solarized-theme zenburn-theme anti-zenburn-theme company tide typescript-mode disable-mouse org yaml-mode php-mode graphql-mode prettier-js rjsx-mode web-mode rubocop robe paredit nxml-mode markdown-mode magit json-mode flycheck clever-cmd)))
- '(tide-node-flags (quote ("--max-old-space-size=8120")))
+   '(ws-butler ox-gfm js-import dracula-theme solarized-theme zenburn-theme anti-zenburn-theme company tide typescript-mode disable-mouse org yaml-mode php-mode graphql-mode prettier-js rjsx-mode web-mode rubocop robe paredit nxml-mode markdown-mode magit json-mode flycheck clever-cmd))
+ '(tide-node-flags '("--max-old-space-size=8120"))
  '(tide-sync-request-timeout 30))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -1316,6 +1316,6 @@ SWITCH-TO-BUFFER - whether to switch to the buffer if it is already running."
  '(show-paren-match ((t (:foreground "#8be9fd" :inverse-video t :weight bold))))
  '(web-mode-doctype-face ((t (:foreground "magenta"))))
  '(web-mode-html-attr-name-face ((t (:foreground "black"))))
- '(web-mode-html-tag-bracket-face ((t (:foreground "blue"))))
- '(web-mode-html-tag-face ((t (:foreground "blue"))))
+ '(web-mode-html-tag-bracket-face ((t (:foreground "forest green"))))
+ '(web-mode-html-tag-face ((t (:foreground "forest green"))))
  '(web-mode-variable-name-face ((t (:foreground "magenta")))))
