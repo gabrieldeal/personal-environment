@@ -26,4 +26,5 @@ USER=gabrielx
 # Chrome doesn't play well with symlinking or hard linking this file to my local git repo:
 13 17 * * * cp ~/.config/google-chrome/Default/Bookmarks ~/projects/personal-environment/.config/google-chrome/Default/Bookmarks
 13 17 * * * ~/local/bin/backup-apt >>/tmp/$USER-cron.log 2>&1
+13 17 * * * find "$HOME" -name "node_modules" -o -name tmp -exec touch {}/.deja-dup-ignore \;
 #55 8 * * * ~/local/bin/standup-notifier 8:59:30 >>/tmp/$USER-cron.log 2>&1

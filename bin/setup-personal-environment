@@ -141,10 +141,11 @@ install_backups() {
 "$os_pre_setup_command" \
     && check_dependencies \
     && setup_home_dir \
+    && crontab "$HOME/.crontab.work-laptop" \
     && setup_tinydesk \
     && setup_terminal_profiles \
     && setup_github_projects \
     && install_zoom \
     && change_gnome_settings \
     && install_backups \
-    && "$os_post_setup_command" \
+    && "$os_post_setup_command"
