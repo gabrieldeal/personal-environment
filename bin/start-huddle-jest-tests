@@ -1,0 +1,28 @@
+#!/bin/env bash
+
+export NODE_OPTIONS='--max_old_space_size=8192'
+
+mode=full
+if [ -n "$1" ]
+then
+    mode="$1"
+fi
+
+fail() {
+    echo "$@" 1>&2
+    exit 1
+}
+
+cd ~/projects/oss/huddle || fail
+
+if [ "$mode" = "full" ]
+then
+    (source "/usr/share/rvm/scripts/rvm" \
+	 && rvm use `cat .ruby-version`@`cat .ruby-gemset` --create \
+	 && bin/rake graphql:schema:generate) \
+	|| "Error generating the schema"
+fi
+
+source "$HOME/.nvm/nvm.sh" \
+    && nvm use "$(cat .node-version)" \
+    && yarn run test:jest --watch "$@"
