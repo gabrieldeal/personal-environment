@@ -121,6 +121,18 @@ setup_emacs() {
         && sudo apt install emacs27
 }
 
+install_ngrok() {
+    mkdir -p "$HOME/.ngrok2" \
+	&& ln -s "$HOME/projects/personal-environment/.ngrok/oss-slack.yml" "$HOME/.ngrok2/"
+
+    command -v ngrok && return 0
+
+    curl -s https://ngrok-agent.s3.amazonaws.com/ngrok.asc | sudo tee /etc/apt/trusted.gpg.d/ngrok.asc >/dev/null \
+	&& echo "deb https://ngrok-agent.s3.amazonaws.com buster main" | sudo tee /etc/apt/sources.list.d/ngrok.list \
+	&& sudo apt update \
+	&& sudo apt install ngrok
+}
+
 install_zoom() {
     command -v zoom && return 0
 
@@ -146,6 +158,7 @@ install_backups() {
     && setup_terminal_profiles \
     && setup_github_projects \
     && install_zoom \
+    && install_ngrok \
     && change_gnome_settings \
     && install_backups \
     && sudo apt -y install pinta \
