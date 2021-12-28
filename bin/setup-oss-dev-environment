@@ -54,6 +54,20 @@ install_mariadb() {
 	&& sudo systemctl enable mariadb
 }
 
+# https://github.com/officespacesoftware/huddle/wiki/utf8mb4-conversion
+configure_mariadb() {
+    MARIADB_CONFIG_FILE=/etc/mysql/mariadb.conf.d/99-officespace.cnf
+    TEMP_MARIADB_CONFIG_FILE=/tmp/99-officespace.cnf
+
+    rm -f "$TEMP_MARIADB_CONFIG_FILE" \
+	&& echo "[mysqld]" >>"$TEMP_MARIADB_CONFIG_FILE" \
+	&& echo "collation_server = 'utf8mb4_unicode_ci'" >>"$TEMP_MARIADB_CONFIG_FILE" \
+	&& echo "character_set_server = 'utf8mb4'" >>"$TEMP_MARIADB_CONFIG_FILE" \
+	&& sudo rm -f "$MARIADB_CONFIG_FILE" \
+	&& sudo mv "$TEMP_MARIADB_CONFIG_FILE" "$MARIADB_CONFIG_FILE" \
+	&& sudo systemctl restart mariadb
+}
+
 install_timezone_config() {
     echo "Logging into the DB..."
     mysql_tzinfo_to_sql /usr/share/zoneinfo | mysql -u root -p mysql
@@ -119,6 +133,7 @@ install_nvm \
     && install_yarn \
     && install_redis \
     && install_mariadb \
+    && configure_mariadb \
     && install_elasticsearch \
     && sudo apt-get -y install libmysqlclient-dev librsvg2-bin libgeos-dev libvips-dev imagemagick pdf2svg \
     && install_timezone_config \
