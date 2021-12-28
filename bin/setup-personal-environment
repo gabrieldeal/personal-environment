@@ -148,4 +148,5 @@ install_backups() {
     && install_zoom \
     && change_gnome_settings \
     && install_backups \
+    && sudo apt -y install pinta \
     && "$os_post_setup_command"
