@@ -25,4 +25,4 @@ fi
 
 source "$HOME/.nvm/nvm.sh" \
     && nvm use "$(cat .node-version)" \
-    && yarn run test:jest --maxWorkers=2 --maxConcurrency=2 --notify --watch "$@"
+    && yarn run jest --maxWorkers=2 --maxConcurrency=2 --notify --watch "$@"
