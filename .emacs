@@ -75,6 +75,7 @@
     rubocop
     typescript-mode
     web-mode
+    ws-butler
     zenburn-theme))
 
 (package-initialize)
