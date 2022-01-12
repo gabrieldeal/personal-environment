@@ -3,7 +3,7 @@
 export NODE_OPTIONS='--max_old_space_size=8192'
 
 cd ~/projects/oss/huddle \
-    && source "/usr/share/rvm/scripts/rvm" \
+    && source "$HOME/.rvm/scripts/rvm" \
     && rvm use `cat .ruby-version`@`cat .ruby-gemset` --create \
     && bin/rake graphql:schema:generate \
     && source "$HOME/.nvm/nvm.sh" \

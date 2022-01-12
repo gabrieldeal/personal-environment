@@ -94,7 +94,7 @@ clone_huddle() {
 
 install_ruby_and_gems() {
     cd "$HUDDLE_DIR" \
-	&& source "/usr/share/rvm/scripts/rvm" \
+	&& source "$HOME/.rvm/scripts/rvm" \
 	&& rvm install "$(cat .ruby-version)" \
 	&& rvm use "$(cat .ruby-version)@$(cat .ruby-gemset)" --create \
 	&& gem install mailcatcher \

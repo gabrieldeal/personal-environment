@@ -17,7 +17,7 @@ cd ~/projects/oss/huddle || fail
 
 if [ "$mode" = "full" ]
 then
-    (source "/usr/share/rvm/scripts/rvm" \
+    (source "$HOME/.rvm/scripts/rvm" \
 	 && rvm use `cat .ruby-version`@`cat .ruby-gemset` --create \
 	 && bin/rake graphql:schema:generate) \
 	|| "Error generating the schema"

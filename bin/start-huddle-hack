@@ -32,7 +32,7 @@ then
 fi
 
 # In case we are not ran via an interactive shell:
-source "/usr/share/rvm/scripts/rvm"
+source "$HOME/.rvm/scripts/rvm"
 
 cd ~/projects/oss/huddle || fail "No huddle dir"
 
