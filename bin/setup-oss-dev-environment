@@ -94,7 +94,7 @@ clone_huddle() {
 
 install_ruby_and_gems() {
     cd "$HUDDLE_DIR" \
-	&& source "$HOME/.rvm/scripts/rvm" \
+	&& . "$HOME/.rvm/scripts/rvm" \
 	&& rvm install "$(cat .ruby-version)" \
 	&& rvm use "$(cat .ruby-version)@$(cat .ruby-gemset)" --create \
 	&& gem install mailcatcher \
@@ -104,7 +104,7 @@ install_ruby_and_gems() {
 
 install_node_and_packages() {
     export NODE_OPTIONS='--max-old-space-size=8120'
-    source "$HOME/.nvm/nvm.sh"
+    . "$HOME/.nvm/nvm.sh"
 
     nvm install "$(cat .node-version)" \
 	&& nvm use "$(cat .node-version)" \

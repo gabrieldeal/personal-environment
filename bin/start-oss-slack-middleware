@@ -12,7 +12,7 @@ test -f tmp/pids/server.pid \
 
 git pull # Ignore errors like "There is no tracking information for the current branch".
 
-source "$HOME/.rvm/scripts/rvm"
+. "$HOME/.rvm/scripts/rvm"
 
 
 bundle \

@@ -32,7 +32,7 @@ then
 fi
 
 # In case we are not ran via an interactive shell:
-source "$HOME/.rvm/scripts/rvm"
+. "$HOME/.rvm/scripts/rvm"
 
 cd ~/projects/oss/huddle || fail "No huddle dir"
 
@@ -50,7 +50,7 @@ then
     [ "$?" -ne 0 ] && fail "Error setting up rails env"
 fi
 
-#source "$(dirname "$0")/export-webpack-dev-server-settings" \
+#. "$(dirname "$0")/export-webpack-dev-server-settings" \
 #    &&
 
 # Use Unicorn in hopes that it will freeze less than Puma.

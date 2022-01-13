@@ -15,7 +15,7 @@ then
 elif [ "$status" == 2 ]
 then
     # No configuration or configured for a dead ssh-agent
-    test -r "$saved_state_file" && source "$saved_state_file" >/dev/null
+    test -r "$saved_state_file" && . "$saved_state_file" >/dev/null
 
     ssh-add -l &>/dev/null
     status=$?
@@ -27,7 +27,7 @@ then
     then
 	# ssh-agent is not running
 	(umask 066 && ssh-agent >"$saved_state_file")
-	source "$saved_state_file" >/dev/null
+	. "$saved_state_file" >/dev/null
 	ssh-add
     fi
 fi

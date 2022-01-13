@@ -11,9 +11,9 @@ cd "$directory" || exit 1
 . "$HOME/.bash_interactive"
 
 # Without this, Ruby syntax highlighting doesn't work in emacs.
-source "$HOME/.nvm/nvm.sh"
-source "$HOME/.rvm/scripts/rvm"
-source $(rvm "$(cat .ruby-version)@$(cat .ruby-gemset)" do rvm env --path)
+. "$HOME/.nvm/nvm.sh"
+. "$HOME/.rvm/scripts/rvm"
+. $(rvm "$(cat .ruby-version)@$(cat .ruby-gemset)" do rvm env --path)
 nvm use "$(cat .node-version)"
 
 exec "$@"

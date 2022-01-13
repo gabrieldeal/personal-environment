@@ -3,7 +3,7 @@
 
 export -n DISABLE_SPRING
 export SKIP_COVERAGE=1
-source "$HOME/.rvm/scripts/rvm"
+. "$HOME/.rvm/scripts/rvm"
 
 cd ~/projects/oss/huddle \
     && rvm use `cat .ruby-version`@`cat .ruby-gemset` --create \

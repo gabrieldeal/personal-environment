@@ -17,12 +17,12 @@ cd ~/projects/oss/huddle || fail
 
 if [ "$mode" = "full" ]
 then
-    (source "$HOME/.rvm/scripts/rvm" \
+    (. "$HOME/.rvm/scripts/rvm" \
 	 && rvm use `cat .ruby-version`@`cat .ruby-gemset` --create \
 	 && bin/rake graphql:schema:generate) \
 	|| "Error generating the schema"
 fi
 
-source "$HOME/.nvm/nvm.sh" \
+. "$HOME/.nvm/nvm.sh" \
     && nvm use "$(cat .node-version)" \
     && yarn run jest --maxWorkers=2 --maxConcurrency=2 --notify --watch "$@"
