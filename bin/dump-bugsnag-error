@@ -1,23 +1,11 @@
+# frozen_string_literal: true
 #-*-ruby-*-
-
-# #!/bin/sh
-#
-# query() {
-#     curl --get "$1" \
-# 	 --verbose \
-#        --header "Authorization: token $PERSONAL_BUGSNAG_API_KEY" \
-#        --header 'X-Version: 2' \
-#         | jq
-#     echo
-# }
-#
-# query "https://api.bugsnag.com/user/organizations"
-# query "https://api.bugsnag.com/organizations/5b9bef3d7e770000127fad74/projects"
-# query "https://api.bugsnag.com/projects/5bd0f63a9373e30012663534/errors/5f4ff0acafcb43001738f6cc/events"
-
 # https://bugsnagapiv2.docs.apiary.io/
 # https://github.com/bugsnag/bugsnag-api-ruby#readme
-require 'bugsnag/api'
+
+# BUGSNAG_ERROR_ID= BUGSNAG_PROJECT_ID= BUGSNAG_PERSONAL_API_KEY= bundle exec rails runner dump-bugsnag-error
+
+require 'bugsnag/api' # Add the bugsnag-api gem to Gemfile
 require 'pp'
 
 Bugsnag::Api.configure do |config|
@@ -27,6 +15,7 @@ end
 events = Bugsnag::Api.error_events(ENV['BUGSNAG_PROJECT_ID'],
                                    ENV['BUGSNAG_ERROR_ID'],
                                    per_page: 100)
+
 last_response = Bugsnag::Api.last_response
 until last_response.rels[:next].nil?
   sleep 1 # https://bugsnagapiv2.docs.apiary.io/#introduction/rate-limiting
@@ -35,8 +24,11 @@ until last_response.rels[:next].nil?
   events.concat(last_response.data)
 end
 
-pp events
-
 events
   .group_by { |event| event[:context] }
   .map { |key, grouped_events| puts "#{grouped_events.length} #{key}" }
+
+earliest_date = events.map { |event| event[:received_at] }
+                      .min
+                      .to_s
+puts "\nEarliest date is: #{earliest_date}"
