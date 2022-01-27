@@ -47,11 +47,7 @@ cygwin_post_setup() {
 }
 
 check_dependencies() {
-    for program in git wget
-    do
-	command -v $program >/dev/null || fail "Missing '$program'"
-    done
-    test -f "$HOME/.ssh/id_rsa" || fail "Missing SSH keys"
+    test -d "$HOME/.ssh" || fail "copy SSH keys"
 }
 
 setup_home_dir() {
@@ -107,7 +103,7 @@ setup_tinydesk() {
 	 && mkdir -p "~/.emacs-tinydesk" \
 	 && cd "$HOME/.emacs.d/manual" \
 	 && (test -f tinydesk.el \
-	     || wget "$TINYDESK_URL"))   
+	     || curl -O "$TINYDESK_URL"))
 }
 
 setup_emacs() {
@@ -152,6 +148,7 @@ install_backups() {
 
 "$os_pre_setup_command" \
     && check_dependencies \
+    && sudo apt -y install pinta byzanz ffmpeg git keepassxc gnome-tweaks authbind curl \
     && setup_home_dir \
     && crontab "$HOME/.crontab.work-laptop" \
     && setup_tinydesk \
@@ -161,5 +158,4 @@ install_backups() {
     && install_ngrok \
     && change_gnome_settings \
     && install_backups \
-    && sudo apt -y install pinta byzanz ffmpeg \
     && "$os_post_setup_command"
