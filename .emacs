@@ -62,6 +62,7 @@
 	(list 'clever-cmd-example-config gmd-clever-cmd-package-source-directory)))
 (defvar gmd-remote-packages
   '(
+    company
     disable-mouse
     flycheck
     graphql-mode
@@ -73,9 +74,11 @@
     prettier-js
     robe
     rubocop
+    tide
     typescript-mode
     web-mode
     ws-butler
+    yaml-mode
     zenburn-theme))
 
 (package-initialize)
