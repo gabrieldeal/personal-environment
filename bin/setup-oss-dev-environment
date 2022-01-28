@@ -11,12 +11,10 @@ have_command() {
 }
 
 install_rvm() {
-    have_package rvm && return 0
+    [ -e "$HOME/.rvm/scripts/rvm" ] && return 0
 
-    sudo apt-add-repository -y ppa:rael-gc/rvm \
-	&& sudo apt-get update \
-	&& sudo apt-get -y install rvm \
-	&& sudo usermod -a -G rvm $USER
+    sudo apt-get -y install curl \
+	 curl -sSL https://get.rvm.io | bash -s stable --ruby
 }
 
 install_nvm() {
