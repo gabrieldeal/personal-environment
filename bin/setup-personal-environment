@@ -50,10 +50,21 @@ check_dependencies() {
     test -d "$HOME/.ssh" || fail "copy SSH keys"
 }
 
+install_google_chrome() {
+    command -v google-chrome && return 0
+
+    wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add - \
+	&& sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list' \
+	&& sudo apt update \
+	&& sudo apt -y install google-chrome-stable
+
+}
+
 setup_home_dir() {
     apps_dir=".local/share/applications"
 
     mkdir -p "$HOME/$apps_dir" \
+	&& mkdir -p "$HOME/.emacs-tinydesk" \
 	&& cd "$HOME/$apps_dir" \
 	&& for f in "$HOME/projects/personal-environment/$apps_dir/"* ; do ln -vsnf "$f"; done \
 	&& cd "$HOME" \
@@ -96,6 +107,8 @@ change_gnome_settings() {
 
     gsettings set org.gnome.desktop.wm.preferences mouse-button-modifier '<Ctrl>'
     gsettings set org.gnome.desktop.media-handling automount-open false
+
+    gnome-extensions disable ubuntu-dock@ubuntu.com
 }
 
 setup_tinydesk() {
@@ -114,12 +127,12 @@ setup_emacs() {
        
     sudo add-apt-repository ppa:kelleyk/emacs \
         && sudo apt-get update \
-        && sudo apt install emacs27
+        && sudo apt -y install emacs27
 }
 
 install_ngrok() {
     mkdir -p "$HOME/.ngrok2" \
-	&& ln -s "$HOME/projects/personal-environment/.ngrok/oss-slack.yml" "$HOME/.ngrok2/"
+	&& ln -vsnf "$HOME/projects/personal-environment/.ngrok/oss-slack.yml" "$HOME/.ngrok2/"
 
     command -v ngrok && return 0
 
@@ -146,9 +159,18 @@ install_backups() {
 	 && deja-dup
 }
 
+install_authbind() {
+    sudo apt -y install authbind \
+	 && sudo touch /etc/authbind/byport/443 \
+	 && sudo chmod 500 /etc/authbind/byport/443 \
+	 && sudo chown $USER /etc/authbind/byport/443
+}
+
 "$os_pre_setup_command" \
     && check_dependencies \
-    && sudo apt -y install pinta byzanz ffmpeg git keepassxc gnome-tweaks authbind curl \
+    && sudo apt -y install wmctrl deja-dup pinta byzanz ffmpeg git keepassxc gnome-tweaks authbind curl \
+    && sudo snap install authy \
+    && install_google_chrome \
     && setup_home_dir \
     && crontab "$HOME/.crontab.work-laptop" \
     && setup_tinydesk \
@@ -156,6 +178,7 @@ install_backups() {
     && setup_github_projects \
     && install_zoom \
     && install_ngrok \
+    && install_authbind \
     && change_gnome_settings \
     && install_backups \
     && "$os_post_setup_command"
