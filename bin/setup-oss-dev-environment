@@ -89,7 +89,7 @@ clone_huddle() {
 
     mkdir -p "$HUDDLE_DIR" \
 	&& cd "$HUDDLE_DIR" \
-	&& git clone git@github.com:officespacesoftware/huddle.git
+	&& git clone git@github.com:officespacesoftware/huddle.git .
 }
 
 install_ruby_and_gems() {
