@@ -3,8 +3,6 @@
 
 set-xterm-title "Sidekiq"
 
-export LD_LIBRARY_PATH=/home/gabrielx/local/cairo-1.16.0/lib:/home/gabrielx/local/librsvg-2.45.6/lib/
-
 # In case we are not ran via an interactive shell:
 . "$HOME/.rvm/scripts/rvm"
 
