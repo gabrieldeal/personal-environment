@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
-/home/gabrielx/local/bin/run-in \
-    /home/gabrielx/projects/oss/huddle \
+"$HOME/local/bin/run-in" \
+    "$HOME/projects/oss/huddle" \
     emacs \
 	  -f magit-status \
 	  -f gmd-tinydesk-recover-state-all 2>&1 | tee /tmp/emacs-huddle.log
