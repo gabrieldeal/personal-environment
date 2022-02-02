@@ -133,7 +133,7 @@ install_nvm \
     && install_mariadb \
     && configure_mariadb \
     && install_elasticsearch \
-    && sudo apt-get -y install libmysqlclient-dev librsvg2-bin libgeos-dev libvips-dev imagemagick pdf2svg \
+    && sudo apt-get -y install libsqlite3-dev libmysqlclient-dev librsvg2-bin libgeos-dev libvips-dev imagemagick pdf2svg \
     && install_timezone_config \
     && clone_huddle \
     && install_ruby_and_gems \
