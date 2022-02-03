@@ -168,7 +168,7 @@ install_authbind() {
 
 "$os_pre_setup_command" \
     && check_dependencies \
-    && sudo apt -y install wmctrl deja-dup pinta byzanz ffmpeg git keepassxc gnome-tweaks authbind curl \
+    && sudo apt -y install cloc virtualbox wmctrl deja-dup pinta byzanz ffmpeg git keepassxc gnome-tweaks authbind curl \
     && sudo snap install authy \
     && install_google_chrome \
     && setup_home_dir \
