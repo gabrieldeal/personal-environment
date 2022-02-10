@@ -148,6 +148,7 @@ install_nvm \
     && install_timezone_config \
     && clone_repo huddle \
     && clone_repo puppet4_modules \
+    && clone_repo image_processing_service \
     && install_fonts \
     && install_ruby_and_gems \
     && install_node_and_packages \
