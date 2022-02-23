@@ -48,11 +48,11 @@
 (require 'package)
 
 (add-to-list 'package-archives
-	     '("melpa" . "http://melpa.org/packages/"))
-(add-to-list 'package-archives
-	     '("marmalade" . "http://marmalade-repo.org/packages/") t)
-(add-to-list 'package-archives
-	     '("tromey" . "http://tromey.com/elpa/") t)
+	     '("melpa" . "http://stable.melpa.org/packages/"))
+;; (add-to-list 'package-archives
+;; 	     '("marmalade" . "http://marmalade-repo.org/packages/") t)
+;; (add-to-list 'package-archives
+;; 	     '("tromey" . "http://tromey.com/elpa/") t)
 (add-to-list 'package-archives
 	     (cons "gmd" gmd-package-archive-directory) t)
 
@@ -67,14 +67,15 @@
     flycheck
     graphql-mode
     json-mode
+    lsp-mode
+    lsp-treemacs
+    lsp-ui
     magit
     markdown-mode
     nxml-mode
     paredit
     prettier-js
-    robe
     rubocop
-    tide
     typescript-mode
     web-mode
     ws-butler
@@ -532,11 +533,7 @@ sub get_options {
 (setq Buffer-menu-time-flag nil)
 (setq Buffer-menu-mode-flag nil)
 
-(autoload 'robe-mode "robe")
-(add-hook 'robe-mode
-	  (lambda()
-	    ;; robe overrides M-,
-	    (define-key robe-mode-map (kbd "M-,") 'tags-loop-continue)))
+(add-hook 'after-init-hook 'inf-ruby-switch-setup)
 
 (add-hook 'web-mode-hook
 	  (lambda()
@@ -545,8 +542,8 @@ sub get_options {
 	    (if (string-match "\\.\\(js\\|jsx\\|tsx\\)$" (buffer-file-name))
 		(prettier-js-mode))))
 
-(add-hook 'ruby-mode-hook 'robe-mode)
 (add-hook 'ruby-mode-hook 'rubocop-mode)
+(add-hook 'ruby-mode-hook #'lsp) ;; gem install solargraph
 (add-hook 'ruby-mode-hook
 	  (lambda ()
 	    ;; Nice idea, but it is too slow even with the Rubocop daemon.
@@ -555,6 +552,7 @@ sub get_options {
 	    ;; (setq rubocop-autocorrect-command "rubocop-daemon exec -- -a --format emacs")
 	    ;; (setq rubocop-prefer-system-executable 't)
 	    ;; (setq rubocop-autocorrect-on-save 't)
+;;	    (flycheck-add-next-checker 'ruby-rubocop 'lsp  'append)
 	    (setq rubocop-autocorrect-command "bin/rubocop -a --format emacs")
 	    (setq rubocop-prefer-system-executable 't)
 	    (setq ruby-insert-encoding-magic-comment nil)))
@@ -599,10 +597,13 @@ sub get_options {
 	   (concat (clever-cmd-ec--vc-root-dir) "node_modules/eslint/bin/eslint.js"))
      (setq flycheck-eslintrc (concat (clever-cmd-ec--vc-root-dir) ".eslintrc.js"))))
 
-(eval-after-load "tide"
-  '(progn
-     (flycheck-add-mode 'typescript-tide 'web-mode)
-     (flycheck-add-next-checker 'typescript-tide 'javascript-eslint 'append)))
+;; (eval-after-load "lsp-mode"
+;;   '(progn
+;;      (flycheck-add-mode 'lsp 'ruby-mode)
+;;      (flycheck-add-next-checker 'lsp 'ruby-rubocop 'append)
+;;      ;;; (flycheck-add-next-checker 'lsp 'javascript-eslint 'append)
+;;      )
+;;   )
 
 ;; This variable must be defined before web-mode is autoloaded in
 ;; order for the first file to be recognized correctly.
@@ -619,13 +620,9 @@ sub get_options {
 		      )))
 
 (defun gmd-setup-typescript ()
-  (tide-setup)
   (flycheck-mode +1)
+  (flycheck-select-checker 'lsp)
   (eldoc-mode +1)
-  (flycheck-select-checker 'typescript-tide)
-  (tide-hl-identifier-mode +1)
-  (setq tide-always-show-documentation 't)
-  (setq tide-server-max-response-length 2147483647)
   (company-mode +1)
   (setq indent-tabs-mode nil)
   (setq typescript-indent-level 2)
@@ -633,6 +630,7 @@ sub get_options {
 
 (require 'company)
 (add-hook 'typescript-mode-hook 'gmd-setup-typescript)
+(add-hook 'typescript-mode-hook #'lsp) ;; M-x lsp-install-server ts-ls
 
 (add-hook 'graphql-mode-hook
 	  (lambda ()
@@ -811,6 +809,7 @@ sub get_options {
       '(lambda()
 	 (font-lock-mode 't)))
 (setq sh-mode-hook shell-script-mode-hook)
+(add-hook 'sh-mode-hook #'lsp) ;; M-x lsp-install-server bash-ls
 
 (setq makefile-mode-hook
       '(lambda()
@@ -1306,9 +1305,7 @@ SWITCH-TO-BUFFER - whether to switch to the buffer if it is already running."
  '(custom-safe-themes
    '("0fffa9669425ff140ff2ae8568c7719705ef33b7a927a0ba7c5e2ffcfac09b75" "e6df46d5085fde0ad56a46ef69ebb388193080cc9819e2d6024c9c6e27388ba9" default))
  '(package-selected-packages
-   '(ws-butler ox-gfm js-import dracula-theme solarized-theme zenburn-theme anti-zenburn-theme company tide typescript-mode disable-mouse org yaml-mode php-mode graphql-mode prettier-js rjsx-mode web-mode rubocop robe paredit nxml-mode markdown-mode magit json-mode flycheck clever-cmd))
- '(tide-node-flags '("--max-old-space-size=8120"))
- '(tide-sync-request-timeout 30))
+   '(rspec-mode ruby-test-mode rvm dockerfile-mode plantuml-mode lsp-mode ws-butler ox-gfm js-import dracula-theme solarized-theme zenburn-theme anti-zenburn-theme company typescript-mode disable-mouse org yaml-mode php-mode graphql-mode prettier-js rjsx-mode web-mode rubocop paredit nxml-mode markdown-mode magit json-mode flycheck clever-cmd)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
