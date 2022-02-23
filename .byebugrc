@@ -1,2 +1,2 @@
-set histfile /home/gabrielx/byebug.history
+set histfile /home/g/.byebug.history
 set ignore_empty_commands true
