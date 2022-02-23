@@ -8,7 +8,7 @@ set-xterm-title "Sidekiq"
 
 cd ~/projects/oss/huddle || exit 1
 
-if [ "$1" != 'skip' ]
+if [ "$1" != 'short' ]
 then
     rvm get stable \
 	&& rvm install "$(cat .ruby-version)" \
@@ -24,4 +24,4 @@ then
     fi
 fi
 
-bin/sidekiq -q high -q default -q low -c 2
+bin/sidekiq -q high -q default -q low -c 2 >>log/sidekiq.log 2>&1
