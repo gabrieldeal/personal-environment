@@ -1034,7 +1034,7 @@ Install the filter like this:
   (if (not (local-variable-if-set-p 'clever-cmd-ruby-byebug-compilation-filter-is-done))
       (save-excursion
 	(goto-char compilation-filter-start)
-	(if (re-search-forward "^(byebug) " nil t)
+	(if (re-search-forward "^(byebug\\|rdbg)" nil t)
 	    (progn
 	      (clever-cmd-convert-to-ruby-console)
 	      (make-local-variable 'clever-cmd-ruby-byebug-compilation-filter-is-done))))))

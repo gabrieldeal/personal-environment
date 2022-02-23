@@ -1,5 +1,8 @@
 #!/usr/bin/env sh
 
+export INSIDE_EMACS="for ~/.irbrc"
+export RUBY_DEBUG_NO_RELINE=true
+
 "$HOME/local/bin/run-in" \
     "$HOME/projects/oss/huddle" \
     emacs \
