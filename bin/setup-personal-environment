@@ -13,39 +13,6 @@ fail() {
     exit 1
 }
 
-os_pre_setup_command="true"
-os_post_setup_command="true"
-os_type="$(uname -o)"
-case "$os_type" in
-    "Cygwin")
-	jq_url="https://github.com/stedolan/jq/releases/download/jq-1.5/jq-win64.exe"
-	os_pre_setup_command="cygwin_pre_setup"
-	os_post_setup_command="cygwin_post_setup"
-	;;
-
-    "GNU/Linux")
-	jq_url="https://github.com/stedolan/jq/releases/download/jq-1.5/jq-linux64"
-	os_post_setup_command="setup_emacs"
-	;;
-esac
-
-cygwin_pre_setup() {
-    PATH="$PATH:/usr/bin"
-    export PATH
-
-    HOME="$(cygpath "$USERPROFILE")"
-    export HOME
-
-    "setup-x86_64.exe" -q -P "emacs,wget,git,make,gcc-core,libexpat-devel,libcrypt-devel,gcc-g++,ruby,curl,libiconv-devel"
-}
-
-cygwin_post_setup() {
-    # Use the Windows home directory for Cygwin:
-    (grep -q '^db_home:' /etc/nsswitch.conf || echo "db_home: windows" >>/etc/nsswitch.conf) \
-	&& cd "$HOME" \
-	&& for f in projects/personal-environment/cygwin/.??* ; do ln -vsnf "$f"; done
-}
-
 check_dependencies() {
     test -d "$HOME/.ssh" || fail "copy SSH keys"
 }
@@ -59,6 +26,18 @@ install_google_chrome() {
 	&& sudo apt -y install google-chrome-stable
 
 }
+
+install_gcloud() {
+    command -v gcloud && return 0
+
+    echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" \
+	| sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list \
+	&& curl https://packages.cloud.google.com/apt/doc/apt-key.gpg \
+	    | sudo apt-key --keyring /usr/share/keyrings/cloud.google.gpg add - \
+	&& sudo apt-get update && sudo apt-get install google-cloud-sdk \
+	&& gcloud init
+}
+
 
 setup_home_dir() {
     apps_dir=".local/share/applications"
@@ -166,11 +145,17 @@ install_authbind() {
 	 && sudo chown $USER /etc/authbind/byport/443
 }
 
-"$os_pre_setup_command" \
-    && check_dependencies \
-    && sudo apt -y install cloc virtualbox wmctrl deja-dup pinta byzanz ffmpeg git keepassxc gnome-tweaks authbind curl \
+print_manual_instructions() {
+    echo "useradd -G sudo tempuser"
+    echo "Log in as tempuser"
+    echo "sudo ecryptfs-migrate-home -u gabrielx"
+}
+
+check_dependencies \
+    && sudo apt -y install p7zip-full ecryptfs-utils cloc virtualbox wmctrl deja-dup pinta byzanz ffmpeg git keepassxc gnome-tweaks authbind curl \
     && sudo snap install authy \
     && install_google_chrome \
+    && install_gcloud \
     && setup_home_dir \
     && crontab "$HOME/.crontab.work-laptop" \
     && setup_tinydesk \
@@ -181,4 +166,5 @@ install_authbind() {
     && install_authbind \
     && change_gnome_settings \
     && install_backups \
-    && "$os_post_setup_command"
+    && setup_emacs \
+    && print_manual_instructions
