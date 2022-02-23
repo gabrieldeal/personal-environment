@@ -789,6 +789,13 @@ sub get_options {
 	 (font-lock-mode 1)
 	 (setq compilation-scroll-output 'first-error)))
 
+(setq inf-ruby-mode-hook
+      '(lambda ()
+	 (setq inf-ruby-prompt-format
+               (concat inf-ruby-prompt-format "\\|\\(^(rdbg) *\\)"))
+	 (setq inf-ruby-first-prompt-pattern (format inf-ruby-prompt-format ">" ">"))
+	 (setq inf-ruby-prompt-pattern (format inf-ruby-prompt-format "[?>]" "[\]>*\"'/`]"))))
+
 ;; Make compilation mode color text based on the ANSI color control
 ;; characters.
 (require 'ansi-color)
