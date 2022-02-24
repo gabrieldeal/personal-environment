@@ -14,3 +14,4 @@ piv
 config/database.yml.bak
 config/application.yml.bak
 pr.md
+.log/
