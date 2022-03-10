@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+function bounding_box_specs() {
+    find spec/ -name \*bounding_box\*_spec.rb
+}
+
 function slack_specs() {
     find spec/ -name \*_spec.rb | grep --regex slack --regex find_controller_spec
 }
@@ -18,7 +22,15 @@ function search_specs() {
 }
 
 function printing_specs() {
-    find spec/ -name \*_spec.rb | grep -e print -e svg
+    find spec/ -name \*_spec.rb | grep -e print -e svg -e floor_detailed
+}
+
+function simple_floor_plan_specs() {
+    find spec/ -name \*simple\*_spec.rb | grep -v simple_search
+}
+
+function dedup() {
+    cat - | tr " " "\n" | sort -u
 }
 
 fail() {
@@ -28,11 +40,20 @@ fail() {
 
 type="$1"
 case "$type" in
+    bounding-box*)
+	bounding_box_specs
+	;;
+    floor-plan*)
+	echo $(simple_floor_plan_specs) $(printing_specs) $(bounding_box_specs)
+	;;
     print*)
 	printing_specs
 	;;
     ms-teams|teams)
 	ms_teams_specs
+	;;
+    simple*)
+	simple_floor_plan_specs
 	;;
     slack-short)
 	slack_specs | grep -v -e find_controller_spec -e employee_slack_search_spec
@@ -49,4 +70,4 @@ case "$type" in
     *)
 	fail "Usage: $0 TYPE"
 	;;
-esac
+esac | dedup
