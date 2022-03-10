@@ -38,36 +38,41 @@ fail() {
     exit 1
 }
 
-type="$1"
-case "$type" in
-    bounding-box*)
-	bounding_box_specs
-	;;
-    floor-plan*)
-	echo $(simple_floor_plan_specs) $(printing_specs) $(bounding_box_specs)
-	;;
-    print*)
-	printing_specs
-	;;
-    ms-teams|teams)
-	ms_teams_specs
-	;;
-    simple*)
-	simple_floor_plan_specs
-	;;
-    slack-short)
-	slack_specs | grep -v -e find_controller_spec -e employee_slack_search_spec
-	;;
-    slack)
-	slack_specs
-	;;
-    slack-desk-booking)
-	slack_specs | grep desk_booking
-	;;
-    search)
-	search_specs
-	;;
-    *)
-	fail "Usage: $0 TYPE"
-	;;
-esac | dedup
+while [ -n "$1" ]
+do
+    type="$1"
+    shift
+
+    case "$type" in
+	bounding-box*)
+	    bounding_box_specs
+	    ;;
+	floor-plan*)
+	    echo $(simple_floor_plan_specs) $(printing_specs) $(bounding_box_specs)
+	    ;;
+	print*)
+	    printing_specs
+	    ;;
+	ms-teams|teams)
+	    ms_teams_specs
+	    ;;
+	simple*)
+	    simple_floor_plan_specs
+	    ;;
+	slack-short)
+	    slack_specs | grep -v -e find_controller_spec -e employee_slack_search_spec
+	    ;;
+	slack)
+	    slack_specs
+	    ;;
+	slack-desk-booking)
+	    slack_specs | grep desk_booking
+	    ;;
+	search)
+	    search_specs
+	    ;;
+	*)
+	    fail "Usage: $0 TYPE"
+	    ;;
+    esac
+done
