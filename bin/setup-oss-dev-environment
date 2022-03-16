@@ -145,6 +145,7 @@ install_nvm \
     && configure_mariadb \
     && install_elasticsearch \
     && sudo apt-get -y install libsqlite3-dev libmysqlclient-dev librsvg2-bin libgeos-dev libvips-dev imagemagick pdf2svg \
+    && mkdir -p /opt/flatfiles/processed/archive \
     && install_timezone_config \
     && clone_repo huddle \
     && clone_repo puppet4_modules \
