@@ -29,6 +29,9 @@ case "$type" in
     rubocop)
 	find_ruby || exit 1
 	;;
+    rspec|spec)
+	find_ruby | grep _spec.rb || exit 1
+	;;
     eslint|prettier)
 	find_javascript || find_graphql || exit 1
 	;;
