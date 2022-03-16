@@ -63,5 +63,8 @@ fi
 #
 # sudo touch /etc/authbind/byport/443
 # sudo chmod 777 /etc/authbind/byport/443
+
+export DISABLE_SPRING=true
+
 rvm_use \
-    && authbind --deep bin/rails s -b "ssl://0.0.0.0:$port?key=$HOME/.ssh/server.key&cert=$HOME/.ssh/server.crt"
+    && authbind --deep bundle exec rails s -b "ssl://0.0.0.0:$port?key=$HOME/.ssh/server.key&cert=$HOME/.ssh/server.crt"
