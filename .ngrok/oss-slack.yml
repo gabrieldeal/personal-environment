@@ -1,4 +1,8 @@
 tunnels:
+  image-processing-service:
+    proto: http
+    addr: 8080
+    subdomain: gabriel-ips-dicksonlabs
   ms-teams:
     proto: http
     addr: 3333
