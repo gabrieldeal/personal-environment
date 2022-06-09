@@ -1,0 +1,38 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+header = nil
+current_host = nil
+current_host_has_data = false
+hosts_without_data = []
+
+File.readlines(ARGV[0]).each do |line|
+  if line.match?(/^\s*$/)
+    hosts_without_data << current_host if current_host && !current_host_has_data
+    current_host = nil
+    current_host_has_data = false
+    next
+  end
+  next if line.match?(/^\#\s*$/)
+
+  match = line.match(/^\# ([\w-]+)/)
+  if match
+    current_host = match[1]
+    next
+  end
+
+  row = line.split("\t")
+
+  if header.nil?
+    header = line
+    puts ['host', *row].join(', ')
+    next
+  end
+
+  next if line == header
+
+  current_host_has_data = true
+  puts [current_host, *row].join(', ')
+end
+
+puts hosts_without_data.join("\n")
