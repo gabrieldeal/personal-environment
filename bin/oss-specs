@@ -50,6 +50,9 @@ do
 	bounding-box*)
 	    bounding_box_specs
 	    ;;
+	changed|opened)
+	    git-opened-files | grep _spec.rb
+	    ;;
 	floor-plan*)
 	    echo $(simple_floor_plan_specs) $(printing_specs) $(bounding_box_specs)
 	    ;;
