@@ -2,6 +2,7 @@
 
 export INSIDE_EMACS="for ~/.irbrc"
 export RUBY_DEBUG_NO_RELINE=true
+export DISABLE_SPRING=true
 
 "$HOME/local/bin/run-in" \
     "$HOME/projects/oss/huddle" \
