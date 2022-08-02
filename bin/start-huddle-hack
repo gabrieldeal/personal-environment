@@ -46,7 +46,7 @@ then
 	&& gem install mailcatcher \
 	&& gem install bundle \
 	&& bundle install \
-	&& echo "Migrating development..." && bin/rake db:migrate RAILS_ENV=development
+	&& echo "Migrating development..." && rake db:migrate RAILS_ENV=development \
     [ "$?" -ne 0 ] && fail "Error setting up rails env"
 fi
 
