@@ -10,7 +10,7 @@ function find_javascript() {
 
 function find_ruby() {
     $DIFF_COMMAND \
-	| grep '\.rb$' \
+	| grep -e '\.rb$' -e 'Gemfile$' \
 	| grep -v schema.rb
 }
 
