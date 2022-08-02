@@ -14,10 +14,13 @@ function ms_teams_specs() {
 
 function search_specs() {
     find spec/ -name \*_spec.rb | grep --regex search/v2 \
+				       --regex graphql/directory_departments \
 				       --regex find_controller_spec \
 				       --regex searchkick \
 				       --regex bookings/search \
 				       --regex search/manager \
+				       --regex manager/search \
+				       --regex multi_search \
 				       --regex graphql/search
 }
 
