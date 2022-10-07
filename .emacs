@@ -1247,7 +1247,7 @@ SWITCH-TO-BUFFER - whether to switch to the buffer if it is already running."
 (defun gmd-start-rails-console ()
   (interactive)
   (gmd-start-interactive-shell-with-command "*rails console*"
-					    "bin/rails console"
+					    "rails console"
 					    't))
 
 (defun gmd-start-karma-webserver ()
