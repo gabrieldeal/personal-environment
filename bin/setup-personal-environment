@@ -79,6 +79,7 @@ setup_github_project() {
 
 change_gnome_settings() {
     # Install https://extensions.gnome.org/extension/1485/workspace-matrix/
+    # Install https://extensions.gnome.org/extension/1183/utcclock/
     gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-left "['<Control>Left']"
     gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-right "['<Control>Right']"
     gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-up "['<Control>Up']"
