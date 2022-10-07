@@ -7,3 +7,8 @@ if [ -f '/home/gabrielx/local/google-cloud-sdk/path.bash.inc' ]; then . '/home/g
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/home/gabrielx/local/google-cloud-sdk/completion.bash.inc' ]; then . '/home/gabrielx/local/google-cloud-sdk/completion.bash.inc'; fi
+
+# pnpm
+export PNPM_HOME="/home/g/.local/share/pnpm"
+export PATH="$PNPM_HOME:$PATH"
+# pnpm end

@@ -3,7 +3,7 @@
 	name = Gabriel M Deal
 	signingkey = 308DFBF7A166DE6B
 [core]
-	excludesfile = /home/gabrielx/.gitignore_global
+	excludesFile = ~/.gitignore_global
 	commentChar = !
 ## Arg!  There is no way to configure a different pager just for diff
 ## Can use this for now: git diff --color |diff-highlight
