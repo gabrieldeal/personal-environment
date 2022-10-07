@@ -626,7 +626,6 @@ sub get_options {
 
 (defun gmd-setup-typescript ()
   (flycheck-mode +1)
-  (flycheck-select-checker 'lsp)
   (eldoc-mode +1)
   (company-mode +1)
   (setq indent-tabs-mode nil)
