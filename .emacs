@@ -75,6 +75,7 @@
     nxml-mode
     paredit
     prettier-js
+    protobuf-mode
     rubocop
     typescript-mode
     web-mode
@@ -242,6 +243,8 @@
 (setq auto-mode-alist (cons '("\\.mk$" . makefile-mode) auto-mode-alist))
 
 (setq auto-mode-alist (cons '("\\.ps$" . postscript-mode) auto-mode-alist))
+
+(setq auto-mode-alist (cons '("\\.proto$" . protobuf-mode) auto-mode-alist))
 
 (setq auto-mode-alist (cons '("\\.t$" . perl-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.pl$" . perl-mode) auto-mode-alist))
@@ -1314,7 +1317,7 @@ SWITCH-TO-BUFFER - whether to switch to the buffer if it is already running."
  '(custom-safe-themes
    '("0fffa9669425ff140ff2ae8568c7719705ef33b7a927a0ba7c5e2ffcfac09b75" "e6df46d5085fde0ad56a46ef69ebb388193080cc9819e2d6024c9c6e27388ba9" default))
  '(package-selected-packages
-   '(rbs-mode rspec-mode ruby-test-mode rvm dockerfile-mode plantuml-mode lsp-mode ws-butler ox-gfm js-import dracula-theme solarized-theme zenburn-theme anti-zenburn-theme company typescript-mode disable-mouse org yaml-mode php-mode graphql-mode prettier-js rjsx-mode web-mode rubocop paredit nxml-mode markdown-mode magit json-mode flycheck clever-cmd)))
+   '(protobuf-mode rbs-mode rspec-mode ruby-test-mode rvm dockerfile-mode plantuml-mode lsp-mode ws-butler ox-gfm js-import dracula-theme solarized-theme zenburn-theme anti-zenburn-theme company typescript-mode disable-mouse org yaml-mode php-mode graphql-mode prettier-js rjsx-mode web-mode rubocop paredit nxml-mode markdown-mode magit json-mode flycheck clever-cmd)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
