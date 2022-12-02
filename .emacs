@@ -602,13 +602,6 @@ sub get_options {
 	   (concat (clever-cmd-ec--vc-root-dir) "node_modules/eslint/bin/eslint.js"))
      (setq flycheck-eslintrc (concat (clever-cmd-ec--vc-root-dir) ".eslintrc.js"))))
 
-;; (eval-after-load "lsp-mode"
-;;   '(progn
-;;      (flycheck-add-mode 'lsp 'ruby-mode)
-;;      (flycheck-add-next-checker 'lsp 'ruby-rubocop 'append)
-;;      ;;; (flycheck-add-next-checker 'lsp 'javascript-eslint 'append)
-;;      )
-;;   )
 
 ;; This variable must be defined before web-mode is autoloaded in
 ;; order for the first file to be recognized correctly.
@@ -630,11 +623,13 @@ sub get_options {
   (company-mode +1)
   (setq indent-tabs-mode nil)
   (setq typescript-indent-level 2)
-  (prettier-js-mode))
+  (prettier-js-mode)
+  (lsp)
+  (flycheck-add-next-checker 'lsp 'javascript-eslint  'append)
+)
 
 (require 'company)
 (add-hook 'typescript-mode-hook 'gmd-setup-typescript)
-(add-hook 'typescript-mode-hook #'lsp) ;; M-x lsp-install-server ts-ls
 
 (add-hook 'graphql-mode-hook
 	  (lambda ()
