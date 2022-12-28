@@ -201,11 +201,90 @@
 	       (symbol-name rval))))))
 (add-hook 'sql-interactive-mode-hook 'my-sql-save-history-hook)
 
+(defun gmd-refactor-1 ()
+  "CORE-13436"
+  (interactive)
+  (progn
+    (goto-char (point-min))
+    (insert " ") ;; run Prettier
+    (save-buffer)
+
+    ;; M-x global-disable-mouse-mode
+
+    ;; First do the ones that end in two newlines
+    (goto-char (point-min))
+    (while (re-search-forward "[a-zA-Z0-9]+\\.set\\([A-Z]\\)\\([A-Za-z]+\\)([\n ]*\\(.+\\)[\n ]*);\n\n"  nil t)
+      (replace-match (concat (downcase (match-string 1)) (match-string 2) ": " (match-string 3) ",})\n\n")) )
+
+    (goto-char (point-min))
+    (while (re-search-forward "[a-zA-Z0-9]+\\.set\\([A-Z]\\)\\([A-Za-z]+\\)([\n ]*\\(.+\\)[\n ]*);"  nil t)
+      (replace-match (concat (downcase (match-string 1)) (match-string 2) ": " (match-string 3) ",")) )
+
+    (goto-char (point-min))
+    (while (re-search-forward "\\(const \\)?\\([a-zA-Z]+\\): \\([A-Za-z]+\\) = {};"  nil t)
+      (if (not (string-match "Histor" (match-string 2)))
+	  (replace-match "\\1\\2 = \\3Factory.build({"))
+      )
+
+    ;; *History *Histories
+    (goto-char (point-min))
+    (while (re-search-forward "\\(const \\)?\\([a-zA-Z]+\\): \\([A-Za-z]+\\) = {};"  nil t)
+      (replace-match "\\1\\2: \\3 = {")
+      )
+
+    (goto-char (point-min))
+    (while (re-search-forward "batch"  nil t)
+      (replace-match "batch"))
+
+    (goto-char (point-min))
+    (while (re-search-forward "WrapperFactory.build({"  nil t)
+      (replace-match "WrapperFactory.build({")
+      )
+
+    (goto-char (point-min))
+    (while (re-search-forward "new \\(Command\\|Designation\\|Desk\\|Employee\\|Floor\\|Move\\|Room\\|SeatAvailabilit\\|Site\\|User\\)\\(\\w+\\)()"  nil t)
+      (replace-match "\\1\\2Factory.build()")
+      )
+
+    )
+  )
+
+
+(defun gmd-refactor-2 ()
+  "CORE-13436."
+  (interactive)
+  (progn
+    ;; M-x global-disable-mouse-mode
+
+    (goto-char (point-min))
+    (query-replace-regexp
+     "\\([a-zA-Z]*\\([wW]rapper\\|[wW]rapped\\)[a-zA-Z0-9]*\\??\\)\\.\\(users?\\|commands?\\|designations?\\|employees?\\|moves?\\|users?\\|sites?\\|floors?\\|rooms?\\|desks?\\|logHistoryRequested\\|deskBookings?\\|shifts?\\|deskShifts?\\|seats?\\|seatAvailability\\|seatAvailabilities\\)\\(MovedToRoom\\|Bound\\|Unbound\\|Created\\|Updated\\|Scheduled\\|Deleted\\|Migrated\\|Promoted\\|Demoted\\|Approved\\|Canceled\\|Completed\\|Declined\\|Requested\\|Commands\\)"
+     "\\1.message?.$case === \"\\3\\4\""
+     )
+
+    (goto-char (point-min))
+    (while (re-search-forward "\\([a-zA-Z]*\\([wW]rapper\\|[wW]rapped\\)[a-zA-Z0-9]*\\??\\)\\.\\(users?\\|commands?\\|designations?\\|employees?\\|moves?\\|users?\\|sites?\\|floors?\\|rooms?\\|desks?\\|logHistoryRequested\\|deskBookings?\\|shifts?\\|deskShifts?\\|seats?\\|seatAvailability\\|seatAvailabilities\\)\\(MovedToRoom\\|Bound\\|Unbound\\|Created\\|Updated\\|Scheduled\\|Deleted\\|Migrated\\|Promoted\\|Demoted\\|Approved\\|Canceled\\|Completed\\|Declined\\|Requested\\|Commands\\)" nil t)
+      (replace-match (concat (match-string 1) ".message." (match-string 3) (match-string 4)))
+      )
+    )
+  )
+
+
+(defun gmd-refactor-unfactory-history ()
+  "CORE-13436."
+  (interactive)
+  (progn
+    (goto-char (point-min))
+  (while (re-search-forward "const \\(\\w+\\)\s*=\s*\\(\\w+History\\)Factory\.build({" nil t)
+      (replace-match "const \\1: \\2 = {"))
+    )
+  )
+
 (defun gmd-format-sql()
   "Format SQL queries"
   (interactive)
   (save-excursion
-    (while (re-search-forward "\\\(\\<left\\>\\\|\\<from\\>\\\|\\<where\\>\\\|\\<values\\>\\\|\\<group by\\>\\\|\\<values\\>\\\|\\<order by\\>\\\|\\<inner join\\>\\\|\<left outer join\\\)" nil t)
+    (while (re-search-forward "\\\(\\<left\\>\\\|\\<from\\>\\\|\\<where\\>\\\|\\<values\\>\\\|\\<group by\\>\\\|\\<values\\>\\\|\\<order by\\>\\\|\\<inner join\\>\\\|\\<left outer join\\\)" nil t)
       (replace-match "\n\\1")))
   (save-excursion
     (while (re-search-forward "\\\(\\<and\\>\\\|\\<on\\>\\\)" nil t)
@@ -452,6 +531,13 @@
     (let ((char-to-ucase (buffer-substring (point) (+ 1 (point)))))
       (delete-char 1)
       (insert (upcase char-to-ucase)))))
+
+(defun gmd-lcase-first-character()
+  (interactive)
+  (save-excursion
+    (let ((char-to-ucase (buffer-substring (point) (+ 1 (point)))))
+      (delete-char 1)
+      (insert (downcase char-to-ucase)))))
 
 ;; I can't get byte-compile-directory to work.
 (defun gmd-byte-compile-directory()
@@ -1311,7 +1397,7 @@ SWITCH-TO-BUFFER - whether to switch to the buffer if it is already running."
  '(custom-safe-themes
    '("0fffa9669425ff140ff2ae8568c7719705ef33b7a927a0ba7c5e2ffcfac09b75" "e6df46d5085fde0ad56a46ef69ebb388193080cc9819e2d6024c9c6e27388ba9" default))
  '(package-selected-packages
-   '(protobuf-mode rbs-mode rspec-mode ruby-test-mode rvm dockerfile-mode plantuml-mode lsp-mode ws-butler ox-gfm js-import dracula-theme solarized-theme zenburn-theme anti-zenburn-theme company typescript-mode disable-mouse org yaml-mode php-mode graphql-mode prettier-js rjsx-mode web-mode rubocop paredit nxml-mode markdown-mode magit json-mode flycheck clever-cmd)))
+   '(yasnippet protobuf-mode rbs-mode rspec-mode ruby-test-mode rvm dockerfile-mode plantuml-mode lsp-mode ws-butler ox-gfm js-import dracula-theme solarized-theme zenburn-theme anti-zenburn-theme company typescript-mode disable-mouse org yaml-mode php-mode graphql-mode prettier-js rjsx-mode web-mode rubocop paredit nxml-mode markdown-mode magit json-mode flycheck clever-cmd)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
