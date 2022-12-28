@@ -32,6 +32,14 @@ function simple_floor_plan_specs() {
     find spec/ -name \*simple\*_spec.rb | grep -v simple_search
 }
 
+function base_floor_plan_specs() {
+    find spec/lib/floor_plan_images -name \*_spec.rb
+}
+
+function ips_specs() {
+    find spec/lib/image_processing_service -name \*_spec.rb
+}
+
 function dedup() {
     cat - | tr " " "\n" | sort -u
 }
@@ -47,23 +55,34 @@ do
     shift
 
     case "$type" in
+	core-10610)
+	    echo  spec/controllers/api/v1/employees_controller_spec.rb \
+		  spec/graphql/mutations/employees/create_spec.rb \
+		  spec/lib/services/reports/create_employee_spec.rb \
+		  spec/models/employee_seed_spec.rb \
+		  spec/lib/mass_employee_processing/importer_spec.rb \
+		  spec/lib/kafka_integration/payload/employee_builder_spec.rb
+	    ;;
+	base-floor-plan*)
+	    echo $(base_floor_plan_specs) $(ips_specs)
+	    ;;
 	bounding-box*)
-	    bounding_box_specs
+	    echo $(bounding_box_specs) $(ips_specs)
 	    ;;
 	changed|opened)
-	    git-opened-files | grep _spec.rb
+	    echo $(git-opened-files | grep _spec.rb) $(git-list-changed-from-develop rubocop | grep _spec.rb)
 	    ;;
 	floor-plan*)
-	    echo $(simple_floor_plan_specs) $(printing_specs) $(bounding_box_specs)
+	    echo $(simple_floor_plan_specs) $(printing_specs) $(bounding_box_specs) $(base_floor_plan_specs)
 	    ;;
 	print*)
-	    printing_specs
+	    echo $(printing_specs) $(ips_specs)
 	    ;;
 	ms-teams|teams)
 	    ms_teams_specs
 	    ;;
 	simple*)
-	    simple_floor_plan_specs
+	    echo $(simple_floor_plan_specs) $(ips_specs)
 	    ;;
 	slack-short)
 	    slack_specs | grep -v -e find_controller_spec -e employee_slack_search_spec
@@ -81,4 +100,4 @@ do
 	    fail "Usage: $0 TYPE"
 	    ;;
     esac
-done
+done | dedup
