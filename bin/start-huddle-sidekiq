@@ -26,4 +26,4 @@ fi
 
 export DISABLE_SPRING=true
 
-sidekiq -q high -q default -q low -c 2 >>log/sidekiq.log 2>&1
+sidekiq -q high -q default -q searchkick -q low -c 1 >>log/sidekiq.log 2>&1
