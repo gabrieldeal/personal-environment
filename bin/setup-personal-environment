@@ -153,7 +153,7 @@ print_manual_instructions() {
 }
 
 check_dependencies \
-    && sudo apt -y install p7zip-full ecryptfs-utils cloc virtualbox wmctrl deja-dup pinta byzanz ffmpeg git keepassxc gnome-tweaks authbind curl \
+    && sudo apt -y install p7zip-full ecryptfs-utils cloc gnome-tweaks virtualbox wmctrl deja-dup pinta byzanz ffmpeg git keepassxc gnome-tweaks authbind curl \
     && sudo snap install authy \
     && install_google_chrome \
     && install_gcloud \
