@@ -63,6 +63,14 @@ do
 		  spec/lib/mass_employee_processing/importer_spec.rb \
 		  spec/lib/kafka_integration/payload/employee_builder_spec.rb
 	    ;;
+	CORE-14048|CORE-14049)
+	    echo spec/lib/badge_data/event_handler_spec.rb \
+		 spec/lib/badge_data/importer_spec.rb \
+		 spec/lib/kafka_integration/active_support_notifications_subscriber_spec.rb \
+		 spec/lib/kafka_integration/payload/employee_presence_builder_spec.rb \
+		 spec/requests/api/arashi/badge_entries_spec.rb \
+		 spec/workers/cisco/px_grid/presence_session_worker_spec.rb
+	    ;;
 	base-floor-plan*)
 	    echo $(base_floor_plan_specs) $(ips_specs)
 	    ;;
