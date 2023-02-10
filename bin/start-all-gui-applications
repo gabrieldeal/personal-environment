@@ -18,18 +18,14 @@ switch_workspace 1 true
 # $HOME/local/bin/start-pomodoro-bash &
 
 switch_workspace 5
-
-# I stopped using this in Emacs because it takes too much CPU for
-# emacs to parse the copious output.
-/usr/bin/gnome-terminal \
-    --profile Tool \
-    --execute $HOME/local/bin/run-oss-huddle-webpack &
-
+for title in Sidekiq Webpack Kafka-Port-Forwarding
+do
+    /usr/bin/gnome-terminal --profile Tool --title "$title" &
+done
 /usr/bin/gnome-terminal \
     --profile Tool \
     --execute $HOME/local/bin/run-in $HOME/projects/oss/huddle \
     mailcatcher --foreground &
-
 /usr/bin/gnome-terminal \
     --profile Tool \
     --execute $HOME/local/bin/start-oss-slack-ngrok &
@@ -37,9 +33,11 @@ switch_workspace 5
 switch_workspace 2
 $HOME/local/bin/emacs-huddle &
 /usr/bin/gnome-terminal &
-/usr/bin/gnome-terminal \
-    --profile Tool \
-    --execute $HOME/local/bin/start-huddle-hack &
+/usr/bin/gnome-terminal --profile Tool --geometry 100x10 &
+for geometry in 125x10 125x10 275x10
+do
+    /usr/bin/gnome-terminal --profile 'Tool 2' --geometry $geometry &
+done
 
 # sleep 10
 #
