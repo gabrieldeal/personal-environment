@@ -146,6 +146,15 @@ install_authbind() {
 	 && sudo chown $USER /etc/authbind/byport/443
 }
 
+install_asdf() {
+    command -v asdf && return 0
+
+    git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.10.2 \
+	&& source "$HOME/.asdf/asdf.sh" \
+	&& asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git \
+	&& asdf plugin add ruby https://github.com/asdf-vm/asdf-ruby.git
+}
+
 print_manual_instructions() {
     echo "useradd -G sudo tempuser"
     echo "Log in as tempuser"
@@ -165,6 +174,7 @@ check_dependencies \
     && install_zoom \
     && install_ngrok \
     && install_authbind \
+    && install_asdf \
     && change_gnome_settings \
     && install_backups \
     && setup_emacs \

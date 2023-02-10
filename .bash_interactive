@@ -10,9 +10,9 @@ case $- in
       *) return;;
 esac
 
-source "$HOME/.nvm/nvm.sh"
+source "$HOME/.asdf/asdf.sh"
+source "$HOME/.asdf/completions/asdf.bash"
 source "$HOME/.nvm/bash_completion"
-source "$HOME/.rvm/scripts/rvm"
 source "/usr/share/bash-completion/bash_completion"
 source <(kubectl completion bash)
 

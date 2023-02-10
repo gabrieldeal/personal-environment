@@ -3,9 +3,6 @@
 export NODE_OPTIONS='--max_old_space_size=8192'
 
 cd ~/projects/oss/huddle \
-    && . "$HOME/.rvm/scripts/rvm" \
-    && rvm use `cat .ruby-version`@`cat .ruby-gemset` --create \
+    && . "$HOME/.asdf/asdf.sh" \
     && bin/rake graphql:schema:generate \
-    && . "$HOME/.nvm/nvm.sh" \
-    && nvm use "$(cat .node-version)" \
     && yarn run tsc:watch --preserveWatchOutput

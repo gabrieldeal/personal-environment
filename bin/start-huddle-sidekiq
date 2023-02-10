@@ -4,15 +4,13 @@
 set-xterm-title "Sidekiq"
 
 # In case we are not ran via an interactive shell:
-. "$HOME/.rvm/scripts/rvm"
+source "$HOME/.asdf/asdf.sh"
 
 cd ~/projects/oss/huddle || exit 1
 
 if [ "$1" != 'short' ]
 then
-    rvm get stable \
-	&& rvm install "$(cat .ruby-version)" \
-	&& rvm use "$(cat .ruby-version)@$(cat .ruby-gemset)" --create \
+    asdf install ruby \
 	&& gem install mailcatcher \
 	&& gem install bundle \
 	&& bundle install \

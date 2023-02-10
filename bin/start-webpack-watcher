@@ -5,17 +5,9 @@ export PATH="$PATH:~/bin"
 
 set-xterm-title "OSS webpack watcher"
 
-. "$HOME/.rvm/scripts/rvm"
-. "$HOME/.nvm/nvm.sh"
-
-## Commenting out due to Internet connectivity outage:
-#    && rvm get stable \
-#    && rvm install "$(cat .ruby-version)" \
+. "$HOME/.asdf/asdf.sh"
 
 cd ~/projects/oss/huddle \
-    && rvm use "$(cat .ruby-version)@$(cat .ruby-gemset)" --create \
     && bundle install \
-    && nvm install "$(cat .node-version)" \
-    && nvm use "$(cat .node-version)" \
-    && (yarn install --check-files --frozen-lockfile --ignore-optional) \
+    && (yarn install --immutable) \
     && RAILS_ENV=development bin/webpack-watcher --inline

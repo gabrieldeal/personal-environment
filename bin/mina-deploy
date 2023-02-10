@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 fail() {
     echo "$@" 1>&2
@@ -23,7 +23,7 @@ export RAILS_ENV=development
 export NODE_OPTIONS='--max-old-space-size=5120'
 
 bundle install \
-       && . "$HOME/.nvm/nvm.sh" \
-       && nvm use "$(cat .node-version)" \
+       && . "$HOME/.asdf/asdf.sh" \
+       && asdf install nodejs \
        && bundle exec mina full_deploy HOST="$server.ossd.co" BRANCH="$branch"
 exit $?
