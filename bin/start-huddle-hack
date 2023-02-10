@@ -39,7 +39,7 @@ then
 	&& gem install bundle \
 	&& bundle install \
 	&& echo "Migrating development..." && rake db:migrate RAILS_ENV=development \
-	&& bundle exec rails runner 'WebhookConfig.all.update(enabled: false); Setting.set("AutoConfirmationOfMoves", false); Setting.set("EnableSensorConnectors", false); User.omniauth_providers.map { |provider| Setting.find_by(name: "#{provider.to_s.camelize}AuthenticationSetting")&.destroy }; Setting.where("name like ?", "%AuthenticationConnector").each { |setting| setting.update!(data: setting.data&.gsub("true", "false")) }'
+	&& bundle exec rails runner 'WebhookConfig.all.update(enabled: false); Setting.set("KafkaPingEnabled", false); Setting.set("AutoConfirmationOfMoves", false); Setting.set("EnableSensorConnectors", false); User.omniauth_providers.map { |provider| Setting.find_by(name: "#{provider.to_s.camelize}AuthenticationSetting")&.destroy }; Setting.where("name like ?", "%AuthenticationConnector").each { |setting| setting.update!(data: setting.data&.gsub("true", "false")) }'
     [ "$?" -ne 0 ] && fail "Error setting up rails env"
 fi
 
