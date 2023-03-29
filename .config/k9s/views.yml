@@ -1,0 +1,17 @@
+k9s:
+  views:
+    v1/pods:
+      # https://k9scli.io/topics/columns/
+      columns:
+        - NAME
+        - NAMESPACE
+        - READY
+        - RESTARTS
+        - STATUS
+        - AGE
+        - CPU
+        - "%CPU/R"
+        - "%CPU/L"
+        - MEM
+        - "%MEM/R"
+        - "%MEM/L"
