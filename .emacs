@@ -1149,6 +1149,17 @@ Install the filter like this:
 
 (eval-after-load "compile"
   '(progn
+     ;; For RSpec:
+     (add-to-list 'compilation-error-regexp-alist
+		  '("^ +HTML screenshot: \\([0-9A-Za-z@_./:-]+\\.html\\)" 1 nil nil 0 1))
+     (add-to-list 'compilation-error-regexp-alist
+		  '("^ +\\(Image \\)?\\[?[sS]creenshot\\]?: \\(.+\\.png\\)" 2 nil nil 0 2))
+     (add-to-list 'compilation-error-regexp-alist
+		  '("^ +# \\([0-9A-Za-z@_./:-]+\\.rb\\):\\([0-9]+\\):in" 1 2 nil 2 1))
+     (add-to-list 'compilation-error-regexp-alist
+		  '("^ +# \\([0-9A-Za-z@_./:-]+\\.rb\\):\\([0-9]+\\)" 1 2 nil 1 1))
+     (add-to-list 'compilation-error-regexp-alist
+		  '("^rspec \\([0-9A-Za-z@_./:-]+\\.rb\\):\\([0-9]+\\)" 1 2 nil 2 1))
      ;; For Jasmine:
      (add-to-list 'compilation-error-regexp-alist
 		  '("\\(/[^\":\n]+\\)/[^/]+ <- webpack:///\\([^\":\n]+\\):\\([0-9]+\\):"
