@@ -1,12 +1,15 @@
 #!/usr/bin/env bash
 
 command="$HOME/.yarn/bin/prettier"
-
 repo_root_dir="$(git rev-parse --show-toplevel)"
-repo_prettier="$repo_root_dir/node_modules/prettier/bin-prettier.js"
-if [ -e "$repo_prettier" ]
-then
-    command="$repo_prettier"
-fi
+
+for repo_prettier in "$repo_root_dir/node_modules/prettier/bin-prettier.js" \
+			 "$repo_root_dir/node_modules/prettier/bin/prettier.cjs"
+do
+    if [ -e "$repo_prettier" ]
+    then
+	command="$repo_prettier"
+    fi
+done
 
 $command "$@"
