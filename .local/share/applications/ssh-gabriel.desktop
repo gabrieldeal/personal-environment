@@ -1,0 +1,20 @@
+# To validate:
+# desktop-file-validate ~/.local/share/applications/*.desktop
+
+[Desktop Entry]
+Name=ssh gabriel.dev.ossd.co
+Comment=Use the command line
+Keywords=gabriel.dev.ossd.co
+TryExec=gnome-terminal
+Exec=gnome-terminal --window-with-profile="Staging host" --geometry 160x55++0 --execute gcloud compute ssh osadmin@gabriel --zone=us-central1-a --project=oss-development-323115 --tunnel-through-iap --plain
+Icon=utilities-terminal
+Type=Application
+X-GNOME-DocPath=gnome-terminal/index.html
+X-GNOME-Bugzilla-Bugzilla=GNOME
+X-GNOME-Bugzilla-Product=gnome-terminal
+X-GNOME-Bugzilla-Component=BugBuddyBugs
+X-GNOME-Bugzilla-Version=3.12.3
+Categories=GNOME;GTK;System;TerminalEmulator;
+StartupNotify=true
+OnlyShowIn=GNOME;Unity;
+X-Ubuntu-Gettext-Domain=gnome-terminal
