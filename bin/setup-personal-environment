@@ -85,7 +85,7 @@ change_gnome_settings() {
     gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-up "['<Control>Up']"
     gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-down "['<Control>Down']"
 
-    gsettings set org.gnome.desktop.wm.preferences mouse-button-modifier '<Ctrl>'
+    gsettings set org.gnome.desktop.wm.preferences mouse-button-modifier '<Super>'
     gsettings set org.gnome.desktop.media-handling automount-open false
 
     gnome-extensions disable ubuntu-dock@ubuntu.com
