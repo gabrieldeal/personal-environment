@@ -25,5 +25,5 @@ export NODE_OPTIONS='--max-old-space-size=5120'
 bundle install \
        && . "$HOME/.asdf/asdf.sh" \
        && asdf install nodejs \
-       && bundle exec mina full_deploy HOST="$server.ossd.co" BRANCH="$branch"
+       && bundle exec mina deploy HOST="$server.ossd.co" BRANCH="$branch"
 exit $?
