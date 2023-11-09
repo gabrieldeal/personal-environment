@@ -39,6 +39,13 @@ function base_floor_plan_specs() {
 function ips_specs() {
     find spec/lib/image_processing_service -name \*_spec.rb
 }
+function kafka_specs() {
+    find spec/lib/kafka_integration/ -name \*_spec.rb
+}
+
+function changed_specs() {
+    echo $(git-opened-files | grep _spec.rb) $(git-list-changed-from-develop rubocop | grep _spec.rb)
+}
 
 function dedup() {
     cat - | tr " " "\n" | sort -u
@@ -55,13 +62,19 @@ do
     shift
 
     case "$type" in
-	core-10610)
-	    echo  spec/controllers/api/v1/employees_controller_spec.rb \
-		  spec/graphql/mutations/employees/create_spec.rb \
-		  spec/lib/services/reports/create_employee_spec.rb \
-		  spec/models/employee_seed_spec.rb \
-		  spec/lib/mass_employee_processing/importer_spec.rb \
-		  spec/lib/kafka_integration/payload/employee_builder_spec.rb
+	CORE-16010)
+	    grep -rl huddle.kafka.publish spec/ | grep _spec.rb$
+	    ;;
+	CORE-14993)
+	    echo $(git-list-changed-from-develop rspec) $(kafka_specs)
+	    ;;
+	CORE-14276)
+	    echo  spec/graphql/mutations/badge_entries/delete_spec.rb \
+		  spec/models/badge_entry_spec.rb \
+		  spec/lib/badge_data/ \
+		  spec/workers/kafka_integration \
+		  spec/lib/kafka_integration \
+		  `cd /home/g/projects/oss/huddle/ && grep . -nr --include="*."{rb,erb,rake,rbs} -e expect_not_to_send_kafka_notification -e non_kafka_event_name -l`
 	    ;;
 	CORE-14048|CORE-14049)
 	    echo spec/lib/badge_data/event_handler_spec.rb \
@@ -71,6 +84,9 @@ do
 		 spec/requests/api/arashi/badge_entries_spec.rb \
 		 spec/workers/cisco/px_grid/presence_session_worker_spec.rb
 	    ;;
+	CORE-15608)
+	    echo $(changed_specs) $(grep -rl -e scenario_promoted.floors -e promoted.floors -e demoted.floors spec | grep _spec.rb$)
+	    ;;
 	base-floor-plan*)
 	    echo $(base_floor_plan_specs) $(ips_specs)
 	    ;;
@@ -78,10 +94,13 @@ do
 	    echo $(bounding_box_specs) $(ips_specs)
 	    ;;
 	changed|opened)
-	    echo $(git-opened-files | grep _spec.rb) $(git-list-changed-from-develop rubocop | grep _spec.rb)
+	    changed_specs
 	    ;;
 	floor-plan*)
 	    echo $(simple_floor_plan_specs) $(printing_specs) $(bounding_box_specs) $(base_floor_plan_specs)
+	    ;;
+	kafka|ambrosia)
+	    kafka_specs
 	    ;;
 	print*)
 	    echo $(printing_specs) $(ips_specs)
