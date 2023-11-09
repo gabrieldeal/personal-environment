@@ -34,6 +34,9 @@ cd ~/projects/oss/huddle || fail "No huddle dir"
 
 if [ "$mode" = "full" ]
 then
+    foreman start redis-data &
+    foreman start redis-cache &
+
     asdf install ruby \
 	&& gem install mailcatcher \
 	&& gem install bundle \
