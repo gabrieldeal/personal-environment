@@ -3,7 +3,7 @@
 
 set-xterm-title "OSS huddle rails server"
 
-mode=full
+mode=short
 if [ -n "$1" ]
 then
     mode="$1"
