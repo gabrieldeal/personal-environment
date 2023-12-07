@@ -15,16 +15,178 @@ k9s:
     fullScreenLogs: false
     textWrap: false
     showTime: false
-  currentContext: gke_oss-development-323115_us-central1-a_oss-dev-microservices
-  currentCluster: gke_oss-development-323115_us-central1-a_oss-dev-microservices
+  currentContext: gke_looker-poc-327518_us-central1-b_ambrosia-gabriel2
+  currentCluster: gke_looker-poc-327518_us-central1-b_ambrosia-gabriel2
   clusters:
-    gke_oss-development-323115_us-central1-a_oss-dev-microservices:
+    gke_ambrosia-big-query-test-gmd11_us-central1-b_ambrosia-gmd11:
       namespace:
-        active: ambrosia-dev
+        active: ambrosia
+        lockFavorites: false
+        favorites:
+        - ambrosia
+        - default
+      view:
+        active: pods
+      featureGates:
+        nodeShell: false
+      shellPod:
+        image: busybox:1.35.0
+        command: []
+        args: []
+        namespace: default
+        limits:
+          cpu: 100m
+          memory: 100Mi
+      portForwardAddress: localhost
+    gke_looker-poc-327518_us-central1-a_ambrosia-looker-poc-dev4:
+      namespace:
+        active: ambrosia
+        lockFavorites: false
+        favorites:
+        - ambrosia
+        - default
+      view:
+        active: po
+      featureGates:
+        nodeShell: false
+      shellPod:
+        image: busybox:1.35.0
+        command: []
+        args: []
+        namespace: default
+        limits:
+          cpu: 100m
+          memory: 100Mi
+      portForwardAddress: localhost
+    gke_looker-poc-327518_us-central1-b_ambrosia-gabriel:
+      namespace:
+        active: ambrosia
         lockFavorites: false
         favorites:
         - all
+        - ambrosia
+        - default
+      view:
+        active: pod
+      featureGates:
+        nodeShell: false
+      shellPod:
+        image: busybox:1.35.0
+        command: []
+        args: []
+        namespace: default
+        limits:
+          cpu: 100m
+          memory: 100Mi
+      portForwardAddress: localhost
+    gke_looker-poc-327518_us-central1-b_ambrosia-gabriel2:
+      namespace:
+        active: ambrosia
+        lockFavorites: false
+        favorites:
+        - ambrosia
+        - default
+      view:
+        active: po
+      featureGates:
+        nodeShell: false
+      shellPod:
+        image: busybox:1.35.0
+        command: []
+        args: []
+        namespace: default
+        limits:
+          cpu: 100m
+          memory: 100Mi
+      portForwardAddress: localhost
+    gke_looker-poc-327518_us-central1-b_ambrosia-gabriel6:
+      namespace:
+        active: ambrosia
+        lockFavorites: false
+        favorites:
+        - ambrosia
+        - default
+      view:
+        active: po
+      featureGates:
+        nodeShell: false
+      shellPod:
+        image: busybox:1.35.0
+        command: []
+        args: []
+        namespace: default
+        limits:
+          cpu: 100m
+          memory: 100Mi
+      portForwardAddress: localhost
+    gke_looker-poc-327518_us-central1-b_ambrosia-gabriel7:
+      namespace:
+        active: ambrosia
+        lockFavorites: false
+        favorites:
+        - ambrosia
+        - default
+      view:
+        active: po
+      featureGates:
+        nodeShell: false
+      shellPod:
+        image: busybox:1.35.0
+        command: []
+        args: []
+        namespace: default
+        limits:
+          cpu: 100m
+          memory: 100Mi
+      portForwardAddress: localhost
+    gke_looker-poc-327518_us-central1-b_ambrosia-gabriel8:
+      namespace:
+        active: ambrosia
+        lockFavorites: false
+        favorites:
+        - ambrosia
+        - default
+      view:
+        active: po
+      featureGates:
+        nodeShell: false
+      shellPod:
+        image: busybox:1.35.0
+        command: []
+        args: []
+        namespace: default
+        limits:
+          cpu: 100m
+          memory: 100Mi
+      portForwardAddress: localhost
+    gke_oss-development-323115_us-central1-a_oss-dev-microservices:
+      namespace:
+        active: ambrosia
+        lockFavorites: false
+        favorites:
+        - ambrosia
+        - all
         - ambrosia-dev
+        - default
+      view:
+        active: pod
+      featureGates:
+        nodeShell: false
+      shellPod:
+        image: busybox:1.35.0
+        command: []
+        args: []
+        namespace: default
+        limits:
+          cpu: 100m
+          memory: 100Mi
+      portForwardAddress: localhost
+    gke_oss-stage-1260_us-central1_oss-stage-usc1-microservices:
+      namespace:
+        active: ambrosia
+        lockFavorites: false
+        favorites:
+        - ambrosia
         - default
       view:
         active: po

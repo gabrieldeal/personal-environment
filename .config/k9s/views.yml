@@ -9,9 +9,10 @@ k9s:
         - RESTARTS
         - STATUS
         - AGE
-        - CPU
+#        - CPU
         - "%CPU/R"
         - "%CPU/L"
-        - MEM
+#        - MEM
         - "%MEM/R"
         - "%MEM/L"
+        - QOS
